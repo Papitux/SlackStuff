@@ -1,0 +1,8 @@
+Stjerm (GTK+ drop-down terminal emulator)
+
+Similar to the consoles used in PC games such as Quake, Stjerm sets
+itself apart from similar programs by providing lightweight memory
+usage, minimalistic interface, small file size. Stjerm can be easy
+integrateted with composite window managers such as Compiz.
+
+Home: https://code.google.com/p/stjerm-terminal/

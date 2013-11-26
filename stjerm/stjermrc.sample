@@ -1,0 +1,140 @@
+# STJERM configuration file
+# 
+# PLACE THIS FILE AS ".stjermrc" IN YOUR HOME DIRECTORY.
+#
+# notes: do not start a line with blanks.
+#
+# the format for a valid option is:
+# NAME VALUE
+
+
+# Set the shortcut key. This is a required option.
+key F1
+
+
+# Uncomment the following line to set the modifier key, 
+# which has to be pressed together with the shortcut key, 
+# to show/hide stjerm.
+#
+# NOTE: some modifiers cause do not work on some computer (eg. control)
+#       stjerm displays an error then, that is was unable to grab the key.
+#
+# VALID modifiers:
+# ctrl, alt, mod1, win
+#
+# Default: none
+#mod control
+
+
+# Set the width/height of stjerms window.
+# Default: width: 800, height: 400
+#width 1000
+#height 500
+
+
+# Set the background color. Valid values are Strings like "Red", "White" or hex codes.
+#
+# Default: black
+#
+# Uncomment this line to set a dark gray background:
+#background #333333
+
+
+# Set the foreground color. Acts the same like the background color.
+#
+# Default: white
+# foreground #ffffff
+
+
+# Set the opacity of the terminal.
+#
+# Default: 100
+#opacity 50
+
+
+# Set the used font
+# FORMAT: FONTNAME SIZE
+#
+# Default: Bitstream Vera Sans Mono 10
+font Sans 10
+
+
+# Set the border
+# VALID values:
+# thin, thick, none
+#
+# Default: none
+#border thick
+
+
+# Enable or disable the scrollbar. 
+# VALID values:
+# left, right
+#
+# Default: disabled.
+#scrollbar left
+
+
+# Set the position of stjerms window
+# VALID values:
+# top, bottom, left, right, topleft, topright, bottomleft, bottomright
+#
+# Default: top
+#position bottom
+
+
+# Set the used shell
+#
+# Default: users default shell
+# To set zsh as default shell use this line:
+#shell /bin/zsh
+
+
+# Set the scrollback line count.
+# This specifies the number of lines you scan scrollback in terminal history.
+#
+# Default: 1000
+#lines 10000
+
+
+# Sets whether the tab bar is displayed always. Even if only one tab is opened.
+# VALID values:
+# never,one,always
+#
+# Default: one
+#showtab never
+
+
+# Sets the tab bar position.
+# VALID values:
+# top, left, right, bottom
+#
+# Default: bottom
+#tabpos right
+
+
+# Sets the default tab label.
+#
+# Default: term
+#tablabel  terminal
+
+
+# Color palette for terminal.
+# you must always specify a complete color palette (16 colors) or none.
+# the colors are entered as hex codes.
+#color0           #242424
+#color8           #cdb5cd
+#color1           #bf7979
+#color9           #f4a45f
+#color2           #97b26b
+#color10          #c5f779
+#color3           #cdcda1
+#color11          #ffffaf
+#color4           #86a2be
+#color12          #98afd9
+#color5           #d9b798
+#color13          #d7d998
+#color6           #a1b5cd
+#color14          #a1b5cd
+#color7           #ffffff
+#color15          #dedede

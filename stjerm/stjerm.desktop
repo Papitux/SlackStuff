@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Stjerm
+Comment=Quake like terminal
+Exec=stjerm -o 80 -k F12
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=GTK;Utility;TerminalEmulator;System;
