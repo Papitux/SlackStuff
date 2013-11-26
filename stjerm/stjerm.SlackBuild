@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Slackware build script for stjerm
+# 2013
+# Papitux <papitux.br[at]gmail.com>
 
 PRGNAM=stjerm
 VERSION=0.16.3
