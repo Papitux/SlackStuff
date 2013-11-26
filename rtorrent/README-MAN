@@ -1,0 +1,4 @@
+The man page "doc/rtorrent.1" must be generated with
+"docbook2man rtorrent.1.xml" if it is missing.
+
+alternate '/doc' is doc.tar.bz2
