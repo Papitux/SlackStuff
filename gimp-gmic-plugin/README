@@ -1,0 +1,9 @@
+G'MIC, the GREYC's Magic Image Converter, an open and full-featured
+framework mage processing, providing several different user interfaces
+to convert/manipulate/filter/visualize generic image datasets, from 1d
+scalar signals to 3d+t sequences of multi-spectral volumetric images.
+
+gimp-gmic-plugin: The gmic_gimp plig-in brings the G'MIC capabilities
+to the GIMP image retouching software.
+
+http://gmic.sourceforge.net/gimp.shtml
