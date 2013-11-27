@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+        |-----handy-ruler------------------------------------------------------|
+aescrypt: aescrypt (Encrypt or decrypt a file using AES 256-bit)
+aescrypt: 
+aescrypt: AES Crypt is a file encryption software that uses the industry
+aescrypt: standard Advanced Encryption Standard (AES) to easily and securely
+aescrypt: encrypt files. Using a powerful 256-bit encryption algorithm, AES
+aescrypt: Crypt can safely secure your most sensitive files. Once a file is
+aescrypt: encrypted, you do not have to worry about a person reading your
+aescrypt: sensitive information, as an encrypted file is  completely useless
+aescrypt: without the password. It simply cannot be read.
+aescrypt: 
+aescrypt: Homepage: http://www.aescrypt.com/

@@ -1,0 +1,2 @@
+To use the dialog GUI feature, you'll need to install Zenity
+or Yad, a fork of Zenity, but with less dependencies.
