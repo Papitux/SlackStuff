@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+    |-----handy-ruler------------------------------------------------------|
+serf: serf (a high-performance asynchronous HTTP client library)
+serf:
+serf: The serf library is a C-based HTTP client library built upon the
+serf: Apache Portable Runtime (APR) library. It multiplexes connections,
+serf: running the read/write communication asynchronously.
+serf: Memory copies and transformations are kept to a minimum to provide
+serf: high performance operation.
+serf:
+serf: Home: http://code.google.com/p/serf/
+serf:
+serf:
