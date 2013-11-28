@@ -1,0 +1,26 @@
+Basicamente, crie um arquivo qualquer; cole o endereço
+magneto (magnet url) e salve com qualquer nome; inclusive
+com espaços; ex: Novo arquivo 1.
+
+Se o arquivo não contiver espaços, apenas execute o script
+chamado underscore (permitir execução com chmod +x):
+
+$ magtorrent arquivo
+
+Após alguns instantes,  você terá o seu 'arquivo.torrent'
+(testado com rtorrent v0.9.3 e qbittorrent v3.1.3)
+
+Se o arquivo salvo contiver espaços, execute o underscore:
+
+$ underscore Novo arquivo 1
+
+O arquivo vai ser salvo como Novo_arquivo_1
+
+Depois é só rodar o magtorrent:
+
+$ magtorrent Novo_arquivo_1
+
+obs: O aria2c deve estar instalado!
+obs2: Seus arquivos .torrent srão criados na pasta 'cooked'
+
+https://github.com/Papitux

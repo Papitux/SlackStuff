@@ -1,0 +1,6 @@
+#!/bin/sh
+# 2013
+# Papitux <papitux.br[at]gmail.com>
+#
+mv "$1" "$(echo $1 | sed -e 's/ /_/g')" ;
+exit

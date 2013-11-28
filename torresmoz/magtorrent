@@ -1,0 +1,13 @@
+#!/bin/sh
+# 2013
+# Papitux <papitux.br[at]gmail.com>
+#
+cat $1 | perl  -pe 's/\%([A-Fa-f0-9]{2})/pack('C', hex($1))/seg;' > $1.tmp
+sed 's/^/"/;s/$/"/' $1.tmp > $1
+rm -f $1.tmp
+cat $1 | xargs -P 4 aria2c --bt-metadata-only=true --bt-save-metadata=true
+mv *.torrent tmp.torrent
+mv tmp.torrent $1.torrent
+mv $1.torrent cooked/
+mv $1 cooked/
+exit
