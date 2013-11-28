@@ -3,7 +3,7 @@ magneto (magnet url) e salve com qualquer nome; inclusive
 com espaços; ex: Novo arquivo 1.
 
 Se o arquivo não contiver espaços, apenas execute o script
-chamado underscore (permitir execução com chmod +x):
+chamado magtorrent (permitir execução com chmod +x):
 
 $ magtorrent arquivo
 
