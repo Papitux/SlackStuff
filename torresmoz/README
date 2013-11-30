@@ -21,6 +21,6 @@ Depois é só rodar o magtorrent:
 $ magtorrent Novo_arquivo_1
 
 obs: O aria2c deve estar instalado!
-obs2: Seus arquivos .torrent srão criados na pasta 'cooked'
+obs2: Seus arquivos .torrent serão criados na pasta 'cooked'
 
 https://github.com/Papitux
