@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Evolvotron
+Name[pt]=Evolvotron
+Name[pt_BR]=Evolvotron
+GenericName=Generative Art
+GenericName[pt]=Arte Generativa
+GenericName[pt_BR]=Arte Generativa
+Comment=Interactive generative art software
+Comment[pt]=Software arte interativo
+Comment[pt_BR]=Software arte interativo
+Exec=evolvotron
+Icon=evolvotron
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;Graphics;Qt;

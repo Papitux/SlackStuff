@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+          |-----handy-ruler------------------------------------------------------|
+evolvotron: evolvotron (Interactive Generative Art)
+evolvotron:
+evolvotron: Software to evolve images/textures/patterns through  an iterative
+evolvotron: process of random mutation and user-selection driven evolution, a
+evolvotron: often referred to as  "evolutionary or genetic art".  If you like
+evolvotron: lava lamps, and still think the Mandelbrot set is cool, this could
+evolvotron: be the software for you.
+evolvotron:
+evolvotron: Home: http://www.bottlenose.demon.co.uk/share/evolvotron/
+evolvotron:
+evolvotron:
