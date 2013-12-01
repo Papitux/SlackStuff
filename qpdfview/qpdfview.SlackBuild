@@ -67,7 +67,9 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
 # Add pt_BR translation
 ( cd translations/
 /usr/bin/lrelease qpdfview_pt_BR.ts
-cp qpdfview_pt_BR.qm $PKG/usr/share/$PRGNAM/ )
+cp qpdfview_pt_BR.qm $PKG/usr/share/$PRGNAM/
+cd $PKG/usr/share/$PRGNAM/
+ln -sf qpdfview_pt_BR.qm qpdfview_pt.qm )
 
 if [ -d $PKG/usr/share/man ]; then
   mv $PKG/usr/share/man $PKG/usr/man
