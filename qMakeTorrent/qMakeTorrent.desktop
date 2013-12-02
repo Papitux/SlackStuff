@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=qMakeTorrent
+Comment=Tool for creating Torrents
+Categories=Network;FileTransfer;P2P;Qt;
+Exec=qMakeTorrent
+Icon=qMakeTorrent
+Terminal=false
+Type=Application
+Name[en_US]=qMakeTorrent
+Name[pt_BR]=qMakeTorrent
+Name[pt]=qMakeTorrent
+GenericName[en_US]=qMakeTorrent
+GenericName[pt_BR]=qMakeTorrent
+GenericName[pt]=qMakeTorrent
+Comment[en_US]=Tool for creating Torrents
+Comment[pt_BR]=Ferramenta para criação de Torrents
+Comment[pt]=Ferramenta para criação de Torrents
+GenericName=qMakeTorrent
+#MimeType=application/x-bittorrent;torrent;
