@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+           |-----handy-ruler------------------------------------------------------|
+qbittorrent: qBittorrent (Qt4 Bittorrent Client)
+qbittorrent:
+qbittorrent: The qBittorrent project aims to provide a Free Software alternative
+qbittorrent: to µtorrent.  Additionally,  qBittorrent runs and provides the same
+qbittorrent: features on all major platforms (Linux, Mac OS X, Windows, OS/2 and
+qbittorrent: FreeBSD).
+qbittorrent:
+qbittorrent:
+qbittorrent: Home: http://qbittorrent.sourceforge.net
+qbittorrent:
+qbittorrent:
+qbittorrent:
