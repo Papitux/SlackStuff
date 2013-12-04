@@ -1,0 +1,12 @@
+Cairo-Dock is an app that draws on a RGBA GLX visual.
+Some users have noticed that if the dock is launched,
+severals qt4-based applications,  like skype or vlc,
+could crash.
+
+If you have this problem, add the following line into
+your ~/bashrc :
+
+alias vlc='export XLIB_SKIP_ARGB_VISUALS=1; vlc; unset XLIB_SKIP_ARGB_VISUALS'
+
+For more details:
+http://www.qtforum.org/article/26669/qt4-mess-up-the-opengl-context.html
