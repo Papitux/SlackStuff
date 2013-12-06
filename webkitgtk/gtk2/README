@@ -1,0 +1,9 @@
+WebKitGTK+ is a port of the WebKit rendering engine, offering WebKit’s
+full functionality through a set of GObject-based APIs. It is suitable
+for projects requiring any kind of web integration,  from hybrid HTML
+applications to full-fledged web browsers, like Midori.
+
+This build the GTK2 interface, and can be installed alongside the GTK3
+interface.
+
+http://webkitgtk.org
