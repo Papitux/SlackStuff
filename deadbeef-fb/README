@@ -1,0 +1,6 @@
+A filebrowser plugin for the DeaDBeeF audio player (http://deadbeef.sf.net).
+Placed in a sidebar inside the main user interface, it supports adding files
+to playlists by context menu or drag and drop. Also uses coverart images as
+folder icons.
+
+http://sourceforge.net/projects/deadbeef-fb/
