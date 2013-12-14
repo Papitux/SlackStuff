@@ -57,26 +57,28 @@ find . \
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-PKG_CONFIG_PATH+="/usr/lib64/ffmpeg-compat/pkgconfig" \
-LDFLAGS="$SLKCFLAGS -L/usr/lib64/ffmpeg-compat" \
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --htmldir=/usr/doc/$PKGNAM-$VERSION/html \
-  --localstatedir=/var \
   --sysconfdir=/etc \
-  --infodir=/usr/info \
   --mandir=/usr/man \
+  --infodir=/usr/info \
+  --localstatedir=/var \
+  --enable-gtk2 \
+  --disable-gtk3 \
   --enable-ffmpeg \
   --enable-shared \
+  --disable-static \
   --disable-pulse \
-  --disable-gtk3 \
   --build=$ARCH-slackware-linux
 
 make $NUMJOBS || make || exit 1
 make install DESTDIR=$PKG || exit 1
+
+rm -f $PKG/usr/lib*/deadbeef/*.la
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -122,8 +124,6 @@ if [ -r ChangeLog ]; then
   cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
   touch -r ChangeLog $DOCSDIR/ChangeLog
 fi
-
-rm -f $PKG/usr/doc/$PRGNAM-$VERSION/help.ru.txt
 
 find $PKG/usr/doc/$PRGNAM-$VERSION -type d -print0 | xargs -0 chmod 0755
 find $PKG/usr/doc/$PRGNAM-$VERSION -type f -print0 | xargs -0 chmod 0644
