@@ -3,8 +3,6 @@ DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux,
 the Android version, which is a very different product.
 There are no Windows, OSX or iOS versions.
 
-This build depends on ffmpeg-compat.
-
 deadbeef 0.6.0 fixed compatibility with FFMPEG up to 2.0.2
 
 http://deadbeef.sourceforge.net/
