@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Terasology
+Name[pt]=Terasology
+Name[pt_BR]=Terasology
+GenericName=Terasology
+GenericName[pt]=Terasology
+GenericName[pt_BR]=Terasology
+Comment=Minecraft alternative for Linux
+Comment[pt]=Minecraft alternativo para Linux
+Comment[pt_BR]=Minecraft alternativo para Linux
+Exec=terasology
+Icon=Terasology
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;Game;
