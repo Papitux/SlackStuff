@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+         |-----handy-ruler------------------------------------------------------|
+radeontop: radeontop (Radeon video graphics cards monitoring utility)
+radeontop:
+radeontop: View your GPU utilization, both for the total activity percent and
+radeontop: individual blocks. Radeontool supports R600 and up,  even Southern
+radeontop: Islands should work. Works with the open drivers  and  AMD Catalyst.
+radeontop:
+radeontop: Requires root rights or other permissions to /dev/mem.
+radeontop:
+radeontop: Home: https://github.com/clbr/radeontop
+radeontop:
+radeontop:
