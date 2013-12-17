@@ -69,6 +69,10 @@ make install DESTDIR=$PKG
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
+rm -f $PKG/usr/bin/cairo-dock-session
+rm -rf $PKG/usr/share/gnome-session
+rm -rf $PKG/usr/share/xsessions
+
 if [ -d $PKG/usr/share/man ]; then
   mv $PKG/usr/share/man $PKG/usr/man
 fi
