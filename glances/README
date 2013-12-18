@@ -1,0 +1,5 @@
+Glances is a cross-platform curses-based monitoring tool written
+in Python. It uses the `psutil`_ library to get information from
+your system.
+
+https://github.com/nicolargo/glances

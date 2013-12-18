@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+       |-----handy-ruler------------------------------------------------------|
+glances: Glances (cross-platform curses-based monitoring tool)
+glances: 
+glances: Glances is a cross-platform curses-based monitoring tool written
+glances: in Python. It uses the `psutil`_ library to get information from
+glances: your system.
+glances:
+glances: Homepage: https://github.com/nicolargo/glances
+glances:
+glances:
+glances:
+glances:

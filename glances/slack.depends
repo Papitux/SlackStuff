@@ -1,0 +1,7 @@
+python2
+python2-psutil
+python2-setuptools
+python2-jinja (optional) - HTML export
+python2-sensors (optional) - temperature sensors support
+
+Jinja2 PySensors hddtemp psutil
