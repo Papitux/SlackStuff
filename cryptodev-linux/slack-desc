@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+               |-----handy-ruler------------------------------------------------------|
+cryptodev-linux: cryptodev-linux (CryptoDev device driver)
+cryptodev-linux:
+cryptodev-linux: This is a  /dev/crypto device driver,  equivalent to those in OpenBSD
+cryptodev-linux: or FreeBSD.  The main idea is to access of existing ciphers in kernel
+cryptodev-linux: space from userspace, enabling re-use of a hardware implementation of
+cryptodev-linux: a cipher.
+cryptodev-linux:
+cryptodev-linux: Home: http://cryptodev-linux.org/
+cryptodev-linux:
+cryptodev-linux:
+cryptodev-linux:
