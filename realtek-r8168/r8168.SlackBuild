@@ -1,0 +1,152 @@
+#!/bin/sh
+
+# Slackware build script for Realtek-r8168
+# 2013
+# Papitux <papitux.br[at]gmail.com>
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=r8168
+VERSION=${VERSION:-8.037.00}
+KVER=${KVER:-$(uname -r)}
+#KSRC=${KSRC:-/lib/modules/$KVER/build}
+BUILD=${BUILD:-1}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+  SLKLDFLAGS=""; LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+  SLKLDFLAGS=""; LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+  SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+else
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
+fi
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+# Include <linux/if_ether.h> in r8168_n.c
+#zcat $CWD/include-if_ether.patch.gz | patch -p1 --verbose || exit 1
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+LDFLAGS="$SLKLDFLAGS" \
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+
+( cd src/
+make -C /lib/modules/$KVER/build EXTRA_CFLAGS="-DCONFIG_R8168_NAPI -DCONFIG_R8168_VLAN" M=$PWD
+)
+
+mkdir -p $PKG/lib/modules/$KVER/kernel/drivers/net/ethernet/realtek
+install -Dm644 src/$PRGNAM.ko \
+  $PKG/lib/modules/$KVER/kernel/drivers/net/ethernet/realtek/$PRGNAM.ko
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+# To use r8168, first blacklist r8169:
+# echo "blacklist r8169" > /lib/modprobe.d/r8169.conf
+mkdir -p $PKG/lib/modprobe.d
+install -m644 $CWD/blacklist-r8169.conf \
+  $PKG/lib/modprobe.d/r8169.conf
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a README $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a $CWD/Realtek.png $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+sed 30q Makefile \
+  >> $PKG/usr/doc/$PRGNAM-$VERSION/COPYRIGHT
+
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+if [ -r ChangeLog ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION)
+  cat ChangeLog | head -n 500 > $DOCSDIR/ChangeLog
+  touch -r ChangeLog $DOCSDIR/ChangeLog
+fi
+
+find $PKG/usr/doc/$PRGNAM-$VERSION -type d -print0 | xargs -0 chmod 0755
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -print0 | xargs -0 chmod 0644
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+else
+cat >> $PKG/install/doinst.sh << EOF
+# Only run depmod on matching running kernel
+# Slackware will run depmod anyway on reboot):
+MYMODVER=$KVER
+MYKERNEL=\`uname -r\`
+if [ "\$MYKERNEL" = "\$MYMODVER" ]; then
+  if [ -x sbin/depmod ]; then
+    chroot . /sbin/depmod -a \$MYKERNEL 1> /dev/null 2> /dev/null
+  fi
+fi
+
+# Determine the rc.modules to use:
+if [ -f etc/rc.d/rc.modules.local ]; then
+  RCMODULES="etc/rc.d/rc.modules.local"
+elif [ -f etc/rc.d/rc.modules-$KVER ]; then
+  RCMODULES="etc/rc.d/rc.modules-$KVER"
+else
+  RCMODULES="etc/rc.d/rc.modules"
+fi
+
+# Make sure the module gets loaded on boot:
+if ! grep -q "$PRGNAM" \${RCMODULES} ; then
+  echo "" >> \${RCMODULES}
+  echo "# Load the r8168 kernel module" >> \${RCMODULES}
+  echo "#/sbin/modprobe $PRGNAM" >> \${RCMODULES}
+  echo "##"
+  echo "## Edit \${RCMODULES} if the module needs manual loading."
+  echo "##"
+fi
+EOF
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

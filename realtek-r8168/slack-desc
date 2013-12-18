@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+     |-----handy-ruler------------------------------------------------------|
+r8168: r8168 (Linux device driver for Realtek Ethernet controllers)
+r8168:
+r8168: r8168 is the device driver for Realtek Gigabit Ethernet controllers
+r8168: with PCI-Express interface. Supports: RTL8168B/8111B, RTL8168C/8111C,
+r8168: RTL8168CP/8111CP, RTL8168D/8111D, RTL8168DP/8111DP and RTL8168E/8111E.
+r8168:
+r8168: ##########################  WARNiNG  #################################
+r8168:                  This module conflicts with r8169
+r8168:
+r8168: https://code.google.com/p/r8168/
+r8168:
