@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+         |-----handy-ruler--------------------------------------------------------|
+PySensors: PySensors (Python bindings to libsensors)
+PySensors: 
+PySensors: Python bindings  (via 'ctypes')  for  'libsensors.so'  from the
+PySensors: 'lm-sensors' project. Trying to support the last two libsensors
+PySensors: APIs versions 3 and 4.
+PySensors:
+PySensors: Home: http://pypi.python.org/pypi/PySensors/
+PySensors:
+PySensors: 
+PySensors: 
+PySensors: 

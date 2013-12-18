@@ -1,0 +1,5 @@
+Python bindings  (via  'ctypes')  for 'libsensors.so'  from the
+'lm-sensors' project. Trying to support the last two libsensors
+APIs versions 3 and 4.
+
+http://pypi.python.org/pypi/PySensors/
