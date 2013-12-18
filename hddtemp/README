@@ -1,0 +1,7 @@
+hddtemp is a small and daemonizable utility designed to read the  S.M.A.R.T.
+information from the given hard disk and report the temperature of the disk.
+Different hard disk manufacturers use different raw values in their data and
+the hddtemp.db file helps to map raw values to actual temperatures.
+ 
+http://www.guzu.net/linux/hddtemp.php
+https://savannah.nongnu.org/projects/hddtemp/
