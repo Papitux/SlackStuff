@@ -35,7 +35,7 @@ fi
 NUMJOBS=${NUMJOBS:-" -j4 "}
 
 CWD=$(pwd)
-TMP=${TMP:-/tmp/SBo}
+TMP=${TMP:-/tmp/PpTux}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
