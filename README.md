@@ -3,11 +3,7 @@ SlackStuff
 
 Some scripts for things I like
 
-![](https://creativecommons.org/images/deed/seal.png)
-
-https://creativecommons.org/licenses/by-nc-sa/4.0/
+![https://github.com/Papitux/SlackStuff/blob/master/logo/seal.png]https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 
-![](http://www.slackware.com/grfx/shared/slackware_traditional_website_logo.png)
-
-http://www.slackware.com
+![https://github.com/Papitux/SlackStuff/blob/master/logo/slackware.png](http://www.slackware.com)
