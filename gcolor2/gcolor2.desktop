@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Gcolor2
+GenericName=Color Selector
+GenericName[pt]=Seletor de Cores
+GenericName[pt_BR]=Seletor de Cores
+Comment=Pick colors via numeric input, color wheel, or named colors
+Comment[pt]=Escolha cores via entrada numérica, roda de cores ou nome
+Comment[pt_BR]=Escolha cores via entrada numérica, roda de cores ou nome
+Icon=/usr/share/pixmaps/gcolor2/icon.png
+Exec=gcolor2
+Type=Application
+Terminal=false
+StartupNotify=true
+Categories=Graphics;Utility;GTK;
