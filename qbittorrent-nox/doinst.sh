@@ -7,23 +7,24 @@ config() {
     rm $NEW
   fi
 }
-config /etc/qbt-nox/qbt-nox.conf.new
+config etc/qbt-nox/qbt-nox.conf.new
 
 preserve_perms() {
   NEW="$1"
-  OLD="$(dirname $NEW)/$(basename $NEW .new)"
-  if [ -e $OLD ]; then
-    cp -a $OLD ${NEW}.incoming
-    cat $NEW > ${NEW}.incoming
-    mv ${NEW}.incoming $NEW
+  OLD="$(dirname ${NEW})/$(basename ${NEW} .new)"
+  if [ -e ${OLD} ]; then
+    cp -a ${OLD} ${NEW}.incoming
+    cat ${NEW} > ${NEW}.incoming
+    mv ${NEW}.incoming ${NEW}
   fi
-  config $NEW
+  config ${NEW}
 }
-preserve_perms etc/rc.d/rc.qbt-nox.new
+#preserve_perms etc/rc.d/rc.qbt-nox.new
 
 if [ -r etc/rc.d/rc.qbt-nox -a -r etc/rc.d/rc.qbt-nox.new ]; then
   chmod --reference=etc/rc.d/rc.qbt-nox etc/rc.d/rc.qbt-nox.new
 fi
+mv etc/rc.d/rc.qbt-nox.new etc/rc.d/rc.qbt-nox
 
 # Add qbt-nox user/group
 export FREE_UID=`tail -1 /etc/passwd |awk -F : '{print $3 + 1}'`
