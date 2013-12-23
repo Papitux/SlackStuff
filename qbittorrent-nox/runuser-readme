@@ -1,0 +1,10 @@
+The start script source some functions from '/etc/init.d/functions',
+icluding the 'daemon' function.  Any error about 'runuser' not found
+can be fixed by:
+
+(as root)
+
+$ cd /bin
+$ ln -s su runuser
+
+That's all...

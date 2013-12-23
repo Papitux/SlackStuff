@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+               |-----handy-ruler------------------------------------------------------|
+qbittorrent-nox: qBittorrent-nox (command-line Bittorrent client)
+qbittorrent-nox:
+qbittorrent-nox: qBittorrent-nox  is  an advanced command-line Bittorrent client
+qbittorrent-nox: written in C++ / Qt4, using the libtorrent-rasterbar library by
+qbittorrent-nox: Arvid  Norberg.  qBittorrent-nox  is  fast,  stable,  light and
+qbittorrent-nox: it supports unicode.  It also comes with  UPnP port forwarding,
+qbittorrent-nox: NAT-PMP, encryption, FAST extension and PeX support.
+qbittorrent-nox:
+qbittorrent-nox: Home: http://qbittorrent.sourceforge.net
+qbittorrent-nox:
+qbittorrent-nox:
+qbittorrent-nox:

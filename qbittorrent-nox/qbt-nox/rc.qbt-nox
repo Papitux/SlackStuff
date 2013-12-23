@@ -1,0 +1,148 @@
+#!/bin/sh
+#
+# start/stop the qBittorrent-nox [qbt-nox] daemon.
+# (c) Papitux - 2013
+#
+# Redistribution and use of this script, with or without modification, is permitted
+# provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice.
+#
+
+ctrlfile=/var/lock/qbt-nox/qbt-nox
+
+PID=$(/sbin/pidof qbittorrent-nox 2>/dev/null)
+
+if [ -f /etc/qbt-nox/qbt-nox.conf ] ; then
+    . /etc/qbt-nox/qbt-nox.conf
+fi
+
+if  [ -f /etc/init.d/functions ]; then
+    . /etc/init.d/functions
+fi
+
+[ -x "$DAEMON" ] || exit 0
+
+RETVAL=0
+
+checkuser() {
+  if [[ "$QBTD_USER" == "" ]] ; then
+   echo "You have to specify a user to run qbittorrent-nox"
+   echo "Please, edit /etc/qbt-nox/qbt-nox.conf and modify QBTD_USER."
+   return 1
+  fi
+  if [[ "$QBTD_USER" == "root" ]] ; then
+   echo "You tried to run the daemon as root!"
+   echo "Please, edit /etc/qbt-nox/qbt-nox.conf and modify QBTD_USER"
+   return 1
+  fi
+}
+
+checkuser || exit 1
+
+start() {
+#  echo -n "Starting the BitTorrent Daemon..."
+  if [ -f /proc/$PID/exe ]; then
+    echo "Alredy running."
+    exit 1
+  else
+   echo -n "Starting the BitTorrent Daemon..."
+   daemon --user=$QBTD_USER $DAEMON $QBTD_OPTS &> /dev/null
+  fi
+  if [ "$(ps aux | grep $DAEMON | grep -v grep)" ]; then 
+    echo " qbt-nox running as user $QBTD_USER on port $QBTD_PORT"
+    RETVAL=$?
+  else
+    RETVAL=1
+    echo " error!"    
+  fi
+  if [ $RETVAL -eq 0 ]; then
+   touch $ctrlfile
+  fi
+ return $RETVAL
+}
+
+stop() {
+  echo -n "Stopping the BitTorrent Daemon..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 0
+  fi
+  if kill -15 $PID; then
+    rm -f $ctrlfile
+    echo " stopped."
+  else
+    sleep 1
+    if kill -9 $PID; then
+      rm -f $ctrlfile
+      echo " killed."
+    else
+      echo " error!"
+      exit 1
+   fi
+  fi
+}
+
+reload() {
+  echo -n "Reloading the BitTorrent Daemon..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 1
+  fi
+  if kill -0 $PID && [ -f $ctrlfile ]; then
+    stop
+    start
+   RETVAL=$?
+  else
+   RETVAL=1
+  fi
+  if [ $RETVAL -eq 0 ]; then
+    echo " reloaded."
+  else
+    echo " error!"
+    exit 1
+  fi
+ return $RETVAL
+}
+
+status() {
+  if [ -z "$PID" ]; then
+    echo "Not running."
+    exit 1
+  elif kill -0 $PID && [ -f $ctrlfile ]; then
+    echo "Running in pid $PID."
+    exit 0
+  else
+    echo "$DAEMON is not running."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+  ;;
+
+  stop)
+    stop
+  ;;
+
+  restart)
+    stop
+    sleep 3
+    start
+  ;;
+
+  reload)
+    reload
+  ;;
+
+  status)
+    status
+  ;;
+
+  *)
+  echo "Usage: $0 (start|stop|restart|reload|status)"
+esac

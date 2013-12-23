@@ -1,0 +1,11 @@
+New account will be created as follows:
+---------------------------------------
+Login name:         qbt-nox
+UID:                [ Next available ]
+Initial group:      qbt-nox
+GUID:               [ Next available ]
+Additional groups:  [ None ]	
+Home directory:     /var/lib/qbt-nox
+Shell:              /bin/false
+Expiry date:        [ Never ]
+Password:           [ empty ]

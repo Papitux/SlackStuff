@@ -1,0 +1,17 @@
+qBittorrent-nox  is  an advanced command-line Bittorrent client written
+in C++ / Qt4, using the libtorrent-rasterbar library by Arvid  Norberg.
+qBittorrent-nox  aims  to  be  a good alternative to other command line
+bittorrent clients and provides features similar to  popular  graphical
+clients.
+
+qBittorrent-nox  is  fast,  stable,  light and it supports unicode.  It
+also comes with UPnP port forwarding / NAT-PMP, encryption  (Vuze  com‐
+patible),  FAST extension (mainline) and PeX support (utorrent compati‐
+ble).
+
+qBittorrent-nox is meant to be controlled via its feature-rich  Web  UI
+which  is  accessible as a default on http://localhost:8080. The Web UI
+access is secured and the default account user  name  is  "admin"  with
+"adminadmin" as a password.
+
+http://qbittorrent.sourceforge.net
