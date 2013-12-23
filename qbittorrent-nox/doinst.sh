@@ -51,6 +51,7 @@ if ! grep --quiet '^qbt-nox:' /etc/passwd ;then
           -s /bin/false \
           -g $QBTD_GROUP \
            $QBTD_USER 2> /dev/null
+           usermod -a -G $QBTD_GROUP $QBTD_USER 2> /dev/null
 else
  if grep --quiet '^qbt-nox:' /etc/passwd ;then
    echo -e "User already exist or error creating unprivileged user..." 1>&2
@@ -72,7 +73,7 @@ echo "Adding rc.qbt-nox entry in rc.local..."
 if [ ! -f /etc/rc.d/rc.local ]; then
   echo "Nothing to do: /etc/rc.d/rc.local not found"
 else
- if ! grep -q "rc.qbt-nox start" etc/rc.d/rc.local && \
+ if ! grep -q "rc.qbt-nox start" /etc/rc.d/rc.local && \
   grep --quiet '^qbt-nox:' /etc/passwd && \
    grep --quiet '^qbt-nox:' /etc/group; then
 cat >> /etc/rc.d/rc.local << EOF
@@ -93,7 +94,7 @@ echo "Adding rc.qbt-nox entry in rc.local.shutdown..."
 if [ ! -f /etc/rc.d/rc.local_shutdown ]; then
   echo "Nothing to do: /etc/rc.d/rc.local_shutdown not found"
 else
- if ! grep -q "rc.qbt-nox stop" etc/rc.d/rc.local_shutdown  && \
+ if ! grep -q "rc.qbt-nox stop" /etc/rc.d/rc.local_shutdown  && \
   grep --quiet '^qbt-nox:' /etc/passwd && \
    grep --quiet '^qbt-nox:' /etc/group; then
 cat >> /etc/rc.d/rc.local_shutdown << EOF
@@ -101,7 +102,7 @@ cat >> /etc/rc.d/rc.local_shutdown << EOF
 # Stop the qBittorrent-nox BitTorrent daemon.
 if [ -x /etc/rc.d/rc.qbt-nox ]; then
   sh /etc/rc.d/rc.qbt-nox stop
- fi
+fi
 
 EOF
 echo "New entry added in rc.local_shutdown"
@@ -114,7 +115,7 @@ fi
 if [ -f /usr/bin/tput ] && \
    grep --quiet '^qbt-nox:' /etc/passwd && \
     grep --quiet '^qbt-nox:' /etc/group && \
-     grep -q "rc.qbt-nox start" /etc/rc.d/rc.local ]; then
+     grep -q "rc.qbt-nox start" /etc/rc.d/rc.local; then
   /usr/bin/tput bold
   echo ""
   echo "qbt-nox will run as:"
@@ -133,7 +134,7 @@ if [ -f /usr/bin/tput ] && \
 else
  if grep --quiet '^qbt-nox:' /etc/passwd && \
      grep --quiet '^qbt-nox:' /etc/group && \
-      grep -q "rc.qbt-nox start" /etc/rc.d/rc.local ]; then
+      grep -q "rc.qbt-nox start" /etc/rc.d/rc.local; then
   echo ""
   echo "qbt-nox will run as:"
   echo ""
