@@ -73,7 +73,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/../$PRGNAM-$VERSION.tar.?z*
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
 # Fix translation
@@ -90,13 +90,22 @@ export QTDIR=$(qmake -query QT_INSTALL_PREFIX)
 
 # Honour compile flags
 for filepro in $(find . -type f -name "*.pro") ; do
-  echo "QMAKE_CFLAGS_RELEASE = ${SLKCFLAGS}" >> "${filepro}"
-  echo "QMAKE_CXXFLAGS_RELEASE = ${SLKCFLAGS}" >> "${filepro}"
-  echo "QMAKE_LFLAGS_RELEASE = ${LDFLAGS}" >> "${filepro}"
+  echo "" >> "$filepro"
+  echo "# Honour compile flags" >> "$filepro"
+  echo "QMAKE_CFLAGS_RELEASE = $SLKCFLAGS" >> "$filepro"
+  echo "QMAKE_CXXFLAGS_RELEASE = $SLKCFLAGS" >> "$filepro"
+  echo "QMAKE_LFLAGS_RELEASE = $SLKLDFLAGS" >> "$filepro"
+done
+
+for filepri in $(find . -type f -name "unixconf.pri") ; do
+  sed "/^QMAKE_CXXFLAGS/ s|$| \$\$(CXXFLAGS) \$\$(CPPFLAGS)|" -i "$filepri"
+  sed "/^QMAKE_CXXFLAGS/a QMAKE_LFLAGS_RELEASE +=" -i "$filepri"
+  sed "/^QMAKE_LFLAGS_RELEASE/ s|$| \$\$(LDFLAGS)|" -i "$filepri"
 done
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
+LDFLAGS="$SLKLDFLAGS" \
 ./configure \
   --prefix=/usr \
   --disable-gui \
