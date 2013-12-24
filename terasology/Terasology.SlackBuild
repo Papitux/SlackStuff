@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=Terasology
-VERSION=${VERSION:-719} # Created at: 2013-12-12
+VERSION=${VERSION:-727} # Created at: 2013-12-23
 ARCH=noarch
 BUILD=${BUILD:-1}
 
@@ -36,12 +36,12 @@ rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
 
-mkdir -p $PKG/usr/local/games/Terasology
+( mkdir -p $PKG/usr/local/games/Terasology
 cd $PKG/usr/local/games/Terasology
 unzip -a $CWD/Terasology.zip
 rm -rf $PKG/usr/local/games/Terasology/natives/{macosx,windows}
 rm -f $PKG/usr/local/games/Terasology/run_macosx.command
-rm -f $PKG/usr/local/games/Terasology/Terasology.exe
+rm -f $PKG/usr/local/games/Terasology/Terasology.exe ) || exit 1
 
 chown -R root:root .
 find . \
@@ -62,8 +62,8 @@ find $PKG/usr/bin -type f -name terasology -exec chmod 755 {} \;
 
 install -m 644 -p -D $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$PRGNAM.desktop
 install -m 644 -p -D $CWD/$PRGNAM.png $PKG/usr/share/pixmaps/$PRGNAM.png
-chown -R root:root $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$PRGNAM.desktop
-chown -R root:root $CWD/$PRGNAM.png $PKG/usr/share/pixmaps/$PRGNAM.png
+chown -R root:root $PKG/usr/share/applications/$PRGNAM.desktop
+chown -R root:root $PKG/usr/share/pixmaps/$PRGNAM.png
 
 mkdir -p $PKG/usr/share/icons/hicolor/
 for res in 16 32 48 64 96 128; do
@@ -76,9 +76,10 @@ find $PKG/usr/share/icons/hicolor/ -type f -exec chmod 0644 {} \;
 find $PKG/usr/share/icons/hicolor/ -type d -exec chmod 0755 {} \;
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+( cd $PKG/usr/local/games/Terasology
 cp -a \
   LICENSE NOTICE README VERSION \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+  $PKG/usr/doc/$PRGNAM-$VERSION ) || exit 1
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
 find $PKG/usr/doc -type f -exec chmod 0644 {} \;
