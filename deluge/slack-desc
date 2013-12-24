@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+      |-----handy-ruler------------------------------------------------------|
+deluge: Deluge (BitTorrent client)
+deluge:
+deluge: Deluge is a full-featured ​ BitTorrent  client for  Linux, OS X,  Unix
+deluge: and   Windows.  Ituses ​libtorrent (rasterbar) in its backend and have
+deluge: multiple user-interfaces including: GTK+, web and console. The Deluge
+deluge: daemon is able to run on  headless machines, with the user-interfaces
+deluge: being  able to connect remotely from any platform. It also features a
+deluge: rich plugin collection; expanding Deluge's functionality.
+deluge: 
+deluge: http://www.deluge-torrent.org
+deluge:
