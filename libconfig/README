@@ -1,0 +1,8 @@
+Libconfig is a simple library  for processing structured configuration
+files. This file format is more compact and more readable than XML and
+unlike XML,  it is  type-aware,  so it is  not  necessary to do string
+parsing in  application  code.  It is  very compact, includes bindings
+for both the C/C++ languages and is well-suited for memory-constrained
+systems like handheld devices.
+
+Home: http://www.hyperrealm.com/libconfig/
