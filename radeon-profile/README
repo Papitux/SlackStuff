@@ -1,0 +1,22 @@
+Simple application to read current clocks of ATi Radeon cards (xf86-video-ati)
+Install lm_sensors for gpu temperature.
+
+App need to be run with root privilages for read clocks and changing profiles.
+
+# Dependencies
+* debugfs enabled¹
+* qt4
+* opensource radeon drivers
+
+¹) no values?: mount -t debugfs none /sys/kernel/debug`
+
+# For full funcionality:
+* glxinfo - info about OpenGL, mesa
+* xdriinfo - driver info
+* xrandr - connected displays
+* lm_sensors² - temperature
+
+²) no need if hwmon for card is present in sysfs
+
+
+https://github.com/marazmista/radeon-profile
