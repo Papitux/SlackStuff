@@ -23,6 +23,15 @@ PRGNAM=compton
 VERSION=${VERSION:-2013.12.10.gfbd70e1}
 BUILD=${BUILD:-1}
 
+cd $(pwd)/
+git clone https://github.com/chjj/compton
+cd compton/
+export VERSION=$(git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g')
+cd ..
+mv compton/ compton-$VERSION
+tar jcvf compton-$VERSION.tar.bz2 compton-$VERSION
+rm -rf $(pwd)/compton-$VERSION/
+
 if [ -e $CWD/machine.conf ]; then
   . $CWD/machine.conf ]
 else
