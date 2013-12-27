@@ -20,8 +20,23 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=radeon-profile
-VERSION=${VERSION:-20131227}  # as in radeon_profile.cpp
+#VERSION=${VERSION:-20131227}  # as in radeon_profile.cpp
 BUILD=${BUILD:-1}
+
+if [ ! -f $(pwd)/$PRGNAM-master.zip ]; then
+  cd $(pwd)/
+  git clone https://github.com/marazmista/radeon-profile.git
+  cd radeon-profile/
+  export VERSION=$(git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g')
+  cd ..
+  mv radeon-profile/ radeon-profile-$VERSION
+  tar jcvf radeon-profile-$VERSION.tar.bz2 radeon-profile-$VERSION
+  rm -rf $(pwd)/radeon-profile-$VERSION/
+else
+  if [ -f $(pwd)/$PRGNAM-master.zip ]; then
+  echo ""
+ fi
+fi
 
 if [ -e $CWD/machine.conf ]; then
   . $CWD/machine.conf ]
@@ -70,7 +85,12 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
-rm -rf $PRGNAM-$VERSION
+
+if [ -d $PRGNAM-master ]; then
+  rm -rf $PRGNAM-master
+else
+  rm -rf $PRGNAM-$VERSION
+fi
 
 if [ -f $CWD/$PRGNAM-master.zip ]; then
   unzip -a $CWD/$PRGNAM-master.zip
