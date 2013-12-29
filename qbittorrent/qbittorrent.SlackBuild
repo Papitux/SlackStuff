@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qbittorrent
-VERSION=${VERSION:-3.1.3}
+VERSION=${VERSION:-3.1.4}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -86,10 +86,18 @@ find . \
 
 # Honour compile flags
 for filepro in $(find . -type f -name "*.pro") ; do
-  echo "QMAKE_CFLAGS_RELEASE = ${SLKCFLAGS}" >> "${filepro}"
-  echo "QMAKE_CXXFLAGS_RELEASE = ${SLKCFLAGS}" >> "${filepro}"
-  echo "QMAKE_LFLAGS_RELEASE = ${LDFLAGS}" >> "${filepro}"
-done
+  echo "" >> "$filepro"
+  echo "# Honour compile flags" >> "$filepro"
+  echo "QMAKE_CFLAGS_RELEASE = $SLKCFLAGS" >> "$filepro"
+  echo "QMAKE_CXXFLAGS_RELEASE = $SLKCFLAGS" >> "$filepro"
+  echo "QMAKE_LFLAGS_RELEASE = $SLKLDFLAGS" >> "$filepro"
+done || exit 1
+
+for filepri in $(find . -type f -name "unixconf.pri") ; do
+  sed "/^QMAKE_CXXFLAGS/ s|$| \$\$(CXXFLAGS) \$\$(CPPFLAGS)|" -i "$filepri"
+  sed "/^QMAKE_CXXFLAGS/a QMAKE_LFLAGS_RELEASE +=" -i "$filepri"
+  sed "/^QMAKE_LFLAGS_RELEASE/ s|$| \$\$(LDFLAGS)|" -i "$filepri"
+done || exit 1
 
 export QTDIR=$(qmake -query QT_INSTALL_PREFIX)
 
