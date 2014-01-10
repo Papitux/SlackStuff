@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+          |-----handy-ruler------------------------------------------------------|
+mesa-demos: mesa-demos (3D test utilities)
+mesa-demos:
+mesa-demos: Mesa 3D test utilities.
+mesa-demos:
+mesa-demos: Home: http://www.mesa3d.org
+mesa-demos:
+mesa-demos:
+mesa-demos:
+mesa-demos:
+mesa-demos:
+mesa-demos:

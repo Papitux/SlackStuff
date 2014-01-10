@@ -1,0 +1,8 @@
+mesa (a 3-D graphics library)
+
+Mesa is an open-source  implementation of the OpenGL specification, a
+system for rendering interactive 3D graphics. Mesa ties  into several
+other open-source projects:  the Direct Rendering Infrastructure  and
+X.org to provide OpenGL support to users of X on Linux and FreeBSD.
+
+http://www.mesa3d.org

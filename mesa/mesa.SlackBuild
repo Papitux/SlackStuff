@@ -1,0 +1,171 @@
+#!/bin/sh
+
+# Slacware build script for Mesa3D
+# 2014
+# Papitux <papitux.br[at]gmail.com>
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=mesa
+VERSION=${VERSION:-10.0.2}
+ARCH=${ARCH:-x86_64}
+BUILD=${BUILD:-1}
+#DRI_DRIVERS="i915,i965,intel,nouveau,r200,radeon,swrast"
+DRI_DRIVERS="r200,radeon,swrast"
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf Mesa-$VERSION
+tar xvf $CWD/MesaLib-$VERSION.tar.?z* || exit 1
+cd $TMP/Mesa-$VERSION
+
+chown -R root:root .
+find . \
+  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+  -exec chmod 755 {} \; -o \
+  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+  -exec chmod 644 {} \;
+
+# Build with automake >= 1.13
+autoreconf -vfi
+
+# --enable-osmesa \
+# --with-gallium-drivers=r300,r600,radeonsi,nouveau,svga,swrast \
+CFLAGS="$SLKCFLAGS" \
+CPPFLAGS="$SLKCFLAGS -I/usr/include/libelf" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --sysconfdir=/etc \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --docdir=/usr/doc/mesa-$VERSION \
+  --mandir=/usr/man \
+  --enable-64-bit \
+  --enable-dri \
+  --enable-glx \
+  --enable-gbm \
+  --enable-xa \
+  --enable-egl \
+  --enable-gles1 \
+  --enable-gles2 \
+  --enable-vdpau \
+  --enable-glx-tls \
+  --enable-gallium-egl \
+  --enable-gallium-gbm \
+  --enable-shared-glapi \
+  --enable-gallium-llvm \
+  --enable-driglx-direct \
+  --enable-texture-float \
+  --enable-gallium-osmesa \
+  --enable-r600-llvm-compiler \
+  --with-llvm-shared-libs \
+  --with-egl-platforms=drm,x11 \
+  --with-dri-drivers="$DRI_DRIVERS" \
+  --with-gallium-drivers=r600,swrast \
+  --with-dri-driverdir=/usr/lib${LIBDIRSUFFIX}/xorg/modules/dri \
+  --build=$ARCH-slackware-linux
+
+make $NUMJOBS || make || exit 1
+make install DESTDIR=$PKG || exit 1
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+if [ -d $PKG/usr/share/man ]; then
+  mv $PKG/usr/share/man $PKG/usr/man
+  rmdir $PKG/usr/share
+fi
+
+if [ -d $PKG/usr/man ]; then
+  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
+  for i in $(find $PKG/usr/man -type l -name "*.?") ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+fi
+
+if [ -d $PKG/usr/share/info ];then
+mkdir -p $PKG/usr/info
+mv $PKG/usr/share/info/* $PKG/usr/info
+rm -rf $PKG/usr/share/info
+fi 
+
+if [ -d $PKG/usr/info ]; then
+  find $PKG/usr/info -type f -exec gzip -9 {} \;
+  ( cd $PKG/usr/info
+   if [ -f dir ];then
+     rm dir
+   fi
+   if [ -f dir.gz ];then
+    rm dir.gz
+   fi )
+fi
+
+mkdir -p $PKG/usr/doc/Mesa-$VERSION/html
+cp -a COPYING docs/relnotes-$VERSION.html $PKG/usr/doc/Mesa-$VERSION
+rm -f docs/relnotes*.html docs/RELNOTES*
+cp -a docs/*.html $PKG/usr/doc/Mesa-$VERSION/html
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
