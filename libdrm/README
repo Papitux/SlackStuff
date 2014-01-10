@@ -1,0 +1,7 @@
+libdrm (A library to support Direct Rendering)
+
+This library implements an interface to the kernel's DRM
+services and is used to support hardware accelerated 3-D
+rendering.
+
+http://dri.freedesktop.org/libdrm/
