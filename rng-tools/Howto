@@ -1,0 +1,95 @@
+Randomness shouldn't be left to chance - Howto
+
+© John Gilbert
+Good crypto depends on good entropy, and bad crypto can kill you!
+
+
+Linux 2.6.x and Hardware Random Number Generators : A mini-howto to get hw_random working (with supported hardware)
+By John Gilbert
+
+Part 0. Introduction to chaos, or why is this important?
+Good Random Number Generation is a key component to modern cryptography, statistical problem solving techniques, communication security, stock market prediction, etc., but is extremely difficult to implement on deterministic machines like modern computers. There is a large library of "Psuedo-Random" algorithms that have been written to generate "random like" number sequences, but given the same starting values or "seeds", they will produce exactly the same sequence. This predictability makes them ideal for some types of problems (see Perlin Noise for a great example), but an extreme liability for other uses.
+
+A truly random (completely unpredictable, and statistically sound) number generator needs a true chaotic randomness source feeding it. One of the best sources of statistically sound randomness is from quantum effects, such as radioactive decay, electron vibration noise, etc.  It just so happens that there's a measurable quantum mechanical effect on silicon, and both Intel and AMD have been nice enough to put device hook to this into some of their hardware.
+
+I'll show you how to make this work.
+
+
+Part 1. The hw_random module.
+
+
+First, build a 2.6.X kernel with hw_random configured as a module.
+     (I'm assuming you already have module-init-tools, and know how to do this.)
+
+
+Device Drivers-> Character devices ->  Intel/AMD/VIA HW Random Number Generator support
+set to <M>.
+On saving your kernel, if you 'grep RANDOM .config' it should answer
+CONFIG_HW_RANDOM=m
+
+Go ahead and build the kernel and modules, fix grub/lilo, boot from new kernel,
+
+Check to see if hardware is supported. Do a 'modprobe hw_random'. If successful you should see
+hw_random when you run 'lsmod', and 'dmesg |grep random' should return something like:
+
+
+hw_random: AMD768 system management I/O registers at 0x8000.
+hw_random hardware driver 1.0.0 loaded
+
+
+If this fails, this means that ether your hardware is not supported yet, or you don't have a hardware random number generator.
+You'll have to find another system where this works. Sorry.
+Read Kernel-Source/hw_random.txt and the source to see what hardware is supported.
+
+Part 2. The devices nodes.
+
+
+Ok, you got the module working, now how to talk to it.. If you are using /devfs, you can skip ahead a bit.
+As root, cd to /dev/ and run
+mknod /dev/hwrandom c 10 183
+To load hw_random when the device is used, do the following.
+echo "alias char-major-10-183 hw_random" >> /etc/modules.conf
+/PATH-TO-MIT-TOOLS/module-init-tools-3.0/generate-modprobe.conf >/etc/modprobe.conf
+depmod -ae
+
+hw_module should now show up as soon as its used.
+
+Part 3. The daemon and test software.
+
+
+You need to download the rng-tools-1.1.tar.gz package from
+http://sourceforge.net/projects/gkernel/
+
+unpack it into your source directory (/usr/local/src is a good choice),
+configure
+make
+make install
+
+This makes two programs, plus the man pages. In /usr/local/sbin/ is a file called rngd, the random number generator daemon.
+go ahead and run this. It's job is to take randomness info from /dev/hwrandom, and feed it as seeds to /dev/random.
+
+The second program is /usr/local/bin/rngtest. Try the following...
+cat /dev/random | rngtest -c 1000
+The output should look something like this (remember, it's random!)...
+rngtest: rngtest 1.1 starting up...
+rngtest: bits received from input: 20000032
+rngtest: FIPS 140-2 successes: 999
+rngtest: FIPS 140-2 failures: 1
+rngtest: FIPS 140-2(2001-10-10) Monobit: 0
+rngtest: FIPS 140-2(2001-10-10) Poker: 0
+rngtest: FIPS 140-2(2001-10-10) Runs: 0
+rngtest: FIPS 140-2(2001-10-10) Long run: 1
+rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+rngtest: input channel speed: (min=1.206; avg=118.273; max=1518.642)Kibits/s
+rngtest: FIPS tests speed: (min=30.566; avg=64.671; max=65.998)Mibits/s
+rngtest: Program run time: 165442321 microseconds
+
+If it detects lots of runs or patterns, you're randomness is broken, DON'T USE IT!
+Another kind of neat thing to try is
+xxd /dev/random |more
+(xxd is part of the vim software packages)
+
+Part 4. The finish, and other fun stuff.
+
+
+If you feel you can trust your randomness, that is rngtest seems happy, you'll want to put rngd in a startup script.
