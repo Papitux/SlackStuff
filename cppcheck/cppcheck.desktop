@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Cppcheck
+GenericName=Cppcheck
+Comment=Analysis tool for C/C++ code
+Name[pt_BR]=Cppcheck
+Name[pt]=Cppcheck
+GenericName[pt_BR]=Cppcheck
+GenericName[pt]=Cppcheck
+Comment[pt_BR]=Ferramenta para análise de código C/C++
+Comment[pt]=Ferramenta para análise de código C/C++
+Exec=cppcheck-gui
+Icon=cppcheck
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Development;Application;Qt;
