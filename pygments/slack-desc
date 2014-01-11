@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+        |-----handy-ruler------------------------------------------------------|
+pygments: Pygments (syntax highlighter written in Python)
+pygments:
+pygments: It is a  generic syntax highlighter for general use  in  all kinds of
+pygments: software such as forum systems, wikis or other applications that need
+pygments: to prettify source code.  A wide range of common languages and markup
+pygments: formats is supported  and  special  attention is paid to details that
+pygments: increase highlighting quality.
+pygments:
+pygments: Home: http://pygments.org
+pygments:
+pygments:
