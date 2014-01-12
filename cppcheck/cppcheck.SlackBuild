@@ -112,8 +112,7 @@ mkdir -p $PKG/usr/share/$PRGNAM/cfg
    install -m 644 $file $PKG/usr/share/$PRGNAM/$file
  done
 
-mkdir -p $PKG/usr/share/applications
-mkdir -p $PKG/usr/share/pixmaps
+mkdir -p $PKG/usr/share/{applications,pixmaps}
 cp -a $CWD/$PRGNAM.desktop $PKG/usr/share/applications/
 cp -a $CWD/$PRGNAM.png $PKG/usr/share/pixmaps
 
@@ -124,8 +123,8 @@ for res in 16 32 48 64 96 128; do
     $PKG/usr/share/icons/hicolor/${res}x${res}/apps/$PRGNAM.png  
 done
 
-find $PKG/usr/share/{applications,icons,pixmaps} -type d -print0 | xargs -0 chmod 0755
-find $PKG/usr/share/{applications,icons,pixmaps} -type f -print0 | xargs -0 chmod 0644
+find $PKG/usr/share/{applications,icons,pixmaps} -type d -exec chmod 755 {} \;
+find $PKG/usr/share/{applications,icons,pixmaps} -type f -exec chmod 644 {} \;
 chown -R root:root $PKG/usr/share/
 
 if [ "$WITHMAN" == "yes" ]; then
