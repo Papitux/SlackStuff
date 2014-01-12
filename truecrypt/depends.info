@@ -1,0 +1,1 @@
+DEPENDS="device-mapper, fuse, libsm, PKCS#11_headers_, wxWidgets (wxGTK or wxPython)"

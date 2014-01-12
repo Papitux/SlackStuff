@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=TrueCrypt
+Name[pt_BR]=TrueCrypt
+Name[pt]=TrueCrypt
+GenericName=TrueCrypt
+GenericName[pt_BR]=TrueCrypt
+GenericName[pt]=TrueCrypt
+Comment=On-the-fly disk encryption software
+Comment[pt_BR]=Aplicativo para encriptação de disco em tempo real
+Comment[pt]=Aplicativo para encriptação de disco em tempo real
+Exec=truecrypt
+Icon=truecrypt
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;System;Application;

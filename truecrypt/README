@@ -1,0 +1,10 @@
+TrueCrypt
+
+TrueCrypt is software for establishing and  maintaining an on-the-fly
+encrypted volume  (data storage device).  On-the-fly encryption means
+that  data is  automatically  encrypted  right before it is saved and
+decrypted  right after it is loaded,  without any  user intervention.
+No data stored on an encrypted volume can be read (decrypted) without
+using the correct password/keyfile(s) or correct encryption keys.
+
+http://www.truecrypt.org
