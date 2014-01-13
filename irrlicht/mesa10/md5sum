@@ -1,0 +1,5 @@
+Headers from MesaLib-10.0.2
+
+b47c5d047518165544fedbbf20286600  glext.h
+1b9d5a41451548dcfe00cd570748ee4c  glxext.h
+a1b24b32ee5671d1ef91ca58c95129e7  wglext.h
