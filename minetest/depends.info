@@ -1,0 +1,1 @@
+DEPENDS="curl, freetype, irrlicht, libxxf86vm, libogg, libvorbis, mesa, openal"
