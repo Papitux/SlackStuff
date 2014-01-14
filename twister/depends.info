@@ -1,0 +1,2 @@
+DEPENDS="OpenSSL, Berkeley DB, Boost"
+OPT_DEPENDS="miniupnpc"

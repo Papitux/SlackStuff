@@ -1,0 +1,9 @@
+twister (p2p microblogging)
+
+Twister is an experimental peer-to-peer microblogging software.
+User registration and authentication is provided by a  bitcoin-
+like network, so it is completely distributed  (does not depend
+on any central authority).  Post distribution uses kademlia DHT
+network and bittorrent-like swarms, both provided by libtorrent.
+
+http://twister.net.co

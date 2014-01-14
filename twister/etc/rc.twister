@@ -1,0 +1,127 @@
+#!/bin/sh
+#
+# start/stop the peer-to-peer microblogging daemon (twisterd).
+# (c) Papitux - 2014
+#
+# Redistribution and use of this script, with or without modification, is permitted
+# provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice.
+#
+
+ctrlfile=/var/lock/twister/twisterd
+
+PID=$(/sbin/pidof twisterd 2>/dev/null)
+
+if [ -f /etc/twister/twisterd.conf ] ; then
+    . /etc/twister/twisterd.conf
+fi
+
+RETVAL=0
+
+start() {
+  if [ -f /proc/$PID/exe ]; then
+    echo "Alredy running."
+    exit 1
+  else
+   echo -n "Starting the p2p microblogging daemon (twisterd)..."
+   /usr/bin/twisterd -daemon -rpcuser=$RPCUSER -rpcpassword=$RPCPASSWD \
+    -rpcallowip=$RPCIP -htmldir=$HTMLDIR &> /dev/null
+  fi
+  if [ "$(ps aux | grep twisterd | grep -v grep)" ]; then 
+    echo " Ok!"
+    RETVAL=$?
+  else
+    RETVAL=1
+    echo " error!"    
+  fi
+  if [ $RETVAL -eq 0 ]; then
+   touch $ctrlfile
+  fi
+ return $RETVAL
+}
+
+stop() {
+  echo -n "Stopping the p2p microblogging daemon..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 0
+  fi
+  if kill -15 $PID; then
+    rm -f $ctrlfile
+    echo " stopped."
+  else
+    sleep 1
+    if kill -9 $PID; then
+      rm -f $ctrlfile
+      echo " killed."
+    else
+      echo " error!"
+      exit 1
+   fi
+  fi
+}
+
+reload() {
+  echo -n "Reloading the p2p microblogging daemon..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 1
+  fi
+  if kill -0 $PID && [ -f $ctrlfile ]; then
+    stop
+    start
+   RETVAL=$?
+  else
+   RETVAL=1
+  fi
+  if [ $RETVAL -eq 0 ]; then
+    echo " reloaded."
+  else
+    echo " error!"
+    exit 1
+  fi
+ return $RETVAL
+}
+
+status() {
+  if [ -z "$PID" ]; then
+    echo "Not running."
+    exit 1
+  elif kill -0 $PID && [ -f $ctrlfile ]; then
+    echo "Running in pid $PID."
+    exit 0
+  else
+    echo "The p2p microblogging daemon (twisterd) is not running."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+  ;;
+
+  stop)
+    stop
+  ;;
+
+  restart)
+    stop
+    sleep 3
+    start
+  ;;
+
+  reload)
+    reload
+  ;;
+
+  status)
+    status
+  ;;
+
+  *)
+  echo "Usage: $0 (start|stop|restart|reload|status)"
+esac

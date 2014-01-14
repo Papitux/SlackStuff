@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+       |-----handy-ruler------------------------------------------------------|
+twister: twister (p2p microblogging)
+twister:
+twister: Twister is an experimental peer-to-peer microblogging software.
+twister: User registration and authentication is provided by a  bitcoin-
+twister: like network, so it is completely distributed  (does not depend
+twister: on any central authority).  Post distribution uses kademlia DHT
+twister: network and bittorrent-like swarms, both provided by libtorrent.
+twister:
+twister: Home: http://twister.net.co
+twister:
+twister:

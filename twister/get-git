@@ -1,0 +1,5 @@
+twister-core:
+git clone https://github.com/miguelfreitas/twister-core.git
+
+twister-html:
+git clone https://github.com/miguelfreitas/twister-html.git
