@@ -90,7 +90,6 @@ make $NUMJOBS CFLAGS="-Wall -g -D_GNU_SOURCE -O2 -fPIC" || exit 1
 
 mkdir -p $PKG/usr/bin
 install -m755 $PRGNAM $PKG/usr/bin/$PRGNAM
-find $PKG/usr -type f -exec chmod 644 {} \;
 find $PKG/usr -type d -exec chmod 755 {} \;
 chown -R root:root $PKG/usr/bin
 
