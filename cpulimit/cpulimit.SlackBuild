@@ -89,11 +89,8 @@ make $NUMJOBS || exit 1
 
 mkdir -p $PKG/usr/bin
 install -m755 $PRGNAM $PKG/usr/bin/$PRGNAM
-find $PKG/usr -type f -exec chmod 644 {} \;
 find $PKG/usr -type d -exec chmod 755 {} \;
 chown -R root:root $PKG/usr/bin
-
-find $PKG -type f -name ".gitignore" -exec rm {} \;
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
