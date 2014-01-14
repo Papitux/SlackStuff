@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+cpulimit: cpulimit (sample slack-desk)
+cpulimit:
+cpulimit: cpulimit is  a simple  program which  attempts to limit the cpu
+cpulimit: usage of a process  (expressed in percentage, not in cpu time).
+cpulimit: This is useful to control batch jobs,  when you don't want them
+cpulimit: to eat too much cpu. It does not act on the nice value or other
+cpulimit: scheduling priority stuff, but on the real cpu usage.  Also, it
+cpulimit: is able to adapt itself to the overall system load, dynamically
+cpulimit: and quickly.
+cpulimit:
+cpulimit: Home: https://github.com/opsengine/cpulimit

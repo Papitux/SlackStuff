@@ -1,0 +1,31 @@
+Limit CPU Usage Per Process
+
+Examples of use
+---------------
+
+Limit the process 'bigloop' by executable name to 40% CPU:
+
+    cpulimit --exe bigloop --limit 40
+    cpulimit --exe /usr/local/bin/bigloop --limit 40 
+
+Limit a process by PID to 55% CPU:
+
+    cpulimit --pid 2960 --limit 55 
+
+Launch a process by command line and limit it to 40% (in development version only!):
+
+    cpulimit --limit 40 /etc/rc.d/rc.boinc start 
+
+
+Notes
+-----
+
+If your machine has one processor you can limit the  percentage from  0% to 100%,  which
+means that if you set for example 50%,  your process cannot use more than  500 ms of cpu
+time for each second. But if your machine has four processors,  percentage may vary from
+0% to 400%, so setting the limit to 200% means to use no more than half of the available
+power. In any case, the percentage is the same of what you see when you run top.
+
+cpulimit should run at least with the same user running the controlled process. But it is
+much better if you run cpulimit  as  root,  in order to have a higher priority and a more
+precise control. Now cpulimit does limit also the children of the specified process.
