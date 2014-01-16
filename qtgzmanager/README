@@ -1,0 +1,8 @@
+QTGZManager is a T?Z package  management  application that uses
+standard  pkgtools  (present in any Slackware based system)  to
+manage the  OS  software. It  provides  an  easy  to  use  four
+pane view (directories, packages in the selected dir, installed
+packages in the system  and package actions), drag and drop and
+context menu support.
+
+http://qtgzmanager.wordpress.com
