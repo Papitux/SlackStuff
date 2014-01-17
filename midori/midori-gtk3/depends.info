@@ -1,0 +1,6 @@
+
+DEPENDS="desktop-file-utils, gcr, gtk3, hicolor-icon-theme, libnotify, librsvg, libsoup, libunique3, libxml2, libxss, vala, webkitgtk3"
+
+OPT_DEPENDS"aria2, gst-libav, gst-plugins-{base,good}*, libzeitgeist"
+
+*for media support - HTML5 (OGG, H264 and WebM)
