@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+          |-----handy-ruler------------------------------------------------------|
+galculator: galculator (Algebraic and PRN calculator)
+galculator:
+galculator: galculator is a GTK 2 / GTK 3  based calculator with ordinary
+galculator: notation/reverse polish notation (RPN), a formula entry mode,
+galculator: different number bases  (DEC,  HEX,  OCT,  BIN) and different
+galculator: units of angular measure (DEG, RAD, GRAD).  It supports quad-
+galculator: precision floating point and 112-bit binary arithmetic.
+galculator:
+galculator: Home: http://galculator.sourceforge.net
+galculator:
+galculator:
