@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+nftables: nftables (Netfilter userspace tools)
+nftables:
+nftables: nftables is the project that aims to  replace the  existing
+nftables: {ip,ip6,arp,eb}tables  framework.  Basically,  this project
+nftables: provides a new packet filtering framework,  a new userspace
+nftables: utility and also a compatibility layer for  {ip,ip6}tables.
+nftables:
+nftables: Home: http://netfilter.org/projects/nftables
+nftables:
+nftables:
+nftables:
