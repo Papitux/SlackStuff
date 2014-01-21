@@ -1,0 +1,8 @@
+libnftnl (interface to the nf_tables subsystem)
+
+libnftnl is a userspace library providing a low-level
+netlink programming  interface (API) to the in-kernel
+nf_tables subsystem.  The library  libnftnl  has been
+previously known as `libnftables`.
+
+http://netfilter.org/projects/libnftnl

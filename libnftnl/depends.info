@@ -1,0 +1,1 @@
+libnftnl requires libmnl and a kernel that includes the nf_tables subsystem (initial support >= 3.14). 
