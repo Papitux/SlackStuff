@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/x-plume">
+	<comment xml:lang="en">Plume Creator Project</comment>
+	<comment xml:lang="fr">Projet Plume Creator</comment>
+	<comment xml:lang="pt">Projeto do Plume Creator</comment>
+	<comment xml:lang="pt_BR">Projeto do Plume Creator</comment>
+	<generic-icon name="plume-creator" />
+	<glob pattern="*.plume" />
+    </mime-type>
+    <mime-type type="application/x-plume-backup">
+	<comment xml:lang="en">Plume Creator Project Backup</comment>
+	<comment xml:lang="fr">Projet Plume Creator Backup</comment>
+	<comment xml:lang="pt">Backup de Projeto do Plume Creator</comment>
+	<comment xml:lang="pt_BR">Backup de Projeto do Plume Creator</comment>
+	<generic-icon name="plume-creator-backup" />
+	<glob pattern="*.plume_backup" />
+    </mime-type>
+</mime-info>

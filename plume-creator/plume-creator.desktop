@@ -1,0 +1,19 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Plume Creator
+GenericName=Writing software
+GenericName[fr]=Logiciel d'écriture
+GenericName[pt_BR]=Plume Creator
+GenericName[pt]=Plume Creator
+Comment=Manage your writing projects!
+Comment[fr]=Ecrivez ici votre fiction! Organisez avec vos projets d'écriture.
+Comment[pt_BR]=Organize seus projetos literários!
+Comment[pt]=Organize seus projetos literários!
+Exec=plume-creator
+Icon=plume-creator
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Qt;Office;TextEditor;
+MimeType=application/x-plume;application/x-plume-backup;
