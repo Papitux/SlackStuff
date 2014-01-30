@@ -1,0 +1,6 @@
+Signify - Sign and Verify
+
+OpenBSD tool to signs and verify signatures on files.
+This is a portable version which uses [libbsd].
+
+https://github.com/aperezdc/signify
