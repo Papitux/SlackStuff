@@ -22,7 +22,7 @@
 PRGNAM=qbittorrent
 PKGNAM=qbittorrent-nox
 SLKNAM=qbt-nox
-VERSION=${VERSION:-3.1.3}
+VERSION=${VERSION:-3.1.8}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -78,6 +78,9 @@ cd $PRGNAM-$VERSION
 
 # Fix translation
 zcat $CWD/fix-translation-pt_BR.patch.gz | patch -p1 --verbose || exit 1
+
+# Fix nox build
+zcat $CWD/fix-nox-build.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
