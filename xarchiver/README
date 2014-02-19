@@ -1,0 +1,9 @@
+Xarchiver (GTK+2 archive manager)
+
+Xarchiver is  a lightweight desktop independent archive  manager built
+with the  GTK+2  toolkit.  Xarchiver supports 7-zip, arj, bzip2, gzip,
+rar, lha, lzma, lzop, deb, rpm, tar and zip archives; archive comment,
+Cut/Copy/Paste/Rename, password encryption,  self-extracting binaries,
+integration with Thunar file-manager and much more.
+
+http://xarchiver.sourceforge.net
