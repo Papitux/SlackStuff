@@ -1,0 +1,2 @@
+DEPENDS="Qt4, ffmpeg or libav, ALSA, libGL, libGLU, libX11, libXext, libXfiles"
+OPT_DEPENDS="JACK library"

@@ -1,0 +1,49 @@
+General
+Complete name                            : test-H264-AAC.mp4
+Format                                   : MPEG-4
+Format profile                           : Base Media
+Codec ID                                 : isom
+File size                                : 715 KiB
+Duration                                 : 9s 167ms
+Overall bit rate                         : 639 Kbps
+Writing application                      : Lavf55.19.104
+
+Video
+ID                                       : 1
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L3.2
+Format settings, CABAC                   : Yes
+Format settings, ReFrames                : 4 frames
+Codec ID                                 : avc1
+Codec ID/Info                            : Advanced Video Coding
+Duration                                 : 9s 167ms
+Bit rate                                 : 502 Kbps
+Width                                    : 1 280 pixels
+Height                                   : 1 024 pixels
+Display aspect ratio                     : 5:4
+Frame rate mode                          : Constant
+Frame rate                               : 30.000 fps
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Bits/(Pixel*Frame)                       : 0.013
+Stream size                              : 562 KiB (79%)
+Writing library                          : x264 core 138
+Encoding settings                        : cabac=1 / ref=1 / deblock=1:0:0 / analyse=0x3:0x3 / me=dia / subme=1 / psy=1 / psy_rd=1,00:0,00 / mixed_ref=0 / me_range=16 / chroma_me=1 / trellis=0 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=0 / threads=6 / lookahead_threads=1 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=1 / keyint=250 / keyint_min=25 / scenecut=40 / intra_refresh=0 / rc=crf / mbtree=0 / crf=23,0 / qcomp=0,60 / qpmin=0 / qpmax=69 / qpstep=4 / ip_ratio=1,40 / pb_ratio=1,30 / aq=1:1,00
+
+Audio
+ID                                       : 2
+Format                                   : AAC
+Format/Info                              : Advanced Audio Codec
+Format profile                           : LC
+Codec ID                                 : 40
+Duration                                 : 8s 894ms
+Bit rate mode                            : Constant
+Bit rate                                 : 132 Kbps
+Channel(s)                               : 2 channels
+Channel positions                        : Front: L R
+Sampling rate                            : 44.1 KHz
+Compression mode                         : Lossy
+Stream size                              : 142 KiB (20%)

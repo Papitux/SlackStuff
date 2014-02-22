@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+                    |-----handy-ruler------------------------------------------------------|
+SimpleScreenRecorder: SimpleScreenRecorder (screen recorder for Linux)
+SimpleScreenRecorder:
+SimpleScreenRecorder: SimpleScreenRecorder is a screen recorder for Linux. Despite the name,
+SimpleScreenRecorder: this program is actually  quite complex.  It's  'simple'  in the sense
+SimpleScreenRecorder: that it's easier to use than ffmpeg/avconv or VLC.
+SimpleScreenRecorder:
+SimpleScreenRecorder: Home: http://www.maartenbaert.be/simplescreenrecorder/
+SimpleScreenRecorder:
+SimpleScreenRecorder:
+SimpleScreenRecorder:
+SimpleScreenRecorder:
