@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Riecoin
+GenericName=Riecoin QT-Client
+Comment=Riecoin client
+Exec=/usr/bin/riecoin-qt
+Icon=riecoin
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network;P2P;
