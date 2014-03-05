@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=AuroraCoin
+GenericName=AuroraCoin QT-Client
+Comment=AuroraCoin client
+Exec=/usr/bin/auroracoin-qt
+Icon=auroracoin
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network;P2P;

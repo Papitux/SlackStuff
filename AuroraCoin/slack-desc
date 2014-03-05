@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+          |-----handy-ruler------------------------------------------------------|
+auroracoin: auroracoin (Iceland's P2P electronic cash system)
+auroracoin:
+auroracoin: AuroraCoin is a cryptocurrency for Iceland. It is based on litecoin
+auroracoin: and is 50% premined.  The premined coins will be distributed to the
+auroracoin: entire population of Iceland. It is a free open source peer-to-peer
+auroracoin: electronic  cash  system that is completely decentralized,  without
+auroracoin: the need for a central server or trusted  parties.
+auroracoin:
+auroracoin: Home: http://www.auroracoin.org/
+auroracoin:
+auroracoin:
