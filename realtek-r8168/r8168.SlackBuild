@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=r8168
-VERSION=${VERSION:-8.037.00}
+VERSION=${VERSION:-8.038.00}
 KVER=${KVER:-$(uname -r)}
 #KSRC=${KSRC:-/lib/modules/$KVER/build}
 BUILD=${BUILD:-1}
@@ -60,9 +60,6 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
-
-# Include <linux/if_ether.h> in r8168_n.c
-#zcat $CWD/include-if_ether.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
