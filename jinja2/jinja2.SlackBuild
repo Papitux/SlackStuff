@@ -19,8 +19,8 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-PRGNAM=Jinja2
-VERSION=2.7.1
+PRGNAM=jinja2
+VERSION=2.7.2
 BUILD=${BUILD:-1}
 
 if [ -z "$ARCH" ]; then
@@ -44,9 +44,6 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
-
-# Fix "PrefixLoader does not pass globals to load"
-zcat $CWD/globals-to-load.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
