@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=pysetuptools
-VERSION=${VERSION:-1.4.2}
+VERSION=${VERSION:-3.3}
 BUILD=${BUILD:-1}
 
 SRCNAM=setuptools
@@ -54,7 +54,7 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
-sed -i -e "s|^#\!.*/usr/bin/python|#!/usr/bin/python2|" setuptools/tests/test_resources.py
+#sed -i -e "s|^#\!.*/usr/bin/python|#!/usr/bin/python2|" setuptools/tests/test_resources.py
 
 rm -f setuptools/*.exe
 python2 setup.py build
