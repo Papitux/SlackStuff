@@ -1,0 +1,8 @@
+PRGNAM="pyxdg"
+VERSION="0.25"
+HOMEPAGE="http://freedesktop.org/wiki/Software/pyxdg"
+DOWNLOAD="http://www.freedesktop.org/~lanius/pyxdg-0.25.tar.gz"
+MD5SUM=""
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
