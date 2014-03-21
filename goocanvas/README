@@ -1,0 +1,7 @@
+GooCanvas (Cairo-based canvas widget for GTK+)
+
+GooCanvas is a canvas widget for GTK+ that uses the cairo 2D
+library for drawing.  GooCanvas  is similar in many ways  to
+GnomeCanvas and FooCanvas, but it uses cairo for rendering. 
+
+http://live.gnome.org/GooCanvas
