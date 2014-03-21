@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+           |-----handy-ruler------------------------------------------------------|
+clutter-gst: clutter-gst (GStreamer bindings for clutter)
+clutter-gst:
+clutter-gst: Clutter-Gst is an integration library for using  GStreamer with
+clutter-gst: Clutter.  It provides  a  GStreamer sink to upload frames to GL
+clutter-gst: and  an  actor that implements the ClutterMedia interface using
+clutter-gst: playbin2.
+clutter-gst:
+clutter-gst: Home: http://www.clutter-project.org
+clutter-gst:
+clutter-gst:
+clutter-gst:
