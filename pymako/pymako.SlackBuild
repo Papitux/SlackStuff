@@ -55,6 +55,15 @@ set -e
 
 NUMJOBS=${NUMJOBS:-" -j4 "}
 
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
