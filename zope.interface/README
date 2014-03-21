@@ -1,0 +1,6 @@
+zope.interface (Zope Interfaces for Python2)
+
+ZOPE Interfaces are a mechanism for labeling objects as conforming to a
+given API or contract.
+
+http://pypi.python.org/pypi/zope.interface/

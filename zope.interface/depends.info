@@ -1,0 +1,4 @@
+
+DEPENDS="pysetuptools
+OPTIONAL="zope.testing (for test suite)"
+
