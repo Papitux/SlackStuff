@@ -1,0 +1,8 @@
+PyGoocanvas (Python Bindings for GooCanvas)
+
+GooCanvas is a canvas widget for GTK+ that uses the cairo 2D
+library for drawing.  GooCanvas  is similar in many ways  to
+GnomeCanvas and FooCanvas,  but it uses cairo for rendering.
+PyGoocanvas provides the  Python bindings for GooCanvas.
+
+http://developer.berlios.de/projects/pygoocanvas
