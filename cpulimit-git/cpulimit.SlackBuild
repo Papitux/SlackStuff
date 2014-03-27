@@ -21,9 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=cpulimit
-#PKGNAM=cpulimit-master
 ARCH=${ARCH:-x86_64}
-VERSION=${VERSION:-2014.01.09.g3cdc520} # built from cpulimit-master.zip
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -73,9 +71,13 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
-rm -rf $PRGNAM-master
-unzip -a $CWD/$PRGNAM-master.zip
-cd $PRGNAM-master
+rm -rf $PRGNAM
+
+git clone https://github.com/opsengine/cpulimit.git
+
+cd $PRGNAM
+
+export COMMIT=$(git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g')
 
 chown -R root:root .
 find . \
@@ -100,18 +102,18 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 
 find $PKG -type f -name ".gitignore" -exec rm {} \;
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM-$COMMIT
 cp -a \
   LICENSE README $CWD/HOWTO \
-  $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+  $PKG/usr/doc/$PRGNAM-$COMMIT
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$COMMIT/$PRGNAM.SlackBuild
 
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
-chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+chown -R root:root $PKG/usr/doc/$PRGNAM-$COMMIT
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$COMMIT-$ARCH-$BUILD.${PKGTYPE:-txz}
