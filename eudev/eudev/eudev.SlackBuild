@@ -1,0 +1,209 @@
+#!/bin/sh
+
+# Slackware build script for eudev
+# Based on Slackware's udev build script
+
+# Copyright 2006, 2008, 2009, 2010, 2011, 2012, 2013  Patrick J. Volkerding, Sebeka, MN, USA
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+VERSION=${VERSION:-1.5.3}
+BUILD=${BUILD:-1}
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-eudev
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG/lib/udev
+cd $TMP
+rm -rf eudev-$VERSION
+tar xvf $CWD/eudev-$VERSION.tar.?z* || exit 1
+cd eudev-$VERSION || exit 1
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+# Fixup the rule generator for our use
+zcat $CWD/rule_generator.diff.gz | patch -p1 --verbose || exit 1
+
+# Patch 60-cdrom_id.rules to create a full set of symlinks.
+# This is needed for a hotplugged optical device since the generated
+# rules will not be used until the second time the device is plugged.
+zcat $CWD/60-cdrom_id.rules.diff.gz | patch -p1 --verbose || exit 1
+
+if [ ! -f ./configure ]; then
+./autogen.sh
+fi
+
+# static libudev is needed for lvm2
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+LDFLAGS="$LDFLAGS -lrt" \
+./configure \
+  --prefix=/usr \
+  --bindir=/sbin \
+  --sbindir=/sbin \
+  --mandir=/usr/man \
+  --libexecdir=/lib \
+  --sysconfdir=/etc \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --docdir=/usr/doc/eudev-$VERSION \
+  --with-rootprefix=/ \
+  --with-rootlibdir=/lib${LIBDIRSUFFIX} \
+  --with-firmware-path=/lib/firmware/updates:/lib/firmware \
+  --enable-static \
+  --enable-modules \
+  --enable-libkmod \
+  --enable-introspection \
+  --enable-rule_generator \
+  --build=$ARCH-slackware-linux || exit 1
+
+make $NUMJOBS || make || exit 1
+make install DESTDIR=$PKG || exit 1
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+# scsi_id is needed by multipath
+( cd $PKG/sbin ; ln -s ../lib/udev/scsi_id scsi_id )
+
+# Keep the symlink from Slackware's udev
+( cd $PKG/lib/udev ; ln -s /sbin/udevd udevd )
+
+# Lets cheat a little...
+( cd $PKG/lib64 ; ln -sf libudev.so.1.3.0 libudev.so.0 )
+
+# Drop distributed hwdb files, they override the package eudev-hwdb
+rm -f \
+  $PKG/etc/udev/hwdb.bin \
+  $PKG/etc/udev/hwdb.d/{20-acpi-vendor,20-bluetooth-vendor-product,20-net-ifname,60-keyboard}.hwdb
+
+mkdir -p \
+  $PKG/run \
+  $PKG/{etc,lib}/modprobe.d \
+  $PKG/etc/rc.d \
+  $PKG/etc/udev/rules.d \
+  $PKG/lib/udev/devices/pts \
+  $PKG/lib/firmware
+
+# Yes, these will clobber existing config files.
+cp -a $CWD/config/udev.conf $PKG/etc/udev/udev.conf
+
+# Copy Slackware custom rules
+cp -a $CWD/config/rules.d/* $PKG/lib/udev/rules.d/
+chmod 0644 $PKG/lib/udev/rules.d/{40-slackware,59-non-libata-devices,65-permissions}.rules
+
+# Fix net rules:
+#cat $CWD/net-rules/75-net-description.rules \
+#  > $PKG/lib/udev/rules.d/75-net-description.rules
+#cat $CWD/net-rules/75-persistent-net-generator.rules \
+#  > $PKG/lib/udev/rules.d/75-persistent-net-generator.rules
+
+# Disable the new interface renaming functionality (enabled by default):
+# http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames
+touch $PKG/etc/udev/rules.d/80-net-name-slot.rules
+
+# Now the init script and module-init-tools stuff
+cp -a $CWD/config/rc.d/rc.udev.new $PKG/etc/rc.d/rc.udev.new
+cp -a $CWD/config/modprobe.d/*.conf $PKG/lib/modprobe.d/
+cp -a $CWD/config/modprobe.d/README $PKG/etc/modprobe.d/
+
+chown -R root:root $PKG/etc $PKG/lib/modprobe.d
+find $PKG/etc $PKG/lib/modprobe.d -type f -exec chmod 644 {} \;
+find $PKG/etc -type d -exec chmod 755 {} \;
+chmod 0755 $PKG/etc/rc.d/rc.udev.new
+
+# Add extra device nodes to the package that udev doesn't make:
+tar xvf $CWD/udev-fixed-devices.tar.gz -C $PKG
+
+chown -R root:root $PKG/lib/udev
+chmod 0755 $PKG/lib/udev/*
+
+mkdir -p $PKG/usr/doc/eudev-$VERSION
+cp -a \
+  CONTRIBUTING COPYING README UPSTREAM* \
+  $PKG/usr/doc/eudev-$VERSION
+
+# Don't package the API docs:
+#rm -rf $PKG/usr/share/gtk-doc ; rmdir $PKG/usr/share 2>/dev/null
+
+if [ -d $PKG/usr/share/man ];then
+mkdir -p $PKG/usr/man
+mv $PKG/usr/share/man/* $PKG/usr/man
+rm -rf $PKG/usr/share/man
+fi
+
+if [ -d $PKG/usr/man ]; then
+  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
+  for i in $(find $PKG/usr/man -type l -name "*.?"); do
+  ln -s $( readlink $i ).gz $i.gz ; rm $i
+  done
+fi
+
+mkdir -p $PKG/install
+zcat $CWD/doinst.sh.gz > $PKG/install/doinst.sh
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c y $OUTPUT/eudev-$VERSION-$ARCH-$BUILD.txz

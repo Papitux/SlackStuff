@@ -1,0 +1,8 @@
+eudev (fork of system-udev)
+
+eudev is a fork of system-udev with the goal of obtaining better
+compatibility with existing software such as OpenRC and Upstart, 
+older kernels,  various toolchains and anything else required by
+users and various distributions.
+
+http://www.gentoo.org/proj/en/eudev/

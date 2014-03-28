@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+     |-----handy-ruler-------------------------------------------------------|
+eudev: eudev (fork of system-udev)
+eudev:
+eudev: eudev is a fork of system-udev with the goal of obtaining better
+eudev: compatibility with existing software such as OpenRC and Upstart, 
+eudev: older kernels,  various toolchains and anything else required by
+eudev: users and various distributions.
+eudev: 
+eudev: Home: http://www.gentoo.org/proj/en/eudev/
+eudev:
+eudev: 
+eudev:

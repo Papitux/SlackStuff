@@ -1,0 +1,8 @@
+hwdb (Combined hardware identification databases)
+
+This  package  contain  a  binary  representation  of the  hwid files
+known as 'pci.ids'  and  'usb.ids'. Since version 196 and later, udev
+does not consume the hwid files directly,  instead,  it only access a
+specific binary representation.
+
+https://github.com/gentoo/hwids
