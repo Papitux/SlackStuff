@@ -1,0 +1,15 @@
+If you have GeoIP installed:
+Settings -> Options -> Updating
+
+GeoIP database server
+/var/lib/GeoIP/GeoIP.dat (or your GeoIP database path location)
+
+If you don't have  GeoIP installed:
+Before  build  the package for UrTConnector
+edit the build  script and comment the line
+rm -f $PKG/usr/share/urtconnector/GeoIP.dat
+
+Settings -> Options -> Updating:
+
+GeoIP database server
+/usr/share/urtconnector/GeoIP.dat
