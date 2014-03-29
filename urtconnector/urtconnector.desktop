@@ -1,0 +1,17 @@
+[Desktop Entry]
+Version=1.0
+Name=UrTConnector
+Name[pt]=UrTConnector
+Name[pt_BR]=UrTConnector
+GenericName=UrTConnector
+GenericName[pt]=UrTConnector
+GenericName[pt_BR]=UrTConnector
+Comment=UrbanTerror browser and launcher
+Comment[pt]=Lançador alternativo para UrbanTerror
+Comment[pt_BR]=Lançador alternativo para UrbanTerror
+Exec=urtconnector
+Icon=urtconnector
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;Game;
