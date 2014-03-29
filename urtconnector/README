@@ -2,6 +2,6 @@ UrTConnector (Advanced UrbanTerror launcher program)
 
 UrTConnector is an advanced UrbanTerror launcher program  written
 in C++ and Qt4. It can be run on unix, mac or windows and support
-support the new UrbanTerror 4.2.
+the new UrbanTerror 4.2.
 
 http://code.google.com/p/urtconnector/
