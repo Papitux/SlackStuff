@@ -1,0 +1,1 @@
+svn checkout -r2598 svn://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
