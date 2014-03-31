@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+              |-----handy-ruler------------------------------------------------------|
+gimp-focusblur: gimp-focusblur (Create blur with luminosity and depth)
+gimp-focusblur:
+gimp-focusblur: Focus Blur plug-in is blurring effect,  a kind of called DoF.
+gimp-focusblur: This software makes a out of focus with luminosity and depth,
+gimp-focusblur: like a sight or lenses.  It can be used with depth map, depth
+gimp-focusblur: applicable blur.
+gimp-focusblur:
+gimp-focusblur: Home: http://registry.gimp.org/node/1444
+gimp-focusblur:
+gimp-focusblur:
+gimp-focusblur:
