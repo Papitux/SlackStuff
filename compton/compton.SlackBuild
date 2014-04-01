@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Slackware build script for compton
-# 2013
-# Papitux <papitux.br[at]gmail.com>
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
 # that the following conditions are met:
@@ -20,17 +21,19 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=compton
-VERSION=${VERSION:-2013.12.10.gfbd70e1}
+# VERSION 20140326.360da12 / built 2013-04-01
+# See changes at https://github.com/chjj/compton/commits/master
 BUILD=${BUILD:-1}
 
 cd $(pwd)/
 git clone https://github.com/chjj/compton
 cd compton/
-export VERSION=$(git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g')
+export VERSION=$(git log -1 --format="%cd" --date=short | sed 's/-//g')
+export COMMIT=$(git log --format="%h" | head -n1)
 cd ..
-mv compton/ compton-$VERSION
-tar jcvf compton-$VERSION.tar.bz2 compton-$VERSION
-rm -rf $(pwd)/compton-$VERSION/
+mv compton/ compton-$VERSION.$COMMIT
+tar jcvf compton-$VERSION.$COMMIT.tar.bz2 compton-$VERSION.$COMMIT
+rm -rf $(pwd)/compton-$VERSION.$COMMIT/
 
 if [ -e $CWD/machine.conf ]; then
   . $CWD/machine.conf ]
@@ -79,9 +82,9 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
-cd $PRGNAM-$VERSION
+rm -rf $PRGNAM-$VERSION.$COMMIT
+tar xvf $CWD/$PRGNAM-$VERSION.$COMMIT.tar.?z*
+cd $PRGNAM-$VERSION.$COMMIT
 
 chown -R root:root .
 find . \
@@ -138,22 +141,22 @@ if [ -d $PKG/usr/locale ]; then
   mv $PKG/usr/locale $PKG/usr/share/ || exit 1
 fi
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION.$COMMIT
 cp -a \
   desc.txt LICENSE README* compton.sample.conf \
-  $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+  $PKG/usr/doc/$PRGNAM-$VERSION.$COMMIT
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION.$COMMIT/$PRGNAM.SlackBuild
 
 if [ -r ChangeLog ]; then
-  DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION)
+  DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION.$COMMIT)
   cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
   touch -r ChangeLog $DOCSDIR/ChangeLog
 fi
 
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
-find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
-chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+find $PKG/usr/doc/$PRGNAM-$VERSION.$COMMIT -type f -size 0 -print0 | xargs -0 rm -f
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION.$COMMIT
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
@@ -166,4 +169,4 @@ if [ $(find $PKG/usr/share -maxdepth 0 -type d -empty 2>/dev/null) ]; then
 fi
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION.$COMMIT-$ARCH-$BUILD.${PKGTYPE:-txz}
