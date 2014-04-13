@@ -1,0 +1,2 @@
+DEPENDS="autotools, gettext, librsvg (gtk-redshift), pygtk (gtk-redshift), python, pyxdg (gtk-redshift)"
+OPTDEPENDS="libdrm (DRM support), libxcb, libxcb-randr (RandR support), libX11, libXxf86vm (VidMode support), geoclue (geoclue support)"
