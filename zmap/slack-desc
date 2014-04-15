@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+    |-----handy-ruler------------------------------------------------------|
+zmap: zmap (Network scanner for Internet-wide network surveys)
+zmap:
+zmap: ZMap is an open-source network scanner that enables  researchers
+zmap: to easily perform Internet-wide  network studies.  With a single
+zmap: machine  and a well provisioned network uplink,  ZMap is capable
+zmap: of performing a complete scan of the IPv4 address space in under
+zmap: 45 minutes, approaching the theoretical limit of gigabit Ethernet.
+zmap:
+zmap: Home: https://zmap.io/
+zmap:
+zmap:
