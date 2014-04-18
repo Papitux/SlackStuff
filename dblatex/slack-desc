@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+       |-----handy-ruler------------------------------------------------------|
+dblatex: dblatex (DocBook converer using LaTeX)
+dblatex:
+dblatex: Dblatex tries to hide as much as possible the latex compiling stuff
+dblatex: by providing a single clean script to transforms a DocBook XML/SGML
+dblatex: document directly to DVI, PostScript and PDF documents.  The output
+dblatex: rendering is done  not only by the XSL stylesheets  transformation,
+dblatex: but also by a dedicated LaTeX package.  The goal is to allow a deep
+dblatex: LaTeX customisation without changing the XSL stylesheets.
+dblatex:
+dblatex: Home: http://dblatex.sourceforge.net
+dblatex:
