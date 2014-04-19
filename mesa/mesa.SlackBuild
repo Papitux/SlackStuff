@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mesa
-VERSION=${VERSION:-10.0.2}
+VERSION=${VERSION:-10.1.1}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 #DRI_DRIVERS="i915,i965,intel,nouveau,r200,radeon,swrast"
@@ -87,7 +87,8 @@ find . \
 # Build with automake >= 1.13
 autoreconf -vfi
 
-# --enable-osmesa \
+#  --enable-gallium-osmesa \
+#  --enable-r600-llvm-compiler \
 # --with-gallium-drivers=r300,r600,radeonsi,nouveau,svga,swrast \
 CFLAGS="$SLKCFLAGS" \
 CPPFLAGS="$SLKCFLAGS -I/usr/include/libelf" \
@@ -98,15 +99,16 @@ CXXFLAGS="$SLKCFLAGS" \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --docdir=/usr/doc/mesa-$VERSION \
   --mandir=/usr/man \
-  --enable-64-bit \
+  --enable-xa \
   --enable-dri \
   --enable-glx \
   --enable-gbm \
-  --enable-xa \
   --enable-egl \
   --enable-gles1 \
   --enable-gles2 \
   --enable-vdpau \
+  --enable-64-bit \
+  --enable-osmesa \
   --enable-glx-tls \
   --enable-gallium-egl \
   --enable-gallium-gbm \
@@ -114,9 +116,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --enable-gallium-llvm \
   --enable-driglx-direct \
   --enable-texture-float \
-  --enable-gallium-osmesa \
-  --enable-r600-llvm-compiler \
-  --with-llvm-shared-libs \
+  --enable-llvm-shared-libs \
   --with-egl-platforms=drm,x11 \
   --with-dri-drivers="$DRI_DRIVERS" \
   --with-gallium-drivers=r600,swrast \
@@ -156,10 +156,11 @@ if [ -d $PKG/usr/info ]; then
    fi )
 fi
 
-mkdir -p $PKG/usr/doc/Mesa-$VERSION/html
-cp -a COPYING docs/relnotes-$VERSION.html $PKG/usr/doc/Mesa-$VERSION
-rm -f docs/relnotes*.html docs/RELNOTES*
-cp -a docs/*.html $PKG/usr/doc/Mesa-$VERSION/html
+mkdir -p $PKG/usr/doc/Mesa-$VERSION/html/relnotes
+cp -a docs/*.{css,html,png} $PKG/usr/doc/Mesa-$VERSION/html
+cp -a docs/relnotes/$VERSION.html $PKG/usr/doc/Mesa-$VERSION/html/relnotes
+cp -a docs/{GL3,libGL}.txt docs/COPYING $PKG/usr/doc/Mesa-$VERSION
+
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
 find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
