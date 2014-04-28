@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=screen
-VERSION=${VERSION:-4.2.0}
+VERSION=${VERSION:-4.2.1}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -76,7 +76,7 @@ rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z* || exit 1
 cd $PRGNAM-$VERSION
 
-# (Slackware) Increase the size of the termname buffer from 20 to 63:
+# (Slackware) Increase the size of the termname buffer from 32 to 63:
 zcat $CWD/buffersizeincrease.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
