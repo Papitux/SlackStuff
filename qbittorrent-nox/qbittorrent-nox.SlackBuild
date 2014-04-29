@@ -22,7 +22,7 @@
 PRGNAM=qbittorrent
 PKGNAM=qbittorrent-nox
 SLKNAM=qbt-nox
-VERSION=${VERSION:-3.1.9}
+VERSION=${VERSION:-3.1.9.1}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
