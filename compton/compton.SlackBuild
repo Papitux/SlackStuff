@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=compton
-# VERSION 20140326.360da12 / built 2013-04-01
+# VERSION 20140428.g349af12
 # See changes at https://github.com/chjj/compton/commits/master
 BUILD=${BUILD:-1}
 
