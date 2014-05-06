@@ -77,9 +77,10 @@ cd $PRGNAM-$VERSION
 
 zcat $CWD/ipv4.patch.gz | patch -p1 --verbose || exit 1
 zcat $CWD/canvas_color.patch.gz | patch -p1 --verbose || exit 1
+zcat $CWD/fix_ipv6_typo.patch.gz | patch -p1 --verbose || exit 1
 
 sed -i "s|disable\ ipv6|enable\ ipv6|g" ./configure
-sed -i "s|disable\ ipv6|enable\ ipv6|g"  scripts/common.m4 
+sed -i "s|disable\ ipv6|enable\ ipv6|g"  scripts/common.m4
 
 chown -R root:root .
 find . \
