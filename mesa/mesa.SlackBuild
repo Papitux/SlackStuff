@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mesa
-VERSION=${VERSION:-10.1.1}
+VERSION=${VERSION:-10.1.2}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 #DRI_DRIVERS="i915,i965,intel,nouveau,r200,radeon,swrast"
@@ -87,8 +87,10 @@ find . \
 # Build with automake >= 1.13
 autoreconf -vfi
 
-#  --enable-gallium-osmesa \
-#  --enable-r600-llvm-compiler \
+# --enable-osmesa \
+# --enable-gallium-egl \
+# --enable-gallium-osmesa \
+# --enable-r600-llvm-compiler \
 # --with-gallium-drivers=r300,r600,radeonsi,nouveau,svga,swrast \
 CFLAGS="$SLKCFLAGS" \
 CPPFLAGS="$SLKCFLAGS -I/usr/include/libelf" \
@@ -110,13 +112,13 @@ CXXFLAGS="$SLKCFLAGS" \
   --enable-64-bit \
   --enable-osmesa \
   --enable-glx-tls \
-  --enable-gallium-egl \
   --enable-gallium-gbm \
   --enable-shared-glapi \
   --enable-gallium-llvm \
   --enable-driglx-direct \
   --enable-texture-float \
   --enable-llvm-shared-libs \
+  --disable-gallium-egl \
   --with-egl-platforms=drm,x11 \
   --with-dri-drivers="$DRI_DRIVERS" \
   --with-gallium-drivers=r600,swrast \
