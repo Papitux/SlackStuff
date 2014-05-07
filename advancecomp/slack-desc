@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+           |-----handy-ruler------------------------------------------------------|
+advancecomp: AdvanceCOMP (Compression utilities)
+advancecomp:
+advancecomp: AdvanceCOMP contains recompression utilities for your .zip archives,
+advancecomp: .png images, .mng video clips and .gz files.  It runs in Linux, DOS,
+advancecomp: Mac OS X, Windows and in all the other Unix like platforms.
+advancecomp:
+advancecomp: 
+advancecomp: http://advancemame.sourceforge.net
+advancecomp:
+advancecomp:
+advancecomp:
