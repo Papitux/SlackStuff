@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Trimage
+Comment=Compression tool for optimizing PNG and JPG files.
+Terminal=false
+Icon=trimage
+Type=Application
+Exec=trimage
+Categories=Application;Qt;Graphics;
+StartupNotify=true

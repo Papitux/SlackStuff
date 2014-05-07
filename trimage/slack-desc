@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+       |-----handy-ruler------------------------------------------------------|
+trimage: Trimage (image compressor for optimizing PNG and JPG files)
+trimage:
+trimage: Trimage is a cross-platform GUI and command-line interface to optimize
+trimage: image files via "optipng",  "advpng" and "jpegoptim", depending on the
+trimage: filetype  (currently,  PNG and JPG files).  Image files are losslessly
+trimage: compressed on the highest available compression levels.  Trimage gives
+trimage: you  various input functions to fit your own workflow:  A regular file
+trimage: dialog, dragging and dropping and various command line options.
+trimage: 
+trimage: Home: http://trimage.org
+trimage:
