@@ -1,0 +1,7 @@
+Jpegoptim (utility to optimize jpeg files)
+
+Jpegoptim provides lossless optimization (based on optimizing the
+Huffman tables) and "lossy" optimization based on setting maximum
+quality factor.
+
+http://www.kokkonen.net/tjko/projects.html

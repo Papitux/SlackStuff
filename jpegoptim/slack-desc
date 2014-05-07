@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+       |-----handy-ruler------------------------------------------------------|
+jpegoptim: Jpegoptim (utility to optimize jpeg files)
+jpegoptim:
+jpegoptim: Jpegoptim provides lossless optimization (based on optimizing the
+jpegoptim: Huffman tables) and "lossy" optimization based on setting maximum
+jpegoptim: quality factor.
+jpegoptim:
+jpegoptim:
+jpegoptim: Home: http://www.kokkonen.net/tjko/projects.html
+jpegoptim:
+jpegoptim:
+jpegoptim:
+
