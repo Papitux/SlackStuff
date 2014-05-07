@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=v1.0
+Encoding=UTF-8
+Name=Meteorite
+GenericName=MKV Repair & Preview Utility
+Comment=An MKV Repair & Preview Utility
+Exec=meteorite
+Icon=meteorite
+Terminal=false
+Type=Application
+Categories=AudioVideo;Application;
