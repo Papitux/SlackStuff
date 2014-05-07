@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the steghide package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+        |-----handy-ruler--------------------------------------------------|
+steghide: Steghide (steganography program)
+steghide: 
+steghide: Steghide is a steganography  program that is able to
+steghide: hide data in various kinds of image and audio-files.
+steghide: The  color-sample-frequencies are not changed,  thus
+steghide: making the  embedding  resistant against first-order
+steghide: statistical tests.
+steghide:
+steghide: Home: http://steghide.sourceforge.net
+steghide:
+steghide:
