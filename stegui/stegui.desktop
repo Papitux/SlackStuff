@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=SteGUI
+GenericName=SteGUI
+Comment=Graphical front-end to Steghide
+Name[pt_BR]=SteGUI
+Name[pt]=SteGUI
+GenericName[pt_BR]=SteGUI
+GenericName[pt]=SteGUI
+Comment[pt_BR]=Interface gráfica para Steghide
+Comment[pt]=Interface gráfica para Steghide
+Exec=SteGUI
+Icon=stegui
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Utility;
