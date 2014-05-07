@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+        |-----handy-ruler------------------------------------------------------|
+pstreams: PStreams (POSIX Process Control in C++)
+pstreams:
+pstreams: PStreams, a C++ utility for simple IOStream-based
+pstreams: Inter-Process Communication (IPC).  It allows you
+pstreams: to run  another program from your C++ application
+pstreams: and  to transfer  data  between the two  programs
+pstreams: similar to shell pipelines.
+pstreams:
+pstreams: Home: http://pstreams.sourceforge.net
+pstreams:
+pstreams:

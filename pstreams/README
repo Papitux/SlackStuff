@@ -1,0 +1,9 @@
+PStreams (POSIX Process Control in C++)
+
+PStreams, a C++ utility for simple IOStream-based
+Inter-Process Communication (IPC).  It allows you
+to run  another program from your C++ application
+and  to transfer  data  between the two  programs
+similar to shell pipelines.
+
+http://pstreams.sourceforge.net
