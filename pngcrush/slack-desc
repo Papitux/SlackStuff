@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+pngcrush: Pngcrush (optimizer for PNG)
+pngcrush:
+pngcrush: Pngcrush is an  optimizer for PNG  (Portable Network Graphics) files.
+pngcrush: It can  be  run from a  commandline  in an  MSDOS  window,  or from a
+pngcrush: UNIX or LINUX  commandline.  Its main  purpose is to reduce  the size
+pngcrush: of the  PNG IDAT  datastream by trying various compression levels and
+pngcrush: PNG filter methods.  It also can be used to remove unwanted ancillary
+pngcrush: chunks,  or to add certain  chunks including  gAMA,  tRNS,  iCCP, and
+pngcrush: textual chunks.
+pngcrush:
+pngcrush: Home: http://pmt.sourceforge.net/pngcrush/
