@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+           |-----handy-ruler------------------------------------------------------|
+ttfautohint: ttfautohint (Automated hinting process for web fonts)
+ttfautohint:
+ttfautohint: Hinting TrueType fonts can be a slow and expensive process,  and
+ttfautohint: many fonts lack good hinting totally  because they are converted
+ttfautohint: to TrueType  from  another font format.  ttfautohint solves this
+ttfautohint: by  building  on FreeType's  autohinting  system.  It brings the
+ttfautohint: excellent quality of FreeType rendering to platforms which don't
+ttfautohint: use FreeType, yet require hinting for text to look good.
+ttfautohint:
+ttfautohint: Home: http://www.freetype.org/ttfautohint/
+ttfautohint:

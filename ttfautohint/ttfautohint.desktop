@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ttfautohint
+Comment=Automated hinting process for web fonts
+Exec=ttfautohintGUI
+Icon=ttfautohint
+Type=Application
+Terminal=false
+StartupNotify=true
+Categories=Application;Qt;Graphics;

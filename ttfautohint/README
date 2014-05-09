@@ -1,0 +1,10 @@
+ttfautohint (Automated hinting process for web fonts)
+
+Hinting TrueType fonts can be a slow and expensive process,  and
+many fonts lack good hinting totally  because they are converted
+to TrueType  from  another font format.  ttfautohint solves this
+by  building  on FreeType's  autohinting  system.  It brings the
+excellent quality of FreeType rendering to platforms which don't
+use FreeType, yet require hinting for text to look good.
+
+http://www.freetype.org/ttfautohint/
