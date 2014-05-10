@@ -65,6 +65,12 @@ cd libpng-$VERSION
 # https://lists.fedoraproject.org/pipermail/scm-commits/Week-of-Mon-20140127/1181090.html
 zcat $CWD/libpng12-CVE-2013-6954.patch.gz | patch -p1 --verbose || exit 1
 
+# Fix CVE-2013-7353
+zcat $CWD/libpng12-CVE-2013-7353.patch.gz | patch -p1 --verbose || exit 1
+
+# Fix CVE-2013-7354
+zcat $CWD/libpng12-CVE-2013-7354.patch.gz | patch -p1 --verbose || exit 1
+
 # Add animated PNG (apng) support.
 zcat $CWD/apng/libpng-1.2.50-apng.patch.gz | patch -p1 --verbose || exit 1
 
