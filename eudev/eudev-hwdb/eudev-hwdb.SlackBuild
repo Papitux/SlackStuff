@@ -23,7 +23,7 @@
 PRGNAM=hwids
 PKGNAM=eudev-hwdb
 ARCH=${ARCH:-noarch}
-VERSION=${VERSION:-20140418}
+VERSION=${VERSION:-20140510}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
