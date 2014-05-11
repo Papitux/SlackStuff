@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=cppcheck
-VERSION=${VERSION:-1.63.1}
+VERSION=${VERSION:-1.65}
 BUILD=${BUILD:-1}
 WITHMAN=${WITHMAN:-yes}
 STYLESHEET=/usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl
