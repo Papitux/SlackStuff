@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+              |-----handy-ruler------------------------------------------------------|
+tuxcmd-modules: tuxcmd-modules (Plugin modules for Tux Commander)
+tuxcmd-modules:
+tuxcmd-modules: Tux Commander is a  windowed file manager with 2 panels
+tuxcmd-modules: side  by side  similar to  popular  Total Commander  or
+tuxcmd-modules: Midnight Commander file managers. The main goal of this
+tuxcmd-modules: project is to create  powerful  and  user friendly file
+tuxcmd-modules: manager for Unix operating systems.
+tuxcmd-modules:
+tuxcmd-modules: Home: http://tuxcmd.sourceforge.net/
+tuxcmd-modules:
+tuxcmd-modules:

@@ -1,0 +1,63 @@
+===========
+GVFS plugin
+===========
+This plugin is built on top of the GVFS daemon, which is an integral part of Gnome Desktop since version 2.22.  It provides access to many type of resources such as network shares (FTP, SSH/SFTP, Samba, WebDAV), bluetooth devices (ObexFTP), cameras and portable players (gphoto2) and others.
+
+Feature highlights:
+*-read/write  access to network resources  (FTP, SSH/SFTP, SMB, WebDAV)
+*-complete support for various gvfs authentication methods
+*-automatic gnome-keyring integration (ability to turn it off; password
+  are synchronized one way to gnome-keyring only)
+
+To be implemented:
+*-support for appending
+
+==========
+ZIP plugin
+==========
+This plugin uses ZipArchive library, Copyright (C) 2000 - 2007 Artpol Software - Tadeusz Dracz.
+Both plugin and the library are pretty stable for normal use at their current versions.
+
+Feature highlights:
+*-full read/write support for ZIP archives
+*-full support for Unix file and directory permissions
+*-password protection support (read/write)
+*-statically linked in one module, no external libraries needed
+
+To be implemented:
+*-archive consistency testing (needs new VFS API)
+*-creating archives from scratch (needs new VFS API)
+*-compression level setting (needs new VFS API)
+*-multidisk archives
+
+============
+UNRAR plugin
+============
+This plugin is based on original unrar sources, Copyright (C) Alexander L. Roshal.
+Please note that additional licence applies to unrar sources.
+
+Feature highlights:
+*-read-only support for RAR archives
+*-full support for Unix file and directory permissions
+*-password protected archives are supported
+*-multidisk archives support
+*-large files (> 4GB) support
+*-can handle self-extracting .exe archives (when renamed to .rar)
+
+To be implemented:
+*-archive consistency testing (needs new VFS API)
+
+=================
+libarchive plugin
+=================
+This plugin uses  libarchive  library, Copyright (c) 2003-2007 Tim Kientzle.
+The plugin can be either linked statically or can use shared system library.
+
+Feature highlights:
+*-read-only support for TAR, TAR.GZ, TAR.BZ2, ISO (CD images/ISO9660), CPIO, A (ar) and DEB archives
+*-large files (> 4GB) support
+*-correctly handles sparse files
+
+To be implemented:
+*-archive consistency testing (needs new VFS API)
+*-write support (probably creating new archives only)
