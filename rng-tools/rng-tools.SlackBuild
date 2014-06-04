@@ -21,7 +21,7 @@
 
 PRGNAM=rng-tools
 SLKNAM=rngd
-VERSION=4
+VERSION=5
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
