@@ -1,0 +1,10 @@
+zulucrypt (GUI and cli frontend to cryptsetup)
+
+zuluCrypt is a front end to cryptsetup. It makes it easy to use 
+cryptsetup to manage encrypted  volumes by providing a Qt based 
+GUI and a simpler to use cli front end to  cryptsetup.  It does
+the same thing  truecrypt does  but  uses  (through cryptsetup)
+cryptographic  infrastructure  that  exist inside the kernel in
+linux and some bsd systems.
+
+http://code.google.com/p/zulucrypt/
