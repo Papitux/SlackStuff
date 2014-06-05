@@ -1,0 +1,9 @@
+tcplay (Free TrueCrypt implementation)
+
+tcplay is a free  (BSD-licensed) and stable TrueCrypt implementation.
+This implementation supports mapping (opening) both system and normal
+TrueCrypt volumes, as well as opening  hidden  volumes and opening an
+outer volume  while protecting a hidden volume. There is also support
+to create volumes, including hidden volumes, change passphrase, etc.
+
+https://github.com/bwalex/tc-play
