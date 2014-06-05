@@ -78,6 +78,7 @@ cd $PRGNAM-$VERSION
 zcat $CWD/blocklist.patch.gz | patch -p1 --verbose || exit 1
 zcat $CWD/canvas_color.patch.gz | patch -p1 --verbose || exit 1
 zcat $CWD/fix-thread_name.patch.gz | patch -p1 --verbose || exit 1
+zcat $CWD/un-deprecate-scgi_port.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
