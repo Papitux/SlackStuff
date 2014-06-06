@@ -1,0 +1,8 @@
+PRGNAM="qpdfview"
+VERSION="0.4.10"
+HOMEPAGE="https://launchpad.net/qpdfview"
+DOWNLOAD="https://launchpad.net/qpdfview/trunk/0.4.10/+download/qpdfview-0.4.10.tar.gz"
+MD5SUM="2f297039c6a6a433a8e6bcd6ce13d936"
+REQUIRES="cups, desktop-file-utils, poppler, Qt"
+MAINTAINER=""
+EMAIL="@"

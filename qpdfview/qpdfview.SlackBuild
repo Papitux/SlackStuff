@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Slackware build script for qpdfview
-# 2013
-# Papitux <papitux.br[at]gmail.com>
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
 # that the following conditions are met:
@@ -20,42 +21,56 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qpdfview
-VERSION=0.4.6
+VERSION=0.4.10
 BUILD=${BUILD:-1}
 
-if [ -z "$ARCH" ]; then
-  case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
-    arm*) ARCH=arm ;;
-    # Unless $ARCH is already set, use uname -m for all other archs:
-       *) ARCH=$( uname -m ) ;;
-  esac
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"    
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
 fi
+
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
 
 CWD=$(pwd)
 TMP=${TMP:-/tmp/PpTux}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2 -fPIC"
-  LIBDIRSUFFIX="64"
-else
-  SLCKCFLAGS="-O2"
-  LIBDIRSUFFIX=""
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
 fi
-
-set -e
 
 echo $PKG
 rm -rf $PKG
-mkdir -p $TMP $PKG $OUTPUT
+mkdir -p $TMP $PKG
 cd $TMP
 echo $PRGNAM-$VERSION
 rm -rf "$PRGNAM-$VERSION"
@@ -73,8 +88,8 @@ find . \
 qmake QMAKE_CFLAGS="$SLKCFLAGS" QMAKE_CXXFLAGS="$SLKCFLAGS" \
   PLUGIN_INSTALL_PATH="/usr/lib${LIBDIRSUFFIX}/$PRGNAM" qpdfview.pro
 
-make
-make INSTALL_ROOT=$PKG install
+make $NUMJOBS || make || exit 1
+make INSTALL_ROOT=$PKG install || exit 1
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -92,7 +107,9 @@ fi
 
 if [ -d $PKG/usr/man ]; then
   find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
-  for i in $(find $PKG/usr/man -type l -name "*.?") ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+  for i in $(find $PKG/usr/man -type l -name "*.?"); do
+  ln -s $( readlink $i ).gz $i.gz ; rm $i
+  done
 fi
 
 if [ -d $PKG/usr/share/info ];then
@@ -101,8 +118,15 @@ mv $PKG/usr/share/info/* $PKG/usr/info
 rm -rf $PKG/usr/share/info
 fi 
 
-if [ -d $PKG/usr/info ];then
-find $PKG/usr/info -type f -exec gzip -9 {} \;
+if [ -d $PKG/usr/info ]; then
+  find $PKG/usr/info -type f -exec gzip -9 {} \;
+  ( cd $PKG/usr/info
+   if [ -f dir ];then
+     rm dir
+   fi
+   if [ -f dir.gz ];then
+    rm dir.gz
+   fi )
 fi
 
 if [ -d $PKG/usr/locale ] ;then
@@ -133,4 +157,4 @@ if [ -f $CWD/doinst.sh ]; then
 fi
 
 cd $PKG
-/sbin/makepkg -l n -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

@@ -8,7 +8,7 @@
 qpdfview: qpdfview (Document Viewer)
 qpdfview:
 qpdfview: qpdfview is a document viewer using the qt4 libraries with rendering
-qpdfview: from poppler and printing with cups. It is fast and feature-rich
+qpdfview: from  poppler and  printing  with cups.  It is fast and feature-rich
 qpdfview: making an excellent alternative to Okular and Evince.
 qpdfview: 
 qpdfview: homepage: https://launchpad.net/qpdfview
