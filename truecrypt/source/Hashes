@@ -1,0 +1,25 @@
+===============
+TrueCrypt v7.1a
+===============
+
+MD5 
+===
+102d9652681db11c813610882332ae48  TrueCrypt-7.1a-Source.tar.gz
+5bca3d15b35d0725ff3317e568062ad8  TrueCrypt-7.1a-Source.tar.gz.sig
+
+SHA1
+====
+d43e0dbe05c04e316447d87413c4f74c68f5de24  TrueCrypt-7.1a-Source.tar.gz
+caeb2bb1d5605d1fc960e936a06e52611033788c  TrueCrypt-7.1a-Source.tar.gz.sig
+
+SHA256
+=======
+e6214e911d0bbededba274a2f8f8d7b3f6f6951e20f1c3a598fc7a23af81c8dc  TrueCrypt-7.1a-Source.tar.gz
+3de1be6ff4793c5d7269384a5739bb4c985068b15978d17d5bd71403e0f02177  TrueCrypt-7.1a-Source.tar.gz.sig
+
+TrueCrypt 'Foundation' Public Key Fingerprint
+=============================================
+pub   1024D/F0D6B1E0 2004-06-06
+      Key fingerprint = C5F4 BAC4 A7B2 2DB8 B8F8  5538 E3BA 73CA F0D6 B1E0
+uid                  TrueCrypt Foundation <contact@truecrypt.org>
+sub   4077g/6B136ECF 2004-06-06
