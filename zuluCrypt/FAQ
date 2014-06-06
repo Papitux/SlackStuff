@@ -1,0 +1,182 @@
+https://code.google.com/p/zulucrypt/wiki/FAQ
+
+Frequently Asked Questions (FAQ)
+================================
+
+*-If you are to read only one section,read section 5
+
+1.0 zuluCrypt-cli and zuluMount-cli are suid root programs? why?
+================================================================
+
+cryptsetup and tcplay requires root's privileges to function and this necessitates mentioned components to have root's privileges before interfacing with cryptsetup or tcplay.
+
+To do block device encryption,root's privileges are necessary and different tools approach the problem of needing root's privileges differently.
+
+First way is the TrueCrypt way.TrueCrypt just expects to be run from root's account and everybody who uses it ends up setting up passwordless sudo for it net result being the entirety of TrueCrypt runs privileged.
+
+Second way is the udisks way.Udisks split itselt into two components named "udisksctl" and "udisksd".Udisksctl runs unprivileged while "udisksd" is started at boot time and runs constantly privileged offering it services to "udisksctl" among other tools through its d-bus API.
+
+Third way is the zuluCrypt way among other tools.zuluCrypt is divided into two components,the GUI component and the command line component.The command line components are the ones that needs elevated privileges and are therefore suid root to allow them to self elevate.
+
+The security implications of zuluCrypt,as suid root program is the same as that of a constantly privileged running udisksd serving normal users or privileged running TrueCrypt.There is just no way around doing block device encryption without first getting root's privileges.
+
+2.0 What is a system volume?
+============================
+
+A system volume is a volume with an active entry in "/etc/fstab","/etc/ crypttab" and "/etc/zuluCrypt/system_volumes.list".
+
+These devices need special permissions to be accessed or modified.
+
+Note that "devices","partitions" and "volumes" are used interchangeably in this FAQ
+
+3.0 What is a non system volume?
+================================
+
+A non system volume is a volume with an active entry in "/etc/zuluCrypt/nonsystem_volumes.list" or without an active entry in locations mentioned in section 2.0
+
+These volumes can be accessed freely without any restrictions or special permissions.
+
+Note that "devices","partitions" and "volumes" are be used interchangeably in this FAQ
+
+4.0 Why am i getting "insufficient privilege to a system volume" when attempting to operate on a volume?
+========================================================================================================
+
+You are getting the error because you are attempting to operate on a volume marked as system volume and you do not have proper privileges.Proper privileges may be gained by running the tool as root user,belonging to a group that gives additional privileges or reconfigure the volume not to be considered system volume.
+
+These tools are meant primarily for desktop users who want to plug in and use arbitrary mostly usb based volume and this necessitated a distinction btw "system volume" and "non system volume".
+
+The basic idea is simple, a user should be able to manage "non system volume" without any issues and should require proper permissions to manage "system volumes".
+
+Knowing what device is to be considered "system" and what device is to be considered "non system" is currently an art more than anything and it is an exercise in guess word to say the least about it.
+
+5.0 What role does /etc/fstab play in all this?
+===============================================
+
+All devices in fstab are considered to be system volumes.
+
+Internal,system partitions usually have an entry in fstab.
+
+It is highly recommended in general to have volumes in fstab if they are to be considered system because all tools that manage mounting and unmounting of partitions respects fstab and its wishes.
+
+Not having an entry in fstab while wishing for a volume to be handled in one specific way or another is generally not advised because by being silent about it,it leaves it up to different tools to decide what to do with the volume.In this case,zuluMount and zuluCrypt will decide they are "non system" and will allow a normal user to manage them.
+
+5.1 is udev involved anywhere?
+==============================
+
+version 4.6.2 adds a run time dependency on udev but the ability is set at compile time with a switch.Read compile documentation for more information.
+
+If udev support is enabled,its opinion will be asked when deciding if a volume is system or not.
+
+5.2 Why is my usb based external drive reported as being a system volume?
+=========================================================================
+
+You must have udev support enabled.Udev has a bad habit of identifying some usb based external devices as internal system devices.When this happen,consult udev documentation on how to solve the problem or section 7.0 of this documentation on how to make a system volume not to be considered as system volume.
+
+6.0 How do i set a volume to be considered system?
+==================================================
+
+- Have an entry for it in fstab without "user" or "users" mount option,or
+
+- Have an entry for it in fstab with "defaults" mount option,or
+
+- Have an entry for it in fstab with "nouser" mount option
+
+- Start "zuluCrypt-gui" from root's account,then go to the menu->manage system volumes and add a device on the list.It is advised to add the partition on the list by its UUID.
+
+7.0 How do i set a volume not to be considered system?
+======================================================
+
+- Have an entry for it in fstab with "user" mount option
+
+- Start "zuluCrypt-gui" from root's account,then go to the "menu->manage non system partition" and add the partition on the list.It is advised to add the partition by its UUID.
+
+8.0 Why am i getting "insufficient privileges when presenting a path for reading or writing?
+============================================================================================
+
+You will probably get this when you try to open a volume that resides in a file and permissions on the file denies you access to it.
+
+9.0 Why do i keep getting errors about not being able to create a volume?
+=========================================================================
+
+Some file systems do not allow file system creation in files.You could be trying to create a volume in a file using a file system that does not want to be created in a file
+
+When creating volumes,zuluCrypt gives a file system creation tool 60 seconds to complete its task. You might be getting the error because the file system creation process takes longer than 60 seconds. The time limit is there to prevent the tool from hanging indefinitely and if 60 seconds is not long enough for the file system you want to use on a disk of the size you have, then let me know and i will increase the interval. 60 seconds seem long enough for me.
+
+10.0 Encrypted stand alone files appear to be larger than unencrypted stand alone files,what gives?
+===================================================================================================
+
+Stand alone encrypted file will have a minimum size of 64 bytes.These bytes are used to store information necessary to decrypt the file.The encrypted file will be stored in chunks of 1024 bytes block and this means,the encrypted file will be of size 64 bytes + 1024n bytes where "n" is the number of blocks necessary to hold the encrypted data.
+
+followed by 1024 bytes blocks.The initial 64 bytes stores information necessary to decrypt the volume and the encryption routines uses a 1024 byte blocks and this is why
+
+11.0 Creating a container file of size XYZ hangs the system,why?
+================================================================
+
+I dont know yet.This problem seem to happen on some kernels and not others and it shows up consistently on some people and sporadically on others.The problem seem to be caused by heavy prolonged I/O to encrypted devices while the CPU is under a sufficient amount of stress.
+
+Possible solutions/workaround:
+
+1. Update/change to a different kernel without the problem.
+
+12.0 how does the keykeyfile plugin work?
+=========================================
+
+The passphrase is read from a keyfile and then it is appended to a passphrase entered by the user and then the combination is sent to zuluCrypt-cli.
+
+13.0 how does the gpg plugin work?
+==================================
+
+The plugin decrypts a gpg encrypted key file and then pass its contents to zuluCrypt-cli for decryption of the volume.The key field can be left blank if the gpg encrypted keyfile is not passphrase protected.
+
+14.0 Isnt there redundancy in having zuluMount in addition to zuluCrypt?
+========================================================================
+
+Under certain use cases, yes. zuluMount has a simpler interface and its primary purpose is to mount and unmount file systems in encrypted volumes as well as in unencrypted volumes.
+
+zuluCrypt is meant to include all cryptsetup and tcplay functionality that make sense to have on a desktop system.zuluMount is less ambitious in its feature set.
+
+common features:
+
+-- opening and closing of encrypted volumes.
+
+features unique to zuluMount:
+
+-- mounting and unmounting of unencrypted volumes
+
+-- auto management of hot plugged in devices
+
+features unique to zuluCrypt:
+
+-- creation of encrypted volumes
+
+-- backing up and restoring volume headers.
+
+-- adding and removing keys from LUKS volumes.
+
+-- erasing devices
+
+-- encryption of stand alone files
+
+15.0 how are keys stored in zuluCrypt?
+======================================
+
+zuluCrypt offers facilities to store volume keys securely in KDE's kwallet,GNOME's keyring or in an internal secure storage system powered by libgcrypt for those who want to store keys securely but do not want KDE or GNOME dependencies.
+16.0 what does "share mount point" option do?
+
+Version 4.6.2 of the tool gained the ability to share mount points.
+
+Both command line tools have the ability but the ability is exposed in the GUI only in zuluMount-gui.
+
+Normally,volumes are opened in a user specific private path of "/run/media/private/$USER".No other normal user of the system can gain access to this path and to the mount point.
+
+In those occasions when a user want to share a mount point with other users,they can now set the option while mounting a volume and a system wide accessible "mirror" of the mount point will also be created in "/run/media/public/".
+
+For example, a user named "INK" may want to open a volume residing in "/dev/sdc1" and make it public to the rest of users on the system by running the following command:
+
+"zuluMount-cli -m -M -d /dev/sdc1"
+
+The normal private mount point path will be created at "/run/media/private/INK/sdc1" and the public mount point "mirror" will be created at "/run/media/public/sdc1"
+
+"INK" user will be able to access the mount point using either of the two paths but everybody else will be able to access the mount point using the public mount point path of "/run/media/public/sdc1"
+
+The "mirror" mount path is created using "bind" option of the "mount" command.

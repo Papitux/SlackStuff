@@ -188,7 +188,7 @@ done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
-  BUILD_INSTRUCTIONS GPL* README* TODO docs/zuluCrypt.pdf \
+  $CWD/FAQ BUILD_INSTRUCTIONS GPL* *README* TODO docs/zuluCrypt.pdf \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
