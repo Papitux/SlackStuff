@@ -75,6 +75,9 @@ rm -rf mesa-demos-$VERSION
 tar xvf $CWD/mesa-demos-$VERSION.tar.?z* || exit 1
 cd mesa-demos-$VERSION
 
+# Fix buid wit newest MesaLib:
+zcat $CWD/demos-fix-mesa101x.patch.gz | patch -p1 --verbose || exit 1
+
 chown -R root:root .
 find . \
   \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
