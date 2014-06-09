@@ -22,7 +22,7 @@
 PRGNAM=x265
 SRCNAM=multicoreware-$PRGNAM
 VERSION=1.1
-SRCVER=527d03c56d68
+SRCVER=ae9609aeebdc
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
