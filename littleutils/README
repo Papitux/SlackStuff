@@ -1,0 +1,7 @@
+littleutils (collection of small and simple utilitie)
+
+Littleutils include a duplicate file finder, image optimizers,
+file rename tools, archive recompressors,  a tempfile utility,
+file property and others. Useful for script-writers.
+
+http://littleutils.sourceforge.net

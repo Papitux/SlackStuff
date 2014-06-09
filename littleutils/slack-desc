@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+
+           |-----handy-ruler------------------------------------------------------|
+littleutils: littleutils (Collection of small and simple utilitie)
+littleutils:
+littleutils: Littleutils include a duplicate file finder, image optimizers,
+littleutils: file rename tools, archive recompressors,  a tempfile utility,
+littleutils: file property and others. Useful for script-writers.
+littleutils:
+littleutils: Home: http://littleutils.sourceforge.net/
+littleutils:
+littleutils:
+littleutils:
+littleutils:

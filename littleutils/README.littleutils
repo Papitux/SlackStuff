@@ -1,0 +1,94 @@
+Welcome to littleutils 1.0.31.  The littleutils are a collection of small and
+simple utilities that I believe users (and script-writers in particular) will
+find useful.
+
+The basic littleutils include the following utilities:
+  filedate - print the modification times of the specified files
+  filehash - print MD5 and SHA1 digests and filesizes for the specified files
+  filemode - print the file access permissions of the specified files
+  filenode - print the inode number of the specified files
+  fileown - print the uid/gid/username/groupname of the specified files
+  filesize - print the file size of the specified files
+  lrealpath - print the real path of the specified files
+  randomize - randomize lines from one or more files or from stdin
+  tempname - creates a unique temporary file for use by shell scripts
+
+There are some simple image processing utilities:
+  imagsize - figure out the image size of various image formats
+  jpgcom - print any comments present in the specified JPEG image files
+  pngrecolor - rewrite a PNG file with a minimal palette
+  pngstrip - rewrite a PNG file with all extraneous information removed
+
+There are some text file "cleanup" utilities:
+  notabs - convert all tab characters to spaces in text files
+  notrail - remove all trailing spaces characters from text files
+  lreplace - perform string substitutions on text files
+
+There are some compression optimization utilities:
+  opt-gif - losslessly optimize GIF image files
+  opt-jpg - losslessly optimize JPEG image files
+  opt-png - losslessly optimize PNG image files
+  opt-pdf - optimize PDF files using Ghostscript  [extra only]
+  recomp-jpg - recompress JPEG image files to a lower quality level
+  to-gzip - converts .Z (compress) and .lzo (lzop) to .gz (gzip)
+  to-bzip - converts .Z, .lzo, and .gz files to .bz2 (bzip2)
+  to-7zip - converts .Z, .gz, .lzo, and .bz2 files to .7z (p7zip)  [extra only]
+  to-lzip - converts .Z, .gz, .lzo, and .bz2 files to .lz (lzip)
+  to-lzma - converts .Z, .gz, .lzo, and .bz2 files to .lzma (lzma/lzma_alone)
+  to-xz - converts .Z, .gz, .lzo, and .bz2 files to .xz (xz)
+
+There are some file maintenance utilites:
+  lowercase - rename files to all-lowercase filenames
+  uppercase - rename files to all-uppercase filenames
+  frenum - rename/renumber files using a variety of renaming schemes
+  pren - rename files using Perl regular expressions  [extra only]
+  repeats - searches for duplicate files in the specified directories
+  wipe-free - overwrite all free space in a partition with zeros
+
+For information on compiling and installing the littleutils, see the INSTALL
+file (INSTALL is the boilerplate instruction file distributed with autoconf).
+
+Generally, you should run:
+
+  ./configure   # for full list of options, run: ./configure --help
+  make
+  make install  # as root or user with proper file system permissions
+
+And optionally, if you're feeling brave, you can install utilities from the
+"extra" subdirectory:
+
+  make install-extra  # as root or user with proper file system permissions
+
+It is very important to do the "make install" step to ensure that the
+littleutils work properly.
+
+GNU make is required.  Version 3.79.1 or later is recommended.
+
+It should be noted that the littleutils make use of several other free software
+packages.  To make *full* use of the littleutils, make sure that all of these
+packages are installed.  [If some of the packages are not, the configure script
+will cause the particular littleutils that rely on them will be skipped on
+install.  This will not affect the operation of the other littleutils.]  Most
+of these should already be present on your system, but if not, here is where
+source code and binaries can be found:
+
+  bash:        http://www.gnu.org/software/bash/
+  perl:        http://www.perl.com/
+
+  file:        ftp://ftp.astron.com/pub/file/
+  gifsicle:    http://www.lcdf.org/gifsicle/
+  jpegtran:    http://www.ijg.org/
+  libpng:      http://www.libpng.org/pub/png/libpng.html
+  pngcrush:    http://pmt.sourceforge.net/pngcrush/
+
+  bzip2:       http://www.bzip.org/
+  gzip:        http://www.gzip.org/
+  lzip:        http://www.nongnu.org/lzip/lzip.html
+  lzma_alone:  http://www.7-zip.org/sdk.html  (lzma_alone is buried in the SDK)
+  lzop:        http://www.lzop.org/
+  xz,lzma:     http://tukaani.org/xz/
+  7z,7za,7zr:  http://sourceforge.net/projects/p7zip/
+
+Enjoy!
+
+Brian Lindholm

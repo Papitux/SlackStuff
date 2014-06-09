@@ -1,0 +1,37 @@
+These are extra utilities that I'm convinced users will find
+useful, but are perhaps not quite ready for global use. They
+are compiled by default, but not installed.
+
+To install these extra utilities, type "make install-extra" from the main
+littleutils directory, or type "make install" from this directory.  A
+description of the extra utilities follows:
+
+  pren - rename files using Perl regular expressions
+
+    [Why is pren not a regular littleutil?  I'm concerned about security.  The
+    pren utility uses the perl "eval" command to bring in regular expression
+    information from the command line.  It *may* be possible that a
+    maliciously-crafted "regex" could cause the pren utility to do something
+    else besides rename files.  Not sure.  Because I'm not sure, pren will live
+    in the extra subdir for now.]
+
+  to-7zip - converts .Z (compress), .gz (gzip), and .bz2 (bzip2) files to .7z
+            (p7zip)
+
+    [Why is to-7zip not a regular littleutil?  It definitely has security risks
+    when used in a world-writable directory such as /tmp.  I'd planned to fix
+    this with the tempfile utility, but 7za (part of the p7zip package) very
+    annoyingly refuses to overwrite a zero-length file, thus breaking the
+    scheme.  If it did the overwrite properly, the strategy used in to-bzip
+    (found in the scripts directory) could be used.  As it stands, the
+    randomization technique used in to-7zip makes it very difficult to perform
+    a symlink attack, but not impossible.  Also, the 7za program used as the
+    compression engine inside to-7zip traps signals in an unusual manner and
+    keeps <ctrl-C> from interrupting thing properly.  No work-around has
+    presented itself thus far.]
+
+  opt-pdf - runs PDF files through Ghostscript
+
+    [Why is opt-pdf not a regular littleutil?  It's quite new (created in Aug
+    of 2013) and still feels less than fully mature.  I need to play with it
+    more before releasing it on the general public.
