@@ -1,0 +1,8 @@
+PRGNAM="setuptools"
+VERSION="3.8.1"
+HOMEPAGE="http://pythonhosted.org/setuptools/"
+DOWNLOAD="https://pypi.python.org/packages/source/s/setuptools/setuptools-3.8.1.tar.gz"
+MD5SUM="f2219937a17d4311499a52e82cba681e"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
