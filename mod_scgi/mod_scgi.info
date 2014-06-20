@@ -1,0 +1,8 @@
+PRGNAM="mod_scgi"
+VERSION="1.14"
+HOMEPAGE="http://python.ca/scgi/"
+DOWNLOAD="http://python.ca/scgi/releases/scgi-1.14.tar.gz"
+MD5SUM="73d942a9ecdf4f20c8234e72ea82c7ee"
+MAINTAINER=""
+EMAIL="@"
+APPROVED=""

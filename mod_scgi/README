@@ -1,0 +1,7 @@
+mod_scgi (Apache module that implements SCGI protocol)
+
+SCGI (Simple Common Gateway Interface) is a protocol for connecting
+web application servers to HTTP servers (e.g. Apache).  For typical
+applications, it provides much better performance verses using CGI. 
+
+http://python.ca/scgi/
