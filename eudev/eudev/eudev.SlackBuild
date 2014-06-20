@@ -23,7 +23,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-VERSION=${VERSION:-1.7}
+VERSION=${VERSION:-1.8}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -132,7 +132,7 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 ( cd $PKG/lib/udev ; ln -s /sbin/udevd udevd )
 
 # Lets cheat a little...
-( cd $PKG/lib64 ; ln -sf libudev.so.1.3.0 libudev.so.0 )
+( cd $PKG/lib64 ; ln -sf libudev.so.1.4.1 libudev.so.0 )
 
 # Drop distributed hwdb files, they override the package eudev-hwdb
 rm -f \
