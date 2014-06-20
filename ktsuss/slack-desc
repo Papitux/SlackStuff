@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+      |-----handy-ruler------------------------------------------------------|
+ktsuss: ktsuss (graphical frontend of su)
+ktsuss:
+ktsuss: ktsuss stands for "keep the su simple, stupid", and as the name says,
+ktsuss: is a graphical version (frontend) of su written in C and GTK+ 2. The
+ktsuss: idea of the project is to remain simple and bug free.
+ktsuss:
+ktsuss: Home: http://code.google.com/p/ktsuss/
+ktsuss:
+ktsuss:
+ktsuss:
+ktsuss:

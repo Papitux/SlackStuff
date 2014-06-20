@@ -1,0 +1,8 @@
+PRGNAM="ktsuss"
+VERSION="2.1"
+HOMEPAGE="http://code.google.com/p/ktsuss/"
+DOWNLOAD="https://github.com/nomius/ktsuss/releases/download/2.1/ktsuss-2.1.tar.gz"
+MD5SUM="47f3fa8a3a25862949ece6f5ba098577"
+REQUIRES="gtk+2"
+MAINTAINER=""
+EMAIL="@"
