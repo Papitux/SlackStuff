@@ -1,0 +1,8 @@
+PRGNAM="golang"
+VERSION="1.3"
+HOMEPAGE="http://golang.org"
+DOWNLOAD="https://storage.googleapis.com/golang/go1.3.src.tar.gz"
+MD5SUM="4b66d7249554181c314f139ea78920b1"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
