@@ -1,0 +1,9 @@
+bridge-utils (network Ethernet bridging utilities)
+
+Utilities for configuring Linux Ethernet bridges.  The Linux
+Ethernet bridge can be used for connecting multiple Ethernet
+devices together. The connecting is fully transparent. Hosts
+connected to one Ethernet device see hosts connected through
+a bridge  to the other Ethernet devices directly.
+
+http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge
