@@ -1,0 +1,136 @@
+#!/bin/sh
+
+# Slackware build script for docker
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=docker
+VERSION=${VERSION:-1.0.1}
+GITCOMMIT=${GITCOMMIT:-990021a}
+BUILD=${BUILD:-1}
+
+# Add group
+export FREE_GUID=`tail -1 /etc/group |awk -F : '{print $3 + 1}'`
+export GROUP=$PRGNAM
+
+if ! grep --quiet '^docker:' /etc/group ;then
+  echo -e "Creating new group docker..." 1>&2
+           /usr/sbin/groupadd \
+          -g $FREE_GUID \
+           $GROUP 2> /dev/null
+else
+ if grep --quiet '^docker:' /etc/group ;then
+   echo -e "Group already exist or error creating new group..." 1>&2
+   sleep 2
+ fi
+fi
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+ -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+unset GOPATH
+
+export AUTO_GOPATH=1
+DOCKER_GITCOMMIT="$GITCOMMIT" \
+./hack/make.sh dynbinary
+
+# binaries:
+# Don't strip the binaries: SHA1 is used for consistency check!
+mkdir -p ${PKG}/usr/{bin,libexec/docker}
+install -m755 bundles/${VERSION}/dynbinary/docker-${VERSION} \
+  ${PKG}/usr/bin/docker
+install -m755 bundles/${VERSION}/dynbinary/dockerinit-${VERSION} \
+  ${PKG}/usr/libexec/docker/dockerinit
+
+# udev:
+install -Dm644 contrib/udev/80-docker.rules \
+  $PKG/lib/udev/rules.d/80-docker.rules
+
+# completion:
+install -Dm644 contrib/completion/zsh/_docker \
+  $PKG/usr/share/zsh/site-functions/_docker
+install -Dm644 contrib/completion/bash/docker \
+  $PKG/usr/share/bash-completion/completions/docker
+
+# config:
+install -Dm644 $CWD/etc/docker.conf $PKG/etc/docker/docker.conf.new
+install -Dm644 $CWD/etc/docker.logrotate $PKG/etc/logrotate.d/docker.new
+
+# init:
+install -Dm755 $CWD/etc/rc.docker $PKG/etc/rc.d/rc.docker.new
+
+# docs
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a AUTHORS CONTRIBUTING* CHANGELOG* FIXME LICENSE README* NOTICE VERSION \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/README.cgroup.fstab > $PKG/usr/doc/$PRGNAM-$VERSION/README.cgroup.fstab
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

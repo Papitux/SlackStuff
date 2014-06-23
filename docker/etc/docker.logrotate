@@ -1,0 +1,9 @@
+/var/log/docker.log {
+  weekly
+  rotate 5
+  compress
+  delaycompress
+  notifempty
+  missingok
+  size=5M  
+}

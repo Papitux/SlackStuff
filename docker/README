@@ -1,0 +1,11 @@
+docker (the Linux container engine)
+
+Docker is an open source project to pack,  ship and run any application
+as a lightweight  container.  Docker containers can run anywhere,  from
+your laptop to the largest EC2  compute instance and they don't require
+that you use a particular language, framework or packaging system. That
+makes them great building blocks for deploying and  scaling  databases,
+web apps and backend services  without  depending on a particular stack
+or provider.
+
+http://www.docker.io

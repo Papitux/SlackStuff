@@ -1,0 +1,12 @@
+
+If the init script 'rc.docker' can't automagically mount cgroups, edit
+your '/etc/fstab' and add the following:
+
+cgroup	/sys/fs/cgroup/cpuset	cgroup	rw,nosuid,nodev,noexec,relatime,cpuset	0 0
+cgroup	/sys/fs/cgroup/cpu	cgroup	rw,nosuid,nodev,noexec,relatime,cpu	0 0
+cgroup	/sys/fs/cgroup/cpuacct	cgroup	rw,nosuid,nodev,noexec,relatime,cpuacct	0 0
+cgroup	/sys/fs/cgroup/memory	cgroup	rw,nosuid,nodev,noexec,relatime,memory	0 0
+cgroup	/sys/fs/cgroup/devices	cgroup	rw,nosuid,nodev,noexec,relatime,devices	0 0
+cgroup	/sys/fs/cgroup/freezer	cgroup	rw,nosuid,nodev,noexec,relatime,freezer	0 0
+cgroup	/sys/fs/cgroup/net_cls	cgroup	rw,nosuid,nodev,noexec,relatime,net_cls	0 0
+cgroup	/sys/fs/cgroup/blkio	cgroup	rw,nosuid,nodev,noexec,relatime,blkio	0 0

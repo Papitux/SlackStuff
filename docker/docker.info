@@ -1,0 +1,8 @@
+PRGNAM="docker"
+VERSION="1.0.1"
+HOMEPAGE="https://docker.io/"
+DOWNLOAD="https://github.com/dotcloud/docker/archive/v1.0.1.tar.gz"
+MD5SUM="61c6c5b7308817a53f1e0f0173f65fe0"
+DEPENDS="bridge-utils, device-mapper, git, google go (golang), iproute2, lxc, sqlite"
+MAINTAINER=""
+EMAIL="@"
