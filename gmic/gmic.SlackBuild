@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=gmic
-VERSION=${VERSION:-1.5.9.1}
+VERSION=${VERSION:-1.5.9.2}
 BUILD=${BUILD:-1}
 
 if [ -z "$ARCH" ]; then
@@ -90,10 +90,10 @@ mkdir -p $PKG/usr/usr/lib${LIBDIRSUFFIX}
 cp -f src/libgmic.so $PKG/usr/usr/lib${LIBDIRSUFFIX}/
 chmod 777 $PKG/usr/usr/lib${LIBDIRSUFFIX}/libgmic.so
 ( cd $PKG/usr/usr/lib${LIBDIRSUFFIX}/
- mv libgmic.so libgmic.so.1.5.7
- ln -s libgmic.so.1.5.7 libgmic.so.1.5
- ln -s libgmic.so.1.5.7 libgmic.so.1
- ln -s libgmic.so.1.5.7 libgmic.so
+ mv libgmic.so libgmic.so.1.5.9
+ ln -s libgmic.so.1.5.9 libgmic.so.1.5
+ ln -s libgmic.so.1.5.9 libgmic.so.1
+ ln -s libgmic.so.1.5.9 libgmic.so
 )
 
 mkdir -p $PKG/usr/include
