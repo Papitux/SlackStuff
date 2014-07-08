@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mesa-demos
-VERSION=${VERSION:-8.1.0}
+VERSION=${VERSION:-8.2.0}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 
@@ -74,9 +74,6 @@ cd $TMP
 rm -rf mesa-demos-$VERSION
 tar xvf $CWD/mesa-demos-$VERSION.tar.?z* || exit 1
 cd mesa-demos-$VERSION
-
-# Fix buid wit newest MesaLib:
-zcat $CWD/demos-fix-mesa101x.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
