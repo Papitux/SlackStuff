@@ -1,0 +1,7 @@
+libsodium (library for network communication and cryptography)
+
+libsodium is a portable fork of NaCl (salt) with a compatible API.
+It is a software library for  network  communication,  encryption,
+decryption, signatures, etc.
+
+https://github.com/jedisct1/libsodium

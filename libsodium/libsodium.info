@@ -1,0 +1,8 @@
+PRGNAM="libsodium"
+VERSION="0.6.0"
+HOMEPAGE="https://github.com/jedisct1/libsodium"
+DOWNLOAD="https://download.libsodium.org/libsodium/releases/libsodium-0.6.0.tar.gz"
+MD5SUM="3c62cd3ca862ae0d149f84f0c65effbe"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
