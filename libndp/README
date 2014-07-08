@@ -1,0 +1,7 @@
+libndp (Library for Neighbor Discovery Protocol)
+
+This package contains a library  which provides a wrapper for IPv6
+Neighbor Discovery Protocol. It also provides a tool named ndptool
+for sending and receiving NDP messages.
+
+http://www.libndp.org/
