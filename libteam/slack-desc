@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+       |-----handy-ruler------------------------------------------------------|
+libteam: libteam (Library for controlling team network device)
+libteam:
+libteam: The purpose of the Team driver is to provide a  mechanism to team
+libteam: multiple NICs (ports) into one logical one (teamdev) at L2 layer.
+libteam: The  process  is  called  "channel bonding",  "Ethernet bonding",
+libteam: "channel teaming", "link aggregation", etc.  It is implemented in
+libteam: the Linux kernel by the bonding driver.
+libteam:
+libteam: Home: http://libteam.org
+libteam:
+libteam:
