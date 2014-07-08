@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=xf86-video-ati
-VERSION=7.3.0
+VERSION=7.4.0
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 
@@ -96,8 +96,9 @@ CXXFLAGS="$SLKCFLAGS -I${xserver_src}/hw/xfree86/ramdac" \
   --localstatedir=/var \
   --infodir=/usr/info \
   --mandir=/usr/man \
-  --disable-static \
   --enable-udev \
+  --disable-static \
+  --disable-glamor \
   --build=$ARCH-slackware-linux
 
 make $NUMJOBS || make || exit 1
