@@ -21,7 +21,7 @@
 
 PRGNAM=deluge
 VERSION=${VERSION:-1.3.6}
-COMMIT=34650f4 # 1.3-stable - 2014-07-07
+COMMIT=8c4a08b # 1.3-stable - 2014-07-08 - until fix #2418
 # http://git.deluge-torrent.org/deluge/log/?h=1.3-stable
 BUILD=${BUILD:-1}
 
