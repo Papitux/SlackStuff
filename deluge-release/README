@@ -1,0 +1,11 @@
+Deluge (BitTorrent client)
+
+Deluge is  a full-featured ​ BitTorrent  client for  Linux,  OS X,  Unix
+and  Windows.  It uses ​libtorrent in its backend and  features multiple
+user-interfaces including: GTK+, web and console.  The Deluge daemon is
+able to run on headless machines with the user-interfaces being able to
+connect remotely from any platform.  Deluge also features a rich plugin
+collection; in fact, most of Deluge's functionality is available in the
+form of plugins.
+
+http://deluge-torrent.org/
