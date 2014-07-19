@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mesa
-VERSION=${VERSION:-10.2.3}
+VERSION=${VERSION:-10.2.4}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 #DRI_DRIVERS="i915,i965,intel,nouveau,r200,radeon,swrast"
@@ -76,8 +76,6 @@ cd $TMP
 rm -rf Mesa-$VERSION
 tar xvf $CWD/MesaLib-$VERSION.tar.?z* || exit 1
 cd $TMP/Mesa-$VERSION
-
-sed -i "s|def)ned|defined|g" src/gallium/include/pipe/p_compiler.h
 
 chown -R root:root .
 find . \
