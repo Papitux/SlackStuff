@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qtgzmanager	
-VERSION=${VERSION:-1.0.1}
+VERSION=${VERSION:-1.0.2}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 
@@ -76,9 +76,6 @@ rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION-src.tar.?z*
 cd $PRGNAM-$VERSION
 
-# Add support to Slackware 14.1
-zcat $CWD/14.1.diff.gz | patch -p1 --verbose || exit 1
-
 chown -R root:root .
 find . \
  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
@@ -107,6 +104,10 @@ cp -a resources/images/QTGZ.png $PKG/usr/share/pixmaps
 find $PKG/usr/share/{applications,pixmaps} -type d -exec chmod 755 {} \;
 find $PKG/usr/share/{applications,pixmaps} -type f -exec chmod 644 {} \;
 chown -R root:root $PKG/usr/share/
+
+# Fix missing icon in newest XFCE's applications menu:
+sed -i 's/^Icon=*.*/Icon=QTGZ/g' \
+  $PKG/usr/share/applications/qtgzmanager.desktop
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a copying INSTALL LICENSE THANKS $PKG/usr/doc/$PRGNAM-$VERSION
