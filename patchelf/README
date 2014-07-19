@@ -1,0 +1,9 @@
+patchelf (A utility for patching ELF binaries)
+
+PatchELF is a simple utility for modifing existing  ELF executables
+and libraries. It can change the dynamic loader ("ELF interpreter")
+of executables,  change and/or remove the RPATH of executables  and
+libraries and remove declared  (DT_NEEDED entries)  dependencies on
+dynamic libraries.
+
+http://nixos.org/patchelf.html
