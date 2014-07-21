@@ -22,7 +22,7 @@
 
 PRGNAM=zulucrypt
 PKGNAM=zuluCrypt
-VERSION=${VERSION:-4.7.1}
+VERSION=${VERSION:-4.7.2}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
