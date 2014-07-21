@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+         |-----handy-ruler------------------------------------------------------|
+graphite2: graphite2 (Rendering engine for graphite fonts)
+graphite2:
+graphite2: Graphite is a  'smart font'  technology  designed to facilitate the
+graphite2: process known as shaping.  This process takes an input Unicode text
+graphite2: string and returns a sequence of positioned glyphids from the font.
+graphite2: Graphite2 is a reimplementation of the SIL Graphite text processing
+graphite2: engine, developed to support complex non-Roman writing systems.
+graphite2:
+graphite2: Home: http://sourceforge.net/projects/silgraphite/
+graphite2:
+graphite2:

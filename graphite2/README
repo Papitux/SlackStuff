@@ -1,0 +1,9 @@
+graphite2 (Rendering engine for graphite fonts)
+
+Graphite is a  'smart font'  technology  designed to facilitate the
+process known as shaping.  This process takes an input Unicode text
+string and returns a sequence of positioned glyphids from the font.
+Graphite2 is a reimplementation of the SIL Graphite text processing
+engine, developed to support complex non-Roman writing systems.
+
+http://sourceforge.net/projects/silgraphite/
