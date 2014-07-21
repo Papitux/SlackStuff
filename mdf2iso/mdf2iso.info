@@ -1,0 +1,8 @@
+PRGNAM="mdf2iso"
+VERSION="0.3.0"
+HOMEPAGE="http://mdf2iso.berlios.de/"
+DOWNLOAD="http://ftp.de.debian.org/debian/pool/main/m/mdf2iso/mdf2iso_0.3.0.orig.tar.gz"
+MD5SUM="db0b95e6ca68bf565cdc8d075922635e"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
