@@ -1,0 +1,12 @@
+STK (The Synthesis ToolKit in C++)
+
+The Synthesis ToolKit in C++  (STK)  is a set of open source audio
+signal processing and algorithmic synthesis classes written in the
+C++  programming  language.  STK was designed to facilitate  rapid
+development of music synthesis and audio processing software, with
+an  emphasis  on  cross-platform  functionality, realtime control,
+ease of use, and educational example code. STK currently runs with
+"realtime" support (audio and MIDI) on Linux,  Macintosh OS X, and
+Windows computer platforms.
+
+https://ccrma.stanford.edu/software/stk/

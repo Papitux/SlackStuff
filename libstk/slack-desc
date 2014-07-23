@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+      |-----handy-ruler------------------------------------------------------|
+libstk: STK (The Synthesis ToolKit in C++)
+libstk:
+libstk: The Synthesis ToolKit in C++  (STK)  is a set of open source audio
+libstk: signal processing and algorithmic synthesis classes written in the
+libstk: C++  programming  language.  STK was designed to facilitate  rapid
+libstk: development of music synthesis and audio processing software, with
+libstk: an  emphasis  on  cross-platform  functionality, realtime control,
+libstk: ease of use, and educational example code.
+libstk:
+libstk: Home: https://ccrma.stanford.edu/software/stk/
+libstk:

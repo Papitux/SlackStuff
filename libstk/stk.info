@@ -1,0 +1,8 @@
+PRGNAM="stk"
+VERSION="4.5.0"
+HOMEPAGE="https://ccrma.stanford.edu/software/stk/"
+DOWNLOAD="http://ccrma.stanford.edu/software/stk/release/stk-4.5.0.tar.gz"
+MD5SUM="2fd27e51dd0df92edcf96bd9080db76d"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
