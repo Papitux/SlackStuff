@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+             |-----handy-ruler------------------------------------------------------|
+sqlitebrowser: sqlitebrowser (SQLite Database Browser)
+sqlitebrowser:
+sqlitebrowser: SQLite Database Browser is a high quality, visual,  open source tool
+sqlitebrowser: to create,  design,  and edit database files compatible with SQLite.
+sqlitebrowser: This program is not a visual shell for the sqlite command line tool.
+sqlitebrowser: It does not require familiarity with SQL commands
+sqlitebrowser:
+sqlitebrowser: Home: http://sqlitebrowser.org
+sqlitebrowser:
+sqlitebrowser:
+sqlitebrowser:
