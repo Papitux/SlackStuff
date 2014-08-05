@@ -1,0 +1,8 @@
+PRGNAM="filezilla"
+VERSION="3.9.0.2"
+HOMEPAGE="http://filezilla-project.org/"
+DOWNLOAD="http://downloads.sourceforge.net/filezilla/FileZilla_3.9.0.2_src.tar.bz2"
+MD5SUM="6bdfbe21b76a900ef7c63d271b3e7126"
+REQUIRES="wxPython"
+MAINTAINER=""
+EMAIL="@"
