@@ -1,0 +1,8 @@
+PRGNAM="aria2"
+VERSION="1.18.7"
+HOMEPAGE="http://aria2.sourceforge.net/"
+DOWNLOAD="http://downloads.sourceforge.net/aria2/aria2-1.18.7.tar.xz"
+MD5SUM="57ae38604ec183a6fc3e9ab2a2270481"
+REQUIRES="c-ares"
+MAINTAINER=""
+EMAIL="@"
