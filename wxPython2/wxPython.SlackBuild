@@ -1,0 +1,179 @@
+#!/bin/sh
+
+# Slackware build script for wxPython
+
+# Copyright 2007-2014 Heinz Wiesinger, Amsterdam, The Netherlands
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=wxPython
+VERSION=2.8.12.1
+ARCH=${ARCH:-x86_64}
+BUILD=${BUILD:-1}
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-src-$VERSION
+tar xvf $CWD/$PRGNAM-src-$VERSION.tar.?z*
+cd $PRGNAM-src-$VERSION
+
+( cd wxPython/
+zcat $CWD/06ad766.patch.gz | patch -p1 --verbose || exit 1 )
+
+zcat $CWD/pycairo110.patch.gz | patch -p1 --verbose || exit 1
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+CFLAGS="$SLKCFLAGS" \
+LDFLAGS="$SLKLDFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --libdir=/usr/lib$LIBDIRSUFFIX \
+  --sysconfdir=/etc \
+  --localstatedir=/var \
+  --disable-static \
+  --enable-unicode \
+  --enable-graphics_ctx \
+  --enable-display \
+  --enable-mediactrl \
+  --enable-sound \
+  --enable-gui \
+  --with-gtk=2 \
+  --with-sdl \
+  --with-libpng=sys \
+  --with-libjpeg=sys \
+  --with-libtiff=sys \
+  --with-libxpm=sys \
+  --with-regex=builtin \
+  --with-libmspack \
+  --without-gnomeprint \
+  --without-gnomevfs \
+  --with-opengl \
+  --with-zlib \
+  --build=$ARCH-slackware-linux
+
+make $NUMJOBS || make || exit 1
+
+#Additional stuff from contrib
+make -C contrib/src/gizmos
+make -C contrib/src/ogl
+make -C contrib/src/stc
+
+make install DESTDIR=$PKG
+make -C contrib/src/gizmos install DESTDIR=$PKG
+make -C contrib/src/ogl install DESTDIR=$PKG
+make -C contrib/src/stc install DESTDIR=$PKG
+
+cd wxPython
+  python setup.py \
+    WXPORT=gtk2 \
+    UNICODE=1 \
+    EP_ADD_OPTS=1 \
+    EP_FULL_VER=0 \
+    NO_SCRIPTS=1 \
+    WX_CONFIG="$TMP/$PRGNAM-src-$VERSION/wx-config --no_rpath" \
+    build_ext --include-dirs=$TMP/$PRGNAM-src-$VERSION/lib/wx/include/gtk2-unicode-release-2.8 \
+              --library-dirs=$TMP/$PRGNAM-src-$VERSION/lib \
+              --rpath=/usr/lib$LIBDIRSUFFIX \
+    build
+
+  python setup.py \
+    WXPORT=gtk2 \
+    UNICODE=1 \
+    EP_ADD_OPTS=1 \
+    EP_FULL_VER=0 \
+    NO_SCRIPTS=1 \
+    WX_CONFIG="$TMP/$PRGNAM-src-$VERSION/wx-config --prefix=$PKG/usr/bin/ --no_rpath" \
+    SYS_WX_CONFIG="wx-config --enable-unicode" \
+    build_ext --include-dirs=$TMP/$PRGNAM-src-$VERSION/lib/wx/include/gtk2-unicode-release-2.8 \
+              --library-dirs=$TMP/$PRGNAM-src-$VERSION/lib \
+              --rpath=/usr/lib$LIBDIRSUFFIX \
+    install --root=$PKG
+cd -
+
+# install wxPython includes
+cp -rf include/wx-2.8/wx/wxPython $PKG/usr/include/wx-2.8/wx/
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/wxPython
+cp -a README.1st.txt docs* $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a wxPython/docs/* $PKG/usr/doc/$PRGNAM-$VERSION/wxPython
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/wxPython2.SlackBuild
+# Remove unnecessary docs
+cd $PKG/usr/doc/$PRGNAM-$VERSION/docs
+  rm -rf cocoa latex mac metrowerks microwin msw palmos word
+cd -
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/wxPython2-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

@@ -1,0 +1,3 @@
+to build against wx*-2.8
+
+export WX_CONFIG_PATH=/usr/bin/wx-config-2.8
