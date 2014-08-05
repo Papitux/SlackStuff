@@ -1,0 +1,18 @@
+to build against wx*-3.0
+
+sed -i 's/wx-config/wx-config-3.0/' configure
+
+export WXRC=/usr/bin/wxrc-3.0
+export WX_CONFIG=/usr/bin/wx-config-3.0
+export WX_CONFIG_PATH=/usr/bin/wx-config-3.0
+
+--with-wxversion=3.0
+--with-wx-version=3.0
+--with-wxdir=/usr/lib${LIBDIRSUFFIX} \
+--with-wx-dir=/usr/lib${LIBDIRSUFFIX} \
+--with-wxconfig=$(which wx-config-3.0) \
+--with-wx-config=$(which wx-config-3.0) \
+
+-DCMAKE_INSTALL_PREFIX='/usr' \
+-DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-3.0' \
+-DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-3.0' \

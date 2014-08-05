@@ -1,0 +1,8 @@
+PRGNAM="wxPython"
+VERSION="3.0.0.0"
+HOMEPAGE="http://wxPython.org/"
+DOWNLOAD="http://downloads.sourceforge.net/wxpython/wxPython-src-3.0.0.0.tar.bz2"
+MD5SUM="f5e32c7d85dc261ba777e113c3b7e365"
+MAINTAINER=""
+EMAIL="@"
+APPROVED=""
