@@ -1,0 +1,8 @@
+PRGNAM="texworks"
+VERSION="0.4.5"
+HOMEPAGE="http://code.google.com/p/texworks/"
+DOWNLOAD="http://texworks.googlecode.com/files/texworks-0.4.5-r1281.tar.gz"
+MD5SUM="04f3939501f6935c0f24f10042993d26"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"

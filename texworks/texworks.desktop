@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=TeXworks
+GenericName=(La)TeX Editor
+GenericName[pt_BR]=Editor (La)TeX
+Comment=A simple environment for editing, typesetting, and previewing TeX documents
+Comment[pt_BR]=TeXworks é um ambiente simples para editar, compilar e prever documentos TeX.
+Icon=TeXworks
+Exec=texworks
+MimeType=text/x-tex;application/pdf;
+Categories=Office;Qt;
