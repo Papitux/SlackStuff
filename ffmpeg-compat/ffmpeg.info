@@ -1,0 +1,8 @@
+PRGNAM="ffmpeg"
+VERSION="0.10.14"
+HOMEPAGE="http://www.ffmpeg.org"
+DOWNLOAD="http://www.ffmpeg.org/releases/ffmpeg-0.10.14.tar.bz2"
+MD5SUM="0bc6982399573da9db798dbf6f4f779b"
+MAINTAINER=""
+EMAIL="@"
+APPROVED=""
