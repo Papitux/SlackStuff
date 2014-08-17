@@ -20,8 +20,8 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=deluge
-VERSION=${VERSION:-1.3.6}
-COMMIT=8c4a08b # 1.3-stable - 2014-07-08 - until fix #2418
+VERSION=${VERSION:-1.3.7}
+COMMIT=223c931 # 1.3-stable - 2014-08-16
 # http://git.deluge-torrent.org/deluge/log/?h=1.3-stable
 BUILD=${BUILD:-1}
 
