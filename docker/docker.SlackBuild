@@ -21,8 +21,8 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=docker
-VERSION=${VERSION:-1.1.1}
-GITCOMMIT=${GITCOMMIT:-dc62f3c}
+VERSION=${VERSION:-1.1.2}
+GITCOMMIT=${GITCOMMIT:-d84a070}
 BUILD=${BUILD:-1}
 
 # Add group
@@ -113,6 +113,12 @@ install -Dm644 contrib/completion/zsh/_docker \
   $PKG/usr/share/zsh/site-functions/_docker
 install -Dm644 contrib/completion/bash/docker \
   $PKG/usr/share/bash-completion/completions/docker
+  
+# vim syntax:
+install -Dm644 contrib/syntax/vim/syntax/dockerfile.vim \
+  $PKG/usr/share/vim/vimfiles/syntax/dockerfile.vim
+install -Dm644 contrib/syntax/vim/ftdetect/dockerfile.vim \
+  $PKG/usr/share/vim/vimfiles/ftdetect/dockerfile.vim
 
 # config:
 install -Dm644 $CWD/etc/docker.conf $PKG/etc/docker/docker.conf.new
