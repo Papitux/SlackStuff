@@ -1,0 +1,8 @@
+PRGNAM="deadbeef"
+VERSION="0.6.2"
+HOMEPAGE="http://deadbeef.sourceforge.net"
+DOWNLOAD="http://downloads.sourceforge.net/deadbeef/deadbeef-0.6.2.tar.bz2"
+MD5SUM="786f3a01fc9e03e73191d1cce43250a3"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
