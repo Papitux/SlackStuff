@@ -24,8 +24,8 @@
 PRGNAM=golang-tools
 SRCNAM=tools.go
 NETNAM=net.go
-VERSION=${VERSION:-a37126a06101}
-NETVERS=${NETVERS:-28ff664507e4}
+VERSION=${VERSION:-1b06ca8030a3}
+NETVERS=${NETVERS:-ad01a6fcc8a1}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
