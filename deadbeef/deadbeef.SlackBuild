@@ -63,7 +63,7 @@ tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
 # remove unity trash. thanks Gentoo \o/
-zcat $CWD/remove-unity-specs.diff.gz | patch -p1 --verbose || exit 1
+zcat $CWD/remove-unity-specs.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
