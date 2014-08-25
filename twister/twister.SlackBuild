@@ -23,7 +23,7 @@
 
 PRGNAM=twister
 DAEMON=twisterd
-VERSION=${VERSION:-2014.01.27.ga9f53cc}
+VERSION=${VERSION:-2014.08.18.c7e35d8}
 BUILD=${BUILD:-1}
 
 NUMJOBS=${NUMJOBS:-" -j4 "}
@@ -123,7 +123,7 @@ mkdir -p $PKG/var/lock/$PRGNAM
 chmod 0750 $PKG/var/lock/$PRGNAM  || exit 1
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a COPYING INSTALL README* TODO doc/{build-unix,coding}.md \
+cp -a COPYING INSTALL README* TODO* doc/{build-unix,coding}.md \
   doc/assets-attribution.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cat doc/building-on-ubuntu-debian.md | tail -n +10 | \
   sed "1i ## Building on Slackware" | sed "2i $(echo -ne '\r')" > \
