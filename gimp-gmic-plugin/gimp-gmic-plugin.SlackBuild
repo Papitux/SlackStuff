@@ -63,8 +63,6 @@ tar xvf $CWD/${PRGNAM}_$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
 sed -i 's#/lib/#/lib64/#g' src/Makefile
-sed -i 's#/lib #/lib64 #g' src/Makefile
-sed -i 's#/lib$#/lib64#g' src/Makefile
 sed -i 's#/share/man/#/man/#g' src/Makefile
 sed -i 's/qmake-qt4 zart.pro/qmake zart.pro/' src/Makefile
 
