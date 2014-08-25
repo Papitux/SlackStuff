@@ -62,8 +62,6 @@ tar xvf $CWD/${PRGNAM}_$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
 sed -i 's#/lib/#/lib64/#g' src/Makefile
-sed -i 's#/lib #/lib64 #g' src/Makefile
-sed -i 's#/lib$#/lib64#g' src/Makefile
 sed -i 's#/share/man/#/man/#g' src/Makefile
 sed -i 's/qmake-qt4 zart.pro/qmake zart.pro/' src/Makefile
 
@@ -86,14 +84,14 @@ mkdir -p $PKG/usr/bin
 cp -f src/gmic $PKG/usr/bin/
 chmod 755 $PKG/usr/bin/gmic
 
-mkdir -p $PKG/usr/usr/lib${LIBDIRSUFFIX}
-cp -f src/libgmic.so $PKG/usr/usr/lib${LIBDIRSUFFIX}/
-chmod 777 $PKG/usr/usr/lib${LIBDIRSUFFIX}/libgmic.so
-( cd $PKG/usr/usr/lib${LIBDIRSUFFIX}/
+mkdir -p $PKG/usr/lib${LIBDIRSUFFIX}
+cp -f src/libgmic.so $PKG/usr/lib${LIBDIRSUFFIX}/
+chmod 777 $PKG/usr/lib${LIBDIRSUFFIX}/libgmic.so
+( cd $PKG/usr/lib${LIBDIRSUFFIX}/
  mv libgmic.so libgmic.so.1.6.0
- ln -s libgmic.so.1.5.9 libgmic.so.1.5
- ln -s libgmic.so.1.5.9 libgmic.so.1
- ln -s libgmic.so.1.5.9 libgmic.so
+ ln -s libgmic.so.1.6.0 libgmic.so.1.6
+ ln -s libgmic.so.1.6.0 libgmic.so.1
+ ln -s libgmic.so.1.6.0 libgmic.so
 )
 
 mkdir -p $PKG/usr/include
