@@ -1,0 +1,19 @@
+#!/bin/sh
+#BLURB="Rebuild SSL certificate database."
+chroot . usr/sbin/update-ca-certificates --fresh 1> /dev/null 2> /dev/null
+
+CERTS=/etc/ssl/certs
+
+if [ -f $CERTS/ca-certificates.crt ]; then
+  if cat $CERTS/ca-certificates.crt | grep '^$' > /dev/null; then
+    sed -e '/^$/d;' -i $CERTS/ca-certificates.crt
+  fi
+fi
+
+if cat $CERTS/ca-certificates.crt | grep 'subject' > /dev/null; then
+    sed -e '/^subject/d;' -i $CERTS/ca-certificates.crt
+fi
+
+if cat $CERTS/ca-certificates.crt | grep 'issuer' > /dev/null; then
+    sed -e '/^issuer/d;' -i $CERTS/ca-certificates.crt
+fi

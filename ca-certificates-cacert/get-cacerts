@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mkdir certs
+cd certs
+wget http://www.cacert.org/certs/root.crt
+wget http://www.cacert.org/certs/class3.crt
