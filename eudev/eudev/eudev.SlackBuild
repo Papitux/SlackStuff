@@ -23,7 +23,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-VERSION=${VERSION:-1.8}
+VERSION=${VERSION:-1.10}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -111,6 +111,7 @@ LDFLAGS="$LDFLAGS -lrt" \
   --docdir=/usr/doc/eudev-$VERSION \
   --with-rootprefix=/ \
   --with-rootlibdir=/lib${LIBDIRSUFFIX} \
+  --with-rootlibexecdir=/lib/udev \
   --with-firmware-path=/lib/firmware/updates:/lib/firmware \
   --enable-static \
   --enable-modules \
@@ -132,7 +133,7 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 ( cd $PKG/lib/udev ; ln -s /sbin/udevd udevd )
 
 # Lets cheat a little...
-( cd $PKG/lib64 ; ln -sf libudev.so.1.4.1 libudev.so.0 )
+( cd $PKG/lib64 ; ln -sf libudev.so.1.6.0 libudev.so.0 )
 
 # Drop distributed hwdb files, they override the package eudev-hwdb
 rm -f \
