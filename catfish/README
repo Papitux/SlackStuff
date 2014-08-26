@@ -1,0 +1,7 @@
+Catfish (A versatile file searching tool)
+
+Catfish is a GTK+ search utility written in python. It's search is
+powered by find and locate,  with search suggestions  provided  by
+zeitgeist (optional).
+
+https://launchpad.net/catfish-search
