@@ -13,3 +13,8 @@ config() {
 
 config etc/profile.d/go.csh.new
 config etc/profile.d/go.sh.new
+
+if [ -f /usr/bin/go ] ; then
+echo "Fixing runtime permission..."
+/usr/bin/go install std
+fi

@@ -131,6 +131,9 @@ EOF
 chmod 0755 $PKG/etc/profile.d/go.csh.new
 chmod 0755 $PKG/etc/profile.d/go.sh.new
 
+# Double sure permissions are sane:
+find $PKG/usr/lib${LIBDIRSUFFIX}/go -name "*.a" -exec touch -r `which go` {} \;
+
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
   AUTHORS CONTRIBUTORS LICENSE PATENTS README VERSION \
