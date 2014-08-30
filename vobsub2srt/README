@@ -1,0 +1,8 @@
+vobsub2srt (Convert idx/sub subtitles into srt text subtitles)
+
+VobSub2SRT is a simple command line program to convert .idx/.sub
+subtitles into .srt text subtitles by using OCR.  It is based on
+code from the MPlayer project.  Some minor parts are copied from
+ffmpeg/avutil headers. Tesseract is used as OCR software.
+
+https://github.com/ruediger/VobSub2SRT

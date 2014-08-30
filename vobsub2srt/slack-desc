@@ -1,0 +1,20 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+          |-----handy-ruler------------------------------------------------------|
+vobsub2srt: vobsub2srt (Convert idx/sub subtitles into srt text subtitles)
+vobsub2srt:
+vobsub2srt: VobSub2SRT is a simple command line program to convert .idx/.sub
+vobsub2srt: subtitles into .srt text subtitles by using OCR.  It is based on
+vobsub2srt: code from the MPlayer project.  Some minor parts are copied from
+vobsub2srt: ffmpeg/avutil headers. Tesseract is used as OCR software.
+vobsub2srt:
+vobsub2srt: Home: https://github.com/ruediger/VobSub2SRT
+vobsub2srt:
+vobsub2srt:
+vobsub2srt:
+

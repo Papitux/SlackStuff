@@ -1,0 +1,8 @@
+PRGNAM="VobSub2SRT"
+VERSION="a6abbd6" # Aug 17, 2014
+HOMEPAGE="https://github.com/ruediger/VobSub2SRT"
+DOWNLOAD="https://github.com/ruediger/VobSub2SRT/archive/master.zip"
+MD5SUM="5f4223df263b4ddf54eca1a60a87258c"
+DEPENDS="ffmpeg, libtiff, mplayer, tesseract, tesseract-data (OCR data)"
+MAINTAINER=""
+EMAIL="@"
