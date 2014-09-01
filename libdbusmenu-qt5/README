@@ -1,0 +1,7 @@
+libdbusmenu-qt (Qt implementation of the DBusMenu spec)
+
+This library provides a Qt implementation of the DBusMenu protocol.
+The DBusMenu protocol makes it possible for applications to export
+and import their menus over DBus.
+
+https://launchpad.net/libdbusmenu-qt
