@@ -1,0 +1,7 @@
+toxic (An ncurses client for Tox)
+
+Toxic is an ncurses based instant messaging  client for Tox,
+which formerly resided in the Tox core repository. Now it is
+available as a standalone program.
+
+https://github.com/Tox/toxic
