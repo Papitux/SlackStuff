@@ -1,0 +1,8 @@
+PRGNAM="soappy"
+VERSION="0.11.6"
+HOMEPAGE="http://pywebsvcs.sourceforge.net/"
+DOWNLOAD="https://pypi.python.org/packages/source/S/SOAPpy/SOAPpy-0.12.22.zip"
+MD5SUM="7a8d7199af72539d14168dd249a91a64"
+REQUIRES="pydefusedxml, m2crypto, pywstools"
+MAINTAINER=""
+EMAIL="@"
