@@ -1,0 +1,8 @@
+PRGNAM="wstools"
+VERSION="0.4.3"
+HOMEPAGE="https://github.com/pycontribs/wstools"
+DOWNLOAD="https://github.com/pycontribs/wstools/archive/0.4.3.tar.gz"
+MD5SUM="31747ebb7f2c4c0931b5f17b3add4c0d"
+REQUIRES="pysetuptools"
+MAINTAINER=""
+EMAIL="@"

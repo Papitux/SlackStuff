@@ -1,0 +1,6 @@
+wstools (WSDL parsing services for Python)
+
+A library of Web Services Description Language (WSDL) and other
+classes useful for building Python Web Services stacks.
+
+https://github.com/pycontribs/wstools
