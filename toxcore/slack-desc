@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+       |-----handy-ruler------------------------------------------------------|
+toxcore: toxcore (FOSS instant messaging application)
+toxcore:
+toxcore: With the rise of governmental monitoring programs,  Tox,
+toxcore: a FOSS initiative, aims to be an easy to use, all-in-one
+toxcore: communication  platform  that  ensures their users  full
+toxcore: privacy and secure message delivery.
+toxcore:
+toxcore: Home: https://tox.im/
+toxcore:
+toxcore:
+toxcore:
