@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+            |-----handy-ruler------------------------------------------------------|
+pydefusedxml: defusedxml (XML bomb protection for Python)
+pydefusedxml:
+pydefusedxml: defusedxml - defusing XML bombs and other exploits. The results of an
+pydefusedxml: attack on a vulnerable XML library can be fairly dramatic. With a few
+pydefusedxml: hundred Bytes of XML data an attacker can occupy several Gigabytes of
+pydefusedxml: memory within seconds. An attacker can also keep CPUs busy for a long
+pydefusedxml: time with a small to medium size request or even access files on your
+pydefusedxml: server.
+pydefusedxml:
+pydefusedxml: Home: https://bitbucket.org/tiran/defusedxml
+pydefusedxml:

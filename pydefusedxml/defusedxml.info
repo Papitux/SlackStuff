@@ -1,0 +1,8 @@
+PRGNAM="defusedxml"
+VERSION="0.4.1"
+HOMEPAGE="https://bitbucket.org/tiran/defusedxml"
+DOWNLOAD="https://pypi.python.org/packages/source/d/defusedxml/defusedxml-0.4.1.tar.gz"
+MD5SUM="230a5eff64f878b392478e30376d673a"
+REQUIRES="python"
+MAINTAINER=""
+EMAIL="@"
