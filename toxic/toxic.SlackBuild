@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=toxic
-# VERSION r1255.934459d}
+# VERSION r1255.934459d
 # See changes at https://github.com/Tox/toxic.git/commits/master
 BUILD=${BUILD:-1}
 

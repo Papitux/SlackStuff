@@ -5,9 +5,9 @@
 # exactly 11 lines for the formatting to be correct.  It's also customary to
 # leave one space after the ':'.
      |-----handy-ruler------------------------------------------------------|
-toxic: toxic (An ncurses client for Tox)
+toxic: toxic (A ncurses client for Tox)
 toxic:
-toxic: Toxic is an ncurses based instant messaging  client for Tox,
+toxic: Toxic is a ncurses  based instant messaging  client for Tox,
 toxic: which formerly resided in the Tox core repository. Now it is
 toxic: available as a standalone program.
 toxic:
