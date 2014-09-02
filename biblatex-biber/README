@@ -1,0 +1,8 @@
+biblatex-biber (A replacement for BibTeX)
+
+Biber is a BibTeX replacement for users of BibLaTeX, with full Unicode
+support.  Biber is written with the aim  of providing a customised and
+sophisticated data preparation backend for biblatex.  Biber  offers  a
+large superset of BibTeX functionality.
+
+http://www.flumotion.net

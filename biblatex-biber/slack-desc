@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+              |-----handy-ruler------------------------------------------------------|
+biblatex-biber: biblatex-biber (A replacement for BibTeX)
+biblatex-biber:
+biblatex-biber: Biber is a BibTeX replacement for users of BibLaTeX, with full Unicode
+biblatex-biber: support.  Biber is written with the aim  of providing a customised and
+biblatex-biber: sophisticated data preparation backend for biblatex.  Biber  offers  a
+biblatex-biber: large superset of BibTeX functionality.
+biblatex-biber:
+biblatex-biber: Home: http://biblatex-biber.sourceforge.net
+biblatex-biber:
+biblatex-biber:
+biblatex-biber:

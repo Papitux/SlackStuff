@@ -1,0 +1,8 @@
+PRGNAM="biber"
+VERSION="1.9"
+HOMEPAGE="http://biblatex-biber.sourceforge.net/"
+DOWNLOAD="http://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/1.9/binaries/Linux/biber-linux_x86_64.tar.gz"
+MD5SUM="137839688478710ded88909088dee970"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"

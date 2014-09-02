@@ -1,0 +1,382 @@
+Revision history for Biber
+
+1.9    (2014-05-25)
+       * Misc bug fixes
+       * Option names accept dashes as well as underscores for general Tex
+         option compatibility.
+       * New "--input-directory" option
+       * Tool mode now also supports data validation
+       * Perl 5.18 is now used to build all biber binaries
+       * Locale-sensitive sorting now more granular (see biblatex
+         "sortlocale" documentation)
+       * Source mapping feature now interpolates from previous matches
+       * Now supports generalised separated values lists using new
+         "--xsvsep" option.
+       * Macro <-> UTF-8 conversion now more robust
+       * New Text::BibTeX library now supports generating initials from
+         general UTF-8 strings (for, e.g. Russian names)
+1.8    (2013-10-21)
+       * Perl 5.18 compatibility (hash order randomisation)
+       * Removed Data::Diver module due to linux licensing restrictions
+       * Misc Bug Fixes
+1.7    (2013-07-07)
+       * Added clrmacros option
+       * Added map_nomatch
+       * Added --tool_macro_fields option
+       * Exposed sorting option to user-level config file (so sorting in tool mode is possible)
+1.6    (2013-04-30)
+       * Bugfixes
+       * Now uses perl 5.16. Non-binary (unpacked) use requires perl 5.16+
+       * Improved tool mode with some formatting options
+       * Made Unicode NFD/NFC boundaries more robust
+       * labelyear is now labeldate to match biblatex 2.6
+       * Support for new CLONESOURCEKEY field (see biblatex 2.6 docs)
+       * New padding character option in labelalphatemplate (see biblatex
+         2.6 docs)
+1.5    (2013-01-10)
+       * Added new source mapping option "map_entry_null"
+       * Renamed some options (old ones remain as aliases):
+         bibencoding     -> input_encoding
+         bblencoding     -> output_encoding
+         bblsafechars    -> output_safechars
+         bblsafecharsset -> output_safecharsset
+         outfile         -> output_file
+         outformat       -> output_format
+       * New "tool" mode with "--tool" option which takes a data source as argument
+         and just performs reencoding and source mappings etc. as per options and config file.
+       * Support for customisable BibTeX data source list and name separators
+       * Better debug output for source mapping
+       * Better defined source mapping hierarchy with bugfixes
+1.4    (2012-11-28)
+       * Support for biblatex 2.4 style sourcemaps (See \DeclareStyleSourcemap in biblatex docs)
+       * entrykey is now a possible read-only pseudo field in sourcemaps
+       * Reencode data interface completely re-written. New user option
+         --recodedata allows users to specify a new data file for defining
+         reencoding sets.
+       * Internal changes to allow multiple script/lang variants of
+         fields in biblatex in the future.
+       * Citation key aliases now supported more comprehensively, in crossrefs etc.
+       * Support for new RELATEDOPTIONS field (see biblatex docs)
+       * Misc bug fixes
+1.3    (01-11-2012)
+       * New "append" mode for sourcemap to allow combining of fields
+       * map_final now possible for map_set_field steps which causes map to
+         stop completely if map_overwrite is false and the field to set
+         already exists
+       * Allow extrayear generation when there is no labelyear
+1.2    (20-08-2012)
+       * Misc bug fixes
+1.1    (01-08-2012)
+       * Misc bug fixes
+       * Fixed later CentOS libz issue by including latest libz for linux builds
+       * Fixed DOT output (SF bug 3544894)
+1.0    (01-07-2012)
+       * Internal data model processing changes
+       * New labeltitleyear and extratitleyear disambiguation tracker
+       * New labeltitle and extratitle disambiguation tracker
+       * Sorting per list enabled for biblatex 2.0
+       * New noinit option for ignoring parts of names when generating initials
+       * Some optimisations for large data sources
+       * Fixed build issues which broke PAR::Packer binary under latest Debian (Wheezy)
+0.9.9  (30-03-2012)
+       * Added sortfirstinits option
+       * HTTPS support for remote data sources
+       * Biber now ignores names when it can't determine minimal
+         information like a lastname. Before, it would throw lots of errors
+         and die.
+       * Strips UTF-8 BOMs before passing to Text::BibTeX otherwise it complains
+       * Merged --graph and --bltxml options into --outformat option
+       * Updated some internal Unicode 6.0 things
+       * Minor bug fixes
+0.9.8  (20-12-2012)
+       * Changed config file sourcemap syntax and docs
+       * Support for citekey aliases
+       * New DOT output format
+0.9.7  (27-11-2011)
+       * per-datasource mapping restrictions
+       * Completely new config file format to allow for extensions
+       * Fixed --help issue with PAR::Packer
+       * Fixed .bcf XSL inheritance attribute value issue
+       * Moved XDATA output skip into structure where it should have been originally
+0.9.6  (13-11-2011)
+       * Fixed binary issue with Readonly::XS not being detected
+       * Fixed bug tracker ticket #3436870
+       * Match/replace functionality for data source field filtering
+       * New AUCTeX patches for better biblatex/biber support
+       * Now requires perl 5.14 for full Unicode 6.0 support
+       * New XDATA entrytype and field to allow more complex macro-style
+         data inheritance
+       * crossref cascading is in guaranteed resolve order now
+       * Warnings/error summary is now a more consistent format with all
+         other biber messages.
+       * Matching of .bcf keys to datasource keys is now case-sensitive
+       * Fixed biblatex bug tracker ticket #3399744
+       * Fixed bug tracker ticket #3402114
+       * max/minnames -> max/mincitenames
+       * max/min* now all per-type and per-entry
+       * uniquelist/uniquename now per-entry
+       * Re-factored recode module with XML data and XSL->HTML transform doc
+0.9.5  (18-08-2011)
+       * Fixed auto-bblsafechars bug
+       * refactored explicit "and others" in bibtex data sources
+       * Fixed issue with sorting=none and \nocite{*}
+0.9.4  (30-07-2011)
+       * Added support for "SORTSHORTHAND" field
+       * New "map" option to allow user field/entry type mapping (aliasing) in
+         addition to .dcf settings
+       * Made the relevant places depend on max/min{alpha,bib}names instead of
+         just max/minnames
+       * Bug fixes to bblsafechars
+       * Implemented user-customisable labelalpha (not yet in biblatex)
+       * Implemented per-name hashes
+0.9.3  (05-06-2011)
+       * New mininit and minfull uniquename options
+       * New minyear uniquelist option
+       * Major revamp of uniqueness code
+       * Moved to new external process calling module because IPC::Run
+         doesn't work on Windows in packed binaries (kpsewhich was
+         returning nothing).
+0.9.2  (09-05-2011)
+       * Some internal changes for perl 5.14
+       * Bug fixes for uniquelist processing
+0.9.1  (29-04-2011)
+       * Made temp files all use a global temp dir.
+       * Moved temp .utf8 conversions to temp dir so biber works using
+         .bib files which are in non-writable locations.
+       * Added back an info log message about finding data sources (Lyx compat)
+0.9    (29-03-2011)
+       * No longer auto-escapes any TeX markup in bibtex data sources. This
+         is fraught with danger and is a mess. Best not to do it at all.
+       * Supports biblatex \bibnamedelimi macro
+       * Implementation of uniquename and uniquelist options for biblatex 1.4+
+0.8.4  (19-03-2011)
+       * Bug fixes (wrong escaping of "[", "_" and "]" in .bbl)
+0.8.3  14-03-2011
+       * Biber now in TexLive
+       * Added several new binary builds
+       * All name part and element formatting is now abstracted into macros
+         so that it can be controlled via biblatex.
+       * Much more documentation on binary builds for packagers
+       * Bug fixes
+0.8.2  (14-02-2011)
+       * Bug fixes
+0.8.1  (12-02-2011)
+       * Small bug with default bibtex month macro support
+       * Made remote file support a little more robust (URI return codes)
+0.8    (11-02-2011)
+       * Forces biblatex format for month field
+       * Added support for remote data sources
+       * Added experimental support for RIS data sources
+       * Took out -a and -d flags. These are no longer very useful as the increasingly
+         sophisticated biblatex options cannot be set on the command line
+         anyway and so these flags are less and less relevant
+       * New inheritance model in sync with biblatex defaults
+       * Bug fixes
+0.7.4  (05-02-2011)
+       * Fix for mincrossrefs leaking across sections (biblatex SF bug #3173032)
+0.7.3  (03-02-2011)
+       * Performance tuning for sorting
+       * Text::BibTeX 0.51 for increased macro stack space
+       * Support for old BibTeX month macros by default
+       * Re-write of datasource processing to allow for modular plugins
+       * Generalised nosort option.
+       * Merged LaTeX::Decode into Biber::LaTeX::Recode and added encoding
+         to deal with inputenc's limitations for PDFLaTeX users
+       * new options for forcing/tuning UTF-8 -> LaTeX macro conversion
+       * Bug fixes
+0.7.2  (08-01-2011)
+       * Improved latexmk compatibility more
+0.7.1  (07-01-2011)
+       * Improved latexmk compatibility
+       * Added "x-ascii" encoding alias for "ascii" to deal with inputenx ascii.
+       * Bug fixes
+0.7    (05-01-2011)
+       * Completely re-written sorting routine using Schwartzian transform
+         for real multi-field support and per-field sorting settings.
+       * Bug fixes
+0.6.9  (dev beta)
+       * Bug fixes
+0.6.8  (dev beta)
+       * Generalised sorting behaviour in several respects
+       * Bug fixes
+0.6.7  (dev beta)
+       * Bug fixes
+0.6.6  (dev beta)
+       * More generalised sorting options
+       * Bug fixes
+0.6.5  (dev beta)
+       * Bug fixes
+0.6.4  (dev beta)
+       * Bug fixes
+0.6.3  (dev beta)
+       * Outputs labelname name list to the .bbl
+       * Support for dynamic sets and simpler static set interface
+       * Misc bug fixes
+0.6.2  (dev beta)
+       * Internal cleanup of structure code
+       * Misc bug fixes
+0.6.1  (dev beta)
+       * More comprehensive structural checks on allowed entrytypes/fields
+         and field combinations/formats
+       * Added option validate_structure to turn on structural checks
+       * Renamed option validate -> validate_control
+       * Renamed option output-directory -> output_directory
+       * Added labelname and labelyear as possible sort specifications
+       * Misc bug fixes
+0.6    (20-11-2010)
+       * First non-beta release
+       * More abstracted and extensible crossref inheritance model
+       * U::C dependency to 0.67
+       * sortcase and sortupper options now take same argument forms as in biblatex
+       * Misc bug fixes
+0.5.7  (09-10-2010)
+       * Misc bug fixes
+0.5.6  (04-10-2010)
+       * Latex character macro decoding is now better defined in the whole
+         (re)encoding workflow.
+       * "inputenc" option is now "bblencoding"
+       * "locale" option is now "sortlocale"
+       * New option "sortupper"
+       * Unicode::Collate sorting is now default as version 0.61 of this
+         has XS module and CLDR tailoring.
+       * Added binary dist build scripts
+       * Removed bundled Module::Build as there are some conflicts with
+         later versions. This is less of a problem anyway because the
+         binary build makes it less necessary to make builds easy on perl<5.10
+       * Misc bug fixes
+0.5.5  (29-08-2010)
+       * Biber::BibTeX moved to Biber::Input::BibTeX. If upgrading, please remove
+         your installed <perl lib>/Biber/BibTeX.pm, just to be tidy
+       * New aliases for EPRINT classes and types implemented (see BibLaTeX docs).
+       * Biber now resolves XREFs as well as CROSSREFs so one less LaTeX pass is needed
+       * Allows UTF-8 citekeys. Requires Text::BibTeX >= 0.46 and a fully UTF-8
+         aware TeX macro package (e.g. XeTeX or LuaLaTeX). Normal LaTeX with \inputenc
+         will not work because the UTF-8 it uses is incomplete, macro based and not native.
+       * RecDescent parser is no longer supported or included. If upgrading, please remove
+         your installed <perl lib>/Biber/BibTeX directory, just to be tidy
+       * Now requires LaTeX::Decode >= 0.03
+       * Stricter version dependency for Text::BibTeX. Older than 0.42 is
+         rather useless for complex names.
+       * Re-factored and enhanced auto-re-encoding of .bib/.bbl. With biblatex
+         0.9c, Biber handles all reencoding.
+       * Misc bug fixes
+0.5.4  (04-08-2010)
+       * Case-sensitive sorting option
+       * Multi-section support. Only one biber pass needed to process all
+         bib sections using extended biblatex 0.9b .bbl format.
+       * .aux file is no longer used by biber - all information is passed
+         in .bcf file.
+       * Misc bug fixes
+       * LaTeX::Decode is now a separate CPAN module and is no longer included
+0.5.3  (19-03-2010)
+       * Changed semantics of --outfile and --output-directory. --outfile
+         is now relative to --output-directory. If --outfile is absolute, it
+         is stripped to the filename and the path discarded. Absolute .aux
+         paths are stripped to filename for appending to --output-directory.
+       * Updated PRD to use new encoding option names. Now works with -e.
+       * sortlos was not settable to use bib sort order
+       * With Text::BibTeX >= 0.42, will do all name/initials generation with btparse
+         library.
+       * Abstracted BBL output into Biber::Output class for better re-use and potential
+         for output formats other than .bbl.
+       * Synced uniquename .bcf values with change in biblatex 0.9a
+0.5.2  (04-03-2010)
+       * Locale fixes
+       * Uniquename fixed to match BibLaTeX option values
+       * Improved error message for malformed names
+       * Fixed config file problems under windows and also added option to ignore config file
+       * Bug with conflicting case between citations and bib entries
+       * Moved pure perl parsename to PRD.pm
+       * Re-write of name parsing to use Text::BibTeX::Name by default
+       * Fields which can be null are explicitly flagged
+       * Add THANKS file
+       * Die early when biber is called without argument
+       * Fixed Mac config path error
+       * .bib parse continues after certain errors
+       * regularised collate options processing
+       * field nameaddon was missing from Biber::Constants
+       * Improved warning message for missing backend=biber
+       * SF bug 2952347 fix (empty date range end)
+       * uniquename counter was being provided incorrectly
+0.5.1  (15-02-2010)
+       * Remove support for legacy control files (\jobname-blx.bib):
+         Biber now only reads .bcf files written by biblatex with the 
+         option "backend=biber".
+       * Improved handling of "uniquename" and "namehash".
+       * Don't apply latexescape in bbl output, as it breaks math formatting.
+0.5    (13-02-2010)
+       * Supports all changes introduced by biblatex 0.9
+       * Moved all parts relating to the experimental BibLaTeXML format to the
+         "biblatexml" branch on the git repo
+       * Communication between biblatex and Biber can be done through a
+         XML-based config file (extension .bcf): this is enabled with the
+         experimental biblatex option "backend=biber"
+       * Biber can now be customized with a configuration file
+       * Considerable refactoring and cleanup of the code
+       * Further enhancements to the test suite
+       * Improved logging mechanism
+       * More robust parsing of personal names
+       * Ignore certain prefixes and diacritics in sort strings, for
+         instance ʿAlī is sorted under A, and al-Hasan under H. This can
+         be customized in the configuration file (biber.conf).
+       * New command-line option --output-directory (like TeX)
+       * Many, many bugfixes
+
+0.4.3  (23-07-2009)
+       * With biblatex option "backend=biber" and biber option --v2
+         the new experimental control file \jobname.bcf is used,
+         which brings in many new features, such as per-entrytype
+         settings.
+       * More sophisticated/customizable sorting mechanism
+       * More extensive test suite
+       * Improved BibLaTeXML schema
+       * improved handling of BibLaTeXML (enable nested children,
+         formatting elements, nosort elements)
+       * Do not apply latexescape() by default on xml strings
+       * Skip title handling in BibLaTeXML when not existing
+       * Ignore maxline, add option wraplines
+       * Built-in sort is now default (option --fastsort)
+       * Sorting with Unicode::Collate is possible with option --collate
+       * Make tests succeed w/o Parse::RD and Regexp::Common
+       * Don't output date and urldate in the bbl
+       * Add missing fields "date" "urldate" "organization" "annotator"
+         "foreword" and "eventtitle"
+       * Use Data::Dump instead of Data::Dumper for debugging
+       * Fields "library" and "remarks" are now skipped
+       * Bugfix for aliases (e.g. address, school)
+       * Bugfix: process urldate to get urlyear,urlmonth,urlday
+       * Remove illegal value shorttranslator from labelname option
+       * Changed biberdebug option to debug
+       * Changed option inputencoding to bibencoding
+
+0.4.2  (25-04-2009)
+       * New option --inputencoding to handle 8-bit encoded bib files
+       * $BIBINPUT environment is now searched
+       * Improved parsing of personal names
+       * @comments are now silently ignored
+       * Fixed handling of @preamble; multiple preambles are allowed
+       * Warnings and errors behave more like BibTeX
+       * Alias fields are automatically converted (e.g. address -> location)
+       * Take care of "phdthesis" and "mathesis" types
+       * Cite keys of bib files are now case-insensitive
+       * Default Unicode collation now uses the table "latinkeys.txt"
+         (this is much faster than "allkeys.txt" which contains rules for
+         all Unicode glyphs)
+       * Unicode::Collate parameters can be passed as a command-line option
+       * Faster sorting (with option -f) is also possible for specific
+         locales given with option --locale (this is OS-dependent however)
+       * PRD grammar is now precompiled
+       * bbl output is now wrapped acc to maxline option
+       * Empty fields are no longer printed in the bbl
+       * Sorting is much improved.
+       * Use sortstring separators 0 1 2 like biblatex.bst
+       * Handle truncation of name lists acc to minnames/maxnames
+       * bib2biblatexml has been improved
+       * Windows version of Text::BibTeX provided as ppm.
+       * Many more bugfixes
+
+0.4.1  (31-03-2009)
+       * Text::BibTeX now optional dependency
+0.4    (27-03-2009)
+       * Initial beta release
+
