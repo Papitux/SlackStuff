@@ -1,0 +1,6 @@
+venom (A GTK+ client for Tox)
+
+Venom is a cross-platform Graphical User Interface (GUI) for Tox,
+written in Vala using GTK+.
+
+https://github.com/naxuroqa/Venom.git
