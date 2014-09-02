@@ -1,0 +1,8 @@
+PRGNAM="tox-prpl"
+VERSION="0.4.1"
+HOMEPAGE="http://tox.dhs.org//"
+DOWNLOAD="https://github.com/jin-eld/tox-prpl/archive/v0.4.1.tar.gz"
+MD5SUM="427f3ff20821a5c342a883f01173ac68"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"
