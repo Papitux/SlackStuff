@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+   |-----handy-ruler------------------------------------------------------|
+dia: Dia (A program for drawing structured diagrams)
+dia:
+dia: Dia is an application for creating technical diagrams.  Its interface
+dia: and features are loosely  patterned  after the Windows program Visio.
+dia: If Features include  multiple-page  printing,  export to many formats
+dia: (EPS, SVG, CGM and PNG), and the ability to use custom shapes created
+dia: by the user as simple XML descriptions.  Dia is useful for drawing UML
+dia: diagrams, network maps, and flowcharts.
+dia:
+dia: Home: http://live.gnome.org/Dia
+dia:
