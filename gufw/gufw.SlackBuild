@@ -89,9 +89,9 @@ python setup.py install --prefix=/usr --root=$PKG --optimize=1 || exit 1
 rm -f $PKG/etc/gufw/app_profiles/ubuntu_one.gufw_app
 
 # Let's get some real action...
-rm -f $PKG//usr/share/polkit-1/actions/com.ubuntu.pkexec.gufw.policy
+rm -f $PKG/usr/share/polkit-1/actions/com.ubuntu.pkexec.gufw.policy
 install -m644 $CWD/com.slackware.pkexec.gufw.policy \
-  $PKG//usr/share/polkit-1/actions/
+  $PKG/usr/share/polkit-1/actions/
 
 if [ -d $PKG/usr/share/man ];then
 mkdir -p $PKG/usr/man
