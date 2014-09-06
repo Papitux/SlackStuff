@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mesa
-VERSION=${VERSION:-10.2.4}
+VERSION=${VERSION:-10.2.7}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 #DRI_DRIVERS="i915,i965,intel,nouveau,r200,radeon,swrast"
@@ -76,6 +76,10 @@ cd $TMP
 rm -rf Mesa-$VERSION
 tar xvf $CWD/MesaLib-$VERSION.tar.?z* || exit 1
 cd $TMP/Mesa-$VERSION
+
+# Fix build with lllvm-3.5:
+#http://cgit.freedesktop.org/mesa/mesa/commit/src/gallium/auxiliary/gallivm/lp_bld_debug.cpp?id=564821c917f4a9d5a0de2ee77b90b0cd85e3d3a6
+zcat $CWD/patch/fix-llvm35.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
