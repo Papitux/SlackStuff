@@ -1,0 +1,13 @@
+The local packaged flvtool2 contain the same files as the the github one,
+except the 'test' dir (28,4MB) and the files '.gitignore', 'flvtool2.exe'
+and 'flvtool2.exy'. Trust at your own risk or do it by yourself:
+
+$ wget https://github.com/unnu/flvtool2/archive/master.zip
+$ unzip master.zip
+$ cd flvtool2-master/
+$ rm -rf test/ .gitignore flvtool2.exe flvtool2.exy
+$ cd ..
+$ mv flvtool2-master flvtool2-1.0.6
+$ tar jcvf flvtool2-1.0.6.tar.bz2 flvtool2-1.0.6/
+
+What's the point? 28MB x 25kB :-P

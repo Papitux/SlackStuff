@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+        |-----handy-ruler------------------------------------------------------|
+flvtool2: flvtool2 (Manipulation tool for Macromedia Flash Video files [FLV])
+flvtool2:
+flvtool2: FLVTool2  calculates various meta data and inserts a onMetaData tag in
+flvtool2: the video. It cuts FLV files and adds cue Points (onCuePoint). A debug
+flvtool2: command shows the inside of FLV files and the print command gives meta
+flvtool2: data information in XML or YAML format.
+flvtool2:
+flvtool2: Home: https://github.com/unnu/flvtool2
+flvtool2:
+flvtool2:
+flvtool2:

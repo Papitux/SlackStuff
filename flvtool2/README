@@ -1,0 +1,8 @@
+flvtool2 (Manipulation tool for Macromedia Flash Video files [FLV])
+
+FLVTool2  calculates various meta data and inserts a onMetaData  tag in
+the video.  It cuts FLV files and adds cue Points (onCuePoint). A debug
+command shows the inside of a FLV file and the print command gives meta
+data information in XML or YAML format.
+
+https://github.com/unnu/flvtool2
