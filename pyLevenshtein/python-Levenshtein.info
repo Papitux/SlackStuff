@@ -1,0 +1,8 @@
+PRGNAM="python-Levenshtein"
+VERSION="0.11.2"
+HOMEPAGE="http://pypi.python.org/pypi/python-Levenshtein/"
+DOWNLOAD="http://pypi.python.org/packages/source/p/python-Levenshtein/python-Levenshtein-0.11.2.tar.gz"
+MD5SUM="d96e1ebaec65766316da33165cea7362"
+REQUIRES="pysetuptools"
+MAINTAINER=""
+EMAIL="@"

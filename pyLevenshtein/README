@@ -1,0 +1,12 @@
+python-Levenshtein (Python module for string distance calculation)
+
+The Levenshtein Python C extension module contains functions for fast
+computation of Levenshtein (edit) distance,  edit operations,  string
+similarity,  string sequence,  set similarity,  string  averaging and
+approximate median strings.
+
+Levenshtein can be used as a pure C library.  You only have to define
+NO_PYTHON  preprocessor  symbol (-DNO_PYTHON) when compiling it.  The
+library functionality is similar to that of the Python extension.
+
+http://pypi.python.org/pypi/python-Levenshtein/
