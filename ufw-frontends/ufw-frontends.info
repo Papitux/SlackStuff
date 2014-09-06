@@ -1,0 +1,8 @@
+PRGNAM="ufw-frontends"
+VERSION="0.3.2"
+HOMEPAGE="https://code.google.com/p/ufw-frontends/"
+DOWNLOAD="https://ufw-frontends.googlecode.com/files/ufw-frontends-0.3.2.tar.gz"
+MD5SUM="021fb5eda5cf987c4cde2d2738cac8af"
+REQUIRES="gtk+2, pygobject, polkit, pygtk, pyinotify, python2, ufw"
+MAINTAINER=""
+EMAIL="@"
