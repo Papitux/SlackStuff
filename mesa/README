@@ -1,4 +1,4 @@
-mesa (a 3-D graphics library)
+mesa (An OpenGL open-source implementation)
 
 Mesa is an open-source  implementation of the OpenGL specification, a
 system for rendering interactive 3D graphics. Mesa ties  into several
