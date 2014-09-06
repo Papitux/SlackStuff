@@ -1,0 +1,8 @@
+PRGNAM="gufw"
+VERSION="14.10.1"
+HOMEPAGE="http://gufw.org"
+DOWNLOAD="https://launchpad.net/gui-ufw/gufw-14.10/14.10/+download/gui-ufw-14.10.1.tar.gz"
+MD5SUM="916683adb44675782dbc5905595c4df5"
+REQUIRES="gnome-icon-theme-symbolic, gtk+3, netifaces, python-distutils-extra, (py/gtk)webkit3"
+MAINTAINER=""
+EMAIL="@"
