@@ -22,7 +22,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PKGNAM=llvm
-VERSION=3.4
+VERSION=3.5.0
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 
@@ -76,10 +76,19 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PKGNAM-$VERSION.src.tar.xz || exit 1
 
-cd $PKGNAM-$VERSION/tools
+if [ -f $CWD/clang-$VERSION.src.tar.xz ]; then
+  cd $PKGNAM-${VERSION}/tools
   tar xvf $CWD/clang-$VERSION.src.tar.xz || exit 1
   mv clang-${VERSION} clang || exit 1
 cd ../
+fi
+
+if [ -f $CWD/cfe-$VERSION.src.tar.xz ]; then
+  cd $PKGNAM-${VERSION}.src/tools
+  tar xvf $CWD/cfe-$VERSION.src.tar.xz || exit 1
+  mv cfe-${VERSION}.src clang || exit 1
+cd ../
+fi
 
 chown -R root:root .
 find . \
@@ -156,16 +165,14 @@ rm -f $PKG/usr/lib$LIBDIRSUFFIX/LLVMHello*
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-if [ -d $PKG/usr/share/man ];then
-mkdir -p $PKG/usr/man
-mv $PKG/usr/share/man/* $PKG/usr/man
-rm -rf $PKG/usr/share/man
-fi
+# Move man page directory:
+mv $PKG/usr/share/man $PKG/usr/
 
 # Move scan-build man-page into place
 mv $PKG/usr/lib$LIBDIRSUFFIX/clang-analyzer/scan-build/scan-build.1 \
   $PKG/usr/man/man1/
 
+# Compress manual pages:
 if [ -d $PKG/usr/man ]; then
   find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
   for i in $(find $PKG/usr/man -type l -name "*.?"); do
@@ -173,6 +180,7 @@ if [ -d $PKG/usr/man ]; then
   done
 fi
 
+# Remove '$PKG/usr/share' if empty:
 if [ $(find $PKG/usr/share -maxdepth 0 -type d -empty 2>/dev/null) ]; then
   rmdir $PKG/usr/share
 fi
