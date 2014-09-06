@@ -1,0 +1,8 @@
+PRGNAM="ufw-extras"
+VERSION="0.3"
+HOMEPAGE="https://github.com/xyproto/ufw-extras.git"
+DOWNLOAD="https://github.com/xyproto/ufw-extras/archive/0.3.tar.gz"
+MD5SUM="3e00173c42a989466c4a0d6ab5207fc5"
+REQUIRES="ufw"
+MAINTAINER=""
+EMAIL="@"
