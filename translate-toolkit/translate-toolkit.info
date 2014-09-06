@@ -1,0 +1,8 @@
+PRGNAM="translate-toolkit"
+VERSION="1.12.0"
+HOMEPAGE="http://toolkit.translatehouse.org"
+DOWNLOAD="http://sourceforge.net/projects/translate/files/Translate%20Toolkit/1.12.0/translate-toolkit-1.12.0.tar.bz2"
+MD5SUM="dfaff8943930b3f856c3abc3d2374a71"
+REQUIRES="lxml, pyiniparse, pylevenshtein"
+MAINTAINER=""
+EMAIL="@"

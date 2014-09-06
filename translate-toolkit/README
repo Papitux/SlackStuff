@@ -1,0 +1,9 @@
+translate-toolkit (A toolkit to convert different translation formats)
+
+The Translate Toolkit includes programs to covert localization formats
+to the common PO,  and emerging XLIFF format.  There are also programs
+to check and manage PO and XLIFF files.  Online documentation includes
+guides on using the tools,  running a localization  project and how to
+localize various projects from OpenOffice.org to Mozilla.
+
+http://toolkit.translatehouse.org
