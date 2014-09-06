@@ -1,0 +1,8 @@
+tiger (Report system security vulnerabilities)
+
+Tiger is a security tool that can be use both as a security audit and
+intrusion detection system. It supports multiple UNIX platforms and it
+is free and provided under a  GPL license.  Unlike other tools,  Tiger
+needs only of POSIX tools and is written entirely in shell language.
+
+http://www.nongnu.org/tiger/

@@ -1,0 +1,171 @@
+#!/bin/sh
+
+# Slackware build script for Tiger
+
+# Written by Menno Duursma <druiloor@zonnet.nl>
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=tiger
+VERSION=${VERSION:-20140123.41048d2}
+BUILD=${BUILD:-1}
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j1 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+
+# The package can be verified with Javier Fernández-Sanguino's PGP key (0xDC814B09)
+# If we have GnuPG installed, we try to verify the signature.
+if [ -x "/usr/bin/gpg" -a -x "/usr/bin/gpgv" ]
+then
+  set +e
+  # This will check if we have the correct key in our keyring.
+  # For the trustedkeys.gpg, see "man 1 gpgv".
+  /usr/bin/gpg --keyring trustedkeys.gpg --no-default-keyring --list-keys 0xDC814B09 &>/dev/null
+  GPG_RET=${?}
+  # 2 means we don't have his key, 0 means we do.
+  set -e
+  # If we have the key and the signature file, we verify the package with GPG
+  if [ ${GPG_RET} -eq 0 -a \
+       -f "${CWD}/${PRGNAM}-${VERSION}.tar.gz.sig" ]
+  then
+    /usr/bin/gpgv "${CWD}/${PRGNAM}-${VERSION}.tar.gz.sig"
+  fi
+fi
+
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS"
+export CFLAGS CXXFLAGS
+./configure \
+  --prefix=/usr \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --mandir=/usr/man \
+  --with-tigerhome=/usr/libexec/tiger \
+  --with-tigerbin=/usr/sbin \
+  --with-tigerconfig=/etc/tiger \
+  --with-tigerwork=/var/lib/tiger/work \
+  --with-tigerlog=/var/log/tiger
+
+make $NUMJOBS || make || exit 1
+make install DESTDIR=$PKG || exit 1
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+install -D -m 0644 $CWD/config/tiger.cron $PKG/etc/cron.d/tiger.new
+install -D -m 0640 $CWD/config/tiger.ignore $PKG/etc/tiger/tiger.ignore.new
+install -D -m 0640 $CWD/config/tiger.default $PKG/etc/default/tiger.new
+
+# From the .spec: 3.- This should be done by the Makefile, grumble...
+install -D -m 0644 version.h $PKG/usr/libexec/tiger/version.h
+
+# For kernel 3.x
+( cd $PKG/usr/libexec/tiger/systems/Linux/
+  ln -sf 2/ 3 )
+
+# Remove unnecesary stuff
+( cd $PKG
+  for system in AIX HPUX IRIX NeXT SunOS UNICOS UNICOSMK Tru64 MacOSX ; do
+    rm -rf ./usr/libexec/tiger/systems/$system
+  done
+  find . -type d -name CVS | xargs -iX rm -rf "X"
+)
+
+( cd $PKG/etc/tiger
+  mv -v cronrc cronrc.new
+  mv -v tigerrc tigerrc.new
+)
+
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a [A-Z][A-Z]* site-* tigerrc* \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a other/cert-usc20.txt contrib/fix_tiger_GROUPS.sh audit \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/README.SLACKWARE > $PKG/usr/doc/$PRGNAM-$VERSION/README.SLACKWARE
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/html
+cp $PKG/usr/libexec/tiger/html/*.html $PKG/usr/doc/$PRGNAM-$VERSION/html
+
+# Delete the redundant stuff
+rm -rf $PKG/usr/libexec/tiger/html
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh >  $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
