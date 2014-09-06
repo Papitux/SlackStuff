@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+          |-----handy-ruler------------------------------------------------------|
+pyiniparse: pyiniparse (A INI parser for Python)
+pyiniparse:
+pyiniparse: iniparse is a INI parser for Python which is backward compatible with
+pyiniparse: ConfigParser, RawConfigParser, and SafeConfigParser.  It pass all the
+pyiniparse: unit tests included with Python and preserve structure of INI files.
+pyiniparse:
+pyiniparse: Home: https://code.google.com/p/iniparse/
+pyiniparse:
+pyiniparse:
+pyiniparse:
+pyiniparse:

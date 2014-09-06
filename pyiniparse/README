@@ -1,0 +1,7 @@
+pyiniparse (A INI parser for Python)
+
+iniparse is a INI parser for Python which is backward compatible with
+ConfigParser, RawConfigParser, and SafeConfigParser.  It pass all the
+unit tests included with Python and preserve structure of INI files. 
+
+https://code.google.com/p/iniparse/
