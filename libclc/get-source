@@ -1,0 +1,9 @@
+#!/bin/sh
+git clone http://llvm.org/git/libclc.git
+cd libclc
+export VERSION=$(git log -1 --format="%cd.%h" --date=short | sed 's/-//g')
+rm -rf .git/
+cd ..
+mv libclc/ libclc-$VERSION/
+tar jcvf libclc-$VERSION.tar.bz2 libclc-$VERSION/
+rm -rf libclc-$VERSION/
