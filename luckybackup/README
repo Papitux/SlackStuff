@@ -1,0 +1,10 @@
+luckybackup (backup tool powered by rsync)
+
+luckyBackup is an application that backs-up and / or synchronizes
+any  directories  with the  power of rsync.  It is simple to use,
+fast ( transfers over only changes made and not all data ),  safe
+( keeps your  data  safe  by  checking  all declared  directories
+before proceeding in any data manipulation ),  reliable and fully
+customizable.
+
+http://luckybackup.sourceforge.net
