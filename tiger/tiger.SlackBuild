@@ -96,6 +96,9 @@ fi
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
+# Add filesystem fuse.gvfsd-fuse:
+zcat $CWD/add-fuse.gvfsd-fuse.patch.gz | patch -p1 --verbose || exit 1
+
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
