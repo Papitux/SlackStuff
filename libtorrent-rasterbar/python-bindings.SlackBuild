@@ -21,7 +21,7 @@
 
 PRGNAM=libtorrent-rasterbar
 PKGNAM=python-bindings
-VERSION=${VERSION:-0.16.17}
+VERSION=${VERSION:-0.16.18}
 BUILD=${BUILD:-1}
 
 if [ -z "$ARCH" ]; then
