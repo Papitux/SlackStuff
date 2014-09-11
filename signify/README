@@ -1,4 +1,4 @@
-Signify - Sign and Verify
+signify (sign and verify)
 
 OpenBSD tool to signs and verify signatures on files.
 This is a portable version which uses [libbsd].

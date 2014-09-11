@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=signify
-VERSION=${VERSION:-4}
+VERSION=${VERSION:-7}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -107,15 +107,15 @@ if [ -d $PKG/usr/man ]; then
   done
 fi
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a README* $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM-v${VERSION}
+cp -a README* $PKG/usr/doc/$PRGNAM-v${VERSION}
 cat signify.c | head -n 16 | sed 's|\*||g' | sed 's|/||g' | sed 's|\$||g' > \
-  $PKG/usr/doc/$PRGNAM-$VERSION/LICENSE
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+  $PKG/usr/doc/$PRGNAM-v${VERSION}/LICENSE
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-v${VERSION}/$PRGNAM.SlackBuild
 
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
 find $PKG/usr/doc -type d -exec chmod 755 {} \;
-chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+chown -R root:root $PKG/usr/doc/$PRGNAM-v${VERSION}
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
@@ -128,4 +128,4 @@ if [ $(find $PKG/usr/share -maxdepth 0 -type d -empty 2>/dev/null) ]; then
 fi
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-v${VERSION}-$ARCH-$BUILD.${PKGTYPE:-txz}
