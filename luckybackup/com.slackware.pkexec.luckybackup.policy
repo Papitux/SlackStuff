@@ -9,7 +9,7 @@
 
   <action id="com.slackware.pkexec.luckybackup">
     <message>Authentication is required to run luckyBackup</message>
-    <icon_name>gufw</icon_name>
+    <icon_name>luckybackup</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
       <allow_inactive>auth_admin</allow_inactive>
