@@ -1,0 +1,8 @@
+PRGNAM="gwakeonlan"
+VERSION="0.6.2"
+HOMEPAGE="http://www.muflone.com/gwakeonlan"
+DOWNLOAD="http://www.muflone.com/resources/gwakeonlan/archive/0.6.2/gwakeonlan-0.6.2.tar.gz"
+MD5SUM="ccdc29789e9a9233631d4e2d403b5797"
+DEPENDS="gtk3, gobject-introspection, pyxdg, pygobject, python"
+MAINTAINER=""
+EMAIL="@"
