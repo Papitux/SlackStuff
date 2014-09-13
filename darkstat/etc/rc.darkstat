@@ -1,0 +1,119 @@
+#!/bin/sh
+
+DAEMON=darkstat
+PIDFILE=/var/run/$DAEMON.pid
+PID=$(/sbin/pidof darkstat 2>/dev/null)
+ctrlfile=/var/lock/darkstat/darkstat
+
+if [ -f /etc/darkstat/darkstat.conf ] ; then
+    . /etc/darkstat/darkstat.conf
+fi
+
+RETVAL=0
+
+start() {
+  if [ -f $PIDFILE ]; then
+    echo "Alredy running."
+    exit 1
+  else
+   echo -n "Starting the network statistics gatherer daemon (darkstat)..."
+  /usr/sbin/darkstat --user $DSUSER --chroot $DSCHROOT $DSDB \
+   --pidfile $DSPID -b $DSBINDIP -i $DSIFACE -p $DSPORT $DSARGS &> /dev/null
+  fi
+  if [ "$(ps aux | grep darkstat | grep -v grep)" ]; then 
+    echo " Ok!"
+    RETVAL=$?
+  else
+    RETVAL=1
+    echo " error!"    
+  fi
+  if [ $RETVAL -eq 0 ]; then
+   touch $ctrlfile
+  fi
+ return $RETVAL
+}
+
+stop() {
+  echo -n "Stopping the network statistics gatherer daemon (darkstat)..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 0
+  fi
+  if kill -15 $PID; then
+    rm -f $ctrlfile
+    rm -f $PIDFILE
+    echo " stopped."
+  else
+    sleep 1
+    if kill -9 $PID; then
+      rm -f $ctrlfile
+      rm -f $PIDFILE
+      echo " killed."
+    else
+      echo " error!"
+      exit 1
+   fi
+  fi
+}
+
+reload() {
+  echo -n "Reloading network statistics gatherer daemon (darkstat)..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 1
+  fi
+  if kill -0 $PID && [ -f $ctrlfile ]; then
+    stop
+    start
+   RETVAL=$?
+  else
+   RETVAL=1
+  fi
+  if [ $RETVAL -eq 0 ]; then
+    echo " reloaded."
+  else
+    echo " error!"
+    exit 1
+  fi
+ return $RETVAL
+}
+
+status() {
+  if [ -z "$PID" ]; then
+    echo "Not running."
+    exit 1
+  elif kill -0 $PID && [ -f $ctrlfile ]; then
+    echo "Running in pid $PID."
+    exit 0
+  else
+    echo "The network statistics gatherer daemon (darkstat) is not running."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+  ;;
+
+  stop)
+    stop
+  ;;
+
+  restart)
+    stop
+    sleep 3
+    start
+  ;;
+
+  reload)
+    reload
+  ;;
+
+  status)
+    status
+  ;;
+
+  *)
+  echo "Usage: $0 (start|stop|restart|reload|status)"
+esac

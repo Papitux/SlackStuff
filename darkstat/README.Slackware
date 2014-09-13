@@ -1,0 +1,4 @@
+For convenience, the startup script 'rc.darkstat' will be added to
+your 'rc.local' and 'rc.local_shutdown' (if you have one).  But it
+is commented by default to lower the number of daemons running  at
+system startup. Feel free to uncomment them.

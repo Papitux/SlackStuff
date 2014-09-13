@@ -1,0 +1,6 @@
+darkstat (Network statistics gatherer)
+
+Darkstat captures network traffic, calculates statistics about usage
+and serves reports over HTTP through an embedded web-server.
+
+http://dmr.ath.cx/net/darkstat
