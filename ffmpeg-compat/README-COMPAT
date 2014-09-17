@@ -1,0 +1,5 @@
+This package is for compatibility with programs
+asking for ffmpeg 0.10.x specific version, like
+Audacity.
+
+http://www.ffmpeg.org/

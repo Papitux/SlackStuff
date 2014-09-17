@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Slackware build script for ffmpeg
-# 2013
-# Papitux <papitux.br[at]gmail.com>
+# Slackware build script for ffmpeg-compat
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
 # that the following conditions are met:
@@ -25,28 +26,47 @@ VERSION=${VERSION:-0.10.15}
 ARCH=${ARCH:-x86_64}
 BUILD=${BUILD:-1}
 
-CWD=$(pwd)
-TMP=${TMP:-/tmp/PpTux}
-PKG=$TMP/package-$PRGNAM
-OUTPUT=${OUTPUT:-/tmp}
-
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2 -fPIC"
-  SLKLDFLAGS="-L/usr/lib64 -fPIC"; LIBDIRSUFFIX="64"
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
 fi
 
 set -e
 
 NUMJOBS=${NUMJOBS:-" -j4 "}
 
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
 rm -rf $PKG
-mkdir -p $TMP $PKG $OUTPUT
+mkdir -p $TMP $PKG
 cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
@@ -131,9 +151,15 @@ if [ -d $PKG/usr/man ]; then
   rm -rf $PKG/usr/man
 fi
 mkdir -p $PKG/usr/doc/$PKGNAM-$VERSION
-cp -a Changelog COPYING* CREDITS INSTALL LICENSE MAINTAINERS README RELEASE VERSION \
+cp -a COPYING* CREDITS INSTALL LICENSE MAINTAINERS README RELEASE VERSION \
   doc/RELEASE_NOTES doc/*.txt $PKG/usr/doc/$PKGNAM-$VERSION
 cat $CWD/$PKGNAM.SlackBuild > $PKG/usr/doc/$PKGNAM-$VERSION/$PKGNAM.SlackBuild
+
+if [ -r ChangeLog ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/${PKGNAM}-$VERSION)
+  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
+  touch -r ChangeLog $DOCSDIR/ChangeLog
+fi
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
