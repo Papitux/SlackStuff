@@ -1,0 +1,8 @@
+ddate (SACRED DOCUMENT OF THE FROGS) 
+
+ddate,  a program that prints the current date in the Discordian calendar.
+It was part of the util-linux package and  at least since 1994 it had been
+included in nearly all Linux distributions. In August 2011 however, one of
+the maintainers of util-linux dropped it out of the main codestream.
+
+http://github.com/bo0ts/ddate
