@@ -1,0 +1,29 @@
+http://remmina.sourceforge.net/faq.shtml
+
+FAQ - Background
+
+Q: Why did you start this project?
+    A: The whole story started from my new netbook Eee PC. I bought it and installed Debian on it. I really enjoyed it until I realized that the default installation of the RDP client 'tsclient' on Debian is quite annoying for me:
+
+        The Eee PC has very small screen resolution, but it won't allow me to scroll when I am connecting to my desktop. I can move the window by pressing Alt, but I have to disable capturing all WM key bindings, and it means no Alt-Tab in remote desktop. This made me crazy.
+        In fullscreen mode, it occupies all my virtual desktops and provides no control. I can do nothing else when I am connecting to my desktop. When I roll my desktop cube, RDP is in all sides.
+        I had great experience with Krdc, which is part of the KDE project. But in order to install Krdc in Gnome desktop, I have to install tons of additional dependencies; This is obvious not a good news for a small netbook user, or a Gnome fan.
+        Remote desktop is one of the most frequently used application to me in my netbook; I have to look for a perfect solution.
+
+    Well, if you happen to be in the same boat as me, I hope this is the place you are looking for! 
+Q: Why the name "Remmina"?
+    A: This is mostly personal preference. :) But just for you to easier remember it, it can also stand for Remote Mini Assistant. 
+
+FAQ - Usage
+
+Q: Where are all my connections and preferences stored?
+    A: Everything is placed in a hidden directory .remmina under your home directory. It will be created automatically with 0700 permissions. 
+Q: Can I start a connection using a shell command?
+    A: Yes, use remmina -c filename. 
+Q: How are my passwords stored? Are they secure?
+    A: They are encrypted using 3DES with a 256bit randomly generated key. You should keep your key secure. 
+Q: Why you don't use GNOME keyring?
+    A: I would like to keep the main program GTK+ only so non-GNOME users, especially XFCE users, can use it. However, with the plugin system it's possible to implement GNOME keyring support as a separated plugin. Right now it's just a matter of whether there are actually demands out there. So if you think this is important for you, please let me know! 
+Q: Where can I find some documentation?
+    A: Remmina was designed to be hopefully work for most people without the aid of any documentation. But if you want to find some technical information, the Remmina Wiki page might be useful. This Wiki page is also open for contribution. 
+

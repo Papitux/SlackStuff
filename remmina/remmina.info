@@ -1,0 +1,8 @@
+PRGNAM="remmina"
+VERSION="1.0.0"
+HOMEPAGE="http://remmina.sourceforge.net"
+DOWNLOAD="https://github.com/downloads/FreeRDP/Remmina/Remmina-1.0.0.tar.gz"
+MD5SUM="701c540acaab961bc3adf130a2ddb8b1"
+REQUIRES="freerdp telepathy-glib"
+MAINTAINER=""
+EMAIL=""
