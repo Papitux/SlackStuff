@@ -1,0 +1,5 @@
+This package is for compatibility with programs
+asking for ffmpeg =< 2.4 specific version, like
+VLC-2.1.5.
+
+http://www.ffmpeg.org/

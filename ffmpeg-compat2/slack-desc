@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+              |-----handy-ruler------------------------------------------------------|
+ffmpeg-compat2: FFmpeg (Software to record, convert and stream audio and video)
+ffmpeg-compat2:
+ffmpeg-compat2: FFmpeg is a complete solution to record, convert and stream audio
+ffmpeg-compat2: and video. It includes libavcodec,  the leading audio/video codec
+ffmpeg-compat2: library.
+ffmpeg-compat2:
+ffmpeg-compat2: Home: http://www.ffmpeg.org/
+ffmpeg-compat2:
+ffmpeg-compat2:
+ffmpeg-compat2:
+ffmpeg-compat2:
