@@ -126,11 +126,10 @@ rm -rf $PKG/usr/{bin,share}
 find $PKG | xargs file | grep -e "executable" -e "shared object" \
   | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
 
+# Remove the man page(s)
 if [ -d $PKG/usr/man ]; then
-  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
-  for i in $(find $PKG/usr/man -type l -name "*.?") ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+  rm -rf $PKG/usr/man
 fi
-
 mkdir -p $PKG/usr/doc/$PKGNAM-$VERSION
 cp -a Changelog COPYING* CREDITS INSTALL LICENSE MAINTAINERS README RELEASE VERSION \
   doc/RELEASE_NOTES doc/*.txt $PKG/usr/doc/$PKGNAM-$VERSION
