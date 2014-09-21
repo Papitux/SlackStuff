@@ -1,0 +1,9 @@
+appstream-glib (GObjects and helper methods to AppStream metadata)
+
+This library  provides GObjects  and helper methods to make it easy
+to read and write AppStream metadata. It also provides a simple DOM
+implementation  that makes it easy to edit nodes and convert to and
+from the standardized XML representation.  It also supports reading
+of Debian-style DEP-11 metadata.
+
+http://people.freedesktop.org/~hughsient/appstream-glib/
