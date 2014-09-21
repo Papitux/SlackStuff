@@ -22,7 +22,7 @@
 PRGNAM=qbittorrent
 PKGNAM=qbittorrent-nox
 SLKNAM=qbt-nox
-VERSION=${VERSION:-3.1.9.2}
+VERSION=${VERSION:-3.1.10}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -147,12 +147,12 @@ fi
 
 mkdir -p $PKG/usr/doc/$PKGNAM-$VERSION
 cp -a \
-  AUTHORS NEWS TODO COPYING INSTALL README \
+  AUTHORS COPYING INSTALL NEWS README* TODO \
   $PKG/usr/doc/$PKGNAM-$VERSION
 cat $CWD/$PKGNAM.SlackBuild > $PKG/usr/doc/$PKGNAM-$VERSION/$PKGNAM.SlackBuild
 
 if [ -r ChangeLog ]; then
-  DOCSDIR=$(echo $PKG/usr/doc/${PKGNAM}-$VERSION)
+  DOCSDIR=$(echo $PKG/usr/doc/$PKGNAM-$VERSION)
   cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
   touch -r ChangeLog $DOCSDIR/ChangeLog
 fi
