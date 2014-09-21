@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+        |-----handy-ruler------------------------------------------------------|
+libepoxy: libepoxy (OpenGL function pointer management handler)
+libepoxy:
+libepoxy: Epoxy is a library for handling OpenGL function pointer management for
+libepoxy: you.  It  hides the  complexity of `glXGetProcAddress()`,  `dlopen()`,
+libepoxy: `eglGetProcAddress()`, `dlsym()`, etc.
+libepoxy:
+libepoxy: Home: https://github.com/anholt/libepoxy
+libepoxy:
+libepoxy:
+libepoxy:
+libepoxy:

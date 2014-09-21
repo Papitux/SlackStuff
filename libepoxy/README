@@ -1,0 +1,7 @@
+libepoxy (A library for handling OpenGL function pointer management)
+
+Epoxy is a library for handling OpenGL function pointer management for
+you.  It  hides the  complexity of `glXGetProcAddress()`,  `dlopen()`,
+`eglGetProcAddress()`, `dlsym()`, etc.
+
+https://github.com/anholt/libepoxy
