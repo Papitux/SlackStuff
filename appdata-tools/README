@@ -1,0 +1,7 @@
+appdata-tools (Command line tool to validate AppData descriptions)
+
+Appdata-tools provide a command line program designed to validate
+AppData descriptions for compliance  with the  standards  and the
+style guide. AppData is a subset of AppStream.
+
+http://people.freedesktop.org/~hughsient/appdata/

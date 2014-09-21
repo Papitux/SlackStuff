@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+             |-----handy-ruler------------------------------------------------------|
+appdata-tools: appdata-tools (Command line tool to validate AppData descriptions)
+appdata-tools:
+appdata-tools: Appdata-tools provide a command line program designed to validate
+appdata-tools: AppData descriptions for compliance  with the  standards  and the
+appdata-tools: style guide. AppData is a subset of AppStream.
+appdata-tools:
+appdata-tools: Home: http://people.freedesktop.org/~hughsient/appdata/
+appdata-tools:
+appdata-tools:
+appdata-tools:
+appdata-tools:
