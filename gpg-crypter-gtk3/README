@@ -1,0 +1,17 @@
+gpg-crypter ( A graphical front-end to GPG[GnuPG] )
+
+GPG-Crypter is a  graphical front-end to GnuPG (GPG) using the GTK3
+toolkit and GPGME library. It has been developed to provide an easy
+access to GPG encryption and decryption. It supports encryption and
+decryption of text entered into the program's input fields. It also
+supports file encryption and decryption.
+
+It is first intended for encrypting text that has to be transported
+over  unsecure connections like instant-messaging services.  But it
+can also be  used for file  encryption and as an  easy to use email
+encryption.
+
+Further releases will offer to manage your GPG keys with an easy to
+use interface. Signing of files and text will also be available.
+
+http://gpg-crypter.sourceforge.net/Main/HomePage
