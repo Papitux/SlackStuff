@@ -1,0 +1,28 @@
+https://mail.gnome.org/archives/desktop-devel-list/2014-April/msg00086.html
+
+
+Icon theme changes
+------------------
+
+From: Matthias Clasen <@>
+To: desktop-devel-list <@>, distributor-list gnome org
+Subject: Icon theme changes
+Date: Sat, 26 Apr 2014 10:04:57 -0400
+
+Hey,
+
+we are merging gnom-icon-theme and gnome-icon-theme-symbolic into a
+single icon theme. It will be available under the name
+adwaita-icon-theme. This will affect both jhbuild modulesets and
+distro packages, so I'm sending this heads-up to give you some advance
+warning. In jhbuild, things may be in a bit of flux until all
+dependencies in modules have been straightened out.
+
+The reason for this change is to make things more simple and reliable.
+With our current use, symbolic icons are simply not an optional add-on
+anymore, but an integral part of the user experience. By making it
+part of the single icon theme, we avoid a whole class of 'broken UX'
+cases that happen when somebody forgets to install or removes the
+symbolic icons.
+
+Matthias

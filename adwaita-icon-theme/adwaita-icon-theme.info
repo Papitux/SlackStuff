@@ -1,0 +1,8 @@
+PRGNAM="adwaita-icon-theme"
+VERSION="1.14.0"
+HOMEPAGE="https://git.gnome.org/browse/adwaita-icon-theme/"
+DOWNLOAD="http://ftp.gnome.org/pub/gnome/sources/adwaita-icon-theme/3.14/adwaita-icon-theme-3.14.0.tar.xz"
+MD5SUM="75ed0541d5939c415cb2e0e2010f639f"
+REQUIRES="GTK+3 >= 3.14.0"
+MAINTAINER=""
+EMAIL="@"
