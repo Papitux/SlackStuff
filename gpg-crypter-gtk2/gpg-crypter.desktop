@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=GPG-Crypter
+Comment=GPG-Crypter utility
+Comment[fr]=Utilitaire GPG-Crypter
+Exec=gpg-crypter
+Terminal=false
+Type=Application
+Icon=gpg-crypter
+Categories=Utility;
+StartupNotify=true

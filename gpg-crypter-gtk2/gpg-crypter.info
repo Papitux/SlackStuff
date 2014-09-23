@@ -1,0 +1,8 @@
+PRGNAM="gpg-crypter"
+VERSION="0.3.5"
+HOMEPAGE="http://gpg-crypter.sourceforge.net/Main/HomePage"
+DOWNLOAD="http://sourceforge.net/projects/gpg-crypter/files/gpg-crypter/gpg-crypter-0.3.5/gpg-crypter-0.3.5.tar.bz2"
+MD5SUM="89c318767e98599eb261469c3fab0e95"
+MAINTAINER=""
+EMAIL="@"
+APPROVED=""
