@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+                 |-----handy-ruler------------------------------------------------------|
+faenza-icon-theme: faenza-icon-theme (Faenza icon theme for Slackware)
+faenza-icon-theme:
+faenza-icon-theme: This icon theme provides monochromatic icons for panels, toolbars and
+faenza-icon-theme: buttons and colourful squared icons for devices, applications, files,
+faenza-icon-theme: folder and menu items.  Four themes are included to fit with light or
+faenza-icon-theme: dark themes/panels.
+faenza-icon-theme:
+faenza-icon-theme: Home: http://tiheum.deviantart.com/art/Faenza-Icons-173323228
+faenza-icon-theme:
+faenza-icon-theme:
+faenza-icon-theme:

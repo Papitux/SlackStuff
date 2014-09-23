@@ -1,0 +1,12 @@
+Tips
+====
+* You can also install the faenza-icons-mono package. It replace the 22x22 squared icons for Deluge, Exaile, Fusion Icon, iBus and Kupfer by their monochromatic counterpart.
+* Some applications are configured to always use the same icon regardless of the selected theme. To display the Faenza icon, edit as root the /usr/share/applications/application_name.desktop file and locate the line beginning with 'Icon='. Replace the fullpath icon name by the one of the Faenza icon (usually, the name of the application itself) without the extension. Don't forget to make a backup before changing one of those files. 
+    E.g. Vim desktop file is /usr/share/applications/gvim.desktop
+    Some desktop files can be located in /usr/share/applications or in your ~/.local/share/applications folder (e.g. Steam desktop file is somewhere in ~/.local/share/applications/wine).
+    Here is a partial list: emacs23, desura, gcolor2, bluefish, hardinfo, setroubleshoot, gufw, pithos, vim, rssowl, netbeans, gazpacho, guake, all commercial games, etc.
+
+Known issues
+============
+* Java applications like jDownloader or Frostwire doesn't support themes even if you edit the corresponding .desktop files.
+* A lots of applications does not currently support support monochromatic tray icon (deluge, gnome-do, skype, spotify, goldendict) without changing the application icon itself. Please report issue to the developers.

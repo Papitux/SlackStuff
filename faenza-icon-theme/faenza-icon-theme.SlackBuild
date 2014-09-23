@@ -1,0 +1,84 @@
+#!/bin/sh
+
+# Slackware build script for Faenza icon theme
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM="faenza-icon-theme"
+SRCVERS=${SRCVERS:-1.3}
+VERSION=${VERSION:-1.3.1}
+BUILD=${BUILD:-1}
+ARCH=noarch
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$SRCVERS
+tar xfv $CWD/${PRGNAM}_${VERSION}.tar.?z*
+cd $PRGNAM-$SRCVERS
+
+chown -R root.root .
+find . -type f -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
+
+mkdir -p $PKG/usr/share/icons || exit 1
+for dir in Faenza Faenza-{Ambiance,Dark,Darker,Darkest,Radiance}; do
+ cp -a $dir $PKG/usr/share/icons || exit 1
+done
+
+( cd $PKG/usr/share/icons/
+
+cd ./Faenza/places/scalable/ && ln -sf ./distributor-logo-slackware.svg distributor-logo.svg && cd ../../..
+ for size in 22 24 32 48 64 96; do
+  cd ./Faenza/places/$size/ && ln -sf ./distributor-logo-slackware.png distributor-logo.png && cd ../../..
+ done
+
+for theme in Faenza Faenza-Dark; do
+  cd ./$theme/places/scalable/ && ln -sf ./start-here-slackware.svg start-here.svg && ln -sf ./start-here-slackware-symbolic.svg start-here-symbolic.svg && cd ../../..
+ for size in 22 24 32 48 64 96; do
+  cd ./$theme/places/$size/ && ln -sf ./start-here-slackware.png start-here.png && cd ../../..
+ done
+done )
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp $CWD/docs/{AUTHORS,ChangeLog,COPYING,README} \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+zcat $CWD/doinst.sh.gz > $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
