@@ -1,0 +1,7 @@
+rss-glx (Really Slick Screensavers port to GLX)
+
+The Really Slick ScreenSavers (rss) GLX is a port of some nifty OpenGL
+screensavers  that  were originally written for Windows to GLX.  It is
+intended for use with an existing screensaver daemon (xscreensaver).
+
+http://rss-glx.sourceforge.net/
