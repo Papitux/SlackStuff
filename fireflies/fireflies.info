@@ -1,0 +1,10 @@
+PRGNAM="fireflies"
+VERSION="2.07"
+HOMEPAGE="http://somewhere.fscked.org/proj/fireflies/"
+DOWNLOAD="http://somewhere.fscked.org/proj/fireflies/files/fireflies-2.07.tar.gz"
+MD5SUM="212b644a939f37db3bc92daea7957c5a"
+DEPENDS="glu, glx, libxfx(*), opengl, sdl"
+MAINTAINER=""
+EMAIL="@"
+
+(*) - see 'libgfx.info' for additional dependencies
