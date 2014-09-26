@@ -1,0 +1,6 @@
+darkhttpd (Minimal static webserver)
+
+Darkhttpd is a secure, lightweight, fast, single-threaded HTTP/1.1
+server for static content. When you need a web server in a hurry.
+
+http://dmr.ath.cx/net/darkhttpd/
