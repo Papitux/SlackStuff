@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Audacity
+Exec=audacity
+Icon=audacity
+GenericName=Sound Editor
+GenericName[pt]=Editor de Áudio
+GenericName[pt_BR]=Editor de Som
+Comment=Record and edit audio files
+Comment[pt]=Grave e edite arquivos de áudio
+Comment[pt_BR]=Grave e edite arquivos de som
+Type=Application
+StartupNotify=false
+Terminal=false
+Categories=AudioVideo;Audio;AudioVideoEditing;
+MimeType=application/x-audacity-project;
