@@ -1,0 +1,6 @@
+create-cert (Create openssl client key and certificates)
+
+create-cert is a  script that uses openssl to  create self-signed host
+certificates and private keys for fully qualified domain names (FQDN).
+
+ftp://ee.lbl.gov/
