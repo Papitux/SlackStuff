@@ -12,7 +12,7 @@ webkitgtk3: WebKit’s full functionality. It is suitable for projects requiring
 webkitgtk3: kind of web integration, from hybrid HTML/CSS applications to full web
 webkitgtk3: browsers like Midori.
 webkitgtk3:
-webkitgtk3: GTK3 interface.
+webkitgtk3: GTK3 and WebKit2 interface.
 webkitgtk3:
 webkitgtk3: http://webkitgtk.org
 webkitgtk3:

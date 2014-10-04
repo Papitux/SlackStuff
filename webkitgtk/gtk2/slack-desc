@@ -8,9 +8,9 @@
 webkitgtk: WebKitGTK+ (GTK+ port of the WebKit)
 webkitgtk:
 webkitgtk: WebKitGTK+ is a port of the WebKit rendering engine, offering WebKit’s
-webkitgtk: WebKit’s full functionality. It is suitable for projects requiring any
-webkitgtk: kind of web integration, from hybrid HTML/CSS applications to full web
-webkitgtk: browsers like Midori.
+webkitgtk: full functionality.  It is suitable for projects requiring any kind of
+webkitgtk: web integration, from hybrid HTML/CSS applications to full web browser
+webkitgtk: like Midori.
 webkitgtk:
 webkitgtk: GTK2 interface.
 webkitgtk:
