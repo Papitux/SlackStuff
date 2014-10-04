@@ -1,0 +1,11 @@
+WebKit2GTK+ (GTK+ port of the WebKit2)
+
+WebKitGTK+ is the port of the portable web rendering engine WebKit2 to
+the GTK+ platform. Since adding  support for WebKit2, it’s possible to
+build applications that use the web  platform with increased  security
+and  responsiveness.  The web is a jungle,  but web pages cannot crash
+the  main  applicationor  freeze the UI.  WebKitGTK+ also uses process
+separation to seamlessly support GTK+2 plugins ( like Flash ) in GTK+3
+applications.
+
+http://webkitgtk.org

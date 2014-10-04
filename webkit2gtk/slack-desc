@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+          |-----handy-ruler------------------------------------------------------|
+webkit2gtk: webkit2gtk (GTK+ port of the WebKit2)
+webkit2gtk:
+webkit2gtk: WebKitGTK+ is the port of the portable web rendering engine WebKit2 to
+webkit2gtk: the GTK+ platform. Since adding  support for WebKit2, it’s possible to
+webkit2gtk: build applications that use the web  platform with increased  security
+webkit2gtk: and  responsiveness.  The web is a jungle,  but web pages cannot crash
+webkit2gtk: the  main  applicationor  freeze the UI.  WebKitGTK+ also uses process
+webkit2gtk: separation to seamlessly support GTK+2 plugins ( like Flash ) in GTK+3
+webkit2gtk: applications.
+webkit2gtk:
+webkit2gtk: Home: http://webkitgtk.org
