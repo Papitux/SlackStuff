@@ -1,3 +1,5 @@
+psutil (process and system utilities module for Python)
+
 psutil is a module providing  an interface  for retrieving information
 on all running  processes and system utilization  (CPU, memory, disks,
 network, users)  in a portable way by using Python,  implementing many

@@ -1,0 +1,8 @@
+PRGNAM="psutil"
+VERSION="2.1.3"
+HOMEPAGE="https://github.com/giampaolo/psutil"
+DOWNLOAD="https://pypi.python.org/packages/source/p/psutil/psutil-2.1.3.tar.gz"
+MD5SUM="015a013c46bb9bc30b5c344f26dea0d3"
+REQUIRES="pysetuptools"
+MAINTAINER=""
+EMAIL="@"
