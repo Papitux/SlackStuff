@@ -1,0 +1,8 @@
+pygflags (Commandline flags module for Python)
+
+GFlags contains a python implementation of the Google commandline
+flags module. GFlags defines a *distributed* command line system,
+replacing  systems like  getopt(),  optparse and  manual argument
+processing.
+
+http://code.google.com/p/python-gflags
