@@ -1,0 +1,8 @@
+PRGNAM="pytz"
+VERSION="2017.7"
+HOMEPAGE="http://pypi.python.org/pypi/pytz"
+DOWNLOAD="https://pypi.python.org/packages/source/p/pytz/pytz-2014.7.tar.gz"
+MD5SUM="8940ddae309e44b593c75a9e05dd2a0b"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
