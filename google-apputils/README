@@ -1,0 +1,7 @@
+google-apputils (Google application utilities for Python)
+
+This project is a small collection of utilities for building Python
+applications. It includes some of the same set of utilities used to
+build and run internal Python apps at Google.
+
+Home: https://code.google.com/p/google-apputils-python/

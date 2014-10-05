@@ -1,0 +1,8 @@
+PRGNAM="google-apputils"
+VERSION="0.4.0"
+HOMEPAGE="https://code.google.com/p/google-apputils-python/"
+DOWNLOAD="https://google-apputils-python.googlecode.com/files/google-apputils-0.4.0.tar.gz"
+MD5SUM="59e19f16b9a1adb2c84987581ee8b659"
+REQUIRES="pysetuptools"
+MAINTAINER=""
+EMAIL="@"
