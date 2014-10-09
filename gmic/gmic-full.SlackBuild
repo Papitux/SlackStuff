@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Slackware build script for gmic
-# 2013
-# Papitux <papitux.br[at]gmail.com>
+# Slackware build script for gmic (including zart and gimp plugin)
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
 # that the following conditions are met:
@@ -79,35 +80,14 @@ LDFLAGS="$SLKLDFLAGS" \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 
-make $NUMJOBS -C src OPT_CFLAGS="$SLKCFLAGS" OPT_LDFLAGS="$SLKLDFLAGS" linux lib || exit 1
-#make -C src install DESTDIR="$PKG" USR="/usr" || exit 1
+make $NUMJOBS -C src OPT_CFLAGS="$SLKCFLAGS" OPT_LDFLAGS="$SLKLDFLAGS" all || exit 1
+(cd zart && qmake -o Makefile zart.pro)
+make $NUMJOBS -C zart OPT_CFLAGS="$SLKCFLAGS" OPT_LDFLAGS="$SLKLDFLAGS" all || exit 1
+
+make -C src install DESTDIR="$PKG" USR="/usr" || exit 1
 
 mkdir -p $PKG/usr/bin
-cp -f src/gmic $PKG/usr/bin/
-chmod 755 $PKG/usr/bin/gmic
-
-mkdir -p $PKG/usr/lib${LIBDIRSUFFIX}
-cp -f src/libgmic.so $PKG/usr/lib${LIBDIRSUFFIX}/
-chmod 777 $PKG/usr/lib${LIBDIRSUFFIX}/libgmic.so
-( cd $PKG/usr/lib${LIBDIRSUFFIX}/
- mv libgmic.so libgmic.so.1.6.0
- ln -s libgmic.so.1.6.0 libgmic.so.1.6
- ln -s libgmic.so.1.6.0 libgmic.so.1
- ln -s libgmic.so.1.6.0 libgmic.so
-)
-
-mkdir -p $PKG/usr/include
-cp -f src/gmic.h $PKG/usr/include/
-chmod 644 $PKG/usr/include/gmic.h
-
-mkdir -p $PKG/usr/man/man1
-cp -f man/gmic.1.gz $PKG/usr/man/man1/
-chmod 644 $PKG/usr/man/man1/gmic.1.gz
-
-mkdir -p $PKG/usr/share/bash-completion/completions
-cp -f src/gmic_bashcompletion.sh \
- $PKG/usr/share/bash-completion/completions/gmic
-chmod 644 $PKG/usr/share/bash-completion/completions/gmic
+install -m755 zart/zart $PKG/usr/bin/zart
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -116,7 +96,7 @@ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
   COPYING README zart/Licence* \
   $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+cat $CWD/$PRGNAM-full.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
 find $PKG/usr/doc/$PRGNAM-$VERSION -type d -print0 | xargs -0 chmod 0755
 find $PKG/usr/doc/$PRGNAM-$VERSION -type f -print0 | xargs -0 chmod 0644
