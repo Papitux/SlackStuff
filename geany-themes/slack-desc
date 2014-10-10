@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+            |-----handy-ruler------------------------------------------------------|
+geany-themes: geany-themes (A collection of colour schemes for Geany)
+geany-themes:
+geany-themes: Geany-themes is a collection of color schemes for the Geany IDE,
+geany-themes: either written  originally by the Geany community or ported from
+geany-themes: color schemes for  other editors.  These schemes  are compatible
+geany-themes: with Geany 1.22 and greater.
+geany-themes:
+geany-themes: Home: https://github.com/codebrainz/geany-themes
+geany-themes:
+geany-themes:
+geany-themes:

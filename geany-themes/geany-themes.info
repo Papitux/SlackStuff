@@ -1,0 +1,8 @@
+PRGNAM="geany-themes"
+VERSION="1.22"
+HOMEPAGE="https://github.com/codebrainz/geany-themes"
+DOWNLOAD="https://github.com/codebrainz/geany-themes/archive/1.22.tar.gz"
+MD5SUM="788e412bae833ad37e3ea213f896d780"
+DEPENDS="geany"
+MAINTAINER=""
+EMAIL="@"
