@@ -22,7 +22,7 @@
 
 PRGNAM=nfoview
 SRCNAM=nfoview-nfoview
-VERSION=${VERSION:-1.8}
+VERSION=${VERSION:-1.9.5}
 BUILD=${BUILD:-1}
 
 if [ -z "$ARCH" ]; then
@@ -47,13 +47,9 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
-rm -rf $SRCNAM-$VERSION
- if [ -f $CWD/$PRGNAM-$VERSION.tar.?z* ] ;then
-   tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
- else
-   tar xvf $CWD/$SRCNAM-$VERSION.tar.?z*
- fi
-cd $SRCNAM-$VERSION
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
 
 # Add Brazilian Portuguese translation:
 zcat $CWD/pt_BR.patch.gz | patch -p1 --verbose || exit 1

@@ -1,0 +1,122 @@
+
+
+      #######  ###                          /                                                         
+    /       ### ###                       #/                                                          
+   /         ##  ##                       ##                                                          
+   ##        #   ##                       ##      ##                                                  
+    ###          ##                       ##      ##                                                  
+   ## ###        ##      /###     /###    ##  /##  ##    ###    ####      /###   ###  /###     /##    
+    ### ###      ##     / ###  / / ###  / ## / ###  ##    ###     ###  / / ###  / ###/ #### / / ###   
+      ### ###    ##    /   ###/ /   ###/  ##/   /   ##     ###     ###/ /   ###/   ##   ###/ /   ###  
+        ### /##  ##   ##    ## ##         ##   /    ##      ##      ## ##    ##    ##       ##    ### 
+          #/ /## ##   ##    ## ##         ##  /     ##      ##      ## ##    ##    ##       ########  
+           #/ ## ##   ##    ## ##         ## ##     ##      ##      ## ##    ##    ##       #######   
+            # /  ##   ##    ## ##         ######    ##      ##      ## ##    ##    ##       ##        
+  /##        /   ##   ##    /# ###     /  ##  ###   ##      /#      /  ##    /#    ##       ####    / 
+ /  ########/    ### / ####/ ## ######/   ##   ### / ######/ ######/    ####/ ##   ###       ######/  
+/     #####       ##/   ###   ## #####     ##   ##/   #####   #####      ###   ##   ###       #####   
+|                                                                                                     
+ \)
+
+				                   :::::::
+				             :::::::::::::::::::
+				          :::::::::::::::::::::::::
+				        ::::::::cllcccccllllllll::::::
+				     :::::::::lc               dc:::::::
+				    ::::::::cl   clllccllll    oc:::::::::
+				   :::::::::o   lc::::::::co   oc::::::::::
+				  ::::::::::o    cccclc:::::clcc::::::::::::
+				  :::::::::::lc        cclccclc:::::::::::::
+				 ::::::::::::::lcclcc          lc::::::::::::
+				 ::::::::::cclcc:::::lccclc     oc:::::::::::
+				 ::::::::::o    l::::::::::l    lc:::::::::::
+				  :::::cll:o     clcllcccll     o:::::::::::
+				  :::::occ:o                  clc:::::::::::
+				   ::::ocl:ccslclccclclccclclc:::::::::::::
+				    :::oclcccccccccccccllllllllllllll:::::
+				     ::lcc1lcccccccccccccccccccccccco::::
+				       ::::::::::::::::::::::::::::::::
+				         ::::::::::::::::::::::::::::
+				            ::::::::::::::::::::::
+				                 ::::::::::::
+
+
+   From: Patrick J. Volkerding (bf703@cleveland.Freenet.Edu)
+   Subject: ANNOUNCE: Slackware Linux 1.00
+   Newsgroups: comp.os.linux
+   Date: 1993-07-16 17:21:20 PST
+
+ The Slackware Linux distribution (v. 1.00) is now available for
+ anonymous FTP. This is a complete installation system designed for
+ systems with a 3.5" boot floppy. It has been tested extensively with
+ a 386/IDE system. The standard kernel included does not support SCSI,
+ but if there's a great demand, I might be persuaded to compile a few
+ custom kernels to put up for FTP.
+
+ This release is based largely on the SLS system, but has been enhanced and
+ modified substantially. There are two main disk series, A (13 disks) and
+ X (11 disks). Some of the features:  
+
+ Series A:
+   About what you'd expect from SLS series A, B, and C. Plus:
+   Source for the Linux DOS emulator version 0.49.
+   The FAQ for kernel level 99pl10.
+   Kernel source and image at .99pl11 Alpha.
+     [compiled with these options: math emulation support, normal hard drive
+     support, TCP/IP, System V IPC, -m486, minix fs, ext2 fs, msdos fs, nfs,
+     proc support, and PS/2 style mouse support. You may need to recompile if
+     you have some other type of busmouse. The kernel was compiled with libc
+     4.4.1, g++ 2.4.5]
+   The new keytable utilities.
+   The NET-2 networking package, preconfigured to use loopback.
+   A public domain version of ksh, and tcsh 6.04 (with the bugs worked out)
+   GNU gcc, g++, and Objective-C at versions 2.4.5
+   Includes and libraries at version 4.4.1
+   mailx, quota utilities, experimental winapi source, sound drivers.
+   The TCL toolkit and samples.
+
+   In addition, the installation program has been improved to offer more
+   information about the packages (and the installation procedure itself)
+   as you install.
+
+   The install program can also automatically install LILO, configuring it
+   to boot either from your master boot record or from OS/2's Boot Manager.
+
+ Series X:
+   Also, all the packages you would get in the SLS X series, plus:
+   XFree-86 version 1.3.
+   Open Look Virtual Window Manager made the default window manager.
+   XS3 server offers support for S3 based video cards.
+   XV 3.00 Image viewer is included.
+   PEX files from the XFree-86 distribution are included.
+
+ Although TEX support is not included in the Slackware release, the you may
+ install the SLS T series from the install program.
+
+ At this point, the install disk itself is running .99pl8. I'm working on it :^)
+ Also, installation from other than a 3.5" floppy has not been tested, but might
+ work. 5.25" floppy will not work because of file sizes. At this point, I have
+ no plans to support a 5.25" version.
+
+ How to get the Slackware(tm) release:
+
+ The Slackware release may be obtained be anonymous FTP from
+ mhd3.moorhead.msus.edu in directory /pub/linux/slackware. At least initially,
+ this release will be in the form of 3.5" disk images which should be copied
+ to floppies using the RAWRITE.EXE program, or dd under Linux.
+
+ Please note that our FTP software does not support limiting the number of
+ concurrent anonymous logins. PLEASE try to go easy on this machine. If things
+ get out of hand, access may be restricted.
+
+ Other sites are, of course, welcome to help out with the load by mirroring
+ the distribution.
+
+ If you find any problems with the distribution, or if you have any suggestions
+ for improvements, please let me know. If you know of more up-to-date versions
+ of software in the distribution, I'd like to hear about that, too.
+
+ --
+ Patrick Volkerding
+ volkerdi@mhd1.moorhead.msus.edu
+ bf703@cleveland.freenet.edu
