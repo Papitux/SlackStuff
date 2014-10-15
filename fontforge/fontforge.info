@@ -1,0 +1,9 @@
+PRGNAM="fontforge"
+VERSION="2.0.20140101"
+HOMEPAGE="http://www.fontforge.org/"
+DOWNLOAD="https://github.com/fontforge/fontforge/archive/2.0.20140101.tar.gz"
+MD5SUM="9dce2523da76cd9ea609bb7f4357946b
+DEPENDS="libspiro, libunicodenames"
+OPT_DEPENDS="zeromq"
+MAINTAINER=""
+EMAIL="@"
