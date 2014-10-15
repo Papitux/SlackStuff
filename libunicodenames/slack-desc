@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+               |-----handy-ruler------------------------------------------------------|
+libunicodenames: libunicodenames (Unicode annotation data library)
+libunicodenames:
+libunicodenames: LibUnicodeNames makes it easy for program to retrieve the information
+libunicodenames: contained in the  `names list'  file that is published by the Unicode
+libunicodenames: Consortium (http://www.unicode.org/Public/UNIDATA/NamesList.html). It
+libunicodenames: is  intended  to  provide  better handling of locales and replace the
+libunicodenames: libuninameslist library (http://libuninameslist.sourceforge.net/).
+libunicodenames:
+libunicodenames: Home: https://bitbucket.org/sortsmill/libunicodenames
+libunicodenames:
+libunicodenames:

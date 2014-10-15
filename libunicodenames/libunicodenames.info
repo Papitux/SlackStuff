@@ -1,0 +1,9 @@
+PRGNAM="libunicodenames"
+VERSION="1.2.0"
+HOMEPAGE="https://bitbucket.org/sortsmill/libunicodenames"
+DOWNLOAD="http://sourceforge.net/projects/sortsmill/files/libunicodenames/libunicodenames-1.2.0.tar.xz"
+MD5SUM="385bc51aeea8b7f26f2b95e619ba960c
+DEPENDS=""
+OPT_DEPENDS=""
+MAINTAINER=""
+EMAIL="@"

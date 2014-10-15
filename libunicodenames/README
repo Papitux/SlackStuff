@@ -1,0 +1,9 @@
+LibUnicodeNames (Unicode annotation data library)
+
+LibUnicodeNames makes it easy for program to retrieve the information
+contained in the  `names list'  file that is published by the Unicode
+Consortium (http://www.unicode.org/Public/UNIDATA/NamesList.html). It
+is  intended  to  provide  better handling of locales and replace the
+libuninameslist library (http://libuninameslist.sourceforge.net/).
+
+https://bitbucket.org/sortsmill/libunicodenames
