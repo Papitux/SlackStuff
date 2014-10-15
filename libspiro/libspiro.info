@@ -1,0 +1,8 @@
+PRGNAM="libspiro"
+VERSION="0.2"
+HOMEPAGE="https://github.com/fontforge/libspiro"
+DOWNLOAD="https://github.com/fontforge/libspiro/archive/0.2.20131203.tar.gz"
+MD5SUM="20329abfaaee8ec4e980455754176d03"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"

@@ -1,0 +1,6 @@
+LibSpiro (Clothoid to Bezier conversion Library)
+
+Raph Levien's Spiro package as a library. A mechanism for drawing
+smooth contours with constant curvature at the spline joins.
+
+https://github.com/fontforge/libspiro
