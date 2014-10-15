@@ -1,0 +1,9 @@
+pdf2htmlEX (Renders PDF files in HTML)
+
+pdf2htmlEX renders PDF files in HTML, utilizing modern Web
+technologies, aims to provide an accuracy rendering, while
+keeping optimized for Web display. Text, fonts and formats
+are natively preserved in HTML, math formulas, figures and
+images are supported.
+
+http://coolwanglu.github.io/pdf2htmlEX
