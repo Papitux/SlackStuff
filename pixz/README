@@ -1,0 +1,8 @@
+pixz (Parallel, indexing version of XZ)
+
+The existing XZ Utils provide  great compression in the .xz file
+format, but they have two significant problems: they are single-
+threaded and thethe files they produce are just one big block of
+compressed data. With pixz, both these problems are solved.
+
+https://github.com/vasi/pixz
