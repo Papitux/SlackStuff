@@ -22,7 +22,7 @@
 
 PRGNAM=Pillow
 PKGNAM=pillow
-VERSION=${VERSION:-2.5.3}
+VERSION=${VERSION:-2.6.1}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -84,6 +84,8 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
+sed -i 's|/usr/local/bin/python|/usr/bin/python|' PIL/OleFileIO.py
+
 python setup.py build || exit 1
 python setup.py install --prefix=/usr --root=$PKG --optimize=0 --skip-build || exit 1
 
@@ -91,6 +93,13 @@ pushd Sane
 python setup.py build || exit 1
 python setup.py install --prefix=/usr --root=$PKG --optimize=0 --skip-build || exit 1
 popd
+
+(
+cd $PKG/usr/bin
+for f in *.py; do
+ mv $f ${f%.py}
+done
+)
 
 mkdir -p $PKG/usr/include/python$PYBASEVER
 install -m644 libImaging/*.h $PKG/usr/include/python$PYBASEVER/

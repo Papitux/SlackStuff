@@ -1,8 +1,8 @@
 PRGNAM="Pillow"
-VERSION="2.5.3"
+VERSION="2.6.1"
 HOMEPAGE="https://python-imaging.github.io/"
-DOWNLOAD="https://github.com/python-imaging/Pillow/archive/2.5.3.tar.gz"
-MD5SUM="2a6175e1fea0abb11b93809421fe32ed"
+DOWNLOAD="https://github.com/python-imaging/Pillow/archive/2.6.1.tar.gz"
+MD5SUM="4b77fb0c81bbe0c8bf90c6eea960e091"
 REQUIRES="libfreetype, libjpeg, libtif, tcl/tk, zlib"
 OPT_DEPENDS="lcms, libwbep, openjpeg
 MAINTAINER=""
