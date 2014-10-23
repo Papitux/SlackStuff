@@ -1,0 +1,6 @@
+
+revision:
+printf "r%s" "$(git rev-list --count master)"
+
+commit:
+git describe --always | sed 's|-|.|g'

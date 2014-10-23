@@ -1,0 +1,8 @@
+PRGNAM="unicode-emoji"
+VERSION="r23.25ea4a9"
+HOMEPAGE="https://github.com/stv0g/unicode-emoji"
+DOWNLOAD="https://github.com/stv0g/unicode-emoji/archive/master.zip"
+MD5SUM="926c8dd48309411518bb4ef9ffa62001"
+DEPENDS="symbola-font-ttf"
+MAINTAINER=""
+EMAIL="@"
