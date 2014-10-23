@@ -1,0 +1,8 @@
+PRGNAM="pidgin-gpg"
+VERSION="0.9"
+HOMEPAGE="https://github.com/segler-alex/Pidgin-GPG/wiki"
+DOWNLOAD="https://github.com/downloads/segler-alex/Pidgin-GPG/pidgin-gpg-0.9.tar.gz"
+MD5SUM="a7b065e768416816b1948a16b2f59e80"
+DEPENDS="gpa, gpg, gpgme, libpurple (pidgin)"
+MAINTAINER=""
+EMAIL="@"

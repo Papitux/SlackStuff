@@ -1,0 +1,5 @@
+Pidgin-GPG (GPG/OpenPGP plugin for Pidgin)
+
+A plugin written in C which allow GNUPG encryption and decryption in Pidgin.
+
+https://github.com/segler-alex/Pidgin-GPG/wiki
