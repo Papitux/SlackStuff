@@ -1,0 +1,7 @@
+PRGNAM="pidgin-gpg"
+VERSION="git"
+HOMEPAGE="https://github.com/segler-alex/Pidgin-GPG/wiki"
+DOWNLOAD="git clone https://github.com/segler-alex/Pidgin-GPG.git"
+DEPENDS="gpa, gpg, gpgme, libpurple (pidgin)"
+MAINTAINER=""
+EMAIL="@"
