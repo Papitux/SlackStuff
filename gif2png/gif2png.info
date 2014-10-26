@@ -1,0 +1,8 @@
+PRGNAM="gif2png"
+VERSION="2.5.9"
+HOMEPAGE="http://www.catb.org/~esr/gif2png/"
+DOWNLOAD="http://www.catb.org/~esr/gif2png/gif2png-2.5.9.tar.gz"
+MD5SUM="fff45072725c13927ceb5f498e8d4d17"
+DEPENDS="libpng"
+MAINTAINER=""
+EMAIL="@"
