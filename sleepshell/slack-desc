@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+          |-----handy-ruler------------------------------------------------------|
+sleepshell: SleepShell (Dummy Shell)
+sleepshell:
+sleepshell: This is a simple  do-nothing,  sleep-forever  program that can be used
+sleepshell: as a login shell  (in Linux or Unix)  to keep the  connection open but
+sleepshell: without interactive shell.  We use it to create SSH accounts for users
+sleepshell: who will only use them for SSH-tunneling to create an encrypted tunnel
+sleepshell: to  our  servers  (for example to connect securely to database servers
+sleepshell: like mySQL, PostgreSQL, etc).
+sleepshell:
+sleepshell: Home: http://www.mariovaldez.net/software/sleepshell/
+sleepshell:

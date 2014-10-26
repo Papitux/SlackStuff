@@ -1,0 +1,8 @@
+PRGNAM="sleepshell"
+VERSION="0.0.2"
+HOMEPAGE="http://www.mariovaldez.net/software/sleepshell/"
+DOWNLOAD="http://www.mariovaldez.net/software/sleepshell/files/sleepshell_0.0.2.tar.gz"
+MD5SUM="2352d5eb4e38f2fa5b0c371c9fc5883d"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"

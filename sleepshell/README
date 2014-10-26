@@ -1,0 +1,10 @@
+SleepShell (Dummy Shell)
+
+This is a simple  do-nothing,  sleep-forever  program that can be used
+as a login shell  (in Linux or Unix)  to keep the  connection open but
+without interactive shell.  We use it to create SSH accounts for users
+who will only use them for SSH-tunneling to create an encrypted tunnel
+to  our  servers  (for example to connect securely to database servers
+like mySQL, PostgreSQL, etc).
+
+http://www.mariovaldez.net/software/sleepshell/
