@@ -1,0 +1,44 @@
+#!/bin/sh
+
+PRGNAM=nmap-vulscan-db
+ARCH=${ARCH:-noarch}
+DATE=$(LC_ALL=C date +%m.%d.%Y)
+BUILD=${BUILD:-1}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $PKG
+mkdir -p $PKG/usr/share/nmap/scripts/vulscan
+cd $PKG/usr/share/nmap/scripts/vulscan
+
+echo ""
+echo "Downloading new vulnerability database repository..."
+echo ""
+wget -i $CWD/vulbase.url
+echo ""
+
+find $PKG/usr/share/nmap/scripts/vulscan -type f -exec chmod 644 {} \;
+find $PKG/usr/share/nmap/scripts/vulscan -type d -exec chmod 755 {} \;
+chown -R root:root $PKG/usr/share/nmap/scripts/vulscan
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$DATE
+cp -a $CWD/README $PKG/usr/doc/$PRGNAM-$DATE
+cat $CWD/$PRGNAM > $PKG/usr/doc/$PRGNAM-$DATE/$PRGNAM
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$DATE-$ARCH-$BUILD.${PKGTYPE:-txz}

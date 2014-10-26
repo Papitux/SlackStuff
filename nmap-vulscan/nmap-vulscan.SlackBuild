@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# Slackware build script for vulscan
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=nmap-vulscan
+SRCNAM=nmap_nse_vulscan
+ARCH=${ARCH:-noarch}
+VERSION=${VERSION:-2.0}
+BUILD=${BUILD:-1}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $PKG
+mkdir -p $PKG/usr/share/nmap/scripts
+cd $PKG/usr/share/nmap/scripts
+tar xvf $CWD/$SRCNAM-$VERSION.tar.?z*
+
+find $PKG/usr/share/nmap/scripts/vulscan -type f -exec chmod 644 {} \;
+find $PKG/usr/share/nmap/scripts/vulscan -type d -exec chmod 755 {} \;
+chown -R root:root $PKG/usr/share/nmap/scripts/vulscan
+
+mkdir -p $PKG/etc/nmap-vulscan
+install -m0644 $CWD/etc/* $PKG/etc/nmap-vulscan/
+chmod 755 $PKG/etc/nmap-vulscan/nmap-vulscan-db
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a $CWD/README $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

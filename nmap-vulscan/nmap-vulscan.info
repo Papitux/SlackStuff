@@ -1,0 +1,8 @@
+PRGNAM="vulscan"
+VERSION="2.0"
+HOMEPAGE="http://www.computec.ch/projekte/vulscan/"
+DOWNLOAD="http://www.computec.ch/projekte/vulscan/download/nmap_nse_vulscan-2.0.tar.gz"
+MD5SUM="1a48a563112f7d4ed132994b785b521a"
+DEPENDS="nmap"
+MAINTAINER=""
+EMAIL="@"

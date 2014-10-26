@@ -1,0 +1,22 @@
+UPDATE DATABASE
+===============
+
+The vulnerability databases are updated and assembled on a regularly
+basis. To support the latest disclosed vulnerabilities, keep your local
+vulnerability databases up-to-date.
+
+If you want to update your databases, go to the following web site and
+download these files:
+
+   http://www.computec.ch/projekte/vulscan/download/cve.csv
+   http://www.computec.ch/projekte/vulscan/download/exploitdb.csv
+   http://www.computec.ch/projekte/vulscan/download/openvas.csv
+   http://www.computec.ch/projekte/vulscan/download/osvdb.csv
+   http://www.computec.ch/projekte/vulscan/download/scipvuldb.csv
+   http://www.computec.ch/projekte/vulscan/download/securityfocus.csv
+   http://www.computec.ch/projekte/vulscan/download/securitytracker.csv
+   http://www.computec.ch/projekte/vulscan/download/xforce.csv
+
+Copy the files into your vulscan folder:
+
+   /usr/share/nmap/scripts/vulscan

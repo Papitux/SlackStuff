@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+            |-----handy-ruler------------------------------------------------------|
+nmap-vulscan: nmap-vulscan (Vulnerability scanning with nmap)
+nmap-vulscan:
+nmap-vulscan: Vulscan is a  module  which enhances  nmap to a vulnerability scanner.
+nmap-vulscan: The nmap  option '-sV' enables version detection  per service which is
+nmap-vulscan: used to determine potential flaws according to the identified product.
+nmap-vulscan: The data is looked up in an offline version scip VulDB.
+nmap-vulscan:
+nmap-vulscan: Home: http://www.computec.ch/projekte/vulscan/
+nmap-vulscan:
+nmap-vulscan:
+nmap-vulscan:
