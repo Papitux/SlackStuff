@@ -1,0 +1,8 @@
+gespeaker (GTK+ frontend for espeak)
+
+Gespeaker is a free GTK+ frontend for espeak. It allows you to play a
+text in many languages  with  settings for voice,  pitch,  volume and
+speed.  The text read can also  be recorded  to  WAV file  for future
+listening.
+
+http://www.muflone.com/gespeaker/
