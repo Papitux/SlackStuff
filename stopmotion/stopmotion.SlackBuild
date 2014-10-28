@@ -1,0 +1,148 @@
+#!/bin/sh
+
+# Slackware build script for stopmotion
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=stopmotion
+# See changes at http://sourceforge.net/p/linuxstopmotion/code/commit_browser
+BUILD=${BUILD:-1}
+
+cd $(pwd)/
+git clone git://git.code.sf.net/p/linuxstopmotion/code $PRGNAM
+cd $PRGNAM/
+export VERSION=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
+rm -rf .git/
+cd ..
+mv $PRGNAM/ $PRGNAM-$VERSION
+tar jcvf $PRGNAM-$VERSION.tar.bz2 $PRGNAM-$VERSION
+rm -rf $(pwd)/$PRGNAM-$VERSION/
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+export LDFLAGS="$SLKLDFLAGS"
+export CFLAGS="$SLKCFLAGS"
+export CXXFLAGS="$SLKCFLAGS"
+
+lrelease $PRGNAM.pro || exit 1
+qmake PREFIX=/usr $PRGNAM.pro || exit 1
+sed -i '/^LIBS/s|$| -lX11|' Makefile || exit 1
+sed -i 's|$(INSTALL_ROOT)//|$(INSTALL_ROOT)/|g' Makefile.Release || exit 1
+
+make $NUMJOBS PREFIX=/usr || exit 1
+mkdir -p $PKG/usr/share/stopmotion/translations/
+install -m0644 translations/*.qm \
+  $PKG/usr/share/stopmotion/translations/
+make INSTALL_ROOT=$PKG install || exit 1
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/man/man1/
+install -m0644 $PRGNAM.1 $PKG/usr/man/man1/
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+
+mkdir -p $PKG/usr/share/pixmaps
+install -m0644 graphics/$PRGNAM.xpm $PKG/usr/share/pixmaps/
+
+mkdir -p $PKG/usr/share/icons/hicolor/
+for res in 16 32 48 64 96 128; do
+  mkdir -p  $PKG/usr/share/icons/hicolor/${res}x${res}/apps
+  convert graphics/$PRGNAM.png -resize ${res}x${res} \
+    $PKG/usr/share/icons/hicolor/${res}x${res}/apps/$PRGNAM.png  
+done
+
+mkdir -p $PKG/usr/share/icons/hicolor/scalable/
+mv $PKG/usr/share/icons/$PRGNAM.svg $PKG/usr/share/icons/hicolor/scalable/
+
+mkdir -p $PKG/usr/share/mime-info/
+install -m0644 $PRGNAM.mime $PKG/usr/share/mime-info/
+
+find $PKG/usr/share -type f -exec chmod 644 {} \;
+find $PKG/usr/share -type d -exec chmod 755 {} \;
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mv $PKG/usr/share/doc/$PRGNAM/html/ $PKG/usr/doc/$PRGNAM-$VERSION/
+rm -rf $PKG/usr/share/doc/
+cp -a AUTHORS COPYING README $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh.gz ]; then
+  zcat $CWD/doinst.sh.gz >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
