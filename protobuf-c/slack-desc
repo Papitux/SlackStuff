@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+          |-----handy-ruler------------------------------------------------------|
+protobuf-c: protobuf-c (C implementation of Google Protocol Buffers)
+protobuf-c:
+protobuf-c: The `protobuf-c` is a C implementation of the Google Protocol Buffers
+protobuf-c: data  serialization  format.  It  includes `libprotobuf-c`,  a pure C
+protobuf-c: library that implements protobuf encoding & decoding, and `protoc-c`,
+protobuf-c: a code  generator that converts  Protocol  Buffer `.proto` files to C
+protobuf-c: descriptor code, based on the original `protoc`.
+protobuf-c:
+protobuf-c: Home: https://github.com/protobuf-c/protobuf-c
+protobuf-c:
+protobuf-c:

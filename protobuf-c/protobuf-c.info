@@ -1,0 +1,8 @@
+PRGNAM="protobuf-c"
+VERSION="1.0.2"
+HOMEPAGE="https://github.com/protobuf-c/protobuf-c"
+DOWNLOAD="https://github.com/protobuf-c/protobuf-c/archive/v1.0.2.tar.gz"
+MD5SUM="fdd242b3380005dc9a7d2f88e9f66a3a"
+DEPENDS="protobuf"
+MAINTAINER=""
+EMAIL="@"
