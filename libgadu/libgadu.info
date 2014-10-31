@@ -1,0 +1,8 @@
+PRGNAM="libgadu"
+VERSION="1.12.0"
+HOMEPAGE="http://libgadu.net/"
+DOWNLOAD="http://github.com/wojtekka/libgadu/releases/download/1.12.0/libgadu-1.12.0.tar.gz"
+MD5SUM="e4569a0ed26136c4634fa8c4013910e3"
+DEPENDS="gnutls, protobuf-c"
+MAINTAINER=""
+EMAIL="@"
