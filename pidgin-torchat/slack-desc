@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+              |-----handy-ruler------------------------------------------------------|
+pidgin-torchat: Pidgin-TorChat (TorChat plugin for Pidgin)
+pidgin-torchat:
+pidgin-torchat: TorChat is a peer to peer instant messenger with a completely
+pidgin-torchat: decentralized design,  built on top  of Tor's location hidden
+pidgin-torchat: services,  giving  you extremely strong anonymity while being
+pidgin-torchat: very  easy to  use without the need  to install  or configure
+pidgin-torchat: anything.
+pidgin-torchat:
+pidgin-torchat: Home: https://github.com/prof7bit/TorChat
+pidgin-torchat:
+pidgin-torchat:
