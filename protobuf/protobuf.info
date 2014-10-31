@@ -1,0 +1,8 @@
+PRGNAM="protobuf"
+VERSION="2.6.0"
+HOMEPAGE="https://github.com/google/protobuf/"
+DOWNLOAD="https://github.com/google/protobuf/releases/download/v2.6.0/protobuf-2.6.0.tar.bz2"
+MD5SUM="78253c509a055dab316a21e754cb278a"
+REQUIRES="google-apputils, pygflags, pysetuptools, pytz"
+MAINTAINER=""
+EMAIL="@"
