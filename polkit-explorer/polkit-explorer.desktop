@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Polkit-Explorer
+Exec=polkitex
+Icon=polkitex
+Comment=A GUI for PolicyKit information
+Comment[pt_BR]=Inteface gráfica para informações do PolicyKit
+Type=Application
+StartupNotify=false
+Terminal=false
+Categories=System;

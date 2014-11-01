@@ -1,0 +1,7 @@
+Polkit Explorer (A GUI for PolicyKit information)
+
+Polkit Explorer reads in a Polkit .policy file, parses its XML
+contents,  and presents the information it contains, on a more
+human-readable GUI window.
+
+https://github.com/scarygliders/Polkit-Explorer
