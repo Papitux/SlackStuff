@@ -1,0 +1,8 @@
+PRGNAM="pdf2png"
+VERSION="0.4"
+HOMEPAGE="http://github.com/aadityabagga/pdf2png"
+DOWNLOAD="https://github.com/aadityabagga/pdf2png/archive/0.4.tar.gz"
+MD5SUM="543a2a01b6a8f8e18342325602ba12d4"
+DEPENDS="ghostscript, pygobject, python"
+MAINTAINER=""
+EMAIL="@"

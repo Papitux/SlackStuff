@@ -1,0 +1,7 @@
+pdf2png (Converts pdf files to various image formats)
+
+pdf2png  converts  PDF files to various image formats with a simple
+graphical interface based on python, using ghostscript. It supports
+up to 4 different image extensions like PNG, JPEG, BMP and TIFF.
+
+http://github.com/aadityabagga/pdf2png
