@@ -23,7 +23,7 @@
 
 PRGNAM=gstreamer-editing-services
 PKGNAM=gst-editing-services
-VERSION=${VERSION:-1.2.0}
+VERSION=${VERSION:-1.4.0}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -94,6 +94,8 @@ CXXFLAGS="$SLKCFLAGS" \
   --disable-static \
   --program-prefix= \
   --program-suffix= \
+  --with-package-name="GStreamer Editing Services (Slackware Linux)" \
+  --with-package-origin="http://www.slackware.com" \
   --build=$ARCH-slackware-linux
 
 make $NUMJOBS || make || exit 1
@@ -130,10 +132,8 @@ cp -a \
   AUTHORS COPYING* INSTALL NEWS README RELEASE \
   $PKG/usr/doc/$PKGNAM-$VERSION
 
-# If there's a ChangeLog, installing at least part of the recent history
-# is useful, but don't let it get totally out of control:
 if [ -r ChangeLog ]; then
-  DOCSDIR=$(echo $PKG/usr/doc/${PKGNAM}-$VERSION)
+  DOCSDIR=$(echo $PKG/usr/doc/$PKGNAM-$VERSION)
   cat ChangeLog | head -n 500 > $DOCSDIR/ChangeLog
   touch -r ChangeLog $DOCSDIR/ChangeLog
 fi
