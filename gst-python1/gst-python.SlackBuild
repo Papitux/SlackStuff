@@ -22,7 +22,7 @@
 
 PRGNAM=gst-python
 PKGNAM=gst-python1
-VERSION=1.2.0
+VERSION=1.4.0
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
