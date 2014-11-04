@@ -1,0 +1,23 @@
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.NetworkManager.enable-disable-network"
+&& subject.isInGroup("netdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.NetworkManager.enable-disable-wifi"
+&& subject.isInGroup("netdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.NetworkManager.settings.modify.own"
+&& subject.isInGroup("netdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.NetworkManager.settings.modify.system"
+&& subject.isInGroup("netdev"))
+return polkit.Result.YES;
+});

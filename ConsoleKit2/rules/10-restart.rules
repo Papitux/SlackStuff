@@ -1,0 +1,5 @@
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.consolekit.system.restart"
+&& subject.isInGroup("power"))
+return polkit.Result.YES;
+});

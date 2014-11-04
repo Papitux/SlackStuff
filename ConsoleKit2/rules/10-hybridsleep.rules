@@ -1,0 +1,5 @@
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.consolekit.system.hybridsleep"
+&& subject.isInGroup("power"))
+return polkit.Result.YES;
+});
