@@ -1,0 +1,2 @@
+Migrate the 'database' {pci,usb}.id to 'gento-hwids'. The
+updates can be made the old way, with the included script.
