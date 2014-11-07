@@ -1,0 +1,8 @@
+PRGNAM="hugin"
+VERSION="2014.0.0"
+HOMEPAGE="http://hugin.sourceforge.net/"
+DOWNLOAD="http://downloads.sourceforge.net/hugin/hugin-2014.0.0.tar.bz2"
+MD5SUM="711784c27bdb743ddc45dc2c448ac87c"
+DEPENDS="enblend-enfuse, exiftool, lapack, lensfun, libpano13, swig, tclap, wxPython"
+MAINTAINER=""
+EMAIL="@"
