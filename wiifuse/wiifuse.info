@@ -1,0 +1,8 @@
+PRGNAM="Wiifuse"
+VERSION="0.2.0"
+HOMEPAGE="http://wiibrew.org/wiki/Wiifuse"
+DOWNLOAD="http://wiibrew.org/w/images/0/04/Wiifuse-0.2.0.tgz"
+MD5SUM="fa8882f07ccf02ec9278bec0195cb77c"
+DEPENDS="fuse, openssl"
+MAINTAINER=""
+EMAIL="@"

@@ -1,0 +1,9 @@
+Wiifuse (Mount a Gamecube or Wii DVD disc image)
+
+Wiifuse allows you to mount a Gamecube or Wii DVD disc image as a
+read-only part of the file system on you computer. This allows to
+browse the directory structure and read the files within. Wiifuse
+supports on-the-fly decryption for Wii encrypted partitions (need
+the required 128bit AES key).
+
+Home: http://wiibrew.org/wiki/Wiifuse

@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+       |-----handy-ruler------------------------------------------------------|
+wiifuse: Wiifuse (Mount a Gamecube or Wii DVD disc image)
+wiifuse:
+wiifuse: wiifuse allows you to mount a Gamecube or Wii DVD disc image as a
+wiifuse: read-only part of the file system on you computer. This allows to
+wiifuse: browse the directory structure and read the files within. Wiifuse
+wiifuse: supports on-the-fly decryption for Wii encrypted partitions (need
+wiifuse: the required 128bit AES key).
+wiifuse:
+wiifuse: Home: http://wiibrew.org/wiki/Wiifuse
+wiifuse:
+wiifuse:
