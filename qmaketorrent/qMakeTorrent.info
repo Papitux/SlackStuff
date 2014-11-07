@@ -1,0 +1,8 @@
+PRGNAM="qMakeTorrent"
+VERSION="1.1.2"
+HOMEPAGE="https://github.com/kz26/qMakeTorrent"
+DOWNLOAD="https://github.com/kz26/qMakeTorrent/archive/1.1.2.tar.gz"
+MD5SUM="ebc4f63fdf946ccc2c6087f8085d3b33"
+REQUIRES="boost, libtorrent, qt4 "
+MAINTAINER=""
+EMAIL="@"
