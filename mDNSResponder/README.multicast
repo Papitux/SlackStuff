@@ -1,0 +1,4 @@
+To enable multicast dns lookups for applications that are not multicast dns aware,
+edit the 'hosts:' line in /etc/nsswitch.conf to include 'mdns':
+
+"hosts: files mdns dns"

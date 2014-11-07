@@ -1,0 +1,8 @@
+PRGNAM="mDNSResponder"
+VERSION="561.1.1"
+HOMEPAGE="https://developer.apple.com/opensource/"
+DOWNLOAD="https://www.opensource.apple.com/tarballs/mDNSResponder/mDNSResponder-561.1.1.tar.gz"
+MD5SUM="d4b56e22798d6f45e29b42cd6720ab6e"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
