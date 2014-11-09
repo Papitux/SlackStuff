@@ -1,0 +1,7 @@
+dotnew (Utility to manage .new system configuration files)
+
+dotnew is a utility to help with the management of '.new' system
+configuration files in  slackware  and  slackware based distros.
+dotnew includes both graphical and console user interfaces.
+
+http://dotnew.sourceforge.net/
