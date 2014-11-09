@@ -1,3 +1,7 @@
 #!/bin/sh
 
-pkexec "/usr/bin/gwakeonlan" "$@"
+# This worked with default Slackware consolekit:
+# pkexec "/usr/bin/gwakeonlan" "$@"
+
+# This is working with ConsoleKit2: 
+pkexec env "DISPLAY=$DISPLAY" "XAUTHORITY=$XAUTHORITY" "/usr/bin/gwakeonlan" "$@"
