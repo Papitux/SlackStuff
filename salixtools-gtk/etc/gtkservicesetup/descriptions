@@ -1,0 +1,32 @@
+bind:The BIND (Domain Name System) server:named
+cups:The CUPS print spooler/server:cupsd
+gpm:The Gpm console mouse program:gpm
+httpd:The Apache web server:httpd
+inetd:The BSD Inetd daemon:inetd
+ip_forward:Activate IP packet forwarding:null
+mysqld:The MySQL database server:mysqld
+nfsd:The Network File System daemon:nfsd
+rpc:The RPC portmapper daemon:rpc.portmap
+postfix:The Postfix mail server:master
+samba:The Samba SMB file server:smbd
+saslauthd:The SASL authentication server:saslauthd
+sendmail:The Sendmail mail server:sendmail
+syslog:The Linux system logging server:syslogd
+sshd:The SSHD (secure shell) daemon:sshd
+udev:The UDEV dynamic device manager system:udevd
+wifi-radar:The Wifi-radar multi-network startup connector:null
+ntpd:The Network Time Protocol service:ntpd
+alsa:The Advanced Linux Sound Architecture:null
+famd:The File Alteration Monitor Daemon:famd
+wireless:Standard single network Wifi startup script:null
+snmpd:The Simple Network Management Protocol service:snmpd
+pop3d:The PostOfficeProtocol version 3 service:pop3d
+crond:Background/timed job scheduling system:crond
+messagebus:The DBUS system:dbus-daemon
+numlock:Activate numlock on startup:null
+uwd:Udev Watchdog Daemon for removable devices:uwd
+qemu:The QEMU Accelerator module:null
+avahidaemon:Avahi mDNS/DNS-SD Daemon:avahi-daemon
+hald:Hardware Abstraction Layer:hald
+vboxdrv:Sun's VirtualBox Linux kernel driver:null
+wicd:A complete network connection manager:/usr/lib/wicd/wicd-daemon.py

@@ -1,0 +1,117 @@
+#!/bin/sh
+# service:  start/stop/restart/list/activate/deactivate system services 
+
+# Translations only work with utf8 locales
+if [ ! `echo $LANG | grep -i utf` ]; then
+        LANG=C
+fi
+
+# Gettext internationalization
+export TEXTDOMAIN="service"
+export TEXTDOMAINDIR="/usr/share/locale"
+. gettext.sh
+
+# Some globals
+rcdir='/etc/rc.d'
+descdir='/usr/share/salixtools/gtkservicesetup'
+
+. /usr/share/salixtools/gtkservicesetup/shell-colours
+
+actionname=$1
+servicename=$2
+
+check_for_root(){
+if [ "$UID" != "0" ]; then
+	echo "`eval_gettext 'This action requires root privileges.'`"
+	exit 1
+fi
+}
+
+blacklist(){
+	echo $1 | grep -f /usr/share/salixtools/gtkservicesetup/service-blacklist
+}
+
+serviceinfo(){
+sed -n "s/^${1}:\(.*\):.*$/\1/p" $descdir/descriptions
+}
+
+getdaemon(){
+  daemon=$(sed -n "s/^${actionname}:.*:\(.*\)$/\1/p" $descdir/descriptions)
+  pidof -x $daemon
+}
+
+start() {
+  chmod 755 $rcdir/rc.$servicename 
+  if [ -r $rcdir/rc.$servicename ]; then
+    echo -e "`eval_gettext '${BOLDCYAN}Starting${COLOR_RESET} the ${BOLDWHITE}${servicename}${COLOR_RESET} service'`" 
+    [ ! "$(getdaemon ${servicename})" ] && /bin/sh $rcdir/rc.${servicename} start 1>&2 2>/dev/null &
+    sleep 1
+  else
+      echo -e "`eval_gettext 'No ${BOLDWHITE}${servicename}${COLOR_RESET} service'`"
+  fi
+}
+
+stop() {
+  if [ -r $rcdir/rc.${servicename} ]; then
+    echo -e "`eval_gettext '${BOLDYELLOW}Stopping${COLOR_RESET} the ${BOLDWHITE}${servicename}${COLOR_RESET} service'`"
+    /bin/sh $rcdir/rc.${servicename} stop 1>&2 2>/dev/null
+    sleep 1
+    kill -9 $(getdaemon ${servicename}) 1>&2 2>/dev/null 
+    chmod 644 $rcdir/rc.${servicename} 
+  else
+      echo -e "`eval_gettext 'No ${BOLDWHITE}${servicename}${COLOR_RESET} service'`"
+  fi
+}
+
+restart() {
+  chmod 755 $rcdir/rc.${servicename}
+  if [ -r $rcdir/rc.${servicename} ]; then
+    echo -e "`eval_gettext '${BOLDCYAN}Restarting${COLOR_RESET} the ${BOLDWHITE}${servicename}${COLOR_RESET} service'`" 
+    if grep -q "^[^#]*['\"]restart[\"'][[:space:]]*)[[:space:]]*$" $rcdir/rc.${servicename} ; then
+    	/bin/sh $rcdir/rc.${servicename} restart 1>&2 2>/dev/null &
+    	sleep 2
+    else
+		/bin/sh $rcdir/rc.${servicename} stop 1>&2 2>/dev/null 
+		sleep 2
+		kill -9 $(getdaemon ${servicename}) 1>&2 2>/dev/null 
+		/bin/sh $rcdir/rc.${servicename} start 1>&2 2>/dev/null 
+    fi
+  else
+      echo -e "`eval_gettext 'No ${BOLDWHITE}${servicename}${COLOR_RESET} service'`"
+  fi
+}
+
+list() {
+  for rcscript in $rcdir/rc.* ; do
+    [ "$(blacklist $rcscript)" ] && continue
+    service="$(basename $rcscript | sed -e 's/^rc\.\(.*\)$/\1/')"
+    desc="$(serviceinfo $service)"
+    [ ! "$desc" ] && desc="`eval_gettext 'The $service service'`"
+    if [ -x $rcscript ]; then
+      echo -e "${BOLDWHITE}$service${COLOR_RESET} ($desc) : ${BOLDCYAN}[on]${COLOR_RESET}"
+    else
+      echo -e "${BOLDWHITE}$service${COLOR_RESET} ($desc) : ${BOLDYELLOW}[off]${COLOR_RESET}"
+    fi
+  done
+}
+
+case "${actionname}" in
+'start')
+  check_for_root
+  start ${servicename}
+  ;;
+'stop')
+  check_for_root
+  stop ${servicename}
+  ;;
+'restart')
+  check_for_root
+  restart ${servicename}
+  ;;
+'list')
+  list
+  ;;
+*)
+  echo "`eval_gettext 'usage : service start|stop|restart|list [service_name]'`"
+esac
+

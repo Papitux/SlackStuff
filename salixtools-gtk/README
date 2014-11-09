@@ -1,0 +1,6 @@
+salixtools-gtk (graphical system utilities)
+
+salixtools-gtk includes a set of graphical system administration
+tools, using the GTK+2 toolkit and written in python.
+
+https://github.com/gapan/salixtools-gtk

@@ -1,0 +1,455 @@
+#!/bin/bash
+
+# This script configures rc.keymap and hal fdi keyboard policy with preferred keyboard map. 
+
+# This program is free software; you can redistribute it and/or modify it 
+# under the terms of the GNU General Public License as published by the
+# Free Software Foundation; either version 3 of the License, or (at your option)
+# any later version. Please take a look at http://www.gnu.org/copyleft/gpl.htm
+
+# Original code from keyboardconfig, Jean-Philippe Guillemin <jp.guillemin~at~free~dot~fr>
+# Modified by:	Pierrick Le Brun <akuna~at~free~dot~fr>
+# Modified by:  George Vlahavas <vlahavas~at~gmail~dot~com>
+
+check_for_root(){
+	if [ "$UID" != "0" ]; then
+		echo "`eval_gettext 'You need root privileges to run this'`"
+		exit 1
+	fi
+}
+
+init(){
+	# Translations only work with utf8 locales
+	if [ ! `echo $LANG | grep -i utf` ]; then
+		LANG=C
+	fi
+
+	# Gettext internationalization
+	export TEXTDOMAIN="keyboardsetup"
+	export TEXTDOMAINDIR="/usr/share/locale"
+	. gettext.sh
+	
+	# create the buffer directory
+	buffer="$(mktemp -d -p /tmp temp.XXXXXXXX)"
+
+	# remove the buffer directory on any type of exit
+	trap 'rm -rf $buffer 2>/dev/null' TERM INT EXIT
+
+	# Path to the salixtools shared files
+	salixtoolsdir="/usr/share/salixtools/gtkkeyboardsetup/"
+
+	# Just to be sure
+	unset keymap \
+		key \
+		numstate \
+		numdefault \
+		ibusstate \
+		ibusdefault \
+		scimstate \
+		scimdefault \
+		xkblayout \
+		xkbvariant \
+		xkboptions \
+		setkeymap \
+		setnumlock \
+		setibus \
+		setscim \
+		applynow
+
+	backtohome=$(pwd)
+
+	cd /usr/share/kbd/keymaps/i386
+}
+
+usage(){
+	echo "`eval_gettext 'USAGE:'` keyboardsetup [[-k keymap] [-n numlockstate] [-i ibusstate ] [-s scimstate] [-z]]"
+	echo
+	echo "`eval_gettext 'OPTIONS:'`"
+	echo
+	echo "   -k keymap,        `eval_gettext 'a valid keyboard map'`"
+	echo "   -n numlockstate,  `eval_gettext 'the numlock state, on or off'`"
+	echo "   -i ibusstate,     `eval_gettext 'the IBus state, on or off'`"
+	echo "   -s scimstate,     `eval_gettext 'the SCIM state, on or off'`"
+	echo "   -z,               `eval_gettext 'do not apply changes on the fly, only edit settings files'`"
+	exit 1
+}
+
+checkdefaults(){
+	# Check for the current keymap
+	if [ ! -e /etc/rc.d/rc.keymap ] ; then 
+	cat << "EORC" > /etc/rc.d/rc.keymap
+#!/bin/sh
+# Load the keyboard map.  More maps are in /usr/share/kbd/keymaps.
+if [ -x /usr/bin/loadkeys ]; then
+ /usr/bin/loadkeys -u us.map
+fi
+EORC
+	fi
+	keymap=$(grep "^[[:space:]]*\/usr\/bin\/loadkeys.*" /etc/rc.d/rc.keymap | sed -e 's/^.*loadkeys -u *\(.*\)$/\1/')
+
+	# Check for the running numlock state
+	if [ -x /etc/rc.d/rc.numlock ]; then
+		numstate="on"
+	else
+		numstate="off"
+	fi
+
+	# Check for the running IBus state (only if ibus is installed)
+	if [ -x /usr/bin/ibus-daemon ]; then
+		if [ -x /etc/profile.d/ibus.sh ]; then
+			ibusstate="on"
+		else
+			ibusstate="off"
+		fi
+	else
+		ibusstate="off"
+	fi
+
+	# Check for the running SCIM state (only if scim is installed)
+	if [ -x /usr/bin/scim ]; then
+		if [ -x /etc/profile.d/scim.sh ]; then
+			scimstate="on"
+		else
+			scimstate="off"
+		fi
+	else
+		scimstate="off"
+	fi
+}
+
+# Check which options are used from the command line
+checkoptions(){
+	while getopts ":hk:n:i:s:z" flag
+	do
+		# if switch is unknown or if asking for help
+		if [ $flag = "?" ] || [ $flag = "h" ]; then
+			usage
+		fi
+		if [ $flag = "k" ]; then
+			setkeymap=1
+			if [ `grep "^$OPTARG|" $salixtoolsdir/keymaps` ]; then
+				key="$OPTARG"
+				keymap="$OPTARG.map"
+			else
+				echo "`eval_gettext 'ERROR: $OPTARG is not a valid keymap. You can look in $salixtoolsdir/keymaps for a list of valid keymaps'`"
+				usage
+			fi
+		fi
+		if [ $flag = "n" ]; then
+			setnumlock=1
+			if [ $OPTARG = "on" ] || [ $OPTARG = "off" ]; then
+				numstate="$OPTARG"
+				if [ $numstate = "on" ]; then
+					numlock="checked"
+				elif [ $numstate = "off" ]; then
+					numlock="unchecked"
+				fi
+			else
+				echo "`eval_gettext 'ERROR: $OPTARG is not a valid option.'`"
+				usage
+			fi
+		fi
+		if [ $flag = "i" ]; then
+			setibus=1
+			if [ $OPTARG = "on" ] || [ $OPTARG = "off" ]; then
+				ibusstate="$OPTARG"
+			else
+				echo "`eval_gettext 'ERROR: $OPTARG is not a valid option.'`"
+				usage
+			fi
+		fi
+		if [ $flag = "s" ]; then
+			setscim=1
+			if [ $OPTARG = "on" ] || [ $OPTARG = "off" ]; then
+				scimstate="$OPTARG"
+			else
+				echo "`eval_gettext 'ERROR: $OPTARG is not a valid option.'`"
+				usage
+			fi
+		fi
+		if [ $flag = "z" ]; then
+			applynow=0
+		else
+			applynow=1
+		fi
+	done
+	
+	# we shift positions in $@ so that we discard all previous switches
+	# and leave only files as additional arguments
+	shift $((OPTIND-1))
+
+	# There should be no more arguments
+	if [ $# -gt 0 ]; then
+		echo "`eval_gettext 'ERROR: Too many arguments'`" >&2
+		usage
+	fi
+}
+
+# The interactive section
+interactive(){
+	setkeymap=1
+	setnumlock=1
+	applynow=1
+
+	# Set the current keymap as the keymap that is checked by default
+	if [ "$keymap" ] ; then
+		[ ! "$(echo $keymap | grep 'map')" ] && keymap="${keymap}.map"
+
+		# We get the corresponding current path/key.map
+		currentpathkeymap="$(ls */* \
+		| egrep "azerty|qwerty|dvorak|qwertz|olpc" \
+		| grep "\/$keymap" \
+		| sed -e 's/^\(.*\).gz$/\1/')"
+
+	fi
+
+	[ ! "$currentpathkeymap" ] && currentpathkeymap="qwerty/us.map"
+	
+	avail="$( grep -v "^#" $salixtoolsdir/keymaps | \
+			grep -v "^ " | \
+			sed "s/\(.*\)|.*|.*|.*/\1/")"
+	all="$(ls */* \
+		| egrep "azerty|qwerty|dvorak|qwertz|olpc" \
+		| egrep 'map.gz' )"
+	
+	for k in $all; do
+		code=$( echo $k | sed "s|\(.*\)/\(.*\)\.map\.gz|\2|" )
+		if [[ $avail == *$code* ]];then
+			templist="$templist$k
+"
+		fi
+	done
+
+	list="$( echo "$templist" | sed -e 's/^\(.*\).gz$/\"\1\" \" \" \\/' )"
+	
+	if [ -x /etc/rc.d/rc.numlock ]; then
+		numprecheck="on"
+	else
+		numprecheck="off"
+	fi
+
+	# Display keymap selection dialog
+	answer="$(eval dialog \
+	--stdout \
+	--title \"`eval_gettext 'Keyboard configuration'`\" \
+	--default-item \"$currentpathkeymap\" \
+	--ok-label \"`eval_gettext 'OK'`\" \
+	--cancel-label \"`eval_gettext 'Exit'`\" \
+	--menu \
+	\"\\n        `eval_gettext 'Please select your preferred keyboard map:'`\" 20 80 11 "$list" )"
+
+	# Don't do anything if Cancel or the close button was pressed
+	retval=$?
+	if [ $retval -eq 1 ] || [ $retval -eq 255 ]; then
+		exit 0
+	fi
+
+	pathkeymap="$(echo "$answer" | head -n1)"
+	
+	if [ "$pathkeymap" ] ; then
+		keymap="$(basename $pathkeymap)"
+
+		# We need the keymap without ".map"
+		key=${keymap%.map}
+	fi
+
+	# Display a dialog for numlock
+	if [ $numstate = "off" ]; then
+		numdefault="--defaultno"
+	fi
+	dialog \
+	--stdout \
+	--title "`eval_gettext 'Numlock configuration'`" \
+	--yes-label "`eval_gettext 'Enabled'`" \
+	--no-label "`eval_gettext 'Disabled'`" \
+	$numdefault \
+	--yesno \
+	"\\n`eval_gettext 'Do you want to have numlock enabled or disabled by default?'`" 0 0
+		retval=$?
+	if [ $retval -eq 255 ]; then
+		setnumlock=0
+	elif [ $retval -eq 0 ]; then
+		numstate="on"
+		numlock="checked"
+	else
+		numstate="off"
+		numlock="unchecked"
+	fi
+
+	# Display a dialog for ibus, if ibus is installed
+	if [ -x /usr/bin/ibus-daemon ]; then
+		setibus=1
+		if [ $ibusstate = "off" ]; then
+			ibusdefault="--defaultno"
+		fi
+		dialog \
+		--stdout \
+		--title "`eval_gettext 'IBus configuration'`" \
+		--yes-label "`eval_gettext 'Enabled'`" \
+		--no-label "`eval_gettext 'Disabled'`" \
+		$ibusdefault \
+		--yesno \
+		"\\n`eval_gettext 'IBus is an input platform for Chinese, Japanese, Korean and many other languages when using a graphical environment. Do you want to have it enabled or disabled on boot?\n\nYou will have to restart your system for this to take effect.'`" 0 0
+		retval=$?
+		if [ $retval -eq 255 ]; then
+			setibus=0
+		elif [ $retval -eq 0 ]; then
+			ibusstate="on"
+		else
+			ibusstate="off"
+		fi
+	else
+		setibus=0
+	fi
+
+	# Display a dialog for scim, if scim is installed
+	if [ -x /usr/bin/scim ]; then
+		setscim=1
+		if [ $scimstate = "off" ]; then
+			scimdefault="--defaultno"
+		fi
+		dialog \
+		--stdout \
+		--title "`eval_gettext 'SCIM configuration'`" \
+		--yes-label "`eval_gettext 'Enabled'`" \
+		--no-label "`eval_gettext 'Disabled'`" \
+		$scimdefault \
+		--yesno \
+		"\\n`eval_gettext 'SCIM is an input platform for Chinese, Japanese, Korean and many other languages when using a graphical environment. Do you want to have it enabled or disabled on boot?\n\nYou will have to restart your system for this to take effect.'`" 0 0
+		retval=$?
+		if [ $retval -eq 255 ]; then
+			setscim=0
+		elif [ $retval -eq 0 ]; then
+			scimstate="on"
+		else
+			scimstate="off"
+		fi
+	else
+		setscim=0
+	fi
+}
+
+# Apply numlock settings
+applynumlock(){
+	if [ "$numlock" = "checked" ]; then
+		[ -e /etc/rc.d/rc.numlock ] && chmod 755 /etc/rc.d/rc.numlock
+		if [ $applynow -eq 1 ]; then
+			[[ $DISPLAY ]] && [ -x /usr/bin/numlockx ] && /usr/bin/numlockx on
+			for t in 1 2 3 4 5 6 7 8 ; do
+				setleds +num < /dev/tty$t > /dev/null
+			done
+		fi
+		if [ -f /etc/lxdm/lxdm.conf ]; then
+			sed -i "/numlock/d" /etc/lxdm/lxdm.conf
+			sed -i "s/\[base\]/\[base\]\nnumlock=1/" /etc/lxdm/lxdm.conf
+		fi
+		if [ -f /etc/kde/kdm/kdmrc ]; then
+			if [ `grep "\(^\|#\)NumLock=" /etc/kde/kdm/kdmrc` ]; then
+				sed -i "s/\(^\|#\)NumLock=.*/NumLock=On/" /etc/kde/kdm/kdmrc
+			else
+				sed -i "s/\[X-\*-Greeter\]/\[X-\*-Greeter\]\nNumLock=On/" /etc/kde/kdm/kdmrc
+			fi
+		fi
+	elif [ "$numlock" = "unchecked" ]; then
+		[ -e /etc/rc.d/rc.numlock ] && chmod 644 /etc/rc.d/rc.numlock
+		if [ $applynow -eq 1 ]; then
+			[[ $DISPLAY ]] && [ -x /usr/bin/numlockx ] && /usr/bin/numlockx off
+			for t in 1 2 3 4 5 6 7 8 ; do
+				setleds -num < /dev/tty$t > /dev/null
+			done
+		fi
+		if [ -f /etc/lxdm/lxdm.conf ]; then
+			sed -i "/numlock/d" /etc/lxdm/lxdm.conf
+			sed -i "s/\[base\]/\[base\]\nnumlock=0/" /etc/lxdm/lxdm.conf
+		fi
+		if [ -f /etc/kde/kdm/kdmrc ]; then
+			if [ `grep "\(^\|#\)NumLock=" /etc/kde/kdm/kdmrc` ]; then
+				sed -i "s/\(^\|#\)NumLock=.*/NumLock=Off/" /etc/kde/kdm/kdmrc
+			else
+				sed -i "s/\[X-\*-Greeter\]/\[X-\*-Greeter\]\nNumLock=Off/" /etc/kde/kdm/kdmrc
+			fi
+		fi
+	fi
+}
+
+
+# Apply ibus settings
+applyibus(){
+	if [ "$ibusstate" = "on" ]; then
+		[ -f /etc/profile.d/ibus.sh ] && chmod +x /etc/profile.d/ibus.sh
+		[ -f /etc/profile.d/ibus.csh ] && chmod +x /etc/profile.d/ibus.csh
+	elif [ "$ibusstate" = "off" ]; then
+		[ -f /etc/profile.d/ibus.sh ] && chmod -x /etc/profile.d/ibus.sh
+		[ -f /etc/profile.d/ibus.csh ] && chmod -x /etc/profile.d/ibus.csh
+	fi
+}
+
+# Apply scim settings
+applyscim(){
+	if [ "$scimstate" = "on" ]; then
+		[ -f /etc/profile.d/scim.sh ] && chmod +x /etc/profile.d/scim.sh
+		[ -f /etc/profile.d/scim.csh ] && chmod +x /etc/profile.d/scim.csh
+	elif [ "$scimstate" = "off" ]; then
+		[ -f /etc/profile.d/scim.sh ] && chmod -x /etc/profile.d/scim.sh
+		[ -f /etc/profile.d/scim.csh ] && chmod -x /etc/profile.d/scim.csh
+	fi
+}
+
+# Apply keyboard layout settings (console and xorg)
+applykeyboard(){
+	# Keymaps path to a system dir where it'll be installed
+	grep "^$key|.*|.*|.*" $salixtoolsdir/keymaps \
+	  | sed -e "s/^.*|\(.*\)|\(.*\)|\(.*\)/\1|\2|\3/" > $buffer/xkb
+
+	xkblayout="$(sed -e "s/^\(.*\)|.*|.*/\1/" $buffer/xkb)"
+	xkbvariant="$(sed -e "s/^.*|\(.*\)|.*/\1/" $buffer/xkb)"
+	xkboptions="$(sed -e "s/^.*|.*|\(.*\)/\1/" $buffer/xkb)"
+
+	rm -f $buffer/xkb
+	# Fall back to keymap if no xkb maping available
+	if [ ! "$xkblayout" ]; then
+		xkblayout="$key"
+		xkbvariant=""
+		xkboptions=""
+	fi
+
+	if [ $applynow -eq 1 ]; then
+		/usr/bin/loadkeys -u $keymap 1>&2 2>/dev/null
+		[[ $DISPLAY ]] && [ -x /usr/bin/setxkbmap ] && \
+		/usr/bin/setxkbmap -layout "$xkblayout" -variant "$xkbvariant" -option "$xkboptions" 1>&2 2>/dev/null
+	fi
+	sed -i "s/\(^[ \t]*\/usr\/bin\/loadkeys -u\).*$/\1 $keymap/" /etc/rc.d/rc.keymap
+
+	# set keymap in /etc/X11/xorg.conf.d/50-keymap.conf
+	cp -f $salixtoolsdir/keyboardsetup/10-keymap.conf-template /etc/X11/xorg.conf.d/10-keymap.conf
+	sed -i "s/__XKBLAYOUT__/$xkblayout/" /etc/X11/xorg.conf.d/10-keymap.conf
+	sed -i "s/__XKBVARIANT__/$xkbvariant/" /etc/X11/xorg.conf.d/10-keymap.conf
+	sed -i "s/__XKBOPTIONS__/$xkboptions/" /etc/X11/xorg.conf.d/10-keymap.conf
+}
+
+# This is the main thing!
+init
+checkdefaults
+# If no arguments are passed, run interactively, else not
+if [ $# -eq 0 ]; then
+	check_for_root
+	interactive
+else
+	checkoptions $@
+	check_for_root
+fi
+
+# Apply selected settings
+[[ $setkeymap -eq 1 ]] && applykeyboard
+[[ $setnumlock -eq 1 ]] && applynumlock
+[[ $setibus -eq 1 ]] && applyibus
+[[ $setscim -eq 1 ]] && applyscim
+	
+# Exit back to original directory
+if [ -d $backtohome ]; then
+	cd $backtohome
+elif [ -d $HOME ]; then
+	cd $HOME
+else
+	cd /
+fi

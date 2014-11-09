@@ -1,0 +1,14 @@
+# shell-colours
+#
+# This file provides color options for adding color to echo and printf
+# script commands. Source this file as necessary.
+
+ESC="\033["
+BOLDRED="${ESC}01;31m"
+BOLDGREEN="${ESC}01;32m"
+BOLDYELLOW="${ESC}01;33m"
+BOLDBLUE="${ESC}01;34m"
+BOLDMAGENTA="${ESC}01;35m"
+BOLDCYAN="${ESC}01;36m"
+BOLDWHITE="${ESC}01;37m"
+COLOR_RESET="${ESC}00m"

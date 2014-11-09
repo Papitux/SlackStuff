@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+              |-----handy-ruler------------------------------------------------------|
+salixtools-gtk: salixtools-gtk (graphical system utilities)
+salixtools-gtk:
+salixtools-gtk: salixtools-gtk includes a set of graphical system administration
+salixtools-gtk: tools, using the GTK+2 toolkit and written in python.
+salixtools-gtk:
+salixtools-gtk: Home: https://github.com/gapan/salixtools-gtk
+salixtools-gtk:
+salixtools-gtk:
+salixtools-gtk:
+salixtools-gtk:
+salixtools-gtk:

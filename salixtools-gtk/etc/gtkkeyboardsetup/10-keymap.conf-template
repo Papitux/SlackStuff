@@ -1,0 +1,9 @@
+Section "InputClass"
+	Identifier	"Keyboard settings"
+	MatchIsKeyboard	"yes"
+	Driver		"evdev"
+	Option		"XkbLayout" "__XKBLAYOUT__"
+	Option		"XkbVariant" "__XKBVARIANT__"
+	Option		"XkbOptions" "__XKBOPTIONS__"
+EndSection
+
