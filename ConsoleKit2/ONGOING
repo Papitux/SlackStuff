@@ -23,10 +23,12 @@ CXXFLAGS="$SLKCFLAGS" \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --docdir=/usr/doc/$PKGNAM-$VERSION \
   --with-pid-file=/var/run/ConsoleKit/pid \
+  --enable-udev-acl \
   --enable-docbook-docs \
   --disable-rpath \
   --disable-static \
   --disable-pam-module \
+  --with-systemdsystemunitdir=no \
   --without-pam-module-dir \
   --without-systemdsystemunitdir \
   --build=$ARCH-slackware-linux
@@ -34,10 +36,13 @@ CXXFLAGS="$SLKCFLAGS" \
 ====================================================
 mkdir -p $PKG/etc/polkit-1/rules.d
 chmod 0700 $PKG/etc/polkit-1/rules.d
+# Here CK2 is dancing with polkit 0.112 = need polkitd user
+chown -R polkitd:root $PKG/etc/polkit-1/rules.d
+# Testing the rules owned by root and not polkitd
 install -m644 $CWD/rules/10-* $PKG/etc/polkit-1/rules.d/
 
 (
-for rule in 10-{disks,hybridsleep,restart,suspend,hibernate,nm,shutdown}.rules; do
+for rule in 10-{disks,nm,power}.rules; do
  cd $PKG/etc/polkit-1/rules.d/
  mv ${rule} ${rule}.new
 done

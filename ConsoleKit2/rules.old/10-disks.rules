@@ -1,0 +1,41 @@
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.filesystem-fstab"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.filesystem-mount"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.filesystem-mount-system"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.eject-media"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.eject-media-system"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.filesystem-umount-others"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});
+
+polkit.addRule(function(action, subject) {
+if (action.id == "org.freedesktop.udisks2.power-off-drive"
+&& subject.isInGroup("plugdev"))
+return polkit.Result.YES;
+});

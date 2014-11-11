@@ -24,7 +24,11 @@ preserve_perms() {
 
 config etc/ConsoleKit/seats.d/00-primary.seat.new
 config etc/polkit-1/rules.d/10-disks.rules.new
+config etc/polkit-1/rules.d/10-hibernate.rules.new
+config etc/polkit-1/rules.d/10-hybridsleep.rules.new
 config etc/polkit-1/rules.d/10-nm.rules.new
-config etc/polkit-1/rules.d/10-power.rules.new
+config etc/polkit-1/rules.d/10-restart.rules.new
+config etc/polkit-1/rules.d/10-shutdown.rules.new
+config etc/polkit-1/rules.d/10-suspend.rules.new
 preserve_perms etc/rc.d/rc.consolekit.new
 
