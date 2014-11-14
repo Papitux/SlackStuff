@@ -27,7 +27,7 @@ start() {
 
 stop() {
   echo -n "Stopping the caching web proxy daemon (polipo)..."
-  if [ -z "$PID" ]; then
+  if [ -z "$PIDP" ]; then
     echo " not running."
     exit 0
   fi
@@ -46,7 +46,7 @@ stop() {
 
 reload() {
   echo -n "Reloading the caching web proxy daemon (polipo)..."
-  if [ -z "$PID" ]; then
+  if [ -z "$PIDP" ]; then
     echo " not running."
     exit 1
   fi
@@ -67,10 +67,10 @@ reload() {
 }
 
 status() {
-  if [ -z "$PID" ]; then
+  if [ -z "$PIDP" ]; then
     echo "Not running."
     exit 1
-  elif [ -f "$PID" ]; then
+  elif [ -f "$PIDP" ]; then
     echo "Running in pid $PIDP."
     exit 0
   else
