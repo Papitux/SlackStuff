@@ -1,0 +1,8 @@
+PRGNAM="polipo"
+VERSION="1.1.1"
+HOMEPAGE="http://www.pps.jussieu.fr/~jch/software/polipo/"
+DOWNLOAD="http://www.pps.univ-paris-diderot.fr/~jch/software/files/polipo/polipo-1.1.1.tar.gz"
+MD5SUM="86939e331e656f638271f578b6e3f893"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"
