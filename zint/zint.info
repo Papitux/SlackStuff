@@ -1,0 +1,8 @@
+PRGNAM="zint"
+VERSION="2.4.3"
+HOMEPAGE="http://sourceforge.net/projects/zint/"
+DOWNLOAD="http://sourceforge.net/projects/zint/files/zint/2.4.3/zint-2.4.3.tar.gz/download"
+MD5SUM="2b47caff88cb746f212d6a0497185358"
+DEPENDS="libxext, libxrender, openssl, qt4, zlib"
+MAINTAINER=""
+EMAIL="@"
