@@ -1,0 +1,8 @@
+PRGNAM="qtqr"
+VERSION="1.2"
+HOMEPAGE="https://launchpad.net/qr-tools"
+DOWNLOAD="https://launchpad.net/qr-tools/trunk/1.2/+download/qr-tools-1.2.tar.gz"
+MD5SUM="07bd6018e2325dd29acb5f7623b3e018"
+DEPENDS="pillow/pil, python, pyqt4, qrencode, zbar"
+MAINTAINER=""
+EMAIL="@"

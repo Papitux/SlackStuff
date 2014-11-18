@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=QtQR
+Comment=Graphical interface to generate and decode QR Code.
+Comment[pt_BR]=Interface gráfica para ler e gerar códigos QR.
+Exec=qtqr
+Icon=qtqr
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Graphics;
+#MimeType=image/gif;image/png;image/jpg;
+#Keywords=qr;

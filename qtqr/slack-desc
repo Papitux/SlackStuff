@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+    |-----handy-ruler------------------------------------------------------|
+qtqr: qtqr (A suite of tools for handling QR codes)
+qtqr:
+qtqr: QtQR is a Qt based software that let's  you generate QR Codes easily,
+qtqr: scan an image file for QR Codes and decode them or use your webcam to
+qtqr: scan a printed one.
+qtqr:
+qtqr: Home: https://launchpad.net/qr-tools
+qtqr:
+qtqr:
+qtqr:
+qtqr:
