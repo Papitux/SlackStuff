@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+        |-----handy-ruler------------------------------------------------------|
+pygdata: gdata (API to Google services)
+pygdata:
+pygdata: The Google Data APIs  (Google Data)  provide a simple protocol for
+pygdata: reading and writing data on the web.  Though it is possible to use
+pygdata: these services  with a simple  HTTP client,  this library provides
+pygdata: helpful tools to streamline your code and keep up with server-side
+pygdata: changes.
+pygdata:
+pygdata: Home: http://code.google.com/p/gdata-python-client/
+pygdata:
+pygdata:
