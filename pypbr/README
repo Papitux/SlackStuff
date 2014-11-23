@@ -1,0 +1,6 @@
+pbr (Python Build Reasonableness)
+
+PBR is a library that injects some useful and sensible default
+behaviors into your setuptools run.
+
+https://pypi.python.org/pypi/pbr
