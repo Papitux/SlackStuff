@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+          |-----handy-ruler------------------------------------------------------|
+pyparamiko: paramiko (Python SSH module)
+pyparamiko:
+pyparamiko: "paramiko" is a combination of the esperanto  words for "paranoid"
+pyparamiko: and "friend".  It's a module for python '2.6+' that implements the
+pyparamiko: SSH2 protocol for secure (encrypted and authenticated) connections
+pyparamiko: to remote machines.  Unlike SSL (aka TLS),  SSH2 protocol does not
+pyparamiko: require heirarchical certificates  signed  by a  'powerful central
+pyparamiko: authority'.
+pyparamiko:
+pyparamiko: Home: http://www.lag.net/paramiko/
+pyparamiko:

@@ -1,0 +1,10 @@
+paramiko (Python SSH module)
+
+"paramiko" is a combination of the esperanto  words for "paranoid"
+and "friend".  It's a module for python '2.6+' that implements the
+SSH2 protocol for secure (encrypted and authenticated) connections
+to remote machines.  Unlike SSL (aka TLS),  SSH2 protocol does not
+require heirarchical certificates  signed  by a  'powerful central
+authority'.
+
+Home: http://www.lag.net/paramiko/

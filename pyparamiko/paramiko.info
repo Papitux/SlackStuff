@@ -1,0 +1,8 @@
+PRGNAM="paramiko"
+VERSION="1.15.1"
+HOMEPAGE="http://www.lag.net/paramiko/"
+DOWNLOAD="https://github.com/paramiko/paramiko/archive/v1.15.1.tar.gz"
+MD5SUM="6d6c1f464457fc97279ef7a72b13f2cc"
+REQUIRES="pycrypto"
+MAINTAINER=""
+EMAIL="@"
