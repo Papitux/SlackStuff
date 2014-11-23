@@ -1,0 +1,6 @@
+pycryptopp (A small number of good cryptography algorithms)
+
+pycryptopp is a python wrapper around a few algorithms from the
+Crypto++ and python-Ed25519 libraries.
+
+https://tahoe-lafs.org/trac/pycryptopp
