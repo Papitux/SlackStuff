@@ -1,0 +1,9 @@
+pip (A tool for installing and managing Python packages)
+
+The PyPA** recommended tool for installing and managing Python
+packages. Pip is an easy_install replacement from pysetuptools
+pypi python packages.
+
+https://pip.pypa.io/
+
+** https://python-packaging-user-guide.readthedocs.org/en/latest/current.html
