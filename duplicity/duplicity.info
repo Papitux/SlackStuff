@@ -1,0 +1,8 @@
+PRGNAM="duplicity"
+VERSION="0.7.0"
+HOMEPAGE="http://duplicity.nongnu.org/"
+DOWNLOAD="https://code.launchpad.net/duplicity/0.7-series/0.7.00/+download/duplicity-0.7.0.tar.gz"
+MD5SUM="1408856ecdfc2ec7fcf7e384fd87384d"
+REQUIRES="gvfs, librsync, pylockfile, pycryptopp, pygdata, pygobject, pyparamiko, pysetuptools, rsync"
+MAINTAINER=""
+EMAIL="@"
