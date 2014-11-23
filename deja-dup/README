@@ -1,0 +1,7 @@
+deja-dup (Frontend for duplicity)
+
+Déjà Dup is a simple backup tool.  It hides the complexity of backing
+up the Right Way (encrypted, off-site, andregular) and uses duplicity
+as the backend.
+
+https://launchpad.net/deja-dup

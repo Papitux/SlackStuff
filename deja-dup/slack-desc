@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+deja-dup: deja-dup (Frontend for duplicity)
+deja-dup:
+deja-dup: Déjà Dup is a simple backup tool.  It hides the complexity of backing
+deja-dup: up the Right Way (encrypted, off-site, andregular) and uses duplicity
+deja-dup: as the backend.
+deja-dup:
+deja-dup: Home: https://launchpad.net/deja-dup
+deja-dup:
+deja-dup:
+deja-dup:
+deja-dup:
