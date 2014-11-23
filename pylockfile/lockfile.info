@@ -1,0 +1,8 @@
+PRGNAM="lockfile"
+VERSION="0.10.2"
+HOMEPAGE="https://code.google.com/p/pylockfile/"
+DOWNLOAD="https://pypi.python.org/packages/source/l/lockfile/lockfile-0.10.2.tar.gz"
+MD5SUM="1aa6175a6d57f082cd12e7ac6102ab15"
+DEPENDS="pypbr, pypip, pysetuptools"
+MAINTAINER=""
+EMAIL="@"
