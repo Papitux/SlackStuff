@@ -1,0 +1,595 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Papitux <papitux.br@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-23 22:59-0200\n"
+"PO-Revision-Date: 2014-11-23 23:49-0300\n"
+"Last-Translator: Papitux <papitux.br@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <papitux.br@gmail.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: Curlew/logdialog.py:29
+msgid "Errors detail"
+msgstr "Detalhes do erro"
+
+#: Curlew/waitdialog.py:31
+msgid "Adding files..."
+msgstr "Adicionando arquivos..."
+
+#: Curlew/waitdialog.py:50
+msgid "<b>File:</b> "
+msgstr "<b>Arquivo:</b>"
+
+#: Curlew/about.py:29 Curlew/tray.py:30 Curlew/curlew.py:156
+msgid "Curlew"
+msgstr "Curlew"
+
+#: Curlew/about.py:33 Curlew/curlew.py:215
+msgid "About Curlew"
+msgstr "Sobre o Curlew"
+
+#: Curlew/about.py:36
+msgid "Easy to use Multimedia Converter for Linux"
+msgstr "Conversor multimédia para Linux de fácil utilização"
+
+#: Curlew/about.py:49
+msgid "translator-credits"
+msgstr "papitux <papitux.br@gmail.com>"
+
+#: Curlew/fileinfos.py:26
+msgid "File informations"
+msgstr "Informações do arquivo"
+
+#: Curlew/tray.py:36 Curlew/tray.py:66
+msgid "Hide"
+msgstr "Ocultar"
+
+#: Curlew/tray.py:40 Curlew/curlew.py:202
+msgid "Stop Conversion"
+msgstr "Parar a Conversão"
+
+#: Curlew/tray.py:44 Curlew/curlew.py:223
+msgid "Quit application"
+msgstr "Encerrar o Aplicativo"
+
+#: Curlew/tray.py:68
+msgid "Show"
+msgstr "Mostrar"
+
+#: Curlew/favdialog.py:27 Curlew/curlew.py:401
+msgid "Favorite list"
+msgstr "Lista de favoritos"
+
+#: Curlew/favdialog.py:36
+msgid "Format"
+msgstr "Formato"
+
+#: Curlew/customwidgets.py:51
+msgid "Top"
+msgstr "Acima"
+
+#: Curlew/customwidgets.py:59
+msgid "Bottom"
+msgstr "Abaixo"
+
+#: Curlew/customwidgets.py:67
+msgid "Left"
+msgstr "Esquerda"
+
+#: Curlew/customwidgets.py:75
+msgid "Right"
+msgstr "Direita"
+
+#: Curlew/customwidgets.py:184
+msgid "hr"
+msgstr "horas"
+
+#: Curlew/customwidgets.py:189
+msgid "min"
+msgstr "min"
+
+#: Curlew/customwidgets.py:194 Curlew/curlew.py:572
+msgid "sec"
+msgstr "seg"
+
+#: Curlew/functions.py:43
+msgid " KB"
+msgstr " KB"
+
+#: Curlew/functions.py:46 Curlew/curlew.py:1938
+msgid " MB"
+msgstr " MB"
+
+#: Curlew/functions.py:49
+msgid " GB"
+msgstr " GB"
+
+#: Curlew/curlew.py:174
+msgid "Add File"
+msgstr "Adicionar arquivo"
+
+#: Curlew/curlew.py:175
+msgid "Add files"
+msgstr "Adicionar arquivos"
+
+#: Curlew/curlew.py:178
+msgid "Add Folder"
+msgstr "Adicionar Diretório"
+
+#: Curlew/curlew.py:179
+msgid "Add folders"
+msgstr "Adicionar diretórios"
+
+#: Curlew/curlew.py:183
+msgid "Remove"
+msgstr "Remover"
+
+#: Curlew/curlew.py:184
+msgid "Remove files"
+msgstr "Remover arquivos"
+
+#: Curlew/curlew.py:188
+msgid "Clear"
+msgstr "Limpar"
+
+#: Curlew/curlew.py:189
+msgid "Clear files list"
+msgstr "Limpar lista de arquivos"
+
+#: Curlew/curlew.py:196
+msgid "Convert"
+msgstr "Converter"
+
+#: Curlew/curlew.py:197
+msgid "Start Conversion"
+msgstr "Iniciar Conversão"
+
+#: Curlew/curlew.py:201
+msgid "Stop"
+msgstr "Parar"
+
+#: Curlew/curlew.py:209
+msgid "File Infos"
+msgstr "Infos do Arquivo"
+
+#: Curlew/curlew.py:210 Curlew/curlew.py:365
+msgid "File Informations"
+msgstr "Informações do Arquivo"
+
+#: Curlew/curlew.py:214
+msgid "About"
+msgstr "Sobre"
+
+#: Curlew/curlew.py:222
+msgid "Quit"
+msgstr "Sair"
+
+#: Curlew/curlew.py:277 Curlew/curlew.py:700
+msgid "Show sidebar"
+msgstr "Mostrar barra lateral"
+
+#: Curlew/curlew.py:301
+msgid "File"
+msgstr "Arquivo"
+
+#: Curlew/curlew.py:308
+msgid "Size"
+msgstr "Tamanho"
+
+#: Curlew/curlew.py:313
+msgid "Duration"
+msgstr "Duração:"
+
+#: Curlew/curlew.py:319
+msgid "Estimated size"
+msgstr "Tamanho estimado"
+
+#: Curlew/curlew.py:325
+msgid "Elapsed time"
+msgstr "Tempo transcorrido"
+
+#: Curlew/curlew.py:331
+msgid "Remaining time"
+msgstr "Tempo restante"
+
+#: Curlew/curlew.py:336
+msgid "Progress"
+msgstr "Progresso"
+
+#: Curlew/curlew.py:353
+msgid "Browse source"
+msgstr "Buscar origem"
+
+#: Curlew/curlew.py:358
+msgid "Browse destination"
+msgstr "Buscar destino"
+
+#: Curlew/curlew.py:361
+msgid "Preview before converting"
+msgstr "Prever antes de converter"
+
+#: Curlew/curlew.py:393
+msgid "<b>Format:</b>"
+msgstr "<b>Formato:</b>"
+
+#: Curlew/curlew.py:413
+msgid "Source Path"
+msgstr "Caminho de origem"
+
+#: Curlew/curlew.py:418
+msgid "<b>Destination:</b>"
+msgstr "<b>Destino:</b>"
+
+#: Curlew/curlew.py:426
+msgid "<b>Advanced</b>"
+msgstr "<b>Avançado</b>"
+
+#: Curlew/curlew.py:436
+msgid "Audio"
+msgstr "Áudio"
+
+#: Curlew/curlew.py:444
+msgid "Audio Bitrate"
+msgstr "Taxa de Bits do Áudio"
+
+#: Curlew/curlew.py:445
+msgid "Audio Frequency"
+msgstr "Frequência do Áudio"
+
+#: Curlew/curlew.py:446
+msgid "Audio Channels"
+msgstr "Canais de Áudio"
+
+#: Curlew/curlew.py:447
+msgid "Audio Codec"
+msgstr "Codec de Áudio"
+
+#: Curlew/curlew.py:450
+msgid "Volume (%)"
+msgstr "Volume (%)"
+
+#: Curlew/curlew.py:456
+msgid "Audio Quality"
+msgstr "Qualidade do Áudio"
+
+#: Curlew/curlew.py:462
+msgid "Video"
+msgstr "Vídeo"
+
+#: Curlew/curlew.py:472
+msgid "Video Bitrate"
+msgstr "Taxa de Bits do Vídeo"
+
+#: Curlew/curlew.py:473
+msgid "Video FPS"
+msgstr "Taxa de FPS do Vídeo"
+
+#: Curlew/curlew.py:474
+msgid "Video Size"
+msgstr "Tamanho do Vídeo"
+
+#: Curlew/curlew.py:475
+msgid "Video Codec"
+msgstr "Codec de Vídeo"
+
+#: Curlew/curlew.py:476
+msgid "Aspect Ratio"
+msgstr "Proporções"
+
+#: Curlew/curlew.py:482
+msgid "2-Pass"
+msgstr "2-Passses"
+
+#: Curlew/curlew.py:486
+msgid "Video only"
+msgstr "Somente Vídeo"
+
+#: Curlew/curlew.py:493
+msgid "Video Quality"
+msgstr "Qualidade do Vídeo"
+
+#: Curlew/curlew.py:498
+msgid "Subtitle"
+msgstr "Subtítulos"
+
+#: Curlew/curlew.py:504
+msgid "Use Subtitle"
+msgstr "Usar Subtítulos"
+
+#: Curlew/curlew.py:520
+msgid "Subtitle: "
+msgstr "Subtítulo:"
+
+#: Curlew/curlew.py:527
+msgid "Font: "
+msgstr "Fonte:"
+
+#: Curlew/curlew.py:538
+msgid "Size: "
+msgstr "Tamanho:"
+
+#: Curlew/curlew.py:545
+msgid "Position: "
+msgstr "Posição: "
+
+#: Curlew/curlew.py:565
+msgid "Encoding: "
+msgstr "Codificação: "
+
+#: Curlew/curlew.py:573
+msgid "Delay: "
+msgstr "Atraso:"
+
+#: Curlew/curlew.py:576
+msgid "Harddup"
+msgstr "Filtro Harddup (recomendado)"
+
+#: Curlew/curlew.py:580
+msgid "Use SSA/ASS subtitle"
+msgstr "Usar subtítulo SSA/ASS"
+
+#: Curlew/curlew.py:587
+msgid "Crop / Pad"
+msgstr "Recortar / Preencher"
+
+#: Curlew/curlew.py:590
+msgid "Crop"
+msgstr "Recortar"
+
+#: Curlew/curlew.py:594
+msgid "Pad"
+msgstr "Preencher"
+
+#: Curlew/curlew.py:600
+msgid "More"
+msgstr "Mais"
+
+#: Curlew/curlew.py:603
+msgid "Split File"
+msgstr "Dividir Arquivo"
+
+#: Curlew/curlew.py:613
+msgid "Begin time: "
+msgstr "Tempo inicial:"
+
+#: Curlew/curlew.py:616
+msgid "Duration: "
+msgstr "Duração: "
+
+#: Curlew/curlew.py:617
+msgid "To the end"
+msgstr "Até o final"
+
+#: Curlew/curlew.py:623
+msgid "Use Copy Mode"
+msgstr "Usar Modo de Cópia"
+
+#: Curlew/curlew.py:624
+msgid "Keep the same codecs as the input file"
+msgstr "Manter os mesmos codecs do arquivo de entrada"
+
+#: Curlew/curlew.py:632
+msgid "Other opts:"
+msgstr "Outras opções:"
+
+#: Curlew/curlew.py:636
+msgid "Threads:"
+msgstr "Filas:"
+
+#: Curlew/curlew.py:639
+msgid "Source Quality"
+msgstr "Qualidade da Orígem"
+
+#: Curlew/curlew.py:640
+msgid "Use the same quality as source file"
+msgstr "Usar a mesma qualidade do arquivo original"
+
+#: Curlew/curlew.py:649
+msgid "Converter:"
+msgstr "Conversor:"
+
+#: Curlew/curlew.py:661
+msgid "Configs"
+msgstr "Configurações"
+
+#: Curlew/curlew.py:667
+msgid "Overwrite it"
+msgstr "Sobrescrever"
+
+#: Curlew/curlew.py:668
+msgid "Choose another name"
+msgstr "Escolha outro nome"
+
+#: Curlew/curlew.py:669
+msgid "Skip conversion"
+msgstr "Pular conversão"
+
+#: Curlew/curlew.py:670
+msgid "File exist:"
+msgstr "O arquivo já existe:"
+
+#: Curlew/curlew.py:675
+msgid "Your language will appear after restart Curlew"
+msgstr "Seu idioma aparecerá depois de reiniciar o Curlew"
+
+#: Curlew/curlew.py:682
+msgid "Language:"
+msgstr "Idioma:"
+
+#: Curlew/curlew.py:693
+msgid "Show toolbar's buttons text"
+msgstr "Mostrar texto nos botões da barra de ferramentas"
+
+#: Curlew/curlew.py:697
+msgid "Icons:"
+msgstr "Ícones:"
+
+#: Curlew/curlew.py:705
+msgid "Show tray icon"
+msgstr "Mostrar ícone na bandeja do sistema"
+
+#: Curlew/curlew.py:710
+msgid "Shutdown computer after finish"
+msgstr "Desligar o computador após finalizar"
+
+#: Curlew/curlew.py:715
+msgid "Suspend computer after finish"
+msgstr "Suspender o computador após finalizar"
+
+#: Curlew/curlew.py:720
+msgid "Delete input file after conversion"
+msgstr "Eliminar o arquivo original após a conversão"
+
+#: Curlew/curlew.py:724
+msgid "Rename input file after conversion"
+msgstr "Renomear o arquivo original após a conversão"
+
+#: Curlew/curlew.py:808
+msgid "Do you want to quit Curlew and abort conversion process?"
+msgstr "Deseja encerrar o Curlew e abortar a conversão?"
+
+#: Curlew/curlew.py:825
+msgid "Add file"
+msgstr "Adicionar arquivo"
+
+#: Curlew/curlew.py:838
+msgid "All supported files"
+msgstr "Todos os arquivos suportados"
+
+#: Curlew/curlew.py:845
+msgid "Video files"
+msgstr "Arquivos de Vídeo"
+
+#: Curlew/curlew.py:851
+msgid "Audio files"
+msgstr "Arquivos de Áudio"
+
+#: Curlew/curlew.py:857 Curlew/curlew.py:1595
+msgid "All files"
+msgstr "Todos os arquivos"
+
+#: Curlew/curlew.py:897 Curlew/curlew.py:1693
+msgid "Ready!"
+msgstr "Pronto!"
+
+#: Curlew/curlew.py:908
+msgid "Add folder"
+msgstr "Adicionar diretório"
+
+#: Curlew/curlew.py:935
+msgid "Choose destination"
+msgstr "Escolha o destino"
+
+#: Curlew/curlew.py:958
+msgid ""
+"<b>Format:</b>\t{}\n"
+"<b>Extension:</b>\t{}\n"
+"<b>Encoder:</b>\t{}"
+msgstr ""
+"<b>Formato:</b>\t{}\n"
+"<b>Extensão:</b>\t{}\n"
+"<b>Codificador:</b>\t{}"
+
+#: Curlew/curlew.py:1362
+msgid "Destination path is not valid."
+msgstr "Caminho de destino inválido."
+
+#: Curlew/curlew.py:1368
+msgid "Destination path is not accessible."
+msgstr "O caminho de destino não está acessível."
+
+#: Curlew/curlew.py:1398 Curlew/curlew.py:1439 Curlew/curlew.py:1838
+msgid "Skipped!"
+msgstr "Ignorado!"
+
+#: Curlew/curlew.py:1408
+msgid "Not found!"
+msgstr "Não encontrado!"
+
+#: Curlew/curlew.py:1511
+msgid ""
+"There are some errors occured.\n"
+"Do you want to show more details?"
+msgstr ""
+"Ocorreram alguns erros.\n"
+"Deseja ver mais detalhes?"
+
+#: Curlew/curlew.py:1524
+msgid "Do you want to stop conversion process?"
+msgstr "Deseja parar a conversão?"
+
+#: Curlew/curlew.py:1579
+msgid "Select subtitle"
+msgstr "Selecione o subtítulo"
+
+#: Curlew/curlew.py:1587
+msgid "Subtitle files"
+msgstr "Arquivos de subtítulo"
+
+#: Curlew/curlew.py:1688 Curlew/curlew.py:1894 Curlew/curlew.py:1952
+msgid "Wait..."
+msgstr "Aguarde..."
+
+#: Curlew/curlew.py:1698
+msgid "Preview"
+msgstr "Prever"
+
+#: Curlew/curlew.py:1775
+msgid "Done!"
+msgstr "Feito!"
+
+#: Curlew/curlew.py:1793
+msgid "Failed!"
+msgstr "Falhou!"
+
+#: Curlew/curlew.py:2210
+msgid ""
+"<span foreground=\"red\" weight=\"bold\">System will shutdown after {} sec.</"
+"span>"
+msgstr ""
+"<span foreground=\"red\" weight=\"bold\">O sistema irá desligar em {} seg.</"
+"span>"
+
+#: Curlew/curlew.py:2223
+msgid ""
+"<span foreground=\"red\" weight=\"bold\">System will suspend after {} sec.</"
+"span>"
+msgstr ""
+"<span foreground=\"red\" weight=\"bold\">O sistema será suspenso em {} seg.</"
+"span>"
+
+#: Curlew/curlew.py:2310
+msgid "Add to favorite"
+msgstr "Adicionar aos favoritos"
+
+#: Curlew/curlew.py:2318
+msgid "Edit list"
+msgstr "Editar lista"
+
+#: Curlew/curlew.py:2374
+msgid ""
+"<b>Duration:</b> {}\n"
+"<b>Size:</b> {}\n"
+"<b>Extension:</b> {}\n"
+msgstr ""
+"<b>Duração:</b> {}\n"
+"<b>Tamanho:</b> {}\n"
+"<b>Extensão:</b> {}\n"
+
+#: Curlew/curlew.py:2416
+msgid "Please install \"mediainfo\" package."
+msgstr "Por favor instale o aplicativo \"mediainfo\"."
+
+#~ msgid "Add"
+#~ msgstr "Agregar"
