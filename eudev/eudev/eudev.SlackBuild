@@ -114,10 +114,13 @@ LDFLAGS="$LDFLAGS -lrt" \
   --with-rootlibexecdir=/lib/udev \
   --with-firmware-path=/lib/firmware/updates:/lib/firmware \
   --enable-static \
+  --enable-keymap \
   --enable-modules \
   --enable-libkmod \
+  --enable-split-usr \
   --enable-introspection \
   --enable-rule_generator \
+  --disable-selinux \
   --build=$ARCH-slackware-linux || exit 1
 
 make $NUMJOBS || make || exit 1
