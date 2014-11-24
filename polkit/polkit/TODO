@@ -1,0 +1,6 @@
+ diropts -m0700 -o polkitd -g polkitd
+Move home to /var/lib/polkit-1
+
+chmod 0700
+user polkitd
+group polkitd (chown -R polkitd:polkitd $PKG/var/lib/polkit-1)

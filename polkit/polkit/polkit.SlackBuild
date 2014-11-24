@@ -1,0 +1,205 @@
+#!/bin/sh
+
+# Copyright 2009, 2011  Robby Workman, Northport, Alabama, USA
+# Copyright 2010  Eric Hameleers, Eindhoven, NL
+# Copyright 2009, 2010, 2011, 2012, 2013  Patrick J. Volkerding, Sebeka, MN, USA
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+# EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PKGNAM=polkit
+VERSION=${VERSION:-0.112}
+BUILD=${BUILD:-1}
+POLKITUSR=polkitd
+POLKITGRP=polkitd
+
+# Add polkitd user/group
+export FREE_UID=`tail -1 /etc/passwd |awk -F : '{print $3 + 1}'`
+export FREE_GUID=`tail -1 /etc/group |awk -F : '{print $3 + 1}'`
+export PKIT_USER=$POLKITUSR
+export PKIT_GROUP=$POLKITGRP
+
+if ! grep --quiet '^polkitd:' /etc/group ;then
+  echo -e "Creating new group polkitd..." 1>&2
+           /usr/sbin/groupadd \
+          -g $FREE_GUID \
+           $PKIT_GROUP 2> /dev/null
+else
+ if grep --quiet '^polkitd:' /etc/group ;then
+   echo -e "Group already exist or error creating new group..." 1>&2
+ fi
+fi
+
+if ! grep --quiet '^polkitd:' /etc/passwd ;then
+  echo -e "Creating unprivileged user..." 1>&2
+           /usr/sbin/useradd \
+          -d '/' \
+          -c "Polkitd user" \
+          -u $FREE_UID \
+          -s /bin/false \
+          -g $PKIT_GROUP \
+           $PKIT_USER 2> /dev/null
+           usermod -a -G $PKIT_GROUP $PKIT_USER 2> /dev/null
+else
+ if grep --quiet '^polkitd:' /etc/passwd ;then
+   echo -e "User already exist or error creating unprivileged user..." 1>&2
+ fi
+fi
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp}
+PKG=$TMP/package-$PKGNAM
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PKGNAM-$VERSION
+tar xvf $CWD/$PKGNAM-$VERSION.tar.?z* || exit 1
+cd $PKGNAM-$VERSION || exit 1
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+# Revert admin identities from unix group wheel:
+zcat $CWD/revert-admin-identities.patch.gz | patch -p1 --verbose || exit 1
+
+# Fix race between child and io watches:
+zcat $CWD/agentsession-race.patch.gz | patch -p1 --verbose || exit 1
+
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --mandir=/usr/man \
+  --sysconfdir=/etc \
+  --localstatedir=/var \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --docdir=/usr/doc/$PKGNAM-$VERSION \
+  --enable-gtk-doc \
+  --enable-man-pages \
+  --enable-verbose-mode \
+  --enable-introspection \
+  --enable-libsystemd-login=no \
+  --disable-static \
+  --disable-examples \
+  --disable-gtk-doc-html \
+  --disable-libsystemd-login \
+  --with-authfw=shadow \
+  --with-mozjs=mozjs185 \
+  --with-os-type=Slackware \
+  --without-systemdsystemunitdir \
+  --build=$ARCH-slackware-linux
+
+#NOTE: The directory /etc/polkit-1/rules.d must be owned
+#      by polkitd, be in group root and have mode 700
+#NOTE: The directory /usr/share/polkit-1/rules.d must be owned
+#      by polkitd, be in group root and have mode 700
+#NOTE: The file ${exec_prefix}/libexec/polkit-agent-helper-1 must be owned
+#      by root and have mode 4755 (setuid root binary)
+#NOTE: The file ${exec_prefix}/bin/pkexec must be owned by root and
+#      have mode 4755 (setuid root binary)
+
+make $NUMJOBS || make || exit 1
+make install DESTDIR=$PKG || exit 1
+
+# Permissions:
+chmod 0700 $PKG/{etc,usr/share}/polkit-1/rules.d
+chown -R polkitd:root $PKG/{etc,usr/share}/polkit-1/rules.d
+chmod 4755 $PKG/usr/bin/pkexec $PKG/usr/lib/polkit-1/polkit-agent-helper-1
+
+# Add default policy files for udisks2, NetworkManager and
+# Suspend/Hibernate/Restart/Shutdown events:
+install -m644 $CWD/rules/{10,20}-* $PKG/etc/polkit-1/rules.d/
+
+(
+for rule in 10-{nm,power}.rules 20-disks.rules; do
+ cd $PKG/etc/polkit-1/rules.d/
+ mv ${rule} ${rule}.new
+done
+)
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" \
+  | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+
+if [ -d $PKG/usr/man ]; then
+  ( cd $PKG/usr/man
+    for manpagedir in $(find . -type d -name "man*") ; do
+      ( cd $manpagedir
+        for eachpage in $( find . -type l -maxdepth 1) ; do
+          ln -s $( readlink $eachpage ).gz $eachpage.gz
+          rm $eachpage
+        done
+        gzip -9 *.*
+      )
+    done
+  )
+fi
+
+mkdir -p $PKG/usr/doc/$PKGNAM-$VERSION
+cp -a \
+  AUTHORS COPYING HACKING INSTALL NEWS README \
+  $PKG/usr/doc/$PKGNAM-$VERSION
+( cd $PKG/usr/doc/$PKGNAM-$VERSION; ln -s ../../share/gtk-doc/html/polkit-1 html )
+
+if [ -r ChangeLog ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/*-$VERSION)
+  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
+  touch -r ChangeLog $DOCSDIR/ChangeLog
+fi
+
+mkdir -p $PKG/install
+zcat $CWD/doinst.sh > $PKG/install/doinst.sh
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $TMP/$PKGNAM-$VERSION-$ARCH-$BUILD.txz
