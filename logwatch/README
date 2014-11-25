@@ -1,0 +1,8 @@
+logwatch (a customizable log analysis system)
+
+Logwatch parses through your system's logs for  a given period of 
+time and creates a report analyzing areas that you specify, in as 
+much detail as you require. Logwatch is easy to use and will work 
+right out of the package on most systems.
+
+http://sourceforge.net/projects/logwatch/

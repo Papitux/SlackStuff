@@ -1,0 +1,153 @@
+#!/bin/sh
+
+# Copyright 2010, 2011  Eric Hameleers, Eindhoven, NL
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=logwatch
+VERSION=${VERSION:-7.4.1}
+BUILD=${BUILD:-1}
+ARCH=noarch
+CYRUS=cyrus.logwatch
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+set -e
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+_UMASK_=$(umask)
+umask 0022
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z* || exit 1
+tar xvf $CWD/$CYRUS.??? || exit 1
+cd $PRGNAM-$VERSION
+
+chown -R root:root *
+chmod -R u+w,go+r-w,a+X-s *
+
+install -m 0755 -d $PKG/var/cache/logwatch
+install -m 0755 -d $PKG/etc/logwatch/scripts
+install -m 0755 -d $PKG/etc/logwatch/scripts/services
+install -m 0755 -d $PKG/etc/logwatch/conf
+install -m 0755 -d $PKG/etc/logwatch/conf/logfiles
+install -m 0755 -d $PKG/etc/logwatch/conf/services
+install -m 0755 -d $PKG/etc/logwatch/conf/html
+install -m 0755 -d $PKG/usr/share/logwatch/default.conf/logfiles
+install -m 0755 -d $PKG/usr/share/logwatch/default.conf/services
+install -m 0755 -d $PKG/usr/share/logwatch/default.conf/html
+install -m 0755 -d $PKG/usr/share/logwatch/dist.conf/logfiles
+install -m 0755 -d $PKG/usr/share/logwatch/dist.conf/services
+install -m 0755 -d $PKG/usr/share/logwatch/scripts/services
+install -m 0755 -d $PKG/usr/share/logwatch/scripts/shared
+install -m 0755 -d $PKG/usr/share/logwatch/lib
+
+install -m 0755 scripts/logwatch.pl $PKG/usr/share/logwatch/scripts/logwatch.pl
+
+for i in scripts/logfiles/* ; do
+   if [ $(ls $i | wc -l) -ne 0 ] ; then
+      install -m 0755 -d $PKG/usr/share/logwatch/$i
+      install -m 0755 $i/* $PKG/usr/share/logwatch/$i
+   fi
+done
+
+install -m 0755 scripts/services/* $PKG/usr/share/logwatch/scripts/services
+install -m 0755 scripts/shared/* $PKG/usr/share/logwatch/scripts/shared
+install -m 0755 lib/* $PKG/usr/share/logwatch/lib
+
+install -m 0644 conf/*.conf $PKG/usr/share/logwatch/default.conf
+install -m 0644 conf/logfiles/* $PKG/usr/share/logwatch/default.conf/logfiles
+install -m 0644 conf/services/* $PKG/usr/share/logwatch/default.conf/services
+install -m 0644 conf/html/* $PKG/usr/share/logwatch/default.conf/html
+
+install -m 0755 -d $PKG/usr/man/man8
+install -m 0644 logwatch.8 $PKG/usr/man/man8
+
+rm -f $PKG/etc/cron.daily/logwatch $PKG/usr/sbin/logwatch
+
+install -m 0755 -d $PKG/etc/cron.daily
+ln -s /usr/share/logwatch/scripts/logwatch.pl $PKG/etc/cron.daily/0logwatch
+install -m 0755 -d $PKG/usr/sbin
+ln -s /usr/share/logwatch/scripts/logwatch.pl $PKG/usr/sbin/logwatch
+
+echo "###### REGULAR EXPRESSIONS IN THIS FILE WILL BE TRIMMED FROM REPORT OUTPUT #####" > $PKG/etc/logwatch/conf/ignore.conf
+echo "# Local configuration options go here (defaults are in /usr/share/logwatch/default.conf/logwatch.conf)" > $PKG/etc/logwatch/conf/logwatch.conf
+echo "# Configuration overrides for specific logfiles/services may be placed here." > $PKG/etc/logwatch/conf/override.conf
+
+install -m 0644 ../etc/log.d/conf/logfiles/imapd.conf \
+  $PKG/usr/share/logwatch/default.conf/logfiles
+install -m 0644 ../etc/log.d/conf/services/cyrus.conf \
+  $PKG/usr/share/logwatch/default.conf/services
+install -m 0755 ../etc/log.d/scripts/services/cyrus \
+  $PKG/usr/share/logwatch/scripts/services
+
+cat <<EOT >> $PKG/usr/share/logwatch/default.conf/services/cyrus.conf
+# Only give lines pertaining to cyrus...
+# I'm not sure if this is complete
+*OnlyService = (imap|imaps|master|ctl_cyrusdb|tls_prune)
+
+EOT
+
+for conf in {ignore,logwatch,override}.conf; do
+( cd $PKG/etc/logwatch/conf/
+  mv ${conf} ${conf}.new )
+done
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a HOWTO-Customize-LogWatch LICENSE README \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+
+if [ -d $PKG/usr/man ]; then
+  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
+  for i in $(find $PKG/usr/man -type l -name "*.?"); do
+  ln -s $( readlink $i ).gz $i.gz ; rm $i
+  done
+fi
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh.gz ]; then
+  zcat $CWD/doinst.sh.gz >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
+
+# Restore the original umask:
+umask ${_UMASK_}
