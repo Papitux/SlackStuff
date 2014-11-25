@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+               |-----handy-ruler------------------------------------------------------|
+perl-date-manip: perl-date-manip (Date manipulation routines)
+perl-date-manip:
+perl-date-manip: Date::Manip is a series of modules designed to make any common date
+perl-date-manip: and time  operation easy to do.  Operations such  as comparing  two
+perl-date-manip: times,  determining a date a given amount of time from another,  or
+perl-date-manip: parsing international times are all easily done. It deals with time
+perl-date-manip: as it is used in the Gregorian calendar.
+perl-date-manip:
+perl-date-manip: Home: http://search.cpan.org/dist/Date-Manip/
+perl-date-manip:
+perl-date-manip:
