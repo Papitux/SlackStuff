@@ -1,0 +1,15 @@
+You should execute the file 'get-contrib' at least once
+to populate the 'contrib/' dir and keep rebuilding when
+offline. It's already triggered to run when you execute
+the SlackBuild.
+
+The script is very simple and if you remove any file from
+'contrib/' it'll download the whole set again. Improve it
+and share your receipe :)
+
+Most of the 'depends' was mentioned just for reference
+and will be automagically** downloaded and sorted out.
+
+Thanks.
+
+**Praise Bob!

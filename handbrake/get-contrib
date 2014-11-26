@@ -1,0 +1,14 @@
+#!/bin/sh
+
+CWD=$(pwd)
+
+( flist=$(cat $CWD/flist)
+  for c in $flist; do
+     if [ ! -f "$CWD/contrib/$c" ]; then
+       mkdir $CWD/contrib && chmod 0777 $CWD/contrib
+       cd $CWD/contrib
+       wget -i ../contrib-0.10.0
+     else
+        continue
+     fi
+  done )

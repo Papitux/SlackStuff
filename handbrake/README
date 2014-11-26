@@ -1,0 +1,8 @@
+handbrake (Video transcoder and ripper)
+
+HandBrake is an  open source, GPL-licensed,  multiplatform,
+multithreaded DVD to MPEG-4 converter, available for MacOS,
+Linux and Windows.  HandBrake can use an external libdvdcss
+to read encrypted DVD's.
+
+http://handbrake.fr/
