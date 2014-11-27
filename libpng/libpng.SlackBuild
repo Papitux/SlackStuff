@@ -21,8 +21,8 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-VERSION_OLD=1.2.50
-VERSION_NEW=1.4.12
+VERSION_OLD=1.2.52
+VERSION_NEW=1.4.14
 BUILD=${BUILD:-1}
 
 # Automatically determine the architecture we're building on:
@@ -53,7 +53,7 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG/usr
 
-#######1.2.50#######
+#######1.2.52#######
 build_source_old() {
 
 cd $TMP
@@ -72,7 +72,7 @@ zcat $CWD/libpng12-CVE-2013-7353.patch.gz | patch -p1 --verbose || exit 1
 zcat $CWD/libpng12-CVE-2013-7354.patch.gz | patch -p1 --verbose || exit 1
 
 # Add animated PNG (apng) support.
-zcat $CWD/apng/libpng-1.2.50-apng.patch.gz | patch -p1 --verbose || exit 1
+zcat $CWD/apng/libpng-1.2.52-apng.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
@@ -108,7 +108,7 @@ fi
 
 }
 
-#######1.4.12#######
+#######1.4.14#######
 build_source_new() {
 
 cd $TMP
@@ -117,7 +117,7 @@ tar xvf $CWD/libpng-$VERSION.tar.?z* || exit 1
 cd libpng-$VERSION
 
 # Add animated PNG (apng) support.
-zcat $CWD/apng/libpng-1.4.12-apng.patch.gz | patch -p1 --verbose || exit 1
+zcat $CWD/apng/libpng-1.4.14-apng.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
