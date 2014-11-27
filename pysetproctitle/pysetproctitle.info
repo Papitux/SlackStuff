@@ -1,0 +1,8 @@
+PRGNAM="setproctitle"
+VERSION="1.1.8"
+HOMEPAGE="https://code.google.com/p/py-setproctitle/"
+DOWNLOAD="https://pypi.python.org/packages/source/s/setproctitle/setproctitle-1.1.8.tar.gz"
+MD5SUM="728f4c8c6031bbe56083a48594027edd"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"
