@@ -1,0 +1,8 @@
+PRGNAM="webrtc-audio-processing"
+VERSION="0.1"
+HOMEPAGE="https://code.google.com/p/webrtc/"
+DOWNLOAD="http://freedesktop.org/software/pulseaudio/webrtc-audio-processing/webrtc-audio-processing-0.1.tar.xz"
+MD5SUM="da25bb27812c8404060d4cc0dc712f04"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"

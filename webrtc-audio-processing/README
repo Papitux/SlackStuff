@@ -1,0 +1,11 @@
+webrtc-audio-processing (WebRTC audio-processing library)
+
+This is meant to be a more  Linux 'packaging friendly' copy of the
+AudioProcessing library based on Google's implementation of WebRTC
+(Web-based Real-Time Communication) that enables web browsers with
+Real-Time Communications (RTC) capabilities  via simple Javascript
+APIs. The WebRTC components have been optimized to best serve this
+purpose and implements the  W3C's proposal for video  conferencing
+on the web.
+
+Home: https://code.google.com/p/webrtc/

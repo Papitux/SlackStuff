@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+                       |-----handy-ruler------------------------------------------------------|
+webrtc-audio-processing: webrtc-audio-processing (WebRTC audio-processing library)
+webrtc-audio-processing:
+webrtc-audio-processing: This is meant to be a more  Linux 'packaging friendly' copy of the
+webrtc-audio-processing: AudioProcessing library based on Google's implementation of WebRTC
+webrtc-audio-processing: (Web-based Real-Time Communication) that enables web browsers with
+webrtc-audio-processing: Real-Time Communications (RTC) capabilities  via simple Javascript
+webrtc-audio-processing: APIs. The WebRTC components have been optimized to best serve this
+webrtc-audio-processing: purpose.
+webrtc-audio-processing:
+webrtc-audio-processing: Home: https://code.google.com/p/webrtc/
+webrtc-audio-processing:
