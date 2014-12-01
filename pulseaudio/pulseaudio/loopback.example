@@ -1,0 +1,11 @@
+pactl load-module module-loopback
+
+or
+
+pactl load-module module-null-sink sink_name=loopback
+pactl load-module module-loopback sink=loopback
+
+or
+
+pactl load-module module-null-sink sink_name=loopback sink_properties=device.description="Internal Loopback (music+game)"
+pactl load-module module-loopback sink=loopback
