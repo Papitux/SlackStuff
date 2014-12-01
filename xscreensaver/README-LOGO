@@ -1,0 +1,8 @@
+special XPM requirements
+
+The XPM image files must to be indexed to 90 colours or less.
+
+The XPM declaration has to be changed from the default:
+  static char * theme_logo [] = {
+to a double "const" as below:
+  static const char * const theme_logo [] = {

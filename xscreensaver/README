@@ -1,0 +1,8 @@
+xscreensaver (a screen saver and locker for X)
+
+A modular screen saver and locker for the X Window System. Highly
+customizable:  allows the use of any program that can draw on the
+root  window as a  display mode.  More than 100 display modes are
+included in this package.
+
+http://www.jwz.org/xscreensaver
