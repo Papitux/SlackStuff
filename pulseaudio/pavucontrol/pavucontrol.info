@@ -1,0 +1,8 @@
+PRGNAM="pavucontrol"
+VERSION="2.0"
+HOMEPAGE="http://git.0pointer.net/pavucontrol.git"
+DOWNLOAD="http://freedesktop.org/software/pulseaudio/pavucontrol/pavucontrol-2.0.tar.xz"
+MD5SUM="ffefdea76a77f89c6415300b8ad5eb7b"
+DEPENDS="gtkmm3, libasyncns, pulseaudio"
+MAINTAINER=""
+EMAIL="@"

@@ -1,0 +1,8 @@
+PRGNAM="pasystray"
+VERSION="0.4.0"
+HOMEPAGE="https://github.com/christophgysin/pasystray"
+DOWNLOAD="https://github.com/christophgysin/pasystray/archive/pasystray-0.4.0.tar.gz"
+MD5SUM="0a7ee0842064f3d3c8585c414cb50a1c"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"

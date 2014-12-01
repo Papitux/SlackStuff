@@ -1,0 +1,8 @@
+PRGNAM="pavumeter"
+VERSION="0.9.3"
+HOMEPAGE="http://git.0pointer.de/pavumeter.git"
+DOWNLOAD="http://ftp.de.debian.org/debian/pool/main/p/pavumeter/pavumeter_0.9.3.orig.tar.gz"
+MD5SUM="3a6b36cfefa8d6dd00084dafa50c934c"
+DEPENDS="gnome-icon-theme, gtkmm, libsigc++, lynx, pulseaudio"
+MAINTAINER=""
+EMAIL="@"

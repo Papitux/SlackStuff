@@ -1,0 +1,8 @@
+pulseaudio (Sound Server)
+
+pulseaudio is a networked sound server for Linux and other
+Unix like operating  systems and Microsoft Windows.  It is
+intended to be an improved drop-in replacement for ESOUND,
+the Enlightened Sound Daemon.
+
+http://pulseaudio.org

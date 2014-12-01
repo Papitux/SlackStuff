@@ -1,0 +1,8 @@
+pasystray (System tray application for PulseAudio)
+
+PaSystray provides a system tray icon to control the PulseAudio
+daemon. It supports changing the default source/sink, detecting
+remote source/sinks and moving streams to other source/sinks on
+the fly.
+
+https://github.com/christophgysin/pasystray

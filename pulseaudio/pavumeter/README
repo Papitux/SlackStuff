@@ -1,0 +1,5 @@
+pavumeter (A volume meter for PulseAudio sound server)
+
+Displays a live volume meter of a PulseAudio source or sink.
+
+http://git.0pointer.net/paman.git

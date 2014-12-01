@@ -1,0 +1,8 @@
+pavucontrol (PulseAudio volume controller)
+
+It is a simple GTK based volume control tool ("mixer") for PulseAudio
+sound server. In contrast to classic mixer tools, this one allows you
+to control both the  volume of  hardware devices and of each playback
+stream separately.
+
+http://git.0pointer.net/pavucontrol.git

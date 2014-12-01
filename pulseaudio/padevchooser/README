@@ -1,0 +1,7 @@
+padevchooser (PulseAudio device chooser)
+
+PulseAudio Device Chooser (padevchooser) registers an icon in the tray
+area and allows  quick access to some features of the PulseAudio sound
+server.
+
+http://git.0pointer.net/padevchooser.git

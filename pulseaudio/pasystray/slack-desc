@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+         |-----handy-ruler------------------------------------------------------|
+pasystray: pasystray (System tray application for PulseAudio)
+pasystray:
+pasystray: PaSystray provides a system tray icon to control the PulseAudio
+pasystray: daemon. It supports changing the default source/sink, detecting
+pasystray: remote source/sinks and moving streams to other source/sinks on
+pasystray: the fly.
+pasystray:
+pasystray: Home: https://github.com/christophgysin/pasystray
+pasystray:
+pasystray:
+pasystray:
