@@ -1,2 +1,0 @@
-
-DEPENDS="libtorrent-rasterbar, pyOpenSSL, pyxdg, chardet, Twisted, Mako"
