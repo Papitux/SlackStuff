@@ -1,0 +1,8 @@
+PRGNAM="obs-studio"
+VERSION="0.6.4"
+HOMEPAGE="https://obsproject.com/index"
+DOWNLOAD="https://github.com/jp9000/obs-studio/archive/0.6.4.tar.gz"
+MD5SUM="8445d5f5012f3960c7a247559d70d27b"
+DEPENDS="ffmpeg, jansson, libavcodec, libavformat, libfdk-aac, libswresample, libswscale, libx264, libxcomposite, libxinerama, libxrandr, pulseaudio, qt5"
+MAINTAINER=""
+EMAIL="@"
