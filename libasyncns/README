@@ -1,0 +1,7 @@
+libasyncns (asynchronous name query library)
+
+libasyncns is a C library for asynchronous name queries. It is an
+asynchronous  wrapper around the libc's synchronous getaddrinfo()
+API.
+
+http://git.0pointer.net/libasyncns.git

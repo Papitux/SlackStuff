@@ -1,0 +1,8 @@
+PRGNAM="libasyncns"
+VERSION="0.8"
+HOMEPAGE="http://git.0pointer.net/libasyncns.git"
+DOWNLOAD="http://pkgs.fedoraproject.org/repo/pkgs/libasyncns/libasyncns-0.8.tar.gz/1f553d6ce1ad255bc83b3d8e9384f515/libasyncns-0.8.tar.gz"
+MD5SUM="1f553d6ce1ad255bc83b3d8e9384f515"
+DEPENDS=""
+MAINTAINER=""
+EMAIL="@"
