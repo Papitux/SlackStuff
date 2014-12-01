@@ -70,7 +70,7 @@ status() {
   if [ -z "$PIDP" ]; then
     echo "Not running."
     exit 1
-  elif [ -f "$PIDP" ]; then
+  elif [ -f "$PID" ]; then
     echo "Running in pid $PIDP."
     exit 0
   else
