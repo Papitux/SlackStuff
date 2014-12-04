@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+   |-----handy-ruler------------------------------------------------------|
+ace: ace  (An object-oriented network programming toolkit)
+ace:
+ace: The  ADAPTIVE Communication Environment (ACE) is  an  object-oriented
+ace: toolkit that implements fundamental design patterns for communication
+ace: software.  ACE provides a rich  set  of  reusable  C++  wrappers  and
+ace: frameworks that perform common communication software tasks  across a
+ace: range of OS platforms.
+ace:
+ace: Home: http://www.cs.wustl.edu/~schmidt/ACE.html
+ace:
+ace:
