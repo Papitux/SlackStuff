@@ -1,0 +1,18 @@
+You are on you own. Mozilla fscked bad with gmpopenh264 and the lack of
+freedom to manipulate this thing, like systemD :P
+
+Since version 33 it install into a user's profile after one minute of the
+first browser start.  This package is an attempt to regain control of how
+and when upgrade this sh!t.
+
+Make a copy of your original plugin  (jusy to be sure)  located at:
+  '$HOME/.mozilla/firefox/?????.default/gmp-gmpopenh264/1.1/*'
+
+Replace  with '/usr/lib64/mozilla/plugins/gmp-gmpopenh264/1.2/*' and
+see what happens :) As a bonus you have a couple of new toys to play
+around when bored.
+
+It seems that the 'user profile' plugin take precedence over the
+'system wide' (/usr/lib64/mozilla/plugins/).
+
+If thing goes bad, you made a backup right? RIGHT??
