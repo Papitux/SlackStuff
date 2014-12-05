@@ -1,1 +1,0 @@
-cat radeon_profile.cpp | grep "appVersion =" | cut -b24- | sed "s/;//"

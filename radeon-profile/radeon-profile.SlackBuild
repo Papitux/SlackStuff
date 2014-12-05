@@ -20,23 +20,79 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=radeon-profile
-#VERSION=${VERSION:-20131227}  # as in radeon_profile.cpp
+#VERSION=${VERSION:-20141130}  # as in radeon_profile.cpp
 BUILD=${BUILD:-1}
 
-if [ ! -f $(pwd)/$PRGNAM-master.zip ]; then
-  cd $(pwd)/
-  git clone https://github.com/marazmista/radeon-profile.git
-  cd radeon-profile/
-  export VERSION=$(git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g')
-  cd ..
-  mv radeon-profile/ radeon-profile-$VERSION
-  tar jcvf radeon-profile-$VERSION.tar.bz2 radeon-profile-$VERSION
-  rm -rf $(pwd)/radeon-profile-$VERSION/
-else
-  if [ -f $(pwd)/$PRGNAM-master.zip ]; then
-  echo ""
- fi
+if [ -f /usr/bin/tput ]; then
+export bold="/usr/bin/tput bold"
+export yellow="/usr/bin/tput setaf 3"
+export reset="/usr/bin/tput sgr0"
 fi
+
+$bold
+echo -n "Download and build from latest commit? (y/n)"
+$reset
+
+while true; do
+read commit
+
+case $commit in
+     [Yy]*)
+     $bold
+      echo "Downloading radeon-profile..."
+      $reset
+     if [ -f $(pwd)/$PRGNAM*.tar.?z* ]; then
+      $bold
+      $yellow
+     for filename in $(pwd)/$PRGNAM*.tar.?z*; do 
+      echo "$(basename $filename) aready exists!"
+      echo "Rename or remove it first and restart this script..."; done;
+      $reset
+      sleep 3
+      exit 1
+     else
+      $bold
+      cd $(pwd)/
+      git clone https://github.com/marazmista/radeon-profile.git
+      $reset
+      cd $PRGNAM/$PRGNAM/
+      export VERSION=$(cat radeon_profile.cpp | grep "appVersion =" | cut -b24- | sed 's/;//')
+      cd ..
+      rm -rf .git
+      cd ..
+      mv radeon-profile/ radeon-profile-$VERSION
+      tar jcvf radeon-profile-$VERSION.tar.bz2 radeon-profile-$VERSION
+      chown root:users radeon-profile-$VERSION.tar.bz2
+      chmod 674 radeon-profile-$VERSION.tar.bz2
+      rm -rf $(pwd)/radeon-profile-$VERSION/
+     fi
+      break
+     ;;
+     [Nn]*)
+      $bold
+      echo "Skipping download..."
+      $reset
+      sleep 1
+     if [ ! -f $(pwd)/$PRGNAM*.tar.?z* ]; then
+      $bold
+      $yellow
+      echo "No tarball file!"
+      echo "Nothing to do..."
+      $reset
+      exit 1
+     else
+      $reset
+      break
+     fi
+     ;;
+     *)
+      $bold
+      $yellow
+      echo "That is not a valid choice..."
+      $reset
+     ;;
+esac
+done
 
 if [ -e $CWD/machine.conf ]; then
   . $CWD/machine.conf ]
@@ -85,24 +141,12 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION/$PRGNAM
 
-if [ -d $PRGNAM-master ]; then
-  rm -rf $PRGNAM-master
-else
-  rm -rf $PRGNAM-$VERSION
-fi
-
-if [ -f $CWD/$PRGNAM-master.zip ]; then
-  unzip -a $CWD/$PRGNAM-master.zip
-else
-  tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
-fi
-
-if [ -d $TMP/$PRGNAM-master ]; then
-  cd $PRGNAM-master/$PRGNAM
-else
-  cd $PRGNAM-$VERSION/$PRGNAM
-fi
+sed -i 's/^Exec=*.*/Exec=radeon-profile/g' \
+  extra/$PRGNAM.desktop
 
 chown -R root:root .
 find . \
@@ -144,15 +188,8 @@ find $PKG/usr/share/ -type d -exec chmod 0755 {} \;
 chown -R root:root $PKG/usr/share
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-
-if [ -d $TMP/$PRGNAM-master ]; then
-  cp -a $TMP/$PRGNAM-master/README* \
-    $PKG/usr/doc/$PRGNAM-$VERSION
-else
-  cp -a $TMP/$PRGNAM-$VERSION/README* \
-    $PKG/usr/doc/$PRGNAM-$VERSION
-fi
-
+cp -a $TMP/$PRGNAM-$VERSION/README* \
+  $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 find $PKG/usr/doc -type f -exec chmod 644 {} \;
@@ -161,8 +198,8 @@ chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-if [ -f $CWD/doinst.sh ]; then
-  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+if [ -f $CWD/doinst.sh.gz ]; then
+  zcat $CWD/doinst.sh.gz >> $PKG/install/doinst.sh
 fi
 
 cd $PKG

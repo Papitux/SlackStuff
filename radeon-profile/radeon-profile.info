@@ -1,0 +1,8 @@
+PRGNAM="radeon-profile"
+VERSION="20141130"
+HOMEPAGE="https://github.com/marazmista/radeon-profile"
+DOWNLOAD="git clone git://github.com/marazmista/radeon-profile.git"
+MD5SUM="00000000000000000000000000000000"
+REQUIRES="lm_sensors, qt4, glxinfo, xdriinfo, xrandr"
+MAINTAINER=""
+EMAIL="@"
