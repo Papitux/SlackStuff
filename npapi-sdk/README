@@ -1,0 +1,9 @@
+npapi-sdk (Netscape Plugin API)
+
+NPAPI-SDK is a bundle of  NPAPI  headers by Mozilla. This project aims
+to sort out and package that bundle for nix systems, providing a clear
+way to install those headers and depend on them.  Unlike Mozilla, this
+project is never going to change its API *without* bumping version. If
+necessary, third version component will be added for that reason.
+
+https://bitbucket.org/mgorny/npapi-sdk
