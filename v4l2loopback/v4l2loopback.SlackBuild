@@ -62,6 +62,9 @@ rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
+# Build with kernel 3.18+
+#zcat $CWD/kernel-318.patch.gz | patch -p1 --verbose || exit 1
+
 # Path fix and mod for flash:
 ( cd examples/
   sed -i "s/\.\/utils\///" restarting-writer.sh || exit 1
