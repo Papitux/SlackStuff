@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qbittorrent
-VERSION=${VERSION:-3.1.10}
+VERSION=${VERSION:-3.1.11}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -67,8 +67,11 @@ if [ ! -d $OUTPUT ]; then
   mkdir -p $OUTPUT
 fi
 
-# Fix translation
+# Fix translation:
 zcat $CWD/fix-translation-pt_BR.patch.gz | patch -p1 --verbose || exit 1
+
+# Stop using internal libtorrent API:
+zcat $CWD/fix-build.patch.gz | patch -p1 --verbose || exit 1
 
 rm -rf $PKG
 mkdir -p $TMP $PKG
