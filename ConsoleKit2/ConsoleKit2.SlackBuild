@@ -86,7 +86,7 @@ find . \
 #   https://bugs.freedesktop.org/show_bug.cgi?id=28377
 # This is neither ideal nor maintainable long-term, but I don't know what else
 # we can reasonably do right now...  --rworkman 
-#zcat $CWD/revert.patch.gz | patch -p1 || exit 1
+zcat $CWD/revert.patch.gz | patch -p1 || exit 1
 
 if [ ! -f ./configure ]; then
 NOCONFIGURE=1 ./autogen.sh
@@ -102,7 +102,6 @@ CXXFLAGS="$SLKCFLAGS" \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --docdir=/usr/doc/$PKGNAM-$VERSION \
   --with-pid-file=/var/run/ConsoleKit/pid \
-  --enable-udev-acl \
   --enable-docbook-docs \
   --disable-rpath \
   --disable-static \
