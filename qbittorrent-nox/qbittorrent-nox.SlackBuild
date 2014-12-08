@@ -22,7 +22,7 @@
 PRGNAM=qbittorrent
 PKGNAM=qbittorrent-nox
 SLKNAM=qbt-nox
-VERSION=${VERSION:-3.1.10}
+VERSION=${VERSION:-3.1.11}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -76,11 +76,11 @@ rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
 
-# Fix translation
+# Fix translation:
 zcat $CWD/fix-translation-pt_BR.patch.gz | patch -p1 --verbose || exit 1
 
-# Fix nox build
-zcat $CWD/fix-nox-build.patch.gz | patch -p1 --verbose || exit 1
+# Stop using internal libtorrent API:
+zcat $CWD/fix-build.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find . \
