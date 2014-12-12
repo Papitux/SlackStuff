@@ -24,8 +24,8 @@
 PRGNAM=golang-tools
 SRCNAM=tools.go
 NETNAM=net.go
-VERSION=${VERSION:-1b06ca8030a3}
-NETVERS=${NETVERS:-ad01a6fcc8a1}
+VERSION=${VERSION:-a7e14835e46b}
+NETVERS=${NETVERS:-937a34c9de13}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -61,7 +61,7 @@ esac
 
 set -e
 
-GOSRC_PATH="src/code.google.com/p"
+GOSRC_PATH="src/golang.org/x"
 
 CWD=$(pwd)
 TMP=${TMP:-/tmp/PpTux}
@@ -90,11 +90,11 @@ find -L . \
 unset GOPATH
 
 mkdir -p ${PKG}/usr/bin
-mkdir -p $TMP/go/${GOSRC_PATH}/{go.net,go.tools}
-cp -a .  $TMP/go/${GOSRC_PATH}/go.tools
+mkdir -p $TMP/go/${GOSRC_PATH}/{net,tools}
+cp -a .  $TMP/go/${GOSRC_PATH}/tools
 
 ( cd $TMP/$NETNAM-${NETVERS}
-  cp -a .  $TMP/go/${GOSRC_PATH}/go.net )
+  cp -a .  $TMP/go/${GOSRC_PATH}/net )
 
 export GOPATH=$TMP/go
 export GOBIN=${PKG}/usr/bin
