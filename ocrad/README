@@ -1,0 +1,9 @@
+ocrad (An Optical Character Recognition program)
+
+GNU Ocrad is an  OCR (Optical Character Recognition) program and library
+based on a feature extraction method.  It reads images in  pbm (bitmap),
+pgm (greyscale) or ppm (color) formats and produces text in byte (8-bit)
+or UTF-8 formats. The pbm, pgm and ppm formats are collectively known as
+pnm.
+
+http://www.gnu.org/software/ocrad/ocrad.html
