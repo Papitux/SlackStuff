@@ -1,0 +1,10 @@
+PRGNAM="ocrfeeder"
+VERSION="0.8"
+HOMEPAGE="https://wiki.gnome.org/Apps/OCRFeeder"
+DOWNLOAD="http://ftp.gnome.org/pub/gnome/sources/ocrfeeder/0.8/ocrfeeder-0.8.tar.xz"
+MD5SUM="8f7cd76e7a6e36bde67469deff7b70d5"
+DEPENDS="desktop-file-utils, ghostscript, goocanvas2, gtk3, gtkspell, imagemagick, intltool, iso-codes, lxml, ocrad, pillow, pyenchant pygobject, pygtk, python, reportlab, sane, unpaper"
+OPTDEPENDS="cuneiform, gocr, gnome-doc-utils, tesseract"
+MAINTAINER=""
+EMAIL="@"
+
