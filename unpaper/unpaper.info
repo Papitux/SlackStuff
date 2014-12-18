@@ -1,0 +1,8 @@
+PRGNAM="unpaper"
+VERSION="6.1"
+HOMEPAGE="https://www.flameeyes.eu/projects/unpaper"
+DOWNLOAD="https://www.flameeyes.eu/files/unpaper-6.1.tar.xz"
+MD5SUM="b5e79645765be7c7ae0e003697bdb9e2"
+DEPENDS="ffmpeg (libav), libxslt"
+MAINTAINER=""
+EMAIL="@"

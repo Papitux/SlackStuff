@@ -1,0 +1,12 @@
+unpaper (A post-processing tool for scanned sheets of paper)
+
+`unpaper` is a post-processing tool for scanned sheets of paper,
+especially for book pages that have been scanned from previously
+created  photocopies. `unpaper` tries to clean scanned images by
+removing dark edges that appeared through scanning or copying on
+areas outside the actual page content  (e.g.  dark areas between
+the  left-hand-side  and  the  right-hand-side of a double-sided
+book-page scan). The main purpose is  to make scanned book pages
+better readable on screen after conversion to PDF.
+
+https://www.flameeyes.eu/projects/unpaper
