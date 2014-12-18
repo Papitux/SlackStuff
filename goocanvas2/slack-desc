@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+          |-----handy-ruler------------------------------------------------------|
+goocanvas2: goocanvas (Cairo Canvas Widget for GTK+)
+goocanvas2: 
+goocanvas2: GooCanvas is a canvas widget for GTK+ that uses the cairo 2D library
+goocanvas2: for drawing.  GooCanvas  is  similar in many ways to GnomeCanvas and
+goocanvas2: FooCanvas, but it uses cairo for rendering.
+goocanvas2:
+goocanvas2: Home: http://live.gnome.org/GooCanvas 
+goocanvas2:
+goocanvas2: 
+goocanvas2: 
+goocanvas2: 
