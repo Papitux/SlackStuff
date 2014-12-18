@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for GooCanvas
+# Slackware build script for goocanvas
 
 # Copyright 2014 Papitux <papitux.br[at]gmail.com>
 # All rights reserved.
@@ -68,8 +68,9 @@ rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*  || exit 1
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
+
 
 chown -R root:root .
 find . \
@@ -82,12 +83,12 @@ CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure  \
   --prefix=/usr \
-  --libdir=/usr/lib${LIBDIRSUFFIX} \
-  --sysconfdir=/etc \
-  --localstatedir=/var/lib \
   --mandir=/usr/man \
-  --disable-static \
+  --sysconfdir=/etc \
+  --localstatedir=/var \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
   --enable-shared \
+  --disable-static \
   --build=$ARCH-slackware-linux 
 
 make $NUMJOBS || make || exit 1
@@ -96,8 +97,6 @@ make install DESTDIR=$PKG || exit 1
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-rm -rf $PKG/usr/share/gtk-doc
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a AUTHORS COPYING INSTALL NEWS README TODO \
     $PKG/usr/doc/$PRGNAM-$VERSION
@@ -105,9 +104,22 @@ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 if [ -r ChangeLog ]; then
   DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION)
-  cat ChangeLog | head -n 1500 > $DOCSDIR/ChangeLog
+  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
   touch -r ChangeLog $DOCSDIR/ChangeLog
 fi
+
+if [ -d $PKG/usr/doc/$PRGNAM-$VERSION/html ] ; then
+rm -rf $PKG/usr/doc/$PRGNAM-$VERSION/html
+fi
+
+if [ -d $PKG/usr/share/gtk-doc ] ; then
+rm -rf $PKG/usr/share/gtk-doc
+fi
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
