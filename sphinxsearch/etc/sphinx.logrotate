@@ -1,0 +1,10 @@
+/var/log/sphinx/*.log {
+    weekly
+    rotate 4
+    compress
+    missingok
+    sharedscripts
+    postrotate
+        /etc/rc.d/rc.sphinx restart &> /dev/null
+    endscript
+}

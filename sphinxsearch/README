@@ -1,0 +1,9 @@
+sphinx (SQL search engine)
+
+Sphinx is a full-text search engine, distributed under GPL version 2.
+Generally,  it's a standalone  search engine,  meant to provide fast,
+size-efficient  and  relevant  fulltext  search  functions  to  other
+applications.  Sphinx was  specially  designed to integrate well with
+SQL databases and scripting languages.
+
+http://www.sphinxsearch.com/
