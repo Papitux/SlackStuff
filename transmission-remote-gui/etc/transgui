@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd "/usr/opt/transgui"
+export LD_LIBRARY_PATH="/usr/opt/transgui:$LD_LIBRARY_PATH"
+./transgui "$@"
+exit $?

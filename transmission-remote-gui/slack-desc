@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+                       |-----handy-ruler------------------------------------------------------|
+transmission-remote-gui: transmission-remote-gui (Transmission Bittorrent remote GUI)
+transmission-remote-gui:
+transmission-remote-gui: Transmission Remote GUI is a feature rich cross platform front-end to
+transmission-remote-gui: remotely control a Transmission Bit-Torrent client daemon via its RPC
+transmission-remote-gui: protocol.
+transmission-remote-gui:
+transmission-remote-gui: Home: https://code.google.com/p/transmisson-remote-gui/
+transmission-remote-gui:
+transmission-remote-gui:
+transmission-remote-gui:
+transmission-remote-gui:
+

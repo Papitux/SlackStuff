@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Transmission Remote
+Name[pt_BR]=Transmission Remoto
+GenericName=TransGUI
+Exec=transgui %U
+Icon=transgui
+Comment=Remote GUI for Transmission daemon
+Comment[pt_BR]=Interface gráfica para o Transmission daemon
+Type=Application
+StartupNotify=false
+Terminal=false
+Categories=Network;GTK;
+

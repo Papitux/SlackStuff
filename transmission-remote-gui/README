@@ -1,0 +1,7 @@
+transmission-remote-gui (Transmission Bittorrent remote GUI)
+
+Transmission Remote GUI is a feature rich cross platform front-end to
+remotely control a Transmission Bit-Torrent client daemon via its RPC
+protocol.
+
+https://code.google.com/p/transmisson-remote-gui/
