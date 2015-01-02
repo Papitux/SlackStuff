@@ -1,4 +1,4 @@
-PRGNAM="transmission-remote-gtk"
+PRGNAM="transmission-remote-gui"
 VERSION="5.0.1"
 HOMEPAGE="https://code.google.com/p/transmisson-remote-gui/"
 DOWNLOAD="https://transmisson-remote-gui.googlecode.com/files/transgui-5.0.1-src.zip"
