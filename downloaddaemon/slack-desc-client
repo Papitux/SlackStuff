@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+                     |-----handy-ruler------------------------------------------------------|
+downloaddaemon-client: downloaddaemon (Download manager)
+downloaddaemon-client:
+downloaddaemon-client: DownloadDaemon is a comfortable download-manager with many features
+downloaddaemon-client: like one-click-hoster support,  etc.  It can be remote-controled in
+downloaddaemon-client: several ways (web/gui/console clients),  which makes it perfect for
+downloaddaemon-client: file and root-servers, as well as for local use.
+downloaddaemon-client:
+downloaddaemon-client: Home: http://downloaddaemon.sourceforge.net/
+downloaddaemon-client:
+downloaddaemon-client:
+downloaddaemon-client:

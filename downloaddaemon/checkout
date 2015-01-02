@@ -1,0 +1,5 @@
+#!/bin/sh
+
+svn checkout -r1342 svn://svn.code.sf.net/p/downloaddaemon/code/trunk downloaddaemon-r1342
+tar jcvf downloaddaemon-r1342.tar.bz2 downloaddaemon-r1342/
+rm -rf downloaddaemon-r1342/

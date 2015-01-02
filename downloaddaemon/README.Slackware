@@ -1,0 +1,6 @@
+Execute './checkout' to get the sources
+
+Scripts:
+* - 'downloaddaemon-server.SlackBuild' = server package = DownloadDaemon
+* - 'downloaddaemon-client.SlackBuild' = client package = ddclient-gui, ddconsole
+* - 'downloaddaemon.SlackBuild' = full package = DownloadDaemon, ddclient-gui, ddconsole

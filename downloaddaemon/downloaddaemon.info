@@ -1,0 +1,9 @@
+PRGNAM="downloaddaemon"
+VERSION="r1342"
+HOMEPAGE="http://downloaddaemon.sourceforge.net/"
+DOWNLOAD="svn checkout"
+MD5SUM="000000000000000000000000000000000"
+DEPENDS="boost, curl, subversion"
+OPTDEPENDS="qt4 (client-gui)
+MAINTAINER=""
+EMAIL="@"

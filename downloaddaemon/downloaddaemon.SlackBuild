@@ -1,0 +1,186 @@
+#!/bin/sh
+
+# Slackware build script for downloaddaemon
+
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=downloaddaemon
+VERSION=${VERSION:-r1342}
+BUILD=${BUILD:-1}
+DDAEMONUSR=downloadd
+DDAEMONGRP=downloadd
+
+# Add downloadd user/group
+export FREE_UID=`tail -1 /etc/passwd |awk -F : '{print $3 + 1}'`
+export FREE_GUID=`tail -1 /etc/group |awk -F : '{print $3 + 1}'`
+export DDAEMON_USER=$DDAEMONUSR
+export DDAEMON_GROUP=$DDAEMONGRP
+
+if ! grep --quiet '^downloadd:' /etc/group ;then
+  echo -e "Creating new group downloaddaemon..." 1>&2
+           /usr/sbin/groupadd \
+          -g $FREE_GUID \
+           $DDAEMON_GROUP 2> /dev/null
+else
+ if grep --quiet '^downloadd:' /etc/group ;then
+   echo -e "Group already exist or error creating new group..." 1>&2
+ fi
+fi
+
+if ! grep --quiet '^downloadd:' /etc/passwd ;then
+  echo -e "Creating unprivileged user..." 1>&2
+           /usr/sbin/useradd \
+          -d /etc/downloaddaemon \
+          -c "DownloadDaemon user" \
+          -u $FREE_UID \
+          -s /bin/false \
+          -g $DDAEMON_GROUP \
+           $DDAEMON_USER 2> /dev/null
+           usermod -a -G $DDAEMON_GROUP $DDAEMON_USER 2> /dev/null
+else
+ if grep --quiet '^downloadd:' /etc/passwd ;then
+   echo -e "User already exist or error creating unprivileged user..." 1>&2
+ fi
+fi
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+zcat $CWD/remixshare.patch.gz | patch -p1 --verbose || exit 1
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+mkdir -p build
+cd build
+CFLAGS="$SLKCFLAGS" \
+LDFLAGS="$SLKLDFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+  cmake \
+    -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
+    -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_SKIP_RPATH=ON \
+    ..
+  make $NUMJOBS || make || exit 1
+  make DESTDIR=$PKG install || exit 1
+cd -
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+chmod 750 $PKG/etc/downloaddaemon
+chown downloadd:downloadd $PKG/etc/downloaddaemon
+
+( cd $PKG/etc/downloaddaemon
+  for cfg in {downloaddaemon,premium_accounts,routerinfo}.conf; do
+   mv ${cfg} ${cfg}.new
+  done )
+
+rm -rf PKG/etc/init.d
+mkdir -p $PKG/etc/rc.d
+install -m755 $CWD/etc/rc.downloadd $PKG/etc/rc.d/rc.downloadd.new
+
+mkdir -p $PKG/var/{log,run}/downloaddaemon
+chmod 750 $PKG/var/{log,run}/downloaddaemon
+chown downloadd:downloadd $PKG/var/{log,run}/downloaddaemon
+
+mkdir -p $PKG/var/downloads
+chmod 755 $PKG/var/downloads
+chown downloadd:downloadd $PKG/var/downloads
+
+sed -i 's/^Icon=*.*/Icon=ddclient-gui/g' \
+  $PKG/usr/share/applications/ddclient-gui.desktop
+
+mkdir -p $PKG/usr/share/icons/hicolor/
+for res in 16 22 24 32 36 48 64 72 96 128 160 192 256 512; do
+  mkdir -p  $PKG/usr/share/icons/hicolor/${res}x${res}/apps
+  convert share/ddclient-gui/img/logoDD.png -resize ${res}x${res} \
+    $PKG/usr/share/icons/hicolor/${res}x${res}/apps/ddclient-gui.png  
+done
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a \
+  AUTHORS CHANGES DEVELOPING INSTALLING TODO \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+rm -f $PKG/usr/share/downloaddaemon/LICENCE
+cat LICENCE > $PKG/usr/doc/$PRGNAM-$VERSION/LICENSE
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh.gz ]; then
+  zcat $CWD/doinst.sh.gz >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

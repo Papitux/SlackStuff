@@ -1,0 +1,8 @@
+downloaddaemon (Download manager)
+
+DownloadDaemon is a comfortable download-manager with many features
+like one-click-hoster support,  etc.  It can be remote-controled in
+several ways (web/gui/console clients),  which makes it perfect for
+file and root-servers, as well as for local use.
+
+http://downloaddaemon.sourceforge.net/
