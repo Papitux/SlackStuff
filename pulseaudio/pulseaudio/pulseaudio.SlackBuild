@@ -187,10 +187,17 @@ make install DESTDIR=$PKG \
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
+( cd $PKG/usr/lib${LIBDIRSUFFIX}
+  ln -sf /usr/lib${LIBDIRSUFFIX}/pulseaudio/* . )
+
 for f in $( find $PKG/etc/pulse/ -type f ) ; do mv $f $f.new ; done
 
 mkdir -p $PKG/etc/rc.d
 cp $CWD/rc.pulseaudio $PKG/etc/rc.d/rc.pulseaudio.new
+
+mkdir -p $PKG/var/run/pulse
+chmod 750 $PKG/var/run/pulse
+chown pulse:pulse $PKG/var/run/pulse
 
 rm -f $PKG/etc/dbus-1/system.d/pulseaudio-system.conf
 
