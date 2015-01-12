@@ -1,0 +1,18 @@
+
+Commits on Oct 3, 2014
+683486b
+    Added option not to resume playback after subtitle doubleclick if player is paused    
+3a82ce2
+Phonon player backend was displaying embeded subtitles
+
+Commits on Jan 3, 2015
+3dcf75f
+    code cleanup
+
+Commits on Jan 4, 2015
+2bde63e
+    MPV player support
+
+Commits on Jan 8, 2015
+5fe6d11
+    MPV player wasn't optional

@@ -20,7 +20,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=subtitlecomposer
-VERSION=${VERSION:-0.5.6}
+VERSION=${VERSION:-0.5.7}
 BUILD=${BUILD:-1}
 
 if [ -z "$ARCH" ]; then
@@ -60,6 +60,11 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
+
+# Upstream fixes:
+for patch in $CWD/patch/*.gz ; do
+  zcat $patch | patch -p1 --verbose || exit 1
+done
 
 chown -R root:root .
 find . \
@@ -101,7 +106,7 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat install > INSTALL
 cp -a \
-  AUTHORS TODO COPYING INSTALL README* \
+  AUTHORS TODO COPYING README* \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
