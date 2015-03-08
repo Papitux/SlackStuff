@@ -1,0 +1,7 @@
+pwrcap (Energy use monitor and Power Cap enforcement tools)
+
+pwrkap is a set of utilities that monitor computer energy consumption
+and enforces  an upper limit  on the amount of  power consumed by the
+computer at any given time.
+
+http://pwrkap.sourceforge.net/

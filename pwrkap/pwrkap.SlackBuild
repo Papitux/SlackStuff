@@ -1,0 +1,92 @@
+#!/bin/sh
+
+# Slackware build script for pwrkap
+
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=pwrkap
+VERSION=${VERSION:-7.30}
+BUILD=${BUILD:-1}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+make PREFIX=/usr || exit 1
+
+mkdir -p $PKG/usr/{bin,lib/$PRGNAM,man}
+mkdir -p $PKG/usr/man/{man1,man5,man8}
+mkdir -p $PKG/usr/share/{applications,icons,$PRGNAM}
+
+install -m755 bin/pwrkap_{aggregate,cli,gtk,main} $PKG/usr/bin/
+install -m644 data/{$PRGNAM.svg,ui.glade} $PKG/usr/share/$PRGNAM/
+install -m644 $CWD/$PRGNAM.desktop $PKG/usr/share/applications/
+install -m644 $PRGNAM/*.py $PKG/usr/lib/$PRGNAM/
+install -m644 man/*.1.gz $PKG/usr/man/man1
+install -m644 man/*.5.gz $PKG/usr/man/man5
+install -m644 man/*.8.gz $PKG/usr/man/man8
+
+mkdir -p $PKG/usr/share/icons/hicolor/
+for res in 16 32 48 64 96 128; do
+  mkdir -p  $PKG/usr/share/icons/hicolor/${res}x${res}/apps
+  convert data/$PRGNAM.svg -resize ${res}x${res} \
+    $PKG/usr/share/icons/hicolor/${res}x${res}/apps/$PRGNAM.png  
+done
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a docs/{COPYING,DESIGN,README} $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh.gz ]; then
+  zcat $CWD/doinst.sh.gz >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+chown -R root:root .
+chmod -R u+w,go+r-w,a-s .
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

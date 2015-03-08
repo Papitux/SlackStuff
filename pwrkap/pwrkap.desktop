@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=pwrkap
+Comment=pwrkap GTK client
+Comment[pt_BRfr]=Um cliente GTK para pwrkap
+Exec=pwrkap_gtk
+Terminal=false
+Icon=pwrkap
+Categories=GTK;Utility;
