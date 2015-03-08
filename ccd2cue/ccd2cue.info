@@ -1,0 +1,8 @@
+PRGNAM="ccd2cue"
+VERSION="0.4"
+HOMEPAGE="https://www.gnu.org/software/ccd2cue/"
+DOWNLOAD="http://ftp.gnu.org/pub/gnu/ccd2cue/ccd2cue-0.4.tar.gz"
+MD5SUM="f7f35daf70a4650faf808e9bcb70c949"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
