@@ -141,7 +141,7 @@ chown downloadd:downloadd $PKG/etc/downloaddaemon
    mv ${cfg} ${cfg}.new
   done )
 
-rm -rf PKG/etc/init.d
+rm -rf $PKG/etc/init.d
 mkdir -p $PKG/etc/rc.d
 install -m755 $CWD/etc/rc.downloadd $PKG/etc/rc.d/rc.downloadd.new
 
