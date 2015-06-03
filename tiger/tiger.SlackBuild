@@ -136,6 +136,10 @@ install -D -m 0644 version.h $PKG/usr/libexec/tiger/version.h
 ( cd $PKG/usr/libexec/tiger/systems/Linux/
   ln -sf 2/ 3 )
 
+# For kernel 4.x
+( cd $PKG/usr/libexec/tiger/systems/Linux/
+  ln -sf 2/ 4 )
+
 # Remove unnecesary stuff
 ( cd $PKG
   for system in AIX HPUX IRIX NeXT SunOS UNICOS UNICOSMK Tru64 MacOSX ; do
