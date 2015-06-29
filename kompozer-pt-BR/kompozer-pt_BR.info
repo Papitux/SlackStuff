@@ -1,0 +1,8 @@
+PRGNAM="kompozer"
+VERSION="0.8b3"
+HOMEPAGE="http://www.kompozer.net/"
+DOWNLOAD="http://kompozer.sourceforge.net/l10n/langpacks/kompozer-0.8b3/kompozer-0.8b3.pt-BR.xpi"
+MD5SUM="137c30b5da4ecd2816e920a18e4c8a82"
+REQUIRES="kompozer"
+MAINTAINER=""
+EMAIL="@"

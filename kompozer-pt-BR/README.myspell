@@ -1,0 +1,9 @@
+http://kompozer.sourceforge.net/l10n/myspell/myspell-dict.pt-BR.xpi
+
+Installation Instructions:
+
+1 - in KompoZer's main menu, click Tools > Extensions
+2 - in the "Extensions" window, click "Install" button
+3 - pick the *.xpi file
+4 - in the "Software installation" window, click "Install Now" button
+5 - restart KompoZer
