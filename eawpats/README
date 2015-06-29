@@ -1,0 +1,7 @@
+eawpats (MIDI instrument patches)
+
+This package contains a patchset for the TiMidity++ MIDI player.
+These patches also work with applications that use SDL_mixer for
+MIDI audio.
+
+http://alsa.opensrc.org/EawPats

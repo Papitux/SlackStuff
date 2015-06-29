@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+       |-----handy-ruler------------------------------------------------------|
+eawpats: eawpats (MIDI instrument patches)
+eawpats:
+eawpats: This package contains a patchset for the TiMidity++ MIDI player.
+eawpats: These patches also work with applications that use SDL_mixer for
+eawpats: MIDI audio.
+eawpats:
+eawpats: Home: http://alsa.opensrc.org/EawPats
+eawpats:
+eawpats:
+eawpats:
+eawpats:
