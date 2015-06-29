@@ -1,0 +1,7 @@
+mediastreamer (Create and run audio/video streams)
+
+Mediastreamer2 is a library to make audio and video real-time
+streaming and processing. Written in pure C, it is based upon
+the ortp library.
+
+http://www.linphone.org/technical-corner/mediastreamer2.html
