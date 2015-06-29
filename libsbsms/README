@@ -1,0 +1,7 @@
+libsbsms (Time stretching and pitch scaling of audio library)
+
+libsbsms is a  subband  sinusoidal modeling library for high quality
+time and pitch scale modification. It uses octave subband sinusoidal
+modeling.
+
+http://sbsms.sourceforge.net

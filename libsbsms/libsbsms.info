@@ -1,0 +1,8 @@
+PRGNAM="libsbsms"
+VERSION="2.0.2"
+HOMEPAGE="http://sbsms.sourceforge.net/"
+DOWNLOAD="http://sourceforge.net/projects/sbsms/files/sbsms/2.0.2/libsbsms-2.0.2.tar.gz"
+MD5SUM="61e069486d58094a2350a1113d2ca10a"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
