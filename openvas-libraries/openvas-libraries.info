@@ -1,0 +1,8 @@
+PRGNAM="openvas-libraries"
+VERSION="8.0.3"
+HOMEPAGE="http://www.openvas.org"
+DOWNLOAD="http://wald.intevation.org/frs/download.php/2015/openvas-libraries-8.0.3.tar.gz"
+MD5SUM="6e0cb62dadbeaf85a4522484e7e5ce4c"
+REQUIRES="hiredis"
+MAINTAINER=""
+EMAIL="@"
