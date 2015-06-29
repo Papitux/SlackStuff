@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Bokken
+GenericName=GUI for Pyew and Radare2
+GenericName[pt_BR]=Interface gráfica para Pyew e Radare2
+Comment=GUI for Pyew and Radare2
+Comment[pt_BR]=Interface gráfica para Pyew e Radare2
+Icon=bokken
+TryExec=bokken
+Exec=bokken
+Categories=System;Security;

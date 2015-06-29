@@ -1,0 +1,8 @@
+PRGNAM="bokken"
+VERSION="1.7"
+HOMEPAGE="http://inguma.eu/projects/bokken"
+DOWNLOAD="https://github.com/inguma/bokken/archive/1.7.tar.gz"
+MD5SUM="f1124320b0b88c9ab0415278010dbbc8"
+DEPENDS="graphviz, pygtk, pygtksourceview2, pillow, rdare2, radare2-bindings"
+MAINTAINER=""
+EMAIL="@"

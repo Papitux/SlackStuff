@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+      |-----handy-ruler------------------------------------------------------|
+bokken: bokken (GUI for Pyew and Radare2)
+bokken:
+bokken: Bokken is a GUI for the Pyew and Radare projects so it offers almost
+bokken: all the same features that Pyew has and *some* of the Radare's ones.
+bokken: It's intended to be a basic disassembler, mainly, to analyze malware
+bokken: and  vulnerabilities.   Currently Bokken is  neither an  hexadecimal
+bokken: editor nor a full featured  disassembler *YET*,  so it should not be
+bokken: used for deep code analysis or to try to modify files with it.
+bokken:
+bokken: Home: https://bokken.inguma.eu
+bokken:
