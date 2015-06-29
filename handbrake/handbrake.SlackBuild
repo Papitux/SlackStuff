@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
@@ -19,7 +19,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=handbrake
-VERSION=${VERSION:-0.10.0}
+VERSION=${VERSION:-0.10.2}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -79,6 +79,14 @@ zcat $CWD/pt_BR.patch.gz | patch -p1 --verbose || exit 1
 
 mkdir download
   cp -a $CWD/contrib/* download/
+
+# Use some system libs?
+#sed -i \
+#  -e '/MODULES += contrib\/ffmpeg/d' \
+#  -e '/MODULES += contrib\/libbluray/d' \
+#  -e '/MODULES += contrib\/libdvdnav/d' \
+#  -e '/MODULES += contrib\/libdvdread/d' \
+#  make/include/main.defs
 
 # Automake 1.13+
 ( cd gtk/
