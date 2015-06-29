@@ -1,0 +1,8 @@
+PRGNAM="libnotifymm"
+VERSION="0.7.0"
+HOMEPAGE="http://www.gnome.org/"
+DOWNLOAD="http://ftp.gnome.org/pub/gnome/sources/libnotifymm/0.7/libnotifymm-0.7.0.tar.xz"
+MD5SUM="29c675a899da3fbd4395c7333ee9bfbe"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
