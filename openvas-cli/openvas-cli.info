@@ -1,0 +1,8 @@
+PRGNAM="openvas-cli"
+VERSION="1.4.1"
+HOMEPAGE="http://www.openvas.org"
+DOWNLOAD="http://wald.intevation.org/frs/download.php/1987/openvas-cli-1.4.1.tar.gz"
+MD5SUM="2c1d2505d187613a73a599a4f3e24486"
+REQUIRES="openvas-libraries"
+MAINTAINER=""
+EMAIL="@"
