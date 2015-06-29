@@ -1,0 +1,8 @@
+PRGNAM="kompozer"
+VERSION="0.8b3"
+HOMEPAGE="http://www.kompozer.net/"
+DOWNLOAD="https://sourceforge.net/projects/kompozer/files/current/0.8b3/kompozer-0.8b3-src.tar.bz2"
+MD5SUM="cd4664ecda908666b19ef0607010c627"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
