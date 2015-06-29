@@ -1,0 +1,6 @@
+libfishsound (Interface that wraps Xiph.Org audio codecs)
+
+libfishsound provides a simple programming interface for decoding and
+encoding audio data using Xiph.Org codecs (FLAC, Speex and Vorbis).
+
+https://www.xiph.org/fishsound/
