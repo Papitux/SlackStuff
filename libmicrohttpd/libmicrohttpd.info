@@ -1,0 +1,8 @@
+PRGNAM="libmicrohttpd"
+VERSION="0.9.42"
+HOMEPAGE="http://www.gnu.org/software/libmicrohttpd/"
+DOWNLOAD="http://ftpmirror.gnu.org/libmicrohttpd/libmicrohttpd-0.9.42.tar.gz"
+MD5SUM="3b9cf0b67fc8ebc9e69f53c6bc84a88d"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
