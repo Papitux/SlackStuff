@@ -1,0 +1,8 @@
+PRGNAM="ucommon"
+VERSION="6.3.4"
+HOMEPAGE="http://www.gnu.org/software/commoncpp/"
+DOWNLOAD="http://ftp.gnu.org/gnu/commoncpp/ucommon-6.3.4.tar.gz"
+MD5SUM="86d088b10f3efe23b15591b7de1b1cf5"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
