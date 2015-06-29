@@ -1,0 +1,8 @@
+PRGNAM="valabind"
+VERSION="0.9.2"
+HOMEPAGE="http://radare.org/"
+DOWNLOAD="http://radare.org/get/valabind-0.9.2.tar.gz"
+MD5SUM="b8ce5e4c6318472a27536d4b9204dd81"
+DEPENDS="swig, vala"
+MAINTAINER=""
+EMAIL="@"
