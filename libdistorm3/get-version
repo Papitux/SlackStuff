@@ -1,0 +1,1 @@
+git log -1 --format="g%h.%cd" --date=short | sed 's/-/./g'
