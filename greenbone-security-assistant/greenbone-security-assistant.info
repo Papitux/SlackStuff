@@ -1,0 +1,8 @@
+PRGNAM="greenbone-security-assistant"
+VERSION="6.0.3"
+HOMEPAGE="http://www.openvas.org"
+DOWNLOAD="http://wald.intevation.org/frs/download.php/2018/greenbone-security-assistant-6.0.3.tar.gz"
+MD5SUM="66a55d20ab7b81b690977b3681222427"
+REQUIRES="libmicrohttpd, openvas-libraries"
+MAINTAINER=""
+EMAIL="@"
