@@ -1,0 +1,112 @@
+#!/bin/sh
+
+DAEMON=uptimed
+PIDFILE="/var/run/$DAEMON.pid"
+LOGFILE="/var/log/$DAEMON.log"
+PID=$PIDFILE
+PIDP=$(pidof uptimed)
+
+RETVAL=0
+
+if [ ! -f /var/spool/uptimed/records ] ; then
+ /usr/sbin/uptimed -b &> /dev/null
+fi
+
+start() {
+  if [ -f $PIDFILE ]; then
+    echo "Alredy running."
+    exit 1
+  else
+   echo -n "Starting the uptime record daemon (uptimed)..."
+  /usr/sbin/uptimed -p $PIDFILE &> /dev/null
+  fi
+  if [ "$(ps aux | grep uptimed | grep -v grep)" ]; then 
+    echo " Ok!"
+    RETVAL=$?
+  else
+    RETVAL=1
+    echo " error!"    
+  fi
+ return $RETVAL
+}
+
+stop() {
+  echo -n "Stopping the uptime record daemon (uptimed)..."
+  if [ -z "$PIDP" ]; then
+    echo " not running."
+    exit 0
+  fi
+  if kill -15 $PIDP; then
+    echo " stopped."
+  else
+    sleep 1
+    if kill -9 $PIDP; then
+      echo " killed."
+    else
+      echo " error!"
+      exit 1
+   fi
+  fi
+}
+
+reload() {
+  echo -n "Reloading the uptime record daemon (uptimed)..."
+  if [ -z "$PIDP" ]; then
+    echo " not running."
+    exit 1
+  fi
+  if kill -0 $PIDP; then
+    stop
+    start
+   RETVAL=$?
+  else
+   RETVAL=1
+  fi
+  if [ $RETVAL -eq 0 ]; then
+    echo " reloaded."
+  else
+    echo " error!"
+    exit 1
+  fi
+ return $RETVAL
+}
+
+status() {
+  if [ -z "$PIDP" ]; then
+    echo "Not running."
+    exit 1
+  elif [ -f "$PID" ]; then
+    echo "Running in pid $PIDP."
+    exit 0
+  else
+    echo "The uptime record daemon (uptimed) is not running."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+  ;;
+
+  stop)
+    stop
+  ;;
+
+  restart)
+    stop
+    sleep 3
+    start
+  ;;
+
+  reload)
+    reload
+  ;;
+
+  status)
+    status
+  ;;
+
+  *)
+  echo "Usage: $0 (start|stop|restart|reload|status)"
+esac
