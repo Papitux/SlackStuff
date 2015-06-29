@@ -1,0 +1,9 @@
+PRGNAM="Pillow"
+VERSION="2.8.2"
+HOMEPAGE="http://python-pillow.github.io/"
+DOWNLOAD="https://pypi.python.org/packages/source/P/Pillow/Pillow-2.8.2.tar.gz"
+MD5SUM="ea162cbc817a925450f990ccd63e2bda"
+REQUIRES="libfreetype, libjpeg, libtif, sane, tcl/tk, zlib"
+OPT_DEPENDS="lcms, libwbep, openjpeg
+MAINTAINER=""
+EMAIL="@"

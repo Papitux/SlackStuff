@@ -1,0 +1,7 @@
+PRGNAM="sane"
+VERSION="2.8.1"
+HOMEPAGE="http://python-pillow.github.io/"
+DOWNLOAD="https://github.com/python-pillow/Sane/archive/v2.8.1.tar.gz"
+MD5SUM="ec396584961bad337e93dec11a0122e3"
+MAINTAINER=""
+EMAIL="@"
