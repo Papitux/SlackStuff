@@ -1,0 +1,5 @@
+wget https://github.com/marazmista/radeon-profile-daemon/archive/master.zip
+
+or
+
+git clone https://github.com/marazmista/radeon-profile-daemon.git
