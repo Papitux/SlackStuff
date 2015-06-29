@@ -1,0 +1,7 @@
+libgcab (Microsoft Cabinet file manipulation tool)
+
+gcab can list, extract and create cabinet (.cab) files, commonly used
+as  archives to  distribute  software on Windows.  gcab is similar to
+cabextract but can create cabinet files.
+
+https://wiki.gnome.org/msitools
