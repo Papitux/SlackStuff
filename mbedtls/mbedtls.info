@@ -1,0 +1,8 @@
+PRGNAM="mbedtls"
+VERSION="1.3.11"
+HOMEPAGE="https://tls.mbed.org/"
+DOWNLOAD="https://tls.mbed.org/download/mbedtls-1.3.11-gpl.tgz"
+MD5SUM="c02ce2e54862d678604794ee484fb59e"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
