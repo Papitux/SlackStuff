@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+wildmidi: WildMIDI (Open Source MIDI Synthesizer)
+wildmidi:
+wildmidi: WildMIDI is a  simple software midi player which has a core softsynth
+wildmidi: library that can be use with other applications. The WildMIDI library
+wildmidi: uses  Gravis  Ultrasound patch files to convert MIDI files into audio
+wildmidi: which is then passed back to the calling application. The library API
+wildmidi: is designed so that it is easy to include  WildMIDI into applications
+wildmidi: that wish to include MIDI file playback.
+wildmidi:
+wildmidi: Home: http://www.mindwerks.net/projects/wildmidi/
+wildmidi:
