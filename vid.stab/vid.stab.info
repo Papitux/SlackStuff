@@ -1,0 +1,8 @@
+PRGNAM="vid.stab"
+VERSION="0.98b"
+HOMEPAGE="http://public.hronopik.de/vid.stab/"
+DOWNLOAD="https://github.com/georgmartius/vid.stab/archive/release-0.98b.tar.gz"
+MD5SUM="299b2f4ccd1b94c274f6d94ed4f1c5b8"
+DEPENDS="transcode"
+MAINTAINER=""
+EMAIL="@"

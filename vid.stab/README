@@ -1,0 +1,6 @@
+vid.stab (video stabilization library)
+
+Vidstab is a video stabilization library which can be plugged-in
+with FFmpeg and Transcode.
+
+http://public.hronopik.de/vid.stab/
