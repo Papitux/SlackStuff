@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+       |-----handy-ruler------------------------------------------------------|
+radare2: radare2 (Portable reverse engineering framework)
+radare2:
+radare2: r2 is a rewrite from scratch  of radare in  order to provide a set of
+radare2: libraries  and tools to work with  binary files.  This is the rewrite
+radare2: of radare (1.x branch) to provide a framework with a set of libraries
+radare2: and  programs to  work with binary data.  Radare project started as a
+radare2: forensics tool,  an scriptable commandline hexadecimal editor able to
+radare2: open disk files,  but later support for analyzing binaries, debugging
+radare2: programs, disassembling code, attaching to remote gdb servers...
+radare2:
+radare2: Home: http://radare.org/
