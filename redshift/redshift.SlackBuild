@@ -2,7 +2,7 @@
 
 # Slackware build script for redshift
 
-# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
@@ -81,6 +81,12 @@ zcat $CWD/python27.patch.gz | patch -p1 --verbose || exit 1
 
 # Change host provider for geoclue
 zcat $CWD/change-provider.patch.gz | patch -p1 --verbose || exit 1
+
+# Brazilianise
+zcat $CWD/pt_BR.patch.gz | patch -p1 --verbose || exit 1
+
+( cd po/
+  rm -f pt_BR.gmo && msgfmt -o pt_BR.gmo pt_BR.po )
 
 chown -R root:root .
 find . \
