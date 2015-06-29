@@ -1,0 +1,8 @@
+PRGNAM="gtox"
+VERSION="git"
+HOMEPAGE="https://github.com/KoKuToru/gTox/"
+DOWNLOAD="git clone https://github.com/KoKuToru/gTox.git"
+MD5SUM="b09cd2f81858bb11f46a6a20c680e041"
+DEPENDS="glib, gtk+3, libnotifymm, libtoxcore"
+MAINTAINER=""
+EMAIL="@"
