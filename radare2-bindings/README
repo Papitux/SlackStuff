@@ -1,0 +1,7 @@
+radare2-bindings (language bindings for radare2 api)
+
+It supports a large list of programming languages: Python, JavaScript,
+Java, Vala, Go, Ruby, Perl, Lua, NewLisp, Guile, OCaml. And some other
+experimental bindings are for: GIR, C++.
+
+http://radare.org/
