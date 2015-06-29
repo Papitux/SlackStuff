@@ -1,0 +1,10 @@
+veracrypt (disk encryption software based on TrueCrypt)
+
+VeraCrypt adds enhanced security to the algorithms used for system
+and partitions encryption making it immune to  new developments in
+brute-force  attacks.  It  also  solves  many  vulnerabilities and
+security issues found in TrueCrypt. Starting from version 1.0f, it
+can load  TrueCrypt volume  and offers the  possibility to convert
+TrueCrypt containers and non-system partitions to VeraCrypt format.
+
+https://veracrypt.codeplex.com/

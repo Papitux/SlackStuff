@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=VeraCrypt
+Comment=Disk encryption software based on original TrueCrypt 7.1a
+Comment[pt_BR]=Aplicativo para encriptação de disco baseado no TrueCrypt 7.1a
+Exec=veracrypt
+Icon=veracrypt
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;Application;
