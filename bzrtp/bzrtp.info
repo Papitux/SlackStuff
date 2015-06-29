@@ -1,0 +1,8 @@
+PRGNAM="bzrtp"
+VERSION="1.0.2"
+HOMEPAGE="http://www.linphone.org"
+DOWNLOAD="http://download.savannah.gnu.org/releases/linphone/bzrtp/bzrtp-1.0.2.tar.gz"
+MD5SUM="b52fa670fb319022166cb10d641da4e6"
+REQUIRES="libxml2, mbedtls"
+MAINTAINER=""
+EMAIL="@"
