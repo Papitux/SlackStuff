@@ -1,0 +1,10 @@
+https://data.iana.org/root-anchors/Kjqmt7v.crt
+https://data.iana.org/root-anchors/Kjqmt7v.csr
+#https://data.iana.org/root-anchors/draft-icann-dnssec-trust-anchor.html
+https://data.iana.org/root-anchors/draft-icann-dnssec-trust-anchor.txt
+https://data.iana.org/root-anchors/icann.pgp
+https://data.iana.org/root-anchors/icannbundle.p12
+https://data.iana.org/root-anchors/icannbundle.pem
+https://data.iana.org/root-anchors/root-anchors.asc
+https://data.iana.org/root-anchors/root-anchors.p7s
+https://data.iana.org/root-anchors/root-anchors.xml
