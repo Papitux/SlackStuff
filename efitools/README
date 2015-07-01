@@ -1,0 +1,6 @@
+efitools (Tools for manipulating UEFI secure boot platforms)
+
+tools for manipulating keys and binary  signatures on UEFI
+secure boot platforms.
+
+https://build.opensuse.org/package/show/home:jejb1:UEFI/efitools

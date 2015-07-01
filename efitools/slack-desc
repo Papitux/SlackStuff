@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+      |-----handy-ruler------------------------------------------------------|
+efitools: efitools (Tools for manipulating UEFI secure boot platforms)
+efitools:
+efitools: tools for manipulating keys and binary  signatures on UEFI
+efitools: secure boot platforms.
+efitools:
+efitools: https://build.opensuse.org/package/show/home:jejb1:UEFI/efitools
+efitools:
+efitools:
+efitools:
+efitools:
+efitools:
