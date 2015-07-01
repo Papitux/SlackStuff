@@ -1,0 +1,6 @@
+sbsigntool (Signing Utility for UEFI Secure Boot)
+
+Utilities that can be used for signing and for verifying PE programs
+for use with UEFI Secure Boot.
+
+http://kernel.ubuntu.com/git/jk/sbsigntool/
