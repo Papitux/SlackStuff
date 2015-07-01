@@ -1,0 +1,6 @@
+efivar (Tools and library to manipulate EFI variables)
+
+Efivar provides a command line interface and a library to allow for
+the manipulation of UEFI variables.
+
+https://github.com/rhinstaller/efivar
