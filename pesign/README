@@ -1,0 +1,8 @@
+pesign (Signing tool for PE-COFF binaries)
+
+Signing  tool for PE-COFF binaries,  hopefully  at least vaguely
+compliant with the PE and Authenticode specifications.  The Sign
+Tool is a command-line tool that digitally signs files, verifies
+signatures in files or time stamps files.
+
+https://github.com/rhinstaller/pesign
