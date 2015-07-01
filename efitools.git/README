@@ -1,0 +1,6 @@
+efitools (Tools for manipulating UEFI secure boot platforms)
+
+tools for manipulating keys and binary  signatures on UEFI
+secure boot platforms.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git
