@@ -1,0 +1,8 @@
+PRGNAM="conky"
+VERSION="1.10.0"
+HOMEPAGE="http://conky.sourceforge.net"
+DOWNLOAD="https://github.com/brndnmtthws/conky/archive/v1.10.0.tar.gz"
+MD5SUM="cdc0298e5f257829d574ae8114170d9b"
+MAINTAINER=""
+EMAIL="@"
+APPROVED=""
