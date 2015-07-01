@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+    |-----handy-ruler------------------------------------------------------|
+shim: shim (Bootloader for x86_64 UEFI Secure Boot)
+shim:
+shim: shim is a trivial EFI application that, when run, attempts to open
+shim: and execute  another application.  It will initially attempt to do
+shim: this via the standard EFI LoadImage() and  StartImage() calls.  If
+shim: these  fail  (because secure boot is enabled and the binary is not
+shim: signed with an appropriate key) it will  then validate  the binary
+shim: against a built-in certificate.
+shim:
+shim: Home: https://github.com/rhinstaller/shim
+shim:

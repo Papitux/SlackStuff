@@ -1,0 +1,10 @@
+shim (Bootloader for x86_64 UEFI Secure Boot)
+
+shim is a trivial EFI application that, when run, attempts to open
+and execute  another application.  It will initially attempt to do
+this via the standard EFI LoadImage() and  StartImage() calls.  If
+these  fail  (because secure boot is enabled and the binary is not
+signed with an appropriate key) it will  then validate  the binary
+against a built-in certificate.
+
+https://github.com/rhinstaller/shim
