@@ -1,0 +1,6 @@
+gnu-efi (EFI Development files for the GNU toolchain)
+
+Develop EFI applications using the GNU toolchain and the EFI
+development environment.
+
+http://gnu-efi.sourceforge.net
