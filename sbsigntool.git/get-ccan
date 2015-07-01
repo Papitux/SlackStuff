@@ -1,0 +1,13 @@
+#!/bin/sh
+git clone https://github.com/rustyrussell/ccan.git
+cd ccan/
+export VERSION=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
+cd ..
+mv ccan/ ccan-$VERSION/
+rm -rf ccan-$VERSION/{.git*,.travis*}
+tar jcvf ccan-$VERSION.tar.bz2 ccan-$VERSION
+rm -rf ccan-$VERSION/
+echo ""
+echo "Done cloning ccan. Tarball is ready!"
+sleep 2
+exit

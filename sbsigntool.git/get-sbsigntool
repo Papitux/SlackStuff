@@ -1,0 +1,13 @@
+#!/bin/sh
+git clone git://kernel.ubuntu.com/jk/sbsigntool.git
+cd sbsigntool/
+export VERSION=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
+cd ..
+mv sbsigntool/ sbsigntool-$VERSION/
+rm -rf sbsigntool-$VERSION/.git*
+tar jcvf sbsigntool-$VERSION.tar.bz2 sbsigntool-$VERSION
+rm -rf sbsigntool-$VERSION/
+echo ""
+echo "Done cloning sbsigntool. Tarball is ready!"
+sleep 2
+exit
