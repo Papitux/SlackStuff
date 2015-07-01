@@ -1,0 +1,6 @@
+sbsigntools (Signing Utility for UEFI Secure Boot)
+
+Utilities that can be used for signing and for verifying PE programs
+for use with UEFI Secure Boot.
+
+https://build.opensuse.org/package/show/home:jejb1:UEFI/sbsigntools
