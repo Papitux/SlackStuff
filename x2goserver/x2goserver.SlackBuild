@@ -1,0 +1,238 @@
+#!/bin/sh
+
+# Slackware build script for x2goserver
+
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=x2goserver
+VERSION=${VERSION:-4.0.1.19}
+BUILD=${BUILD:-1}
+
+X2GOUSR=x2gouser
+X2GOGRP=x2gouser
+PRNTUSR=x2goprint
+PRNTGRP=x2goprint
+
+# Add x2gouser user/group
+export FREE_UID=`tail -1 /etc/passwd |awk -F : '{print $3 + 1}'`
+export FREE_GUID=`tail -1 /etc/group |awk -F : '{print $3 + 1}'`
+export X2GO_USER=$X2GOUSR
+export X2GO_GROUP=$X2GOGRP
+
+if ! grep --quiet '^x2gouser:' /etc/group ;then
+  echo -e "Creating new group x2gouser..." 1>&2
+           /usr/sbin/groupadd \
+          -g $FREE_GUID \
+           $X2GO_GROUP 2> /dev/null
+else
+ if grep --quiet '^x2gouser:' /etc/group ;then
+   echo -e "Group already exist or error creating new group..." 1>&2
+ fi
+fi
+
+if ! grep --quiet '^x2gouser:' /etc/passwd ;then
+  echo -e "Creating privileged user..." 1>&2
+           /usr/sbin/useradd \
+          -d /var/lib/x2go \
+          -c "X2Go user" \
+          -u $FREE_UID \
+          -s /bin/false \
+          -g $X2GO_GROUP \
+           $X2GO_USER 2> /dev/null
+           usermod -a -G $X2GO_GROUP $X2GO_USER 2> /dev/null
+else
+ if grep --quiet '^x2gouser:' /etc/passwd ;then
+   echo -e "User already exist or error creating privileged user..." 1>&2
+ fi
+fi
+
+# Add x2goprint user/group
+export FREE_UID2=`tail -1 /etc/passwd |awk -F : '{print $3 + 1}'`
+export FREE_GUID2=`tail -1 /etc/group |awk -F : '{print $3 + 1}'`
+export PRNT_USER=$PRNTUSR
+export PRNT_GROUP=$PRNTGRP
+
+if ! grep --quiet '^x2goprint:' /etc/group ;then
+  echo -e "Creating new group x2goprint..." 1>&2
+           /usr/sbin/groupadd \
+          -g $FREE_GUID2 \
+           $PRNT_GROUP 2> /dev/null
+else
+ if grep --quiet '^x2goprint:' /etc/group ;then
+   echo -e "Group already exist or error creating new group..." 1>&2
+ fi
+fi
+
+if ! grep --quiet '^x2goprint:' /etc/passwd ;then
+  echo -e "Creating privileged user..." 1>&2
+           /usr/sbin/useradd \
+          -d /var/spool/x2go \
+          -c "X2Go print" \
+          -u $FREE_UID2 \
+          -s /bin/false \
+          -g $PRNT_GROUP \
+           $PRNT_USER 2> /dev/null
+           usermod -a -G $PRNT_GROUP $PRNT_USER 2> /dev/null
+else
+ if grep --quiet '^x2goprint:' /etc/passwd ;then
+   echo -e "User already exist or error creating privileged user..." 1>&2
+ fi
+fi
+
+if [ -e $(pwd)/machine.conf ]; then
+  . $(pwd)/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j1 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+cd $PRGNAM-$VERSION
+
+# Fix Makefile permission
+for Makefile in $(find . -type f -name Makefile); do
+  sed -i "s:-o root -g root ::g" $Makefile
+done
+# Do not ship xsession - Debian specific
+sed -i -e '/xsession/s/^/#/' Makefile
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+make $NUMJOBS DESTDIR=$PKG \
+   PREFIX=/usr \
+   ETCDIR=/etc/x2go \
+   SBINDIR=/usr/sbin \
+   PERL_INSTALLDIRS=vendor \
+   SHAREDIR=/usr/share/x2go \
+   LIBDIR=/usr/lib${LIBDIRSUFFIX}/x2go || exit 1
+
+make install DESTDIR=$PKG \
+   PREFIX=/usr \
+   ETCDIR=/etc/x2go \
+   SBINDIR=/usr/sbin \
+   PERL_INSTALLDIRS=vendor \
+   SHAREDIR=/usr/share/x2go \
+   LIBDIR=/usr/lib${LIBDIRSUFFIX}/x2go || exit 1
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+# Install init script
+mkdir $PKG/etc/rc.d
+install -m755 $CWD/rc.x2goserver \
+  $PKG/etc/rc.d/rc.x2goserver.new
+
+# Perl stuff
+mkdir -p $PKG/usr/share/perl5/vendor_perl
+cp -a $PKG/usr/lib${LIBDIRSUFFIX}/x2go/*.pm \
+  $PKG/usr/share/perl5/vendor_perl
+
+# X2go stuff
+mkdir -p $PKG/var/{lib,spool}/x2go
+chmod 0770 $PKG/var/{lib,spool}/x2go
+chown x2gouser:x2gouser $PKG/var/lib/x2go
+chown x2goprint:x2goprint $PKG/var/spool/x2go
+
+# Restore default permission
+chmod 750 $PKG/etc/sudoers.d
+
+# Set ownership (INSTALL)
+chown root:x2gouser $PKG/usr/lib${LIBDIRSUFFIX}/x2go/x2gosqlitewrapper
+chmod 2755 $PKG/usr/lib${LIBDIRSUFFIX}/x2go/x2gosqlitewrapper
+chown root:x2goprint $PKG/usr/bin/x2goprint
+chmod 2755 $PKG/usr/bin/x2goprint
+chown 0440 $PKG/etc/sudoers.d/x2goserver
+
+# Preserve config
+for cfg in x2goagent.options x2goserver.conf; do
+( cd $PKG/etc/x2go/
+  mv ${cfg} ${cfg}.new )
+done
+
+if [ -d $PKG/usr/share/man ];then
+mkdir -p $PKG/usr/man
+mv $PKG/usr/share/man/* $PKG/usr/man
+rm -rf $PKG/usr/share/man
+fi
+
+if [ -d $PKG/usr/man ]; then
+  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
+  for i in $(find $PKG/usr/man -type l -name "*.?"); do
+  ln -s $( readlink $i ).gz $i.gz ; rm $i
+  done
+fi
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a COPYING INSTALL README* UNINSTALL \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+if [ -r ChangeLog ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION)
+  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
+  touch -r ChangeLog $DOCSDIR/ChangeLog
+fi
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+zcat $CWD/doinst.sh.gz > $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

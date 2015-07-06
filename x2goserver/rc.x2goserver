@@ -1,0 +1,19 @@
+#!/bin/sh
+
+case "$1" in
+	'start')
+		/usr/sbin/x2gocleansessions
+	;;
+	'stop')
+		killall x2gocleansessions
+		# Forcibly remove .pid locations:
+		rm -f /var/run/x2goserver.pid
+	;;
+	'restart')
+		$0 stop
+		$0 start
+	;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+	;;
+esac
