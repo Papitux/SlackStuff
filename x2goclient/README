@@ -1,0 +1,11 @@
+x2goclient (X2Go Remote Desktop solution)
+
+X2Go enables you to access a  graphical  desktop  of a computer over a
+low bandwidth (or high bandwidth) connection. X2Go is a Remote Desktop
+solution,   which is not to be confused with  Microsoft Remote Desktop
+You can connect from a computer running Linux, Windows or MacOS X. and
+multiple  users / clients  can access a single X2Go Server at the same
+time, with each  user / client having an individual Desktop session by
+default; however, desktop sharing is possible.
+
+http://www.x2go.org
