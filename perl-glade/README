@@ -1,0 +1,5 @@
+glade-perl ( Perl bindings for perl-gtk2 )
+
+Perl support for Glade 2.x to Gtk2-Perl.
+
+http://gtk2-perl.sourceforge.net
