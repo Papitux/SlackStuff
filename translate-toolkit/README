@@ -1,9 +1,11 @@
-translate-toolkit (A toolkit to convert different translation formats)
+translate-toolkit (A toolkit to help localisations)
 
-The Translate Toolkit includes programs to covert localization formats
-to the common PO,  and emerging XLIFF format.  There are also programs
-to check and manage PO and XLIFF files.  Online documentation includes
-guides on using the tools,  running a localization  project and how to
-localize various projects from OpenOffice.org to Mozilla.
+The Translate Toolkit is a set of software and documentation designed
+to help make the lives  of localizers both  more productive  and less
+frustrating.  At its core the software contains a  set of classes for
+handling  various  localization  storage  formats:  DTD,  properties,
+OpenOffice.org GSI/SDF,  CSV,  MO,  Qt .ts,  TMX, TBX,  WordFast txt,
+Gettext .mo, Windows RC, and of course PO and XLIFF. It also provides
+scripts to convert between these formats.
 
-http://toolkit.translatehouse.org
+http://toolkit.translatehouse.org/index.html

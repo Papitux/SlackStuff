@@ -2,7 +2,7 @@
 
 # Slackware build script for translate-toolkit
 
-# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
@@ -21,33 +21,30 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=translate-toolkit
-VERSION=${VERSION:-1.12.0}
+VERSION=${VERSION:-1.13.0}
 BUILD=${BUILD:-1}
 
-if [ -e $CWD/machine.conf ]; then
-  . $CWD/machine.conf ]
+MARCH=$( uname -m )
+if [ -z "$ARCH" ]; then
+  case "$MARCH" in
+    i?86)    export ARCH=i486 ;;
+    arm*)    export ARCH=arm ;;
+    *)       export ARCH=$MARCH ;;
+  esac
+fi
+
+if [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+  SLKLDFLAGS=""; LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+  SLKLDFLAGS=""; LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+  SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
 else
-  MARCH=$( uname -m )
-  if [ -z "$ARCH" ]; then
-    case "$MARCH" in
-      i?86)    export ARCH=i486 ;;
-      arm*)    export ARCH=arm ;;
-      *)       export ARCH=$MARCH ;;
-    esac
-  fi
-  if [ "$ARCH" = "i486" ]; then
-    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
-    SLKLDFLAGS=""; LIBDIRSUFFIX=""
-  elif [ "$ARCH" = "i686" ]; then
-    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
-    SLKLDFLAGS=""; LIBDIRSUFFIX=""
-  elif [ "$ARCH" = "x86_64" ]; then
-    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
-    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
-  else
-    SLKCFLAGS="-O2"
-    LIBDIRSUFFIX=""
-  fi
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
 fi
 
 set -e
@@ -75,19 +72,22 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
+#python setup.py build || exit 1
 python setup.py install --root=$PKG --optimize=1 || exit 1
+python2 -m compileall $PKG/usr/lib${LIBDIRSUFFIX}/python2.7/site-packages/translate || exit 1
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
-  COPYING MANIFEST* README* {min-required,requirements}.txt \
+    COPYING {min-required,requirements}.txt README* requirements/*.txt \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-if [ -r ChangeLog ]; then
-  DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION)
-  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
-  touch -r ChangeLog $DOCSDIR/ChangeLog
-fi
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
