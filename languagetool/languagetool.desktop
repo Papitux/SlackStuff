@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=LanguageTool
+GenericName=Open Source Proofreading
+GenericName[pt_BR]=Ferramenta para revisão de textos
+Comment=A graphical proofreading
+Comment[pt_BR]=Ferramenta gráfica de código aberto para revisão de textos
+Exec=languagetool
+Icon=languagetool
+Categories=Office;Development;Applications;GTK;
+Terminal=false

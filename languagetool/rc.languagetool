@@ -1,0 +1,70 @@
+#!/bin/sh
+
+DAEMON=languagetool
+PIDFILE=/var/run/$DAEMON.pid
+LNGTOOL=/usr/opt/languagetool
+LNGLOG=/var/log
+
+PID=$(cat $PIDFILE 2>/dev/null)
+
+start() {
+
+if [ -f $PIDFILE ]; then
+  echo "Alredy started running in pid $PID"
+  exit 1
+else
+  echo -n "Starting LanguageTool HTTPServer on port 8081..."
+  touch $PIDFILE
+  $JAVA_HOME/bin/java -Xmx1024m -cp $LNGTOOL/languagetool-server.jar org.languagetool.server.HTTPServer --port 8081 >> $LNGLOG/$DAEMON.log 2>&1 &
+  echo $! > $PIDFILE 2>/dev/null
+  echo "  OK!"
+fi
+}
+ 
+
+stop() {
+ 
+if [ -z "$PID" ] ; then
+  echo "LanguageTool HTTPServer is already stopped."
+  exit 1
+fi
+ 
+echo -n "Stopping LanguageTool HTTPServer..."
+kill -9 $PID & rm -f $PIDFILE
+ echo "  OK!"
+}
+ 
+
+status() {
+ 
+
+ pid=$PID
+ 
+if [ -f $PIDFILE ]; then
+  echo "LanguageTool HTTPServer is started and running in pid $PID"
+else
+  echo "LanguageTool HTTPServer is not running."
+fi
+ 
+}
+ 
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  restart|reload)
+    stop
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|reload|status}"
+    exit 1
+esac
+ 
+exit 0

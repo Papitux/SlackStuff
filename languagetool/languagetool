@@ -1,0 +1,5 @@
+#!/bin/bash
+#java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'
+
+LNGTOOL=/usr/opt/languagetool
+$JAVA_HOME/bin/java -Dfile.encoding=UTF-8 -Xms64m -Xmx256m -cp $LNGTOOL/languagetool.jar org.languagetool.gui.Main
