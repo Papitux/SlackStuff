@@ -1,0 +1,8 @@
+PRGNAM="xca"
+VERSION="1.2.0"
+HOMEPAGE="http://xca.sourceforge.net/"
+DOWNLOAD="http://sourceforge.net/projects/xca/files/xca/1.2.0/xca-1.2.0.tar.gz"
+MD5SUM="c5c9ac3ab981f898c88a2eae37fd5e55"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
