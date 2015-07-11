@@ -1,0 +1,8 @@
+Withou patching PyGobject (upstream ones), you'll get this error:
+
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/virtaal/views/widgets/storecellrenderer.py", line 192, in do_start_editing
+    self._editor_editing_done_id = editor.connect("editing-done", self._on_editor_done)
+TypeError: <UnitView object at 0x7fd6b457a410 (UnitView at 0x1ec9e20)>: unknown signal name: editing-done
+
+...and this application will not work as expected.

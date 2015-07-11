@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Virtaal
+GenericName=Translation Tool
+GenericName[pt_BR]=Ferramenta de Tradução
+Comment=A graphical localisation editor
+Comment[pt_BR]=Ferramenta gráfica para traduções
+Exec=virtaal
+TryExec=virtaal %f
+Icon=virtaal
+MimeType=text/x-gettext-translation;text/x-gettext-translation-template;application/x-gettext;application/x-gettext-translation;application/x-xliff+xml;application/x-xliff;text/x-wordfast;application/x-tmx;application/x-tbx;application/x-linguist;application/x-qph;application/x-qm;
+Categories=Development;Applications;GTK;
+Terminal=false
