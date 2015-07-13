@@ -1,0 +1,8 @@
+qt5ct (Qt5 configuration tool)
+
+This program allows users to configure Qt5 settings (theme, font,
+icons, etc.) under DE/WM without Qt integration.
+
+Add 'export QT_QPA_PLATFORMTHEME=qt5ct' to ~/.profile and re-login.
+
+http://qt5ct.sourceforge.net
