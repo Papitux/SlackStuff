@@ -1,0 +1,6 @@
+libphonenumber (Parse, formate, store and validate phone numbers)
+
+Google's common C++ library for parsing, formatting, storing and 
+validating international phone numbers.
+
+https://github.com/googlei18n/libphonenumber

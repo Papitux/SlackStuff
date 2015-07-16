@@ -1,0 +1,8 @@
+PRGNAM="re2"
+VERSION="2015-07-01"
+HOMEPAGE="https://github.com/google/re2"
+DOWNLOAD="https://github.com/google/re2/archive/2015-07-01.tar.gz"
+MD5SUM="f5e20606bf49fe0678047599bba48e72"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"

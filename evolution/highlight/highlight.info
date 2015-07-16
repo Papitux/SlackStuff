@@ -1,0 +1,8 @@
+PRGNAM="highlight"
+VERSION="3.22"
+HOMEPAGE="http://www.andre-simon.de/"
+DOWNLOAD="http://www.andre-simon.de/zip/highlight-3.22.tar.bz2"
+MD5SUM="6e6e12b7ee966fe6b1a31eeda3f0761a"
+REQUIRES="lua"
+MAINTAINER=""
+EMAIL="@"

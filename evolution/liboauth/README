@@ -1,0 +1,9 @@
+liboauth (C library implementing OAuth Core RFC 5849)
+
+liboauth is a collection of POSIX-c functions implementing the OAuth
+Core  RFC 5849  standard.  liboauth provides functions to escape and
+encode parameters according to OAuth specification  and offers high-
+level functionality to  sign requests or verify  OAuth signatures as
+well as perform HTTP requests.
+
+http://liboauth.sourceforge.net

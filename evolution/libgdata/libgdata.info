@@ -1,0 +1,8 @@
+PRGNAM="libgdata"
+VERSION="0.17.2"
+HOMEPAGE="https://wiki.gnome.org/Projects/libgdata"
+DOWNLOAD="http://ftp.gnome.org/pub/gnome/sources/libgdata/0.17/libgdata-0.17.2.tar.xz"
+MD5SUM="b21572a4c7f8bd07b831630039fa3361"
+DEPENDS="intltool, gcr, gobject-introspection, liboauth, libsoup, python2, uhttpmock, vala"
+MAINTAINER=""
+EMAIL="@"
