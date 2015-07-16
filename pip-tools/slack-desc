@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+         |-----handy-ruler------------------------------------------------------|
+pip-tools: pip-tools (Keep pinned Python dependencies fresh)
+pip-tools:
+pip-tools: A set of two command line tools to help you keep your pip-based
+pip-tools: packages fresh, even when you've pinned them.
+pip-tools:
+pip-tools: You do pin them, right?
+pip-tools:
+pip-tools: Home: https://github.com/nvie/pip-tools
+pip-tools:
+pip-tools:
+pip-tools:

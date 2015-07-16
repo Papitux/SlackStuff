@@ -1,0 +1,8 @@
+pip-tools (Keep pinned Python dependencies fresh)
+
+A set of two command line tools to help you keep your pip-based
+packages fresh, even when you've pinned them.
+
+You do pin them, right?
+
+https://github.com/nvie/pip-tools
