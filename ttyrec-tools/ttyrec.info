@@ -1,0 +1,8 @@
+PRGNAM="ttyrec"
+VERSION="1.0.15"
+HOMEPAGE="http://kbtin.sourceforge.net/"
+DOWNLOAD="http://http.debian.net/debian/pool/main/k/kbtin/kbtin_1.0.15.orig.tar.xz"
+MD5SUM="7d22a627e706bd2fd148937452b442bf"
+DEPENDS="autoconf, gettext, glib2, ttyrec"
+MAINTAINER=""
+EMAIL="@"

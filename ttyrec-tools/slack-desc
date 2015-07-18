@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+            |-----handy-ruler------------------------------------------------------|
+ttyrec-tools: ttyrec-tools (Tools to manage records from ttyrec)
+ttyrec-tools:
+ttyrec-tools: Tools to complement the usage of ttyrec, a tty recorder. It is part
+ttyrec-tools: of KBtin, a console MUD client based on the once-popular tintin++.
+ttyrec-tools:
+ttyrec-tools: Home: http://kbtin.sourceforge.net
+ttyrec-tools:
+ttyrec-tools:
+ttyrec-tools:
+ttyrec-tools:
+ttyrec-tools:
