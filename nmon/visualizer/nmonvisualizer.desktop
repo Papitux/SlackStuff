@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=NMONVisualizer
+Exec=nmonvisualizer
+Icon=nmonvisualizer
+GenericName=GUI Visualizer for NMON reports
+GenericName[pt_BR]=Vizualizador GUI para reportes do NMON
+Comment=A Java GUI tool for analyzing NMON system files 
+Comment[pt_BR]=Uma GUI Java para analizar reportes do NMON
+Type=Application
+StartupNotify=false
+Terminal=false
+Categories=System;

@@ -1,0 +1,8 @@
+PRGNAM="nmonvisualizer"
+VERSION="2015-02-02"
+HOMEPAGE="https://nmonvisualizer.github.io/nmonvisualizer/index.html"
+DOWNLOAD="http://dl.bintray.com/nmonvisualizer/NMONVisualizer/NMONVisualizer_2015-02-02.jar"
+MD5SUM="1af0b38ebbe3cb0b8c0151e7141af0ca"
+REQUIRES="jdk/jre"
+MAINTAINER=""
+EMAIL="@"

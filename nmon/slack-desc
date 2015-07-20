@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+    |-----handy-ruler------------------------------------------------------|
+nmon: nmon (Nigel's Monitor)
+nmon:
+nmon: nmon is  short for Nigel's Monitor.  This free tool gives you a huge
+nmon: amount of important performance information in one go. It can output
+nmon: the data in a number of ways: On screen (console, telnet, VNC, putty
+nmon: or  X Windows) using curses for low CPU impact which is updated once
+nmon: every two seconds. nmon can save the data to a comma  separated file
+nmon: for analysis and longer term data capture
+nmon:
+nmon: Home: http://nmon.sourceforge.net/
+nmon:

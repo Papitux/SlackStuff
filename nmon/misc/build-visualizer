@@ -1,0 +1,14 @@
+#!/bin/sh
+
+DATE=$(LC_ALL=C date +%Y-%m-%d)
+
+git clone https://github.com/nmonvisualizer/nmonvisualizer.git
+cd nmonvisualizer/
+rm -rf .git/ .classpath .gitignore .project
+${ANT_HOME}/bin/ant || exit 1
+tar jcvf NMONVisualizer_${DATE}.tar.bz2 NMONVisualizer_${DATE}.jar
+mv NMONVisualizer_${DATE}.tar.bz2 ../
+rm -f NMONVisualizer_${DATE}.jar
+cd ../
+tar jcvf NMONVisualizer_${DATE}-src.tar.bz2 nmonvisualizer/
+rm -rf nmonvisualizer/

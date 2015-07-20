@@ -1,0 +1,10 @@
+nmon (Nigel's Monitor)
+
+nmon is short for Nigel's Monitor. This free tool gives you a huge amount
+of important performance information in one go. It can output the data in
+a number of ways:  On screen (console, telnet, VNC,  putty or  X Windows)
+using curses for low CPU impact which is updated once every two seconds.
+nmon can save the data to a comma  separated file for analysis and longer
+term data capture
+
+http://nmon.sourceforge.net/
