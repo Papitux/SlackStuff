@@ -1,0 +1,8 @@
+PRGNAM="opencl-headers"
+VERSION="2.0"
+HOMEPAGE="http://www.khronos.org/opencl/"
+DOWNLOAD="http://www.khronos.org/registry/cl/api/"
+MD5SUM="000000000000000000000000000000000"
+REQUIRES="wget"
+MAINTAINER=""
+EMAIL="@"

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+ver=2.0
+
+mkdir opencl-headers-2.0
+
+cd opencl-headers-2.0/
+
+wget \
+ http://www.khronos.org/registry/cl/api/${ver}/cl.h \
+ http://www.khronos.org/registry/cl/api/${ver}/cl_egl.h \
+ http://www.khronos.org/registry/cl/api/${ver}/cl_ext.h \
+ http://www.khronos.org/registry/cl/api/${ver}/cl_gl.h \
+ http://www.khronos.org/registry/cl/api/${ver}/cl_gl_ext.h \
+ http://www.khronos.org/registry/cl/api/${ver}/cl_platform.h \
+ http://www.khronos.org/registry/cl/api/${ver}/opencl.h
+
+cd ..
+
+tar jcvf opencl-headers-2.0.tar.bz2 opencl-headers-2.0/
