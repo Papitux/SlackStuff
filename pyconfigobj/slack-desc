@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+           |-----handy-ruler------------------------------------------------------|
+pyconfigobj: configobj (Config file reading, writing and validation)
+pyconfigobj:
+pyconfigobj: ConfigObj is a simple but powerful config file reader and writer:
+pyconfigobj: an ini file round  tripper.   Its main feature is that it is very
+pyconfigobj: easy to use,  with a straightforward programmer’s interface and a
+pyconfigobj: simple syntax for config files.
+pyconfigobj:
+pyconfigobj:
+pyconfigobj: Home: https://github.com/DiffSK/configobj
+pyconfigobj:
+pyconfigobj:

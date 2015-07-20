@@ -1,0 +1,8 @@
+configobj: configobj (Config file reading, writing and validation)
+
+configobj: ConfigObj is a simple but powerful config file reader and writer:
+configobj: an ini file round  tripper.   Its main feature is that it is very
+configobj: easy to use,  with a straightforward programmer’s interface and a
+configobj: simple syntax for config files.
+
+https://github.com/DiffSK/configobj

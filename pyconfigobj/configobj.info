@@ -1,0 +1,8 @@
+PRGNAM="configobj"
+VERSION="5.0.6"
+HOMEPAGE="https://github.com/DiffSK/configobj"
+DOWNLOAD="https://github.com/DiffSK/configobj/archive/v5.0.5.tar.gz"
+MD5SUM="3ba0a72b09225a09c80b571ad60c3f54"
+REQUIRES="pysix"
+MAINTAINER=""
+EMAIL="@"
