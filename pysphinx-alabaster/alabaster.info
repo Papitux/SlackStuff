@@ -1,0 +1,8 @@
+PRGNAM="alabaster"
+VERSION="0.7.6"
+HOMEPAGE="https://github.com/bitprophet/alabaster"
+DOWNLOAD="https://pypi.python.org/packages/source/a/alabaster/alabaster-0.7.6.tar.gz"
+MD5SUM="169cdce2a96b75bff8cb8a59d938673f"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"

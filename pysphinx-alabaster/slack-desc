@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+                  |-----handy-ruler------------------------------------------------------|
+pysphinx-alabaster: alabaster (A configurable sidebar-enabled Sphinx theme)
+pysphinx-alabaster:
+pysphinx-alabaster: This theme is a modified “Kr” Sphinx theme from  @kennethreitz
+pysphinx-alabaster: (especially as used in his Requests project), which was itself
+pysphinx-alabaster: originally  based on  @mitsuhiko’s  theme used for 'Flask' and
+pysphinx-alabaster: related projects.
+pysphinx-alabaster:
+pysphinx-alabaster: Home: https://github.com/shibukawa/snowball_py
+pysphinx-alabaster:
+pysphinx-alabaster:
+pysphinx-alabaster:
