@@ -1,0 +1,8 @@
+PRGNAM="pystemmer"
+VERSION="1.3.0"
+HOMEPAGE="http://snowball.tartarus.org/"
+DOWNLOAD="https://pypi.python.org/packages/source/P/PyStemmer/PyStemmer-1.3.0.tar.gz"
+MD5SUM="46ee623eeeba5a7cc0d95cbfa7e18abd"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
