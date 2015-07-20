@@ -1,0 +1,8 @@
+ocl-icd (OpenCL ICD Loader)
+
+OpenCL implementations are provided as ICD (Installable Client
+Driver).  An OpenCL program  can use several ICD thanks to the
+use of an ICD Loader as  provided by _ocl-icd_.  This free ICD
+Loader can load any (free or non free) ICD.
+
+https://forge.imag.fr/projects/ocl-icd/
