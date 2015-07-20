@@ -1,0 +1,6 @@
+Babel (snowballstemmer (Provides 16 stemmer algorithms) utilities)
+
+This package provides 16 stemmer algorithms (15 + Poerter English
+stemmer) generated from Snowball algorithms.
+
+https://github.com/shibukawa/snowball_py
