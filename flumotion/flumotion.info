@@ -1,0 +1,8 @@
+PRGNAM="flumotion"
+VERSION="0.10.1"
+HOMEPAGE="http://www.flumotion.net"
+DOWNLOAD="http://www.flumotion.net/src/flumotion/flumotion-0.10.1.tar.bz2"
+MD5SUM="fbbb2f4ccf0624742c5ca8238f3ec5e0"
+DEPENDS="gtk2, pygtk, gst-python-0.10, gst-plugins-base-0.10, gst-plugins-good-0.10, gvfs, kiwi=1.9.29, lxml, pyopenssl, twisted"
+MAINTAINER=""
+EMAIL="@"

@@ -1,0 +1,22 @@
+decodebin plugin is deprecated
+
+try:
+$ gst-inspect-0.10 decodebin
+No element or plug-in "decodebin"
+
+$ gst-inspect-0.10 decodebin2
+Factory Details:
+  Long name:	Decoder Bin
+  Class:	Generic/Bin/Decoder
+  Description:	Autoplug and decode to raw media
+...
+
+
+Dirty (and lame) job:
+
+ -> edit /usr/lib{64}/python2.7/site-packages/gst-0.10/gst/extend/discoverer.py
+ -> rename (line 130) decodebin to decodebin2
+
+or 
+
+ -> delete ~/.gst-0.10
