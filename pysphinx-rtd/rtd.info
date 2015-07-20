@@ -1,0 +1,8 @@
+PRGNAM="rtd"
+VERSION="0.1.8"
+HOMEPAGE="https://github.com/snide/sphinx_rtd_theme/"
+DOWNLOAD="https://pypi.python.org/packages/source/s/sphinx_rtd_theme/sphinx_rtd_theme-0.1.8.tar.gz"
+MD5SUM="713ce7c53239449bdd799385577329ee"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"

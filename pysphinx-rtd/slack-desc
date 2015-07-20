@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+            |-----handy-ruler------------------------------------------------------|
+pysphinx-rtd: rtd-theme (ReadTheDocs.org theme for Sphinx)
+pysphinx-rtd:
+pysphinx-rtd: This is a mobile-friendly sphinx theme for readthedocs.org.
+pysphinx-rtd:
+pysphinx-rtd: Home: https://github.com/snide/sphinx_rtd_theme/
+pysphinx-rtd:
+pysphinx-rtd:
+pysphinx-rtd:
+pysphinx-rtd:
+pysphinx-rtd:
+pysphinx-rtd:
