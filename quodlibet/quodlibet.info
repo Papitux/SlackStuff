@@ -1,0 +1,8 @@
+PRGNAM="quodlibet"
+VERSION="3.4.1"
+HOMEPAGE="https://github.com/quodlibet/quodlibet"
+DOWNLOAD="https://github.com/quodlibet/quodlibet/archive/release-3.4.1.tar.gz"
+MD5SUM="fcfe75733962fc44cad8675b5bd378ec"
+DEPENDS="dbus-python, gst-ffmpeg, gst-plugins-bad, gst-plugins-ugly, gst-python, mutagen, pycairo"
+MAINTAINER=""
+EMAIL="@"
