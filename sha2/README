@@ -1,0 +1,9 @@
+sha2 (SHA implementation library)
+
+sha2 is a simple program that accepts input from either STDIN or
+reads one or more files specified on the command line,  and then
+generates the specified hash:  SHA-256,  SHA-384,  SHA-512  or a
+combination (including all at once).  The library implements the
+SHA-256, SHA-384, and SHA-512 hash algorithms.
+
+http://www.aarongifford.com/computers/sha.html

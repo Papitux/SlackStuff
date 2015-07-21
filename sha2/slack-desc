@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+    |-----handy-ruler------------------------------------------------------|
+sha2: sha2 (SHA implementation library)
+sha2:
+sha2: sha2 is a simple program that accepts input from either STDIN or
+sha2: reads one or more files specified on the command line,  and then
+sha2: generates the specified hash:  SHA-256,  SHA-384,  SHA-512  or a
+sha2: combination (including all at once).  The library implements the
+sha2: SHA-256, SHA-384, and SHA-512 hash algorithms.
+sha2:
+sha2: Home: http://www.aarongifford.com/computers/sha.html
+sha2:
+sha2:
