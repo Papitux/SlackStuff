@@ -1,0 +1,46 @@
+http://stuge.se/mysql-sha256/
+
+mysql-sha256 implements the SHA256 hash as a MySQL User Defined Function.
+mysql-sha256 is free for all purposes without any express guarantee that it works.
+Why is it needed?
+
+MySQL includes the MD5() and SHA1() hashes, but both are considered to have been broken. SHA256 is part of the SHA2 family (with SHA224, SHA384 and SHA512) and as far as I know it has not been broken yet.
+How does it work?
+
+User Defined Functions are shared object files that MySQL loads when instructed and on each following startup until the function is removed.
+Installation
+
+Gentoo users: Unpack dev-db-mysql-sha256-3-tree.tar.bz2 in /usr/local/portage and add
+
+PORTDIR_OVERLAY=/usr/local/portage
+
+to your /etc/make.conf and then
+
+emerge mysql-sha256 -av
+
+until the ebuild is included in portage.
+
+Everyone else: Download mysql-sha256-3.tar.bz2 and run make to compile sha256.so. Install by copying sha256.so into any directory that is searched by the system's dynamic linker. /usr/lib is a safe choice and what my ebuild uses, but /usr/local/lib may be more appropriate on your system.
+
+After installing sha256.so in a library directory, run the following in the mysql client as a SUPER user (e.g. root):
+
+mysql> create function sha256 returns string soname 'sha256.so';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+
+Usage
+
+mysql> select sha256('test');
++------------------------------------------------------------------+
+| sha256('test')                                                   |
++------------------------------------------------------------------+
+| 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08 | 
++------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+Contact
+
+Questions or comments? Send me email. My address is peter (at-sign) stuge (period) se.

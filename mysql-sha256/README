@@ -1,0 +1,7 @@
+mysql-sha256 (MySQL SHA256() UDF)
+
+mysql-sha256 implements the SHA256 hash as a MySQL User Defined
+Function.  mysql-sha256 is _free_ for all purposes  without any
+express guarantee that it works.
+
+http://stuge.se/mysql-sha256/

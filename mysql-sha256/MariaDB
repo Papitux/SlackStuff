@@ -1,0 +1,12 @@
+MariaDB [(none)]> create function sha256 returns string soname 'sha256.so';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> select sha256('test');
++------------------------------------------------------------------+
+| sha256('test')                                                   |
++------------------------------------------------------------------+
+| b1499ffe49c3b4f354e30349bca8e62f08604eab6b687322df47d4f8fce76f19 |
++------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]>
