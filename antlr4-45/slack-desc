@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+      |-----handy-ruler------------------------------------------------------|
+antlr4: antlr4 (Parser generator for processing structured files)
+antlr4:
+antlr4: ANTLR (ANother Tool for Language Recognition) is a powerful parser
+antlr4: generator  for  reading,  processing,  executing,  or  translating
+antlr4: structured  text  or  binary  files.  It's  widely  used to  build
+antlr4: languages, tools, and frameworks.  From a grammar, ANTLR generates
+antlr4: a parser that can build and walk parse trees.
+antlr4:
+antlr4: Home: http://www.antlr.org
+antlr4:
+antlr4:

@@ -1,0 +1,69 @@
+#!/bin/sh
+
+# Slackware build script for antlr4
+
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=antlr4
+SRCNAM=antlr
+VERSION=${VERSION:-4.5}
+BUILD=${BUILD:-1}
+ARCH=noarch
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $PKG
+
+mkdir -p $PKG/usr/share/java/
+if [ ! -f $CWD/$SRCNAM-$VERSION-complete.jar ] ; then
+  ( cd $CWD/ && wget http://www.antlr.org/download/$SRCNAM-$VERSION-complete.jar )
+  install -m644 $CWD/$SRCNAM-$VERSION-complete.jar $PKG/usr/share/java/
+else
+  install -m644 $CWD/$SRCNAM-$VERSION-complete.jar $PKG/usr/share/java/
+fi
+( cd $PKG/usr/share/java/
+  ln -s $SRCNAM-$VERSION-complete.jar $PRGNAM.jar )
+
+#mkdir -p $PKG/{/etc/profile.d,usr/bin}
+mkdir -p $PKG/usr/bin
+install -m755 $CWD/bin/* $PKG/usr/bin/
+#install -m755 $CWD/etc/* $PKG/etc/profile.d/
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/LICENSE > $PKG/usr/doc/$PRGNAM-$VERSION/LICENSE
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+chown -R root:root .
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
