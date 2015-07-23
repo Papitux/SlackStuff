@@ -1,0 +1,3 @@
+#!/bin/sh
+VERSION=4.5.1
+wget http://www.antlr.org/download/antlr-$VERSION-complete.jar
