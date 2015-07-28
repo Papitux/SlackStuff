@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+       |-----handy-ruler------------------------------------------------------|
+premake: premake (A build configuration tool)
+premake:
+premake: Describe your software project just once, using Premake's simple and
+premake: easy to read syntax, and build it everywhere. Generate project files
+premake: for Visual Studio,  GNU Make,  Xcode,  Code::Blocks, and more across
+premake: Windows,  Mac OS X,  and Linux.  Use the full featured Lua scripting
+premake: engine to make build configuration tasks a breeze.
+premake:
+premake: Home: https://premake.github.io/
+premake:
+premake:

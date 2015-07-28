@@ -1,0 +1,8 @@
+PRGNAM="premake"
+VERSION="5.0.0_alpha4"
+HOMEPAGE="https://premake.github.io/"
+DOWNLOAD="https://github.com/premake/premake-core/releases/download/v5.0.0.alpha4/premake-5.0.0.alpha4-src.zip"
+MD5SUM="500a46bfd622744ce54ab03967f38d14"
+REQUIRES="lua"
+MAINTAINER=""
+EMAIL="@"
