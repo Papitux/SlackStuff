@@ -1,0 +1,6 @@
+aacskeys (Decrypt keys from an AACS protected HD-DVD/Blu-Ray)
+
+A program to decrypt all required keys from an AACS protected
+HD-DVD/Blu-Ray (Sequence Keys aren't supported currently).
+
+http://forum.doom9.org/showthread.php?t=123311
