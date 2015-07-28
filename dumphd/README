@@ -1,0 +1,9 @@
+dumphd (HD-DVD/Blu-Ray decrypter)
+
+DumpHD is a HD-DVD/Blu-Ray decrypter based on the idea of BackupHDDVD
+by muslix64.  The goal of this program is to make a  _perfect backup_
+without any traces  of AACS.
+
+This program is written in Java and requires the JRE 1.6 or later.
+
+http://forum.doom9.org/showpost.php?p=966851

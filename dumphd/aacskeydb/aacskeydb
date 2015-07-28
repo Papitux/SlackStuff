@@ -1,0 +1,7 @@
+#!/bin/sh
+
+download_file=KEYDB.cfg
+download_url1=http://vlc-aacs.whoknowsmy.name/files/$download_file
+download_url2=http://vlc-bluray.whoknowsmy.name/files/$download_file #backup
+
+wget -q $download_url1
