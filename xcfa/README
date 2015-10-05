@@ -1,0 +1,7 @@
+xcfa (X Convert File Audio)
+
+XCFA (X Convert File Audio) extracts Audio CD tracks to flac, wav,
+mp3 and ogg formats. XCFA can also perform conversions between the
+flac <-> wav <-> mp3 <-> ogg audio files.
+
+http://xcfa.tuxfamily.org/
