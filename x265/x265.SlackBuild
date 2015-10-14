@@ -20,9 +20,8 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=x265
-SRCNAM=multicoreware-$PRGNAM
-VERSION=1.1
-SRCVER=ae9609aeebdc
+VERSION=1.8
+SRCVERS=11047
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -73,7 +72,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP
 rm -rf $SRCNAM-$SRCVER
-tar xvf $CWD/$SRCNAM-$SRCVER.tar.?z*
+tar xvf $CWD/$SRCNAM-$VERSION.tar.?z*
 cd $SRCNAM-$SRCVER
 
 chown -R root:root .
