@@ -1,0 +1,165 @@
+#!/bin/sh
+
+# Slackware build script for QtAV
+#
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=qtav
+SRCNAM=QtAV
+VERSION=${VERSION:-1.8.0}
+BUILD=${BUILD:-1}
+
+if [ -e $(pwd)/machine.conf ]; then
+  . $(pwd)/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $SRCNAM-$VERSION
+tar xvf $CWD/$SRCNAM-$VERSION.tar.?z*
+cd $SRCNAM-$VERSION
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+if [ -d .git ]; then
+git submodule update --init || exit 1
+fi
+
+export QTDIR=$(qmake-qt5 -query QT_INSTALL_PREFIX)
+PATH="$(qmake-qt5 -query QT_INSTALL_BINS):${PATH}" ; export PATH
+
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+LDFLAGS="$SLKLDFLAGS" \
+
+# I don't need CedarX video hardware acceleration
+qmake-qt5 "CONFIG+=no-cedarv no_rpath recheck"  || exit 1
+
+make $NUMJOBS || make || exit 1
+make install INSTALL_ROOT=$PKG || exit 1
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/lib${LIBDIRSUFFIX}/
+pushd $PKG/usr/lib${LIBDIRSUFFIX}/
+  for lib in libQtAV.so libQtAV.so.1 libQtAV.so.1.8 libQtAVWidgets.so \
+  libQtAVWidgets.so.1 libQtAVWidgets.so.1.8; do
+  ln -s /usr/lib${LIBDIRSUFFIX}/qt5/lib/${lib} .
+  done
+popd
+
+mkdir -p $PKG/usr/bin
+pushd $PKG/usr/bin
+  ln -s /usr/lib${LIBDIRSUFFIX}/qt5/bin/player qtav-player
+  ln -s /usr/lib${LIBDIRSUFFIX}/qt5/bin/QMLPlayer QMLPlayer
+popd
+
+pushd $PKG/usr/share/applications
+  mv player.desktop qtav-player.desktop
+popd
+
+sed -i \
+    -e 's/^TryExec=*.*/TryExec=qtav-player/g' \
+    -e 's/^Exec=player/Exec=qtav-player/g' \
+    $PKG/usr/share/applications/qtav-player.desktop
+
+sed -i 's/^TryExec=*.*/TryExec=QMLPlayer/g' \
+  $PKG/usr/share/applications/QMLPlayer.desktop
+
+mkdir -p $PKG/usr/share/icons/hicolor/scalable/apps
+for res in 16 32 48 64 96 128 256; do
+  mkdir -p  $PKG/usr/share/icons/hicolor/${res}x${res}/apps
+  convert $CWD/$SRCNAM.png -resize ${res}x${res} \
+    $PKG/usr/share/icons/hicolor/${res}x${res}/apps/$SRCNAM.png
+done
+
+install -m644 src/$SRCNAM.svg $PKG/usr/share/icons/hicolor/scalable/apps/$SRCNAM.svg
+
+rm -f $PKG/usr/share/icons/hicolor/64x64/apps/$SRCNAM.svg
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a qtc_packaging/common/copyright gpl* lgpl* README* \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+if [ -r ChangeLog ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/${PRGNAM}-$VERSION)
+  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
+  touch -r ChangeLog $DOCSDIR/ChangeLog
+fi
+
+if [ -d $PKG/usr/share/doc ] ; then
+rm -rf $PKG/usr/share/doc/
+fi
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
