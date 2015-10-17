@@ -1,0 +1,17 @@
+#!/bin/sh
+
+VERSION=r5
+
+git clone https://bitbucket.org/mystery_keeper/vapoursynth-editor.git
+cd vapoursynth-editor/
+git checkout $VERSION
+rm -rf .git/
+cd ..
+mv vapoursynth-editor/ vapoursynth-editor-$VERSION/
+tar jcvf vapoursynth-editor-$VERSION.tar.bz2 vapoursynth-editor-$VERSION//
+rm -rf vapoursynth-editor-$VERSION/
+echo ""
+echo ""
+echo "Tarball is ready!"
+sleep 2
+exit

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=VapourSynth Editor
+Comment=VapourSynth script editor
+Exec=vsedit
+Icon=vsedit
+Terminal=false
+StartupNotify=false
+Categories=Application;AudioVideo;Multimedia;
+MimeType=text/x-vpy
