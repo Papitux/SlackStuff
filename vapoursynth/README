@@ -1,0 +1,17 @@
+vapoursynth (A video processing framework)
+
+VapourSynth is an application for video manipulation. Or a plugin. Or
+a library. It’s hard to tell because it has a core library written in
+C++ and a Python module to allow video scripts to be created.
+
+The main features compared to Avisynth are:
+
+* Multithreaded – Frame level multithreading,
+* Per Frame Properties – Additional metadata can be attached to frames;
+* Generalized Colorspaces – New Colorspaces can be specified at runtime;
+* Python Based – The scripting part is implemented as a Python module so
+  you don’t have have to learn a special language;
+* Support for video with format changes – Some video just can’t stick to
+  one format or frame size VapourSynth can handle any kind of change.
+
+http://www.vapoursynth.com

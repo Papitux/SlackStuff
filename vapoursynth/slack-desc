@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+           |-----handy-ruler------------------------------------------------------|
+vapoursynth: vapoursynth (A video processing framework)
+vapoursynth:
+vapoursynth: VapourSynth is an application for video manipulation. Or a plugin. Or
+vapoursynth: a library. It’s hard to tell because it has a core library written in
+vapoursynth: C++ and a Python module to allow video scripts to be created.
+vapoursynth:
+vapoursynth: Homepage: http://www.vapoursynth.com
+vapoursynth:
+vapoursynth:
+vapoursynth:
+vapoursynth:
