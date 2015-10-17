@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+          |-----handy-ruler------------------------------------------------------|
+mbrola_br4: br4 (Brazilian Portuguese male voice for the MBROLA synthesizer)
+mbrola_br4:
+mbrola_br4: BR4 is a Brazilian Portuguese diphone database provided in the context
+mbrola_br4: of the MBROLA project.  It provides  a Portuguese *female* voice to be
+mbrola_br4: used with the MBROLA program.
+mbrola_br4:
+mbrola_br4: Homepage: http://tcts.fpms.ac.be/synthesis/mbrola.html
+mbrola_br4:
+mbrola_br4:
+mbrola_br4:
+mbrola_br4:
