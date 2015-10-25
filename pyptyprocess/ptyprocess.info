@@ -1,0 +1,8 @@
+PRGNAM="ptyprocess"
+VERSION="0.5"
+HOMEPAGE="https://github.com/pexpect/ptyprocess"
+DOWNLOAD="https://github.com/pexpect/ptyprocess/archive/0.5.tar.gz"
+MD5SUM="3186c94253aee370733aa14fcd33819d"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
