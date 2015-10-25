@@ -1,0 +1,8 @@
+PRGNAM="pexpect"
+VERSION="4.0.1"
+HOMEPAGE="https://github.com/pexpect/pexpect"
+DOWNLOAD="https://github.com/pexpect/pexpect/archive/4.0.1.tar.gz"
+MD5SUM="2bd260f7f2159f9bcab373721736d526"
+REQUIRES="pysetuptools"
+MAINTAINER=""
+EMAIL="@"

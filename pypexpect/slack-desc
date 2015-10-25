@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+         |-----handy-ruler------------------------------------------------------|
+pypexpect: pexpect (Python module for spawning child applications)
+pypexpect:
+pypexpect: A Python module for spawning child applications; controlling then and
+pypexpect: and responding to expected  patterns in their output.  Pexpect allows 
+pypexpect: your script to spawn a child application and control it as if a human
+pypexpect: were typing commands.  Pexpect can be used for automating interactive
+pypexpect: applications such as ssh, ftp, passwd, telnet, etc.
+pypexpect:
+pypexpect: Home: https://github.com/pexpect/pexpect
+pypexpect:
+pypexpect:
