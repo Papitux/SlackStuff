@@ -1,0 +1,10 @@
+man-pages-pt_BR (localized system documentation)
+
+Man pages are online documentation for Linux.  This package includes
+localized sections 1, 2, 3, 4, 5, 7, and 8 man pages for Linux.
+
+The man-pages distribution is maintained by several people, who hold
+copyright for these pages, but everything published under the LDP-BR
+seems to be released under GPL.
+
+http://www.kernel.org/doc/man-pages/
