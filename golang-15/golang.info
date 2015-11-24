@@ -1,0 +1,8 @@
+PRGNAM="golang"
+VERSION="1.5.1"
+HOMEPAGE="http://golang.org"
+DOWNLOAD="https://storage.googleapis.com/golang/go1.5.1.src.tar.gz"
+MD5SUM="4adfbdfca523cc1c229be8a321f3602f"
+DEPENDS="golang-1.4.x (to bootstrap)"
+MAINTAINER=""
+EMAIL="@"
