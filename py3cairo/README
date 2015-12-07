@@ -1,0 +1,5 @@
+pycairo (Python bindings for cairo graphics)
+
+Pycairo is set of Python bindings for the cairo graphics library.
+
+http://cairographics.org/pycairo

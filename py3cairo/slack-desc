@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+py3cairo: pycairo (Python bindings for cairo graphics)
+py3cairo:
+py3cairo: Pycairo is set of Python bindings for the cairo graphics library.
+py3cairo: 
+py3cairo: Home:  http://cairographics.org/pycairo
+py3cairo:
+py3cairo:
+py3cairo:
+py3cairo:
+py3cairo:
+py3cairo:
