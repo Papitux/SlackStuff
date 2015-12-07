@@ -1,0 +1,6 @@
+Click on Settings (Make sure 'Show Advanced Settings' is checked)
+
+Scroll Down to 'TV Show API Endpoint' and change:
+  'https://popcornwvnbg7jev.onion.to/'
+to
+  'https://www.popcorntime.ws/api/eztv/'
