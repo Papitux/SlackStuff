@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=libsodium
-VERSION=${VERSION:-0.6.0}
+VERSION=${VERSION:-1.0.6}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -98,6 +98,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --build=$ARCH-slackware-linux
 
 make $NUMJOBS || make || exit 1
+make check || exit 1
 make DESTDIR=$PKG install || exit 1
 
 find $PKG -type f -name ".gitignore" -exec rm {} \;
