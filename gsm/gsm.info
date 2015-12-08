@@ -1,0 +1,8 @@
+PRGNAM="gsm"
+VERSION="1.0.14"
+HOMEPAGE="http://www.quut.com/gsm/"
+DOWNLOAD="http://www.quut.com/gsm/gsm-1.0.14.tar.gz"
+MD5SUM="4cbb4e7b73842de3d12d30b0d74200d4"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
