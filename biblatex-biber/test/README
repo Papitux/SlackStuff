@@ -1,0 +1,3 @@
+pdflatex test.tex
+biber test
+pdflatex test.tex

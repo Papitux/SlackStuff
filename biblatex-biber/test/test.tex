@@ -1,0 +1,13 @@
+\documentclass[]{article}
+\listfiles % will put version info to .log file
+\usepackage[autostyle]{csquotes}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{biblatex-examples.bib}
+\usepackage[]{hyperref}
+\hypersetup{colorlinks=true}
+
+\begin{document}
+Lorem ipsum dolor sit amet~\cite{kastenholz}.
+At vero eos et accusam et justo duo dolores et ea rebum~\parencite{sigfridsson}.
+\printbibliography 
+\end{document}
