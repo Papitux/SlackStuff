@@ -1,0 +1,166 @@
+#!/bin/sh
+
+# Slackware build script for SpiderMonkey
+
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=mozjs
+PKGNAM=mozjs31
+VERSION=${VERSION:-31.2.0}
+BUILD=${BUILD:-1}
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+# Not build smp safe
+NUMJOBS=${NUMJOBS:-" -j1 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.rc0.tar.?z*
+cd $PRGNAM-$VERSION
+
+# Patches from 0ad
+for patch in $CWD/patch/*.gz ; do
+  zcat $patch | patch -p1 --verbose || exit 1
+done
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+cd js/src
+
+sed -i 's|"-O2"|"-O2 -fPIC"|' configure
+
+export LIBS="-lncursesw"
+export CFLAGS="$SLKCFLAGS -fpermissive"
+export CXXFLAGS="$SLKCFLAGS -fpermissive"
+./configure \
+  --prefix=/usr \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --sysconfdir=/etc \
+  --localstatedir=/var \
+  --mandir=/usr/man \
+  --build=$ARCH-slackware-linux \
+  --enable-readline \
+  --enable-shared-js \
+  --enable-system-ffi \
+  --enable-threadsafe \
+  --enable-xterm-updates \
+  --enable-gcgenerational \
+  --enable-optimize="-O2" \
+  --disable-tests \
+  --disable-static \
+  --with-system-nspr \
+  --with-system-zlib \
+  --with-nspr-prefix=/usr \
+  --without-intl-api
+
+make $NUMJOBS || make || exit 1
+make install DESTDIR=$PKG || exit 1
+
+# Upstream does not honor --disable-static yet
+# No need for this:
+#rm -f ${PKG}/usr/lib*/*.a
+rm -f $PKG/usr/lib${LIBDIRSUFFIX}/*.a
+
+pushd $PKG/usr/bin
+    mv js js31
+    mv js-config js31-config
+popd
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+# For some reason the headers and pkg-config file are executable
+#find $PKG/usr/{lib/pkgconfig,include} -type f -exec chmod -x {} +
+find $PKG/usr/include -type f -exec chmod chmod 644 {} ';'
+chmod 644 $PKG/usr/lib*/pkgconfig/*.pc
+
+# Install files, not symlinks.
+pushd $PKG/usr/include/mozjs-31
+    for link in `find . -type l`; do
+	header=`readlink $link`
+	rm -f $link
+	cp -p $header $link
+    done
+popd
+# Add missing header.
+cp -p js/src/js-config.h $PKG/usr/include/mozjs-31
+
+mkdir -p $PKG/usr/doc/$PKGNAM-$VERSION
+cp ../../{INSTALL,LICENSE,README} \
+   $PKG/usr/doc/$PKGNAM-$VERSION
+cat $CWD/$PKGNAM.SlackBuild > $PKG/usr/doc/$PKGNAM-$VERSION/$PKGNAM.SlackBuild
+
+if [ -r ChangeLog ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/${PKGNAM}-$VERSION)
+  cat ChangeLog | head -n 1000 > $DOCSDIR/ChangeLog
+  touch -r ChangeLog $DOCSDIR/ChangeLog
+fi
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
