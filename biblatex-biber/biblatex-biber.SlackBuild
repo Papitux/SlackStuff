@@ -22,7 +22,7 @@
 
 PRGNAM=biblatex-biber
 PKGNAM=biber-linux_x86_64
-VERSION=1.9
+VERSION=2.2
 BUILD=${BUILD:-1}
 
 if [ -z "$ARCH" ]; then
