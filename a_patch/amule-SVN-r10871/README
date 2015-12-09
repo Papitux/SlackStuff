@@ -1,0 +1,11 @@
+** _TEMP_ fix for build against boost-159 and gcc-530 **
+
+rm -f m4/boost.m4
+cat $CWD/boost.m4 > m4/boost.m4
+cat $CWD/muleboost.m4 > m4/muleboost.m4
+
+sed -i "s|boost_version_req=1.47|boost_version_req=1.59|g" configure
+sed -i "s|1.47|1.59|g" configure.in
+
+zcat $CWD/fix-boost.patch.gz | patch -p1 --verbose || exit 1
+zcat $CWD/boosta.patch.gz | patch -p1 --verbose || exit 1
