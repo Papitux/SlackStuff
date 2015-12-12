@@ -22,8 +22,8 @@
 
 PRGNAM=vapoursynth
 ARCH=${ARCH:-x86_64}
-VERSION=${VERSION:-R28}
-PKGVERS=${PKGVERS:-r28}
+VERSION=${VERSION:-R29}
+PKGVERS=${PKGVERS:-r29}
 BUILD=${BUILD:-1}
 
 if [ -e $(pwd)/machine.conf ]; then
