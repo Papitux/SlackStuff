@@ -1,0 +1,9 @@
+zimg (Scaling, colorspace conversion, and dithering library)
+
+The "z" library implements the commonly required  image  processing
+basics of scaling,  colorspace conversion,  and depth conversion. A
+'simple API' enables conversion between any supported formats.  All
+library routines were designed from the ground-up with flexibility,
+thread safety, and correctness as first priorities.
+
+https://github.com/sekrit-twc/zimg
