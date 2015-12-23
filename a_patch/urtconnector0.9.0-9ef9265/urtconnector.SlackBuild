@@ -1,0 +1,183 @@
+#!/bin/sh
+
+# Slackware build script for urtconnector
+
+# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=urtconnector
+ARCH=${ARCH:-x86_64}
+VERSION=${VERSION:-0.9.0-9ef9265}
+VERS=${VERS:-0.9.0}
+COMMIT=${COMMIT:-9ef9265}
+BUILD=${BUILD:-1}
+
+if [ -e $CWD/machine.conf ]; then
+  . $CWD/machine.conf ]
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.?z* || exit 1
+cd $PRGNAM-$VERSION
+
+# Fix build with gcc 5.3.x
+zcat $CWD/fix-gcc-53x.patch.gz | patch -p1 --verbose || exit 1
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+CFLAGS="$SLKCFLAGS" \
+LDFLAGS="$SLKLDFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+echo Building ...
+mkdir -p build
+cd build
+  cmake \
+    -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
+    -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DMAN_INSTALL_DIR=/usr/man \
+    -DSYSCONF_INSTALL_DIR=/etc \
+    -DCMAKE_SKIP_RPATH=ON \
+    -DLIB_SUFFIX=${LIBDIRSUFFIX} \
+    ..
+  make $NUMJOBS | make || exit 1
+  make DESTDIR=$PKG install || exit 1
+cd -
+
+find $PKG -type f -name ".gitignore" -exec rm {} \;
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+rm -f $PKG/usr/share/applications/$PRGNAM.desktop
+install -m 644 $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$PRGNAM.desktop
+chown -R root:root $PKG/usr/share/applications/$PRGNAM.desktop
+
+# Have GeoIP? I have, so:
+rm -f $PKG/usr/share/urtconnector/GeoIP.dat
+
+for res in 16 32 64 96 128; do
+  mkdir -p  $PKG/usr/share/icons/hicolor/${res}x${res}/apps
+  convert $CWD/$PRGNAM.png -resize ${res}x${res} \
+    $PKG/usr/share/icons/hicolor/${res}x${res}/apps/$PRGNAM.png
+  chown -R root:root $PKG/usr/share/icons/hicolor/${res}x${res}/apps/
+done
+find $PKG/usr/share/icons/hicolor/ -type f -exec chmod 0644 {} \;
+find $PKG/usr/share/icons/hicolor/ -type d -exec chmod 0755 {} \;
+
+if [ -d $PKG/usr/share/man ];then
+mkdir -p $PKG/usr/man
+mv $PKG/usr/share/man/* $PKG/usr/man
+rm -rf $PKG/usr/share/man
+fi
+
+if [ -d $PKG/usr/man ]; then
+  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
+  for i in $(find $PKG/usr/man -type l -name "*.?"); do
+  ln -s $( readlink $i ).gz $i.gz ; rm $i
+  done
+fi
+
+if [ -d $PKG/usr/share/info ];then
+mkdir -p $PKG/usr/info
+mv $PKG/usr/share/info/* $PKG/usr/info
+rm -rf $PKG/usr/share/info
+fi 
+
+if [ -d $PKG/usr/info ]; then
+  find $PKG/usr/info -type f -exec gzip -9 {} \;
+  ( cd $PKG/usr/info
+   if [ -f dir ];then
+     rm dir
+   fi
+   if [ -f dir.gz ];then
+    rm dir.gz
+   fi )
+fi
+
+if [ -d $PKG/usr/locale ]; then
+  mv $PKG/usr/locale $PKG/usr/share/ || exit 1
+fi
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a \
+  build_* how_to* version \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+find $PKG/usr/doc -type d -exec chmod 755 {} \;
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -size 0 -print0 | xargs -0 rm -f
+rm -f $PKG/usr/doc/$PRGNAM-$VERSION/*.bat
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+fi
+
+if [ $(find $PKG/usr/share -maxdepth 0 -type d -empty 2>/dev/null) ]; then
+  rmdir $PKG/usr/share
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERS.$COMMIT-$ARCH-$BUILD.${PKGTYPE:-txz}
