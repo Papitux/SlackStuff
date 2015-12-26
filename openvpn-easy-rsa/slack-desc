@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+                |-----handy-ruler------------------------------------------------------|
+openvpn-easy-rsa: openvpn-easy-rsa (RSA key management)
+openvpn-easy-rsa:
+openvpn-easy-rsa: This is a small RSA key management package,  based on the openssl
+openvpn-easy-rsa: command line tool.  While this tool is primary concerned with key
+openvpn-easy-rsa: management for the SSL VPN application space, it can also be used
+openvpn-easy-rsa: for building web certificates.
+openvpn-easy-rsa:
+openvpn-easy-rsa: Homepage: https://github.com/OpenVPN/easy-rsa
+openvpn-easy-rsa:
+openvpn-easy-rsa:
+openvpn-easy-rsa:
