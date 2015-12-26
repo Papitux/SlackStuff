@@ -1,0 +1,150 @@
+#!/bin/sh
+
+# Slackware build script for OpenVisualTraceRoute
+
+# Copyright 2015 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=OpenVisualTraceRoute
+PKGNAM=ovtr
+VERSION=${VERSION:-1.6.2}
+JPCAP=0.7
+JNETPCAP=1.3.0
+BUILD=${BUILD:-1}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+set -e
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ ! -d $OUTPUT ]; then
+  mkdir -p $OUTPUT
+fi
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM$VERSION
+unzip -a $CWD/$PRGNAM$VERSION.zip
+cd $PRGNAM$VERSION
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+if [ "$ARCH" = "i586" -o "$ARCH" = "i686" ]; then
+  OSBIT="x86"
+elif [ "$ARCH" = "x86_64" ]; then
+  OSBIT="x64"
+fi
+
+mkdir -p $PKG/usr/{bin,share/{applications,icons,pixmaps}}
+mkdir -p $PKG/opt/$PKGNAM/{lib,native/linux/$OSBIT,resources}
+
+install -m644 $CWD/$PKGNAM.png $PKG/usr/share/pixmaps/
+install -m755 $CWD/$PKGNAM.sh $PKG/opt/$PKGNAM/$PKGNAM
+install -m755 org.leo.traceroute.jar $PKG/opt/$PKGNAM/
+install -m644 $CWD/$PKGNAM.desktop $PKG/usr/share/applications/
+
+if [ "$ARCH" = "i586" -o "$ARCH" = "i686" ]; then
+  sed -i 's|_slkbit||g' $PKG/opt/$PKGNAM/$PKGNAM
+elif [ "$ARCH" = "x86_64" ]; then
+  sed -i 's|_slkbit|64|g' $PKG/opt/$PKGNAM/$PKGNAM
+fi
+
+cp -rPf lib/*.jar $PKG/opt/$PKGNAM/lib
+cp -rPf resources/* $PKG/opt/$PKGNAM/resources
+#cp -rPf native/linux/$OSBIT/*.so $PKG/opt/$PKGNAM/native/linux/$OSBIT/
+
+# polkit placebo:
+install -m755 $CWD/$PKGNAM-pkexec $PKG/usr/bin/
+chown root:root $PKG/usr/bin/$PKGNAM-pkexec
+
+# Add polkit action:
+mkdir -p $PKG/usr/share/polkit-1/actions/
+install -m644 $CWD/com.slackware.pkexec.$PKGNAM.policy \
+  $PKG/usr/share/polkit-1/actions/
+
+# Sniffer fix
+# - 1
+( mkdir netpcap && cd netpcap/
+  tar xvf $CWD/netpcap/jpcap-$JPCAP.tar.?z* && cd jpcap-$JPCAP
+  if [ "$ARCH" = "i586" -o "$ARCH" = "i686" ]; then
+    cd src/c && make
+  elif [ "$ARCH" = "x86_64" ]; then
+    zcat $CWD/netpcap/jpcap-64bit.patch.gz | patch -p1 --verbose || exit 1
+    cd src/c && make
+  fi
+  install -m644 libjpcap.so $PKG/opt/$PKGNAM/native/linux/$OSBIT/ )
+# - 2
+( cd netpcap/
+  if [ "$ARCH" = "i586" -o "$ARCH" = "i686" ]; then
+    tar xvf $CWD/netpcap/jnetpcap-${JNETPCAP}-1.fc.i386.???
+    cd jnetpcap-$JNETPCAP
+    install -m644 libjnetpcap.so $PKG/opt/$PKGNAM/native/linux/$OSBIT/
+  elif [ "$ARCH" = "x86_64" ]; then
+    tar xvf $CWD/netpcap/jnetpcap-${JNETPCAP}-1.fc.x86_64.???
+    cd jnetpcap-$JNETPCAP
+    install -m644 libjnetpcap.so $PKG/opt/$PKGNAM/native/linux/$OSBIT/
+  fi )
+# - 3
+( if [ "$ARCH" = "i586" -o "$ARCH" = "i686" ]; then
+    mkdir -p $PKG/usr/lib
+    cd $PKG/usr/lib && ln -s libpcap.so.1.7.4 libpcap.so.0.9
+  elif [ "$ARCH" = "x86_64" ]; then
+    mkdir -p $PKG/usr/lib64
+    cd $PKG/usr/lib64 && ln -s libpcap.so.1.7.4 libpcap.so.0.9
+  fi )
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/share/icons/hicolor/
+for res in 16 32 48 64 96 128; do
+  mkdir -p  $PKG/usr/share/icons/hicolor/${res}x${res}/apps
+  convert $CWD/$PKGNAM.png -resize ${res}x${res} \
+    $PKG/usr/share/icons/hicolor/${res}x${res}/apps/$PKGNAM.png  
+done
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a LICENSE* README* $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PKGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PKGNAM.SlackBuild
+find $PKG/usr/doc -type f -exec chmod 644 {} \;
+chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Open Visual Traceroute
+Comment=Open source cross-platform Java Visual Traceroute
+Exec=ovtr-pkexec
+Icon=ovtr
+Terminal=false
+Type=Application
+Categories=Application;Network;
+StartupNotify=false
