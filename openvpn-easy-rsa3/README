@@ -1,0 +1,8 @@
+easy-rsa (RSA key management)
+
+This is a small RSA key management package,  based on the openssl
+command line tool.  While this tool is primary concerned with key
+management for the SSL VPN application space, it can also be used
+for building web certificates.
+
+https://github.com/OpenVPN/easy-rsa
