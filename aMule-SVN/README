@@ -1,0 +1,7 @@
+aMule (multiplatform ed2k client)
+
+aMule is a multiplatform ed2k client, fork of the eMule client, using the
+wxWidgets class library. It was originally forked from the xMule project,
+which in turn was forked from the lMule project.
+
+http://www.amule.org/
