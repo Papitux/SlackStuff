@@ -1,0 +1,5 @@
+go-md2man (A markdown to manpage generator)
+
+go-md2man is a utility to create manpages from Markdown.
+
+https://github.com/cpuguy83/go-md2man
