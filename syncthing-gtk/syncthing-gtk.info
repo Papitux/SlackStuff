@@ -1,0 +1,8 @@
+PRGNAM="syncthing"
+VERSION="0.8.1"
+HOMEPAGE="https://github.com/syncthing/syncthing-gtk"
+DOWNLOAD="https://github.com/syncthing/syncthing-gtk/archive/v0.8.1.tar.gz"
+MD5SUM="7d57a6eff8e9ff5079cbee457fd46be1"
+DEPENDS="gtk3, libnotify, librsvg, pycairo, pydateutil, pygobject, pyinotify, pysetuptools, syncthing"
+MAINTAINER=""
+EMAIL="@"

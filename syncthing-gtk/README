@@ -1,0 +1,5 @@
+syncthing-gtk (GUI and notification icon for Syncthing)
+
+GTK3 & Python based GUI and notification area icon for Syncthing.
+
+https://github.com/syncthing/syncthing-gtk
