@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+      |-----handy-ruler------------------------------------------------------|
+rclone: Rclone (sync files and directories to and from the Cloud)
+rclone:
+rclone: Rclone is a command line  program to sync  files and  directories to
+rclone: and from  Google Drive,  Amazon S3,  Dropbox,  Amazon Cloud Storage,
+rclone: Hubic,  Openstack Swift /  Rackspace cloud files  / Memset Memstore,
+rclone: Google Cloud Storage, Microsoft One Drive, Backblaze B2, Yandex Disk
+rclone: and the Local Filesystem.
+rclone:
+rclone: Home: http://rclone.org/
+rclone:
+rclone:
