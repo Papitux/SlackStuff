@@ -1,0 +1,13 @@
+Example usage:
+--------------
+
+$ mkdir mnt
+$ btfs video.torrent mnt
+$ cd mnt
+$ vlc video.mp4
+
+
+To unmount and shutdown:
+------------------------
+
+$ fusermount -u mnt

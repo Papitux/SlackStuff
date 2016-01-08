@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+    |-----handy-ruler------------------------------------------------------|
+btfs: BTFS (Bittorrent filesystem)
+btfs:
+btfs: With BTFS, you can mount any .torrent file or magnet link and then
+btfs: use it as any read-only directory in your file tree.  The contents 
+btfs: of the files will be downloaded on-demand as they are read.
+btfs:
+btfs: Home: https://github.com/johang/btfs
+btfs:
+btfs:
+btfs:
+btfs:

@@ -1,0 +1,243 @@
+.TH "btfs" 1 "2016-01-05" "btfs"
+.SH NAME
+btfs \- Mount .torrrent files or magnet links as a local filesystem
+.SH SYNOPSIS
+.B btfs
+[OPTIONS]... metadata mountpoint
+.SH DESCRIPTION
+ftbfs uses fuse (filesystem in user space) to expose a bittorrent source as a normal directory on your filesystem. It's possible to use the files in the mounted path as ordinary files and standard utilities such as cp, cat and ls will work as expected.
+
+You will also be able to play videos using your video player and seek through a file without having to download the entire contents of the torrent.
+
+.SH OPTIONS
+Usage: btfs [OPTIONS...] metadata mountpoint
+
+.B BTFS Options
+
+\fB\-v, \-\-version\fR
+.RS
+Show version information.
+.RE
+
+\fB\-h, \-\-help\fR
+.RS
+Displays usage for the tool.
+.RE
+
+\fB\-b, \-\-browse\-only\fR
+.RS
+Download metadata only.
+.RE
+
+\fB\-k, \-\-keep\fR
+.RS
+Keep files after unmount.
+.RE
+
+
+.B FUSE Options
+
+\fB\-d, \-o debug\fR
+.RS
+Enable debug output (implies \-f).
+.RE
+
+\fB\-f\fR
+.RS
+Foreground operation.
+.RE
+
+\fB\-s\fR
+.RS
+Disable multi-threaded operation.
+.RE
+
+\fB\-o allow_other\fR
+.RS
+Allow access to other users.
+.RE
+
+\fB\-o allow_root\fR
+.RS
+Allow access to root.
+.RE
+
+\fB\-o auto_unmount\fR
+.RS
+Auto unmount on process termination.
+.RE
+
+\fB\-o nonempty\fR
+.RS
+Allow mounts over non-empty file/dir.
+.RE
+
+\fB\-o default_permissions\fR
+.RS
+Enable permission checking by kernel.
+.RE
+
+\fB\-o fsname=NAME\fR
+.RS
+Set filesystem name.
+.RE
+
+\fB\-o suptype=NAME\fR
+.RS
+Set filesystem type.
+.RE
+
+\fB\-o large_read\fR
+.RS
+Issue large read requests.
+.RE
+
+\fB\-o max_read=N\fR
+.RS
+Set maximum size of read requests.
+.RE
+
+\fB\-o hard_remove\fR
+.RS
+Immediate removal (don't hide files).
+.RE
+
+\fB\-o use_ino\fR
+.RS
+Let filesystem set inode numbers.
+.RE
+
+\fB\-o readdir_ino\fR
+.RS
+Try to fill in d_ino in readdir.
+.RE
+
+\fB\-o direct_io\fR
+.RS
+Use direct I/O.
+.RE
+
+\fB\-o kernel_cache\fR
+.RS
+Cache files in kernel.
+.RE
+
+\fB\-o [no]auto_cache\fR
+.RS
+Enable caching based on modification times (off).
+.RE
+
+\fB\-o umask=M\fR
+.RS
+Set file permissions (octal).
+.RE
+
+\fB\-o uid=N\fR
+.RS
+Set file owner.
+.RE
+
+\fB\-o gid=N\fR
+.RS
+Set file group.
+.RE
+
+\fB\-o entry_timeout=T\fR
+.RS
+Cache timeout for names (1.0s).
+.RE
+
+\fB\-o negative_timeout=T\fR
+.RS
+Cache timeout for deleted names (0.0s).
+.RE
+
+\fB\-o attr_timeout=T\fR
+.RS
+Cache timeout for attributes (1.0s).
+.RE
+
+\fB\-o ac_attr_timeout=T\fR
+.RS
+Auto cache timeout for attributes (attr_timeout)
+.RE
+
+\fB\-o noforget\fR
+.RS
+Never forget cached inodes.
+.RE
+
+\fB\-o remember=T\fR
+.RS
+Remember cached inodes fot T seconds (0s).
+.RE
+
+\fB\-o nopath\fR
+.RS
+Don't supply path if not necessary.
+.RE
+
+\fB\-o intr\fR
+.RS
+Allow requests to be interrupted.
+.RE
+
+\fB\-o intr_signal=NUM\fR
+.RS
+Signal to send on interript (10).
+.RE
+
+\fB\-o modules=M1[:M2...]\fR
+.RS
+Names of modules to push onto filesystem stack.
+.RE
+
+.B Module Options
+
+.B [iconv]
+
+\fB\-o from_code=CHARSET\fR
+.RS
+Original encoding of file names (default: UTF-8).
+.RE
+
+\fB\-o to_code=CHARSET\fR
+.RS
+New encoding of the file names (default: UTF-8).
+.RE
+
+.B [subdir]
+
+\fB\-o subdir=DIR\fR
+.RS
+Prepend this directory to all paths (madatory).
+.RE
+
+\fB\-o [no]rellinks\fR
+.RS
+Transform absolute symlinks to relative.
+.RE
+
+
+.SH EXAMPLES
+
+\fBMount Big Buck Bunny demo video link on ~/torrent\fR
+.RS
+btfs http://www.frostclick.com/torrents/video/animation/Big_Buck_Bunny_1080p_surround_frostclick.com_frostwire.com.torrent ~/torrent
+.RE
+
+\fBMount Big Buck Bunny demo video magnet link on ~/torrent\fR
+.RS
+btfs '<magnetlink>' ~/torrent
+.RE
+
+.SH REPORTING BUGS
+Please file issues on the GitHub bug tracker: https://github.com/johang/btfs/issues
+
+.SH "SEE ALSO"
+.BR fuse (1),
+.BR btplay (1)
+
+.SH AUTHORS
+This manual page was written by Jonathan Carter <jonathan@ubuntu.com>
+ftbs was written by Johan Gunnarsson <johan.gunnarsson@gmail.com>
