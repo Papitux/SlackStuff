@@ -1,4 +1,0 @@
-go-lang-bootstrap-1.4.3-x86_64-1
-
-Create bootstrap inside '/opt' and rebuild the script to look
-there for bootstrap and forget about the lame downgrade thing
