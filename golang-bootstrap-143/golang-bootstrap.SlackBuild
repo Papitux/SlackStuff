@@ -1,0 +1,129 @@
+#!/bin/sh
+
+# Slackware build script for google-go-lang
+
+# Copyright 2016 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=golang-bootstrap
+SRCNAM=go
+VERSION=${VERSION:-1.4.3}
+BUILD=${BUILD:-1}
+
+RELEASE=${RELEASE:-linux}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+if [ "$ARCH" = "i486" ]; then
+  LIBDIRSUFFIX=""
+  GARCH="386"
+elif [ "$ARCH" = "x86_64" ]; then
+  LIBDIRSUFFIX="64"
+  GARCH="amd64"
+elif [ "$ARCH" = "arm" ]; then
+  LIBDIRSUFFIX=""
+  GARCH="arm"
+  export GOARM="6" # can be '5' as well, to use soft float instead of hardware
+else
+  LIBDIRSUFFIX=""
+  GARCH=386
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG/opt/go-bootstrap
+cd $PKG/opt/go-bootstrap
+tar xvf $CWD/$SRCNAM$VERSION.src.tar.?z*
+cd $SRCNAM
+
+#zcat $CWD/disable_net_test.patch.gz | patch -p1 --verbose || exit 1
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+ -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+ -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+export GOSRC="$(pwd)"
+export GOROOT="$(pwd)"
+export GOROOT_FINAL="/opt/go-bootstrap/go"
+export GOOS="linux"
+export GOBIN="${PKG}/opt/go-bootstrap/go/bin"
+export GOARCH="${GARCH}"
+export GOROOT_BOOTSTRAP="/opt/go-bootstrap/go"
+export PATH="$(pwd):$GOROOT/bin:$GOPATH/bin:$PATH"
+
+mkdir -p "${GOBIN}"
+cd src
+
+LC_ALL=C \
+./all.bash
+
+cd ..
+
+ln -sf /opt/go-bootstrap/go/pkg/tool/linux_${GOARCH}/cgo $PKG/opt/go-bootstrap/go/bin/cgo
+ln -sf /opt/go-bootstrap/go/pkg/tool/linux_${GOARCH}/ebnflint $PKG/opt/go-bootstrap/go/bin/ebnflint
+
+# x86_64 compilers
+for tool in 8a 8g 8l 6a 6g 6l 5a 5g 5l ; do
+  if [ -x $PKG/opt/go-bootstrap/go/pkg/tool/linux_${GOARCH}/${tool} ] ; then
+    ln -sf opt/go-bootstrap/go/pkg/tool/linux_${GOARCH}/${tool} $PKG/opt/go-bootstrap/go/bin/${tool}
+  fi
+done
+
+# Remove object files from target src dir
+find $PKG/opt/go-bootstrap/go/src/ -type f -name '*.[ao]' -delete
+
+# Fix for FS#32813
+find $PKG -type f -name sql.go -exec chmod -x {} \;
+  
+# Remove all executable source files
+chmod 644 src/{make,run}.bash
+find $PKG/opt/go-bootstrap/go/src -type f -executable -delete
+chmod 755 src/{make,run}.bash
+
+# Avoid unnecessary rebuilds
+find $PKG/opt/go-bootstrap/go -name "*.a" -exec touch -r `which go` {} \;
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a \
+  AUTHORS CONTRIBUTORS LICENSE PATENTS README* VERSION \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+if [ -f $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh >> $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD.${PKGTYPE:-txz}
