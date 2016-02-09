@@ -1,0 +1,9 @@
+faketime (Modifies the system time for a single application)
+
+libfaketime intercepts various system calls  which programs use to
+retrieve the current date and time. It can then report faked dates
+and times (as specified by you, the user) to these programs.  This
+means you can modify the system time a program sees without having
+to change the time system-wide.
+
+https://github.com/wolfcw/libfaketime

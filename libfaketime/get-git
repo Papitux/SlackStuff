@@ -1,0 +1,12 @@
+#!/bin/sh
+git clone https://github.com/wolfcw/libfaketime.git
+cd libfaketime
+COMMIT=$(git log --pretty=format:'%h' -n 1)
+VERSION=${VERSION:-0.9.6}
+VERSION="$VERSION.$COMMIT"
+rm -rf .git/
+cd ..
+mv libfaketime/ libfaketime-$VERSION/
+tar jcvf libfaketime-$VERSION.tar.bz2 libfaketime-$VERSION/
+rm -rf libfaketime-$VERSION/
+echo $COMMIT > commit
