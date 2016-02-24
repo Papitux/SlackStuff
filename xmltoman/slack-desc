@@ -1,0 +1,20 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+        |-----handy-ruler------------------------------------------------------|
+xmltoman: xmltoman (XML to Man converter)
+xmltoman:
+xmltoman: xmltoman and xmlmantohtml are two small scripts to convert
+xmltoman: xml to man pages in groff format or html.  It features the
+xmltoman: usual man page items such a "description", "options", "see
+xmltoman: also" etc.
+xmltoman:
+xmltoman: Home: https://sourceforge.net/projects/xmltoman/
+xmltoman:
+xmltoman:
+xmltoman:
+
+
