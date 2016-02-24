@@ -1,0 +1,15 @@
+#!/bin/sh
+/usr/bin/tput bold
+/usr/bin/tput setaf 3
+echo""
+echo "Generate a 4096 bit RSA private key for kernel module signing"
+echo""
+/usr/bin/tput setaf 4
+openssl req -new -nodes -utf8 -sha512 -days 36500 -batch -x509 -config x509.genkey -outform PEM -out signing_key.pem -keyout signing_key.pem 2>&1
+/usr/bin/tput setaf 3
+echo""
+echo "Extracting x509 certificate from a 4096 bit RSA private key"
+echo""
+/usr/bin/tput setaf 4
+/usr/src/linux/scripts/extract-cert signing_key.pem signing_key.x509 2>&1
+/usr/bin/tput sgr0

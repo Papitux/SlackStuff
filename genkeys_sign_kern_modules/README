@@ -1,0 +1,12 @@
+For kernel 4+ only
+
+Files:
+x509.genkey
+signing_key.pem
+signing_key.x509
+
+Inside:
+linux/certs/
+
+Add out-of-tree modules to 'sign_modules' script and run it after
+every new kernel/modules are built.

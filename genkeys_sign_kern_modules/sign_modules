@@ -1,0 +1,12 @@
+#!/bin/sh
+
+KVER=${KVER:-$(uname -r)}
+
+/usr/bin/tput bold
+/usr/bin/tput setaf 3
+echo""
+echo "Signing local modules with a 4096 bit RSA pemate key"
+echo""
+/usr/bin/tput sgr0
+
+/usr/src/linux-$KVER/scripts/sign-file sha512 /usr/src/keys/signing_key.pem /usr/src/keys/signing_key.x509 /lib/modules/$KVER/kernel/module.ko
