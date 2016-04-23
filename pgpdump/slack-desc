@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+       |-----handy-ruler------------------------------------------------------|
+pgpdump: pgpdump (PGP packet visualizer)
+pgpdump:
+pgpdump: pgpdump is a PGP packet visualizer which displays the packet format
+pgpdump: of OpenPGP (RFC 4880) and PGP version 2 (RFC 1991).
+pgpdump:
+pgpdump: Home: http://www.mew.org/~kazu/proj/pgpdump
+pgpdump:
+pgpdump:
+pgpdump:
+pgpdump:
+pgpdump:

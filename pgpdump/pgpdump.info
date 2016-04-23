@@ -1,0 +1,8 @@
+PRGNAM="pgpdump"
+VERSION="0.30"
+HOMEPAGE="http://www.mew.org/~kazu/proj/pgpdump"
+DOWNLOAD="http://www.mew.org/~kazu/proj/pgpdump/pgpdump-0.30.tar.gz"
+MD5SUM="dacd5a6609bd6014847095848d71d3c3"
+REQUIRES="bzip2, zlib"
+MAINTAINER=""
+EMAIL="@"
