@@ -1,0 +1,2 @@
+kernel.mm.ksm.run = 1
+kernel.mm.ksm.sleep_millisecs = 1000

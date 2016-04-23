@@ -1,0 +1,14 @@
+/var/log/netdata/*.log {
+	daily
+	missingok
+	rotate 14
+	compress
+	delaycompress
+	notifempty
+	sharedscripts
+	postrotate
+		if service netdata status > /dev/null ; then \
+			service netdata restart > /dev/null; \
+		fi;
+	endscript
+}
