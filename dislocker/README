@@ -1,0 +1,8 @@
+dislocker (Read BitLocker encrypted volumes under Linux)
+
+dislocker has been designed to read BitLocker encrypted partitions
+under a Linux system.  It can write and read to  encrypted volumes
+under Windows Vista, 7, 8, 8.1, 10 and 'BitLocker-To-Go' encrypted
+partitions.
+
+http://www.hsc.fr/ressources/outils/dislocker
