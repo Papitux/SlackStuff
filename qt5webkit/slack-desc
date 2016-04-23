@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+         |-----handy-ruler------------------------------------------------------|
+qt5webkit: Qt5WebKit (Qt bindings for the WebKit browser engine)
+qt5webkit:
+qt5webkit: WebKit is an open source web browser engine. WebKit's HTML and
+qt5webkit: JavaScript code began as a branch of the KHTML and KJS libraries from
+qt5webkit: KDE.  As part of KDE framework KHTML was based on Qt but during their
+qt5webkit: porting efforts Apple's engineers made WebKit toolkit independent.
+qt5webkit: QtWebKit is a project aiming at porting this fabulous engine back
+qt5webkit: to Qt.
+qt5webkit:
+qt5webkit: Homepage: http://www.qt.io/
+qt5webkit:

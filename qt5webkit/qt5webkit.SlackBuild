@@ -1,0 +1,167 @@
+#!/bin/sh
+
+# Copyright 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015  Patrick J. Volkerding, Sebeka, MN, USA
+# Copyright 2015  Heinz Wiesinger, Amsterdam, The Netherlands
+# Copyright 2016 Papitux <papitux.br[at]gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is permitted provided
+# that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright notice, this list of
+#    conditions and the following disclaimer.
+#
+# THIS SOFTWARE IS PROVIDED  BY THE AUTHOR  ''AS IS''  AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+# INCIDENTAL,  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS;  OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN CONTRACT,  STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PKGNAM=qt5webkit
+VERSION=$(ls qtwebkit-*.tar.?z* | rev | cut -f 3- -d . | cut -f 1 -d - | rev)
+BUILD=${BUILD:-1}
+
+if [ -e $(pwd)/machine.conf ]; then
+  . $(pwd)/machine.conf
+else
+  MARCH=$( uname -m )
+  if [ -z "$ARCH" ]; then
+    case "$MARCH" in
+      i?86)    export ARCH=i486 ;;
+      arm*)    export ARCH=arm ;;
+      *)       export ARCH=$MARCH ;;
+    esac
+  fi
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"; CHOST="i486"
+    SLKLDFLAGS=""; LIBDIRSUFFIX=""
+  elif [ "$ARCH" = "x86_64" ]; then
+    SLKCFLAGS="-O2 -fPIC -pipe -fomit-frame-pointer"; CHOST="x86_64"
+    SLKLDFLAGS="-L/lib64 -L/usr/lib64"; LIBDIRSUFFIX="64"
+  else
+    SLKCFLAGS="-O2"
+    LIBDIRSUFFIX=""
+  fi
+fi
+
+case "$ARCH" in
+    arm*) TARGET=$ARCH-slackware-linux-gnueabi ;;
+    *)    TARGET=$ARCH-slackware-linux ;;
+esac
+
+set -e
+
+NUMJOBS=${NUMJOBS:-" -j4 "}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/PpTux}
+PKG=$TMP/package-${PKGNAM}
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf qtwebkit-$VERSION
+tar xvf $CWD/qtwebkit-opensource-src-$VERSION.tar.xz
+cd qtwebkit-opensource-src-$VERSION || exit 1
+
+# Fix linking to pthread
+zcat $CWD/pthread.patch.gz | patch -p1 --verbose || exit 1
+
+# Fix build warning in bignum.cc
+# https://bugs.webkit.org/show_bug.cgi?id=150797
+zcat $CWD/bignum.patch.gz | patch -p1 --verbose || exit 1
+
+# Generate headers
+syncqt.pl-qt5 -version 5.6.0 Source/sync.profile
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+unset QTDIR QTINC QTLIB
+export QTDIR=$(qmake-qt5 -query QT_INSTALL_PREFIX)
+PATH="$(qmake-qt5 -query QT_INSTALL_BINS):${PATH}" ; export PATH
+
+# To add support for WebP images add this to --qmakearg
+# DEFINES+=HAVE_LIBWEBP=1
+
+LDFLAGS="$SLKLDFLAGS" \
+CFLAGS="$SLKCFLAGS  -Wno_error" \
+CXXFLAGS="$SLKCFLAGS" \
+mkdir -p Build && cd Build/
+  qmake-qt5 .. || exit 1
+  make $NUMJOBS \
+   -Wnone \
+  CONFIG+=production_build \
+  QMAKE_CFLAGS="$SLKCFLAGS" \
+  QMAKE_CXXFLAGS="$SLKCFLAGS"  || exit 1
+make INSTALL_ROOT=$PKG install || exit 1
+cd -
+
+# Drop QMAKE_PRL_BUILD_DIR because reference the build dir
+  find "$PKG/usr/lib${LIBDIRSUFFIX}" -type f -name '*.prl' \
+    -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d" {} \;
+
+# libwebcore and libjscore are used internally.
+# Prevent a false dependency on this in the .pc files:
+sed -i \
+  -e "s,-lwebcore,,g" \
+  -e "s,-lJavaScriptCore,,g" \
+  $PKG/usr/lib${LIBDIRSUFFIX}/qt5/lib/pkgconfig/Qt5WebKit.pc
+
+# Die rpath...
+sed -i \
+  -e "s|-Wl,-whole-archive||g" \
+  -e "s|-Wl,-no-whole-archive||g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/WTF/,,g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/WebKit/,,g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/WebKit2/,,g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/WebCore/,,g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/JavaScriptCore/,,g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/ThirdParty/ANGLE/,,g" \
+  -e "s,-L$TMP/qtwebkit-$VERSION/build/Source/ThirdParty/leveldb/,,g" \
+  $PKG/usr/lib${LIBDIRSUFFIX}/qt5/lib/pkgconfig/Qt5WebKit.pc
+
+# Link the shared libraries into /usr/lib:
+( cd $PKG/usr/lib${LIBDIRSUFFIX}
+  for file in $(ls usr/lib${LIBDIRSUFFIX}/qt5/lib/*.so*) ; do
+    ln -sf $file .
+  done
+)
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+
+mkdir -p $PKG/usr/lib${LIBDIRSUFFIX}/pkgconfig
+( cd $PKG/usr/lib${LIBDIRSUFFIX}/qt5/lib/pkgconfig
+  for file in *.pc ; do
+    ( cd $PKG/usr/lib${LIBDIRSUFFIX}/pkgconfig ; ln -sf /usr/lib${LIBDIRSUFFIX}/qt5/lib/pkgconfig/$file . )
+  done
+)
+
+# Add a documentation directory:
+mkdir -p $PKG/usr/doc/$PKGNAM-$VERSION
+cp -a ChangeLog* LICENSE* VERSION $PKG/usr/doc/$PKGNAM-$VERSION
+
+# If there's a ChangeLog, installing at least part of the recent history
+# is useful, but don't let it get totally out of control:
+if [ -r ChangeLog* ]; then
+  DOCSDIR=$(echo $PKG/usr/doc/${PKGNAM}-$VERSION)
+  cat ChangeLog* | head -n 1000 > $DOCSDIR/ChangeLog
+fi
+
+mkdir -p $PKG/install
+zcat $CWD/doinst.sh.gz > $PKG/install/doinst.sh
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $TMP/$PKGNAM-$VERSION-$ARCH-$BUILD.txz
