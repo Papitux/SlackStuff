@@ -1,0 +1,8 @@
+memtester (Utility for testing the memory subsystem)
+
+A userspace utility for testing the memory subsystem for faults. It's portable
+and should compile and work on any 32 or 64-bit Unix-like system. For hardware
+developers, as of version 4.1.0, memtester can be told to test memory starting
+at a particular physical address.
+
+http://pyropus.ca/software/memtester/
