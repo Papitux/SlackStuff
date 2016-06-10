@@ -1,0 +1,8 @@
+mugshot (Update personal user details)
+
+Mugshot is a lightweight user configuration utility that allows you
+to easily update personal user, including Linux profile image, user
+details stored in '/etc/passwd' (used by finger), Pidgin buddy icon
+and LibreOffice user details.
+
+https://launchpad.net/mugshot
