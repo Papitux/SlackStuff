@@ -69,7 +69,7 @@ cd $PRGNAM-$VERSION
 zcat $CWD/office-phone.patch.gz | patch -p1 --verbose || exit 1
 
 # Just to work with whiskermenu ;)
-# Lame hack, I kmow...
+# Lame hack, I know...
 zcat $CWD/fix-local.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
