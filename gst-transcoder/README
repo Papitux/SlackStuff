@@ -1,0 +1,5 @@
+gst-transcoder (GStreamer Transcoding API)
+
+This package provides the GStreamer transcoding API.
+
+https://github.com/pitivi/gst-transcoder
