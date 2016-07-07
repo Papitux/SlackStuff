@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=BlueGriffon Web Editor
+Exec=bluegriffon
+Icon=bluegriffon
+GenericName=Web Editor
+GenericName[hu]=Webszerkesztő
+Comment=Create Web Pages
+Comment[pt_BR]=Cria páginas web
+Type=Application
+Terminal=false
+Categories=Development;Office;WebDevelopment;
+MimeType=text/html;application/xhtml+xml;

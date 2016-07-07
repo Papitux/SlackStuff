@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+           |-----handy-ruler------------------------------------------------------|
+bluegriffon: bluegriffon (Web Editor)
+bluegriffon:
+bluegriffon: Web Editor based on the rendering engine of Firefox. It is powered by
+bluegriffon: Gecko, the same rendering engine you can find at the heart of Firefox
+bluegriffon: and is filled with tons of powerful features.
+bluegriffon:
+bluegriffon: Home: http://bluegriffon.org/
+bluegriffon:
+bluegriffon:
+bluegriffon:
+bluegriffon:
