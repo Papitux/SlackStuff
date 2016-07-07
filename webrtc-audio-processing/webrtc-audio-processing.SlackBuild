@@ -2,7 +2,7 @@
 
 # Slackware build script for webrtc-audio-processing
 
-# Copyright 2014 Papitux <papitux.br[at]gmail.com>
+# Copyright 2016 Papitux <papitux.br[at]gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is permitted provided
@@ -21,7 +21,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=webrtc-audio-processing
-VERSION=${VERSION:-0.1}
+VERSION=${VERSION:-0.2}
 BUILD=${BUILD:-1}
 
 if [ -e $CWD/machine.conf ]; then
@@ -100,7 +100,7 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
-  AUTHORS COPYING INSTALL NEWS PATENTS README \
+  AUTHORS COPYING INSTALL NEWS {README,UPDATING}.md \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
