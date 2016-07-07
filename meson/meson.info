@@ -1,0 +1,8 @@
+PRGNAM="meson"
+VERSION="0.32.0"
+HOMEPAGE="http://mesonbuild.com/"
+DOWNLOAD="https://pypi.python.org/pypi/meson/"
+MD5SUM="a0670a01305aaf0c4ff914fcd407bf38"
+REQUIRES="ninja, python3, py3qt5"
+MAINTAINER=""
+EMAIL="@"
