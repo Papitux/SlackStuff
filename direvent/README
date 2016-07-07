@@ -1,0 +1,9 @@
+direvent (Monitors events in the file system directories)
+
+GNU Direvent monitors events in the file system directories. For each
+event that occurs in a set of pre-configured directories, the program
+calls  an external program associated with it,  supplying it with the
+information  about the event  and the location within the file system
+where it occured.
+
+http://www.gnu.org.ua/software/direvent/
