@@ -1,0 +1,10 @@
+hwloc (Portable hardware locality)
+
+hwloc provides  command line tools and a C API to obtain the  hierarchical map
+of  key  computing  elements,  such  as:  NUMA  memory  nodes,  shared caches,
+processor sockets, processor cores,  processing  units  (logical processors or
+"threads")  and  even I/O devices.  hwloc also gathers various attributes such
+as cache and memory information, and is portable across a variety of different
+operating systems and platforms.
+
+http://www.open-mpi.org/projects/hwloc/

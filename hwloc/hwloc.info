@@ -1,0 +1,8 @@
+PRGNAM="hwloc"
+VERSION="1.11.3"
+HOMEPAGE="http://www.open-mpi.org/projects/hwloc/"
+DOWNLOAD="https://www.open-mpi.org/software/hwloc/v1.11/downloads/hwloc-1.11.3.tar.bz2"
+MD5SUM="42d1d6c5c237069813cd28292629fc39"
+REQUIRES=""
+MAINTAINER=""
+EMAIL="@"
