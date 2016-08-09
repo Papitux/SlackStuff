@@ -1,0 +1,9 @@
+netloc (Portable network locality)
+
+The Portable Network Locality  (netloc)  software  provides  network
+topology discovery tools,  and an  abstract  representationof  those
+networks topologies for a range of network types and configurations.
+It is  provided  as a companion  to  the  Portable Hardware Locality
+(hwloc) package.
+
+https://www.open-mpi.org/projects/netloc/

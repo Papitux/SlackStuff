@@ -1,0 +1,8 @@
+PRGNAM="netloc"
+VERSION="0.5"
+HOMEPAGE="https://www.open-mpi.org/projects/netloc/"
+DOWNLOAD="https://www.open-mpi.org/software/netloc/v0.5/downloads/netloc-0.5.tar.bz2"
+MD5SUM="cae84da47760b6ff1a3a08b1510334e5"
+REQUIRES="hwloc, jansson"
+MAINTAINER=""
+EMAIL="@"

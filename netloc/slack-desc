@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+      |-----handy-ruler------------------------------------------------------|
+netloc: netloc (Portable network locality)
+netloc:
+netloc: The Portable Network Locality  (netloc)  software  provides  network
+netloc: topology discovery tools,  and an  abstract  representationof  those
+netloc: networks topologies for a range of network types and configurations.
+netloc: It is  provided  as a companion  to  the  Portable Hardware Locality
+netloc: (hwloc) package.
+netloc:
+netloc: Home: https://www.open-mpi.org/projects/netloc/
+netloc:
+netloc:
