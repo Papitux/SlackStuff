@@ -1,0 +1,5 @@
+GitArchiver
+
+Scan a git repository and export all tracked files, and submodules.
+Checks  for  '.gitattributes'  files in  each  directory  and  uses
+export-ignore pattern entries for ignore files in the archive.

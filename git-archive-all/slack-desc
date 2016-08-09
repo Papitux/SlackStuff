@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+               |-----handy-ruler------------------------------------------------------|
+git-archive-all: git-archive-all (A python script wrapper for git-archive)
+git-archive-all:
+git-archive-all: Create an archive by using the  git  ls-files --cached --full-name
+git-archive-all: --no-empty-directory command. Support sumodule trees regardless of
+git-archive-all: depth. Takes into account .gitattributes
+git-archive-all:
+git-archive-all: Home: https://github.com/Kentzo/git-archive-all
+git-archive-all:
+git-archive-all:
+git-archive-all:
+git-archive-all:
