@@ -1,0 +1,7 @@
+wine-mono (Wine's built-in replacement for .NET Framework)
+
+Mono is an open-source and cross-platform implementation of the .NET
+Framework.  Wine  can  use  a  Windows  build  of  Mono  to run .NET
+applications.
+
+https://wiki.winehq.org/Mono
