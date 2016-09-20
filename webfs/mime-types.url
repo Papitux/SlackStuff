@@ -1,0 +1,1 @@
+http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types

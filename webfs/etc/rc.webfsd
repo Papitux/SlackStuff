@@ -1,0 +1,85 @@
+#!/bin/sh
+
+if [ -f /etc/webfs/webfsd.conf ] ; then
+    . /etc/webfs/webfsd.conf
+fi
+
+PID=`pidof -o %PPID webfsd`
+
+start() {
+  if [ ! -z $PID ]; then
+    echo "Alredy running."
+    exit 1
+  else
+    echo -n "Starting webfs daemon (webfsd)..."
+    /usr/bin/webfsd $WEBFSD_OPTS &> /dev/null
+  fi
+  if [ "$(ps aux | grep webfsd | grep -v grep)" ]; then 
+    echo " Ok!"
+    RETVAL=$?
+  else
+    RETVAL=1
+    echo " error!"    
+  fi
+}
+
+
+stop() {
+  echo -n "Stopping webfs daemon (webfsd)..."
+  if [ -z "$PID" ]; then
+    echo " not running."
+    exit 0
+  fi
+  if kill -15 $PID && [ ! -z "$PID" ] ; then
+    echo " stopped."
+  else
+    sleep 1
+    if kill -9 $PID; then
+      echo " killed."
+    else
+      echo " error!"
+      exit 1
+   fi
+  fi
+}
+
+
+status() {
+  if [ -z "$PID" ]; then
+    echo "Not running."
+    exit 1
+  elif kill -0 $PID ; then
+    echo "Running in pid $PID."
+    exit 0
+  else
+    echo "The webfs daemon (webfsd) is not running."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+  ;;
+
+  stop)
+    stop
+  ;;
+
+  restart)
+    stop
+    sleep 3
+    start
+  ;;
+
+  reload)
+    reload
+  ;;
+
+  status)
+    status
+  ;;
+
+  *)
+  echo "Usage: $0 (start|stop|restart|reload|status)"
+esac

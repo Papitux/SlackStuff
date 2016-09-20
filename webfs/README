@@ -1,0 +1,8 @@
+webfs (a lightweight http server)
+
+This is a simple http server for pure static content.  You can use it
+to serve the content of a ftp server via http for example. It is also
+nice to export some files the quick way by starting a http  server in
+a few seconds, without editing some config file first.
+
+http://linux.bytesex.org/misc/webfs.html
