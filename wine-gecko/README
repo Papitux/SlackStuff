@@ -1,0 +1,6 @@
+wine-gecko (Wine's built-in replacement for M$ Internet Explorer)
+
+Wine implements its own version of Internet Explorer, based on a
+custom version of Mozilla's Gecko Layout Engine
+
+https://wiki.winehq.org/Gecko
